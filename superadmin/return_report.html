@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Care Management</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="../plugins/datatables-bs4/css/dataTables.bootstrap4.css">
+  <link rel="stylesheet" href="../dist/css/admin_lte.css">
+  <!-- Google Font: Source Sans Pro -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <style>
+    .main-sidebar{
+      background-color: #048db7 !important;
+    }
+    .nav-link.active{
+      background-color:  #aab8c6 !important;
+    
+    }
+  </style>
+</head>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+  <!-- Navbar -->
+  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <!-- Left navbar links -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="#" class="nav-link">Home</a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="#" class="nav-link">Contact</a>
+      </li>
+    </ul>
+
+   
+
+    <!-- Right navbar links -->
+    <div class="navbar-custom-menu ml-auto">
+      
+      <ul class="navbar-nav ml-auto">
+        <li class="dropdown user user-menu" style="top: 5px;">
+                  
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <img src="../dist/img/default.png" class="user-image" alt="User Image">
+                                    
+              <span class="hidden-xs">Super Admin</span>
+          </a>
+          <ul class="dropdown-menu" style="width: 200px;">
+            <li class="user-header">
+              <img src="../dist/img/default.png" class="img-circle" alt="User Image">
+              <p> Super Admin</p>
+            </li>
+            <li class="user-footer">
+              <div class="pull-left">
+                
+              </div>
+              <div class="pull-right">
+                <a href="../index.html" class="btn btn-danger btn-flat">Logout</a>
+              </div>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <!-- /.navbar -->
+
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="#" class="brand-link">
+      <img src="../dist/img/AdminLTELogo.png"
+           alt="Care Management"
+           class="brand-image img-circle elevation-3"
+           style="opacity: .8">
+      <span class="brand-text font-weight-light">Care Management</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user (optional) -->
+      
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+               <li class="nav-item has-treeview">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon fas fa-tachometer-alt"></i>
+                  <p>
+                    Dashboard
+                   
+                  </p>
+                </a>
+                
+              </li>
+              <li class="nav-item">
+                <a href="PCMH.html" class="nav-link "> 
+                  <i class="nav-icon fas fa-user-alt"></i>
+                  <p>
+                    Add PCMH
+                    
+                  </p>
+                </a>
+              </li>
+    
+              <li class="nav-item">
+                <a href="user.html" class="nav-link ">
+                  <i class="nav-icon fas fa-user"></i>
+                  <p>
+                    Add User
+                   
+                  </p>
+                </a>
+              </li>
+    
+              <li class="nav-item">
+                <a href="return_report.html" class="nav-link active"> 
+                  <i class="nav-icon fas fa-file-alt"></i>
+                  <p>
+                    Review Return Report
+                    
+                  </p>
+                </a>
+              </li>
+         
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Review Return Report</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Review Return Report</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+
+        <div class="row">
+          <!-- left column -->
+          <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="card card-primary" >
+             
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form role="form" action="" method="POST">
+                <div class="card-body">
+                  <div class="row">
+                   
+                    <div class="col-md-3">
+                      <div class="form-group">
+                         <label>Select PCMH</label>
+                         <select name="pcmh" id="pcmh" class="form-control">
+                           <option value="">--Select PCMH--</option>
+                           
+                         </select>
+                       </div>
+                     </div>
+
+                    <div class="col-md-3">
+                      <div class="form-group">
+                         <label>Select Month</label>
+                         <select name="month" id="month" class="form-control">
+                           <option value="">--Select Month--</option>
+                           <option value="January">January</option>
+                           <option value="February">February</option>
+                           <option value="March">March</option>
+                           <option value="April">April</option>
+                           <option value="May">May</option>
+                           <option value="June">June</option>
+                           <option value="July">July</option>
+                           <option value="August">August</option>
+                           <option value="September">September</option>
+                           <option value="October">October</option>
+                           <option value="November">November</option>
+                           <option value="December">December</option>
+                          
+                         </select>
+                       </div>
+                     </div>
+                     <div class="col-md-3">
+                       <div class="form-group">
+                         <label>Select Year</label>
+                         <select name="year" id="year" class="form-control">
+                           <option value="">--Select Year--</option>
+                           <option value="2020">2020</option>
+                           <option value="2019">2019</option>
+                           <option value="2018">2018</option>
+                          
+                         </select>
+                       </div>
+                     </div>
+                    
+                    <div class="col-md-3">
+                      <div class="form-group">
+                        <label>&nbsp;</label><br>
+                        <button type="button" id="btn_search" class="btn btn-success"><i class="fas fa-search"></i> Search</button>
+                      </div>
+                      </div>
+                  </div>
+                  
+                  
+                </div>
+                <!-- /.card-body -->
+
+                
+              </form>
+            </div>
+            <!-- /.card -->
+          </div>
+        </div>
+
+        <div class="row">
+          <!-- left column -->
+          <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="card card-primary" >
+              <div class="card-header" style="background-color: #048db7 !important;">
+                <h3 class="card-title">Review Return Report </h3>
+                
+              </div>
+             
+
+             
+                <div class="card-body">
+                  <div class="col-12 table-responsive">
+                    <table id="dt_review_return_report" class="table table-bordered table-striped">
+                      <thead>
+                      <tr>
+                        <th>PCMH</th>
+                        <th>Month</th>
+                        <th>Year</th>
+                        <th>File Name</th>
+                        <th>Action</th>
+                      </tr>
+                      </thead>
+                      
+                    </table>
+                  </div>
+                </div>
+
+                
+                
+              
+            </div>
+            <!-- /.card -->
+          </div>
+        </div>
+
+        
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  <footer class="main-footer">
+    <div class="float-right d-none d-sm-block">
+      
+    </div>
+    <strong>Copyright &copy; 2020 <a href="#">BCBSRI Delegated Care Management</a>.</strong> All rights
+    reserved.
+  </footer>
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery -->
+<script src="../plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- bs-custom-file-input -->
+<script src="../plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+
+<script src="../plugins/datatables/jquery.dataTables.js"></script>
+<script src="../plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+
+<!-- AdminLTE App -->
+<script src="../dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="../dist/js/demo.js"></script>
+<script src="../dist/js/aes.js"></script>
+<script type="text/javascript">
+var review_return_reportTable="";
+$(document).ready(function () {
+  bsCustomFileInput.init();
+  
+  
+     //Start : Load json Data into the datatable 
+
+     
+    var pcmdata="";
+    var data='{"pcmhid":-1}';
+    getpcmh(data);
+    get_review_return_file(data);
+    });
+
+    
+  
+    function getpcmh(data)
+    {
+      fetch("https://apimsdcm.azure-api.net/dcmAPIM/fileupload", {
+        method: 'post',
+       // mode: 'no-cors', // no-cors, *cors, same-origin
+
+       headers: { 'Content-Type': 'application/json',
+            "x-functions-key": "Y75v69weCc0+ZanTjf0jSihLRlZAOUJGRM8xTAbdDLMZdQiXYNiJfg==",
+            "Ocp-Apim-Subscription-Key": "2584a9c08dd04aa49db05cbb265c9b91",
+            // "subscription-key":"da91fd77-c908-4f23-9469-52acf3239a11"
+            },
+        body: data
+    }).then((response) => {
+
+                     if (response.ok) {
+                    return response
+                } else {
+                    throw `update Looks like something went wrong. Status: ${response}`;
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+             
+                console.log("data: " + JSON.stringify(data))
+                
+                pcmdata = JSON.stringify(data);
+               
+               
+                select = document.getElementById('pcmh');
+                for(var i=0;i<data.length;i++)
+                {
+                var opt = document.createElement('option');
+                
+                opt.value = data[i].pcmhname;
+                opt.innerHTML = data[i].pcmhname;
+               
+                select.appendChild(opt);
+               
+                console.log("pcmhname = "+data[i].pcmhname);
+                }
+               
+            })
+            .catch(error => {
+                console.log("error")
+            })  
+    }
+    
+
+    function get_review_return_file(data)
+    {
+      var review_return_filedata="";
+      fetch("https://apimsdcm.azure-api.net/dcmAPIM/review_return_report_file", {
+        method: 'post',
+       // mode: 'no-cors', // no-cors, *cors, same-origin
+
+       headers: { 'Content-Type': 'application/json',
+            "x-functions-key": "Y75v69weCc0+ZanTjf0jSihLRlZAOUJGRM8xTAbdDLMZdQiXYNiJfg==",
+            "Ocp-Apim-Subscription-Key": "2584a9c08dd04aa49db05cbb265c9b91",
+            // "subscription-key":"da91fd77-c908-4f23-9469-52acf3239a11"
+            },
+        body: data
+    }).then((response) => {
+
+                     if (response.ok) {
+                    return response
+                } else {
+                    throw `update Looks like something went wrong. Status: ${response}`;
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log("data: " + JSON.stringify(data))
+                review_return_filedata = JSON.stringify(data);
+                DisplayResult(review_return_filedata);
+               
+            })
+            .catch(error => {
+                console.log(error)
+            })  
+    }
+
+    function DisplayResult(review_return_filedata)
+    {
+
+      var review_return_reportTable= $('#dt_review_return_report').DataTable( {
+      "aaData": JSON.parse(review_return_filedata),
+      "aoColumnDefs": [ {
+          "aTargets": 4,
+          "adata": "uploadedfileid",
+          "mRender": function(adata){
+         // var pid= CryptoJS.AES.encrypt(adata, "test");
+            //return '<a href="http://localhost/dcm_azur/superadmin/updatepcmh.html?pcmhid='+CryptoJS.AES.encrypt(""+adata+"", "getpcmh")+'"><button type="button" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i> Edit</button></a> ';
+            return '<button type="button" class="btn btn-primary btn-sm"><i class="fas fa-eye"></i> <a style="color:#fff;" href="view_return_report.html?uploadedfileid='+adata+'">View</a></button>';
+            
+          }
+          }],
+      
+          "aoColumns": [
+          
+          { "data": "pcmhname" },
+          { "data": "month_name" },
+          { "data": "for_year" },
+          { "data": "filename" },
+          { "data": "uploadedfileid" }
+        ]
+        } );
+      //End : Load json Data into the datatable 
+
+      //Start : Search Button Result
+      
+      $('#btn_search').click(function(){
+ 
+      var pcmh = $('#pcmh').val();
+      var month = $('#month').val();
+      var year = $('#year').val();
+      var searchresult = pcmh+' '+month+' '+year;
+      review_return_reportTable.search(searchresult).draw();
+
+      })
+      //End : Search Button Result
+
+       
+    } 
+    
+  
+
+</script>
+</body>
+</html>

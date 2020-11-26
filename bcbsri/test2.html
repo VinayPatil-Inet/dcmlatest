@@ -1,0 +1,77 @@
+<html>
+  <head>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular.js"></script>
+    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.11.0.js"></script>
+    <script src="script.js"></script>
+  </head>
+  
+  <body ng-app="app" ng-controller="ctrl">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <form name="productForm" novalidate>
+            <div class="form-horizontal">
+              <span class="input-group">
+        <input type="date" id="inputAvailabilityDate" name="inputAvailabilityDate" 
+        class="form-control" data-datepicker-popup="MM/dd/yyyy"
+        ng-model="vm.product.releaseDate" data-is-open="opened" 
+        data-show-weeks="false" required />
+  
+            <span class="input-group-btn">
+            <button class="btn btn-default" ng-click="open($event)">
+        <i class="glyphicon glyphicon-time"></i>
+        </button>
+  
+        </span>
+  
+              </span>
+            </div>
+            <span class="help-block text-danger" ng-show="productForm.inputAvailabilityDate.$invalid && 
+      productForm.inputAvailabilityDate.$dirty">
+                  <span ng-show="productForm.inputAvailabilityDate.$error.required">
+                      Availability Date is required
+                  </span>
+            <span class="help-block text-danger" ng-show="productForm.inputAvailabilityDate.$invalid && 
+      productForm.inputAvailabilityDate.$dirty">
+                      Enter a valid date.
+                  </span>
+            </span>
+  
+          </form>
+  
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          vm: {{vm|json}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          productForm: {{productForm|json}}
+          <br>productForm.inputAvailabilityDate.$valid: {{productForm.inputAvailabilityDate.$valid}}
+          <br>productForm.inputAvailabilityDate.$error: {{productForm.inputAvailabilityDate.$error|json}}
+          <br>productForm.inputAvailabilityDate.$dirty: {{productForm.inputAvailabilityDate.$dirty}}
+          <br>productForm.inputAvailabilityDate.$invalid: {{productForm.inputAvailabilityDate.$invalid}}
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    var app = angular.module('app', ['ui.bootstrap']);
+app.controller('ctrl', function ($scope, $timeout) {
+  $scope.vm = {
+    product: {
+      releaseDate: new Date()
+    }
+  };
+
+  $scope.open = function($event) {
+    $event.preventDefault();
+    $event.stopPropagation();
+    $scope.opened = true;
+  };
+});
+  </script>
+  </html>

@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html ng-app="uploadreturnfiles">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Care Management</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Theme style -->
+  
+  <link rel="stylesheet" href="../dist/css/admin_lte.css">
+
+  <link rel="stylesheet" href="../plugins/datepicker/datepicker3.css">
+  <link href="../plugins/bootstrap-fileinput/css/fileinput.min.css" rel="stylesheet" />
+  
+
+  <!-- Google Font: Source Sans Pro -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <style>
+    .main-sidebar{
+      background-color: #048db7 !important;
+    }
+    .nav-link.active{
+      background-color:  #aab8c6 !important;
+    
+    }
+    .progress,.fileinput-cancel
+    {
+      display: none;
+    }
+    .error
+    {
+      color:red;
+    }
+
+    .fileinput-remove-button,.fileinput-upload-button,.fileinput-remove
+    {
+      display: none !important;
+    }
+  </style>
+</head>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+  <!-- Navbar -->
+  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <!-- Left navbar links -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="#" class="nav-link">Home</a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="#" class="nav-link">Contact</a>
+      </li>
+    </ul>
+
+   
+
+    <!-- Right navbar links -->
+    <div class="navbar-custom-menu ml-auto">
+      
+      <ul class="navbar-nav ml-auto">
+        <li class="dropdown user user-menu" style="top: 5px;">
+                  
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <img src="../dist/img/default.png" class="user-image" alt="User Image">
+                                    
+              <span class="hidden-xs">PCMH</span>
+          </a>
+          <ul class="dropdown-menu" style="width: 200px;">
+            <li class="user-header">
+              <img src="../dist/img/default.png" class="img-circle" alt="User Image">
+              <p> PCMH</p>
+            </li>
+            <li class="user-footer">
+              <div class="pull-left">
+                
+              </div>
+              <div class="pull-right">
+                <a href="../index.html" class="btn btn-danger btn-flat">Logout</a>
+              </div>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <!-- /.navbar -->
+
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="#" class="brand-link">
+      <img src="../dist/img/AdminLTELogo.png"
+           alt="Care Management"
+           class="brand-image img-circle elevation-3"
+           style="opacity: .8">
+      <span class="brand-text font-weight-light">Care Management</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user (optional) -->
+      
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+               <li class="nav-item has-treeview">
+                <a href="#" class="nav-link ">
+                  <i class="nav-icon fas fa-tachometer-alt"></i>
+                  <p>
+                    Dashboard
+                   
+                  </p>
+                </a>
+                
+              </li>
+              <li class="nav-item">
+                <a href="view.html" class="nav-link"> 
+                  <i class="nav-icon fas fa-user-alt"></i>
+                  <p>
+                    PCMH Reports
+                    
+                  </p>
+                </a>
+              </li>
+    
+              <li class="nav-item">
+                <a href="return_report.html" class="nav-link active"> 
+                  <i class="nav-icon fas fa-file-alt"></i>
+                  <p>
+                    Return Report File
+                    
+                  </p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="return_report_individual.html" class="nav-link"> 
+                  <i class="nav-icon fas fa-file-alt"></i>
+                  <p>
+                    Return Report Individual
+                    
+                  </p>
+                </a>
+              </li>
+
+         
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Upload Return Report</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Upload Return Report</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <!-- left column -->
+          <div class="col-md-8">
+            <!-- general form elements -->
+            <div class="card card-primary" >
+              <div class="card-header" style="background-color: #048db7 !important;">
+                <h3 class="card-title">Upload Spreadsheet</h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form role="form" id="form" name="form" enctype="multipart/form-data" ng-controller="uploadspreadsheetController" ng-submit="submitForm()">
+                <div class="card-body">
+                  <div class="row">
+                    
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label>Select Month <span style="color:red;">*</span></label>
+                        <select name="month" id="month" class="form-control" required ng-model="user.month" >
+                          <option value="">--Select Month--</option>
+                          <option value="1">January</option>
+                          <option value="2">February</option>
+                          <option value="3">March</option>
+                          <option value="4">April</option>
+                          <option value="5">May</option>
+                          <option value="6">June</option>
+                          <option value="7">July</option>
+                          <option value="8">August</option>
+                          <option value="9">September</option>
+                          <option value="10">October</option>
+                          <option value="11">November</option>
+                          <option value="12">December</option>
+                         
+                        </select>
+                        <span class="error" ng-show="form.month.$dirty && form.month.$error.required">Select Month!.</span>
+                      
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label>Select Year <span style="color:red;">*</span></label>
+                        <select name="year" id="year" class="form-control" required ng-model="user.year">
+                          <option value="">--Select Year--</option>
+                          <option value="2020">2020</option>
+                          <option value="2019">2019</option>
+                          <option value="2018">2018</option>
+                        
+                        </select>
+                        <span class="error" ng-show="form.year.$dirty && form.year.$error.required">Select Year!.</span>
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label>Select Spreadsheet <span style="color:red;">*</span></label>
+                        <input id="upload_spreadsheet" ng-model="user.filename" class="file" valid-file name="upload_spreadsheet" required type="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" />
+                        <span class="error" ng-show="form.upload_spreadsheet.$dirty && form.upload_spreadsheet.$error.required">Select File!.</span>
+                     
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <br>
+                  <div class="row">
+                    
+                    <div class="col-md-12" style="text-align: center;">
+                      <input type="submit" id="submit" name="submit" class="btn btn-primary" value="Submit" ng-disabled="form.$invalid">
+                      <button type="reset" id="reset" name="reset" ng-click="resetForm()" class="btn btn-danger">Cancel</button>
+                    </div>
+                  </div>
+                  <br>
+                </div>
+                <!-- /.card-body -->
+
+                
+              </form>
+              <div id="result"></div>
+
+              <pre id="jsondata"></pre>
+            </div>
+            <!-- /.card -->
+          </div>
+        </div>
+
+        
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  <footer class="main-footer">
+    <div class="float-right d-none d-sm-block">
+      
+    </div>
+    <strong>Copyright &copy; 2020 <a href="#">BCBSRI Delegated Care Management</a>.</strong> All rights
+    reserved.
+  </footer>
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery -->
+
+
+
+
+<script src="../plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- bs-custom-file-input -->
+<script src="../plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+<!-- AdminLTE App -->
+<script src="../dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="../dist/js/demo.js"></script>
+<script src="../plugins/datepicker/bootstrap-datepicker.js"></script>
+
+
+	 <script src="../plugins/bootstrap-fileinput/js/plugins/canvas-to-blob.min.js"></script>
+
+	<script type="text/javascript" src="../dist/js/angular.min.js"></script>
+  <script src="../plugins/bootstrap-fileinput/js/fileinput.min.js"></script>
+
+  <!-- Start: Script to conver excel data to json-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.2/xlsx.full.min.js"></script>
+  <!-- <script src="excel.js"></script> -->
+  <!-- End: Script to conver excel data to json-->
+
+   <!-- End: Script to conver excel data to json-->
+   <link rel="stylesheet" href="../plugins/toastr/toastr.min.css">
+   <script src="../plugins/toastr/toastr.min.js"></script>
+
+<script type="text/javascript">
+
+$(document).ready(function () {
+  bsCustomFileInput.init();
+ 
+});
+
+
+  // Start: Script to conver excel data to json
+$.fn.serializeObject = function()
+{
+ 
+    var o = {};
+    var a = this.serializeArray();
+    $.each(a, function() {
+        if (o[this.name] !== undefined) {
+            if (!o[this.name].push) {
+                o[this.name] = [o[this.name]];
+            }
+            o[this.name].push(this.value || '');
+        } else {
+            o[this.name] = this.value || '';
+        }
+    });
+    return o;
+};
+
+
+
+
+// End: Script to conver excel data to json
+
+
+</script>
+
+<script>
+  
+  var json1="";
+  var jsonData="";
+  
+
+  let selectedFile;
+  // var filename;
+  var filename_n;
+  console.log(window.XLSX);
+  document.getElementById('upload_spreadsheet').addEventListener("change", (event) => {
+      selectedFile = event.target.files[0];
+      // filename="filename:"+event.target.files[0].name;
+      var filename = "filename";
+      var ob  = {};
+      ob[filename] = event.target.files[0].name;
+
+      filename_n = ob;
+      // file_name = "filename:"+fimename;
+  })
+
+  let data=[{
+      
+  }]
+
+  var result = {};
+  //Start : File Upload Validation
+    var app = angular.module('uploadreturnfiles', []);
+  
+    app.controller('MainCtrl', function($scope) {
+    $scope.name = 'World';
+    });
+  
+    app.directive('validFile',function(){
+ 
+ return {
+   require:'ngModel',
+   link:function(scope,el,attrs,ngModel){
+     //change event is fired when file is selected
+     el.bind('change',function(){
+       scope.$apply(function(){
+         ngModel.$setViewValue(el.val());
+         ngModel.$render();
+       })
+     })
+   }
+ }
+ })
+  
+ app.controller('uploadspreadsheetController', function($scope) {
+
+
+
+$scope.submitForm = function () {
+ var result11=JSON.stringify($('form').serializeObject());
+
+ json1 = $('form').serializeObject();
+
+ 
+
+ 
+    
+    // $('#result').text("test now "+JSON.stringify(result11));
+    const wait=ms=>new Promise(resolve => setTimeout(resolve, ms)); 
+
+    //Start : Get File Data
+
+    //getfiledata();
+    XLSX.utils.json_to_sheet(data, 'out.xlsx');
+        if(selectedFile){
+        
+            let fileReader = new FileReader();
+            fileReader.readAsBinaryString(selectedFile);
+            fileReader.onload = (event)=>{
+            let data = event.target.result;
+            let workbook = XLSX.read(data,{type:"binary"});
+            console.log("workbook "+filename_n);
+            workbook.SheetNames.forEach(sheet => {
+                var rowObject = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheet]);
+                  console.log(rowObject);
+                  if (rowObject.length) result[sheet] = rowObject;
+                // document.getElementById("jsondata").innerHTML = JSON.stringify(rowObject,undefined,4)
+            });
+
+            var json2 = JSON.stringify(result,undefined,4);
+           // jsonData = JSON.stringify($.extend({}, json1, result));
+            jsonData = JSON.stringify($.extend({}, json1,filename_n,  result));
+            //console.log("rowObject ="+jsonData);
+            // document.getElementById("result11").innerHTML = jsonData
+            };
+           // alert(44);
+        }
+        wait(2*1000).then(() => {
+          if(jsonData!="")
+          {
+            // document.getElementById("jsondata").innerHTML = jsonData;
+             getuploadedfileid(json1,filename_n,  result);
+          }
+          else
+          {
+            alert(error);
+          }
+        }); 
+         
+      
+    
+    //End : Get File Data
+    //$scope.user = {};
+    
+
+   
+
+    $scope.form.$setPristine();
+    return false;
+};
+
+$scope.resetForm = function() {
+$scope.form.$setPristine();
+}
+});
+//End : File Upload Validation
+
+function getuploadedfileid(json1,filename_n,  result)
+{
+
+console.log("ttttrowObject ="+JSON.stringify(json1));
+// document.getElementById("result11").innerHTML = data;
+
+
+fetch("https://apimsdcm.azure-api.net/PCMH/getuploadfileid", {
+        method: 'post',
+        // mode: 'no-cors', // no-cors, *cors, same-origin
+
+        headers: { 'Content-Type': 'application/json',
+        "x-functions-key": "R8W3hwyA4rGnD2tqy1tJaF3VmlybLdrqMxyX0qcFAS4PS6bO79weNA==",
+        "Ocp-Apim-Subscription-Key": "0ac8f354200c4ddb89bb6dcb7528cfea",
+
+        // "subscription-key":"91d00dc5-c863-4541-8cfa-8429d39b0926"
+        },
+        body: JSON.stringify(json1)
+    }).then((response) => {
+
+     
+      // updatedata(jsonData);
+
+                if (response.ok) {
+                    return response
+                } else {
+                    throw `Looks like something went wrong. Status: ${response.status}`;
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log("data: " + data)
+
+                var returneduploadedfileid = data.toString();
+                  var uploadedfileid = "uploadedfileid";
+                  var obj  = {};
+                  obj[uploadedfileid] = returneduploadedfileid;
+
+                   var  uploadedfileid_id = obj;
+
+                  jsonData = JSON.stringify($.extend({}, json1,filename_n,uploadedfileid_id,  result));
+
+                  console.log("resulted data=== "+jsonData);
+
+                  updatedata(jsonData);
+
+            })
+            .catch(error => {
+                console.log("Errroorrr "+error)
+            })  
+        
+}
+
+function updatedata(data)
+{
+
+// console.log("ttttrowObject ="+JSON.stringify(data));
+fetch("https://apimsdcm.azure-api.net/PCMH/updatereturnreportdata_from_file", {
+        method: 'post',
+       // mode: 'no-cors', // no-cors, *cors, same-origin
+
+        headers: { 'Content-Type': 'application/json',
+        "x-functions-key": "R8W3hwyA4rGnD2tqy1tJaF3VmlybLdrqMxyX0qcFAS4PS6bO79weNA==",
+        "Ocp-Apim-Subscription-Key": "0ac8f354200c4ddb89bb6dcb7528cfea",
+        // "subscription-key":"da91fd77-c908-4f23-9469-52acf3239a11"
+        },
+        body: data
+    }).then((response) => {
+
+                     if (response.ok) {
+                    return response
+                } else {
+                    throw `update Looks like something went wrong. Status: ${response.status}`;
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log("data: " + data)
+            })
+            .catch(error => {
+                console.log(error)
+            })       
+        
+}
+
+  
+  //End : File Upload Validation
+  </script>
+</body>
+</html>

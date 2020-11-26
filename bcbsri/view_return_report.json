@@ -1,0 +1,53 @@
+{
+  "data": [
+  {
+   "slno": "1",
+   "Mbr_Last_Name": "Roy",
+   "Mbr_First_Name":"Bob",
+   "BCBSRI_ID": "646464564564",
+   "Mbr_DOB":"15-08-1990",
+   "BCBSRI_Risk_Categorization":"High",
+   "Perf_Guarantee_Mbr":"",
+   "Practice_Site":"Brown Medicine-WARWICK",
+   "Practice_Identified_Indicator":"",
+   "Outreach_Attempted_Date":"10-09-2020",
+   "Enrolled_Status_Date":"10-09-2020",
+   "BH_Screening_PHQ-2_PHQ9_Completed_Date":"12-09-2020",
+   "Care_Plan_Established_Date":"13-09-2020",
+   "Discharged_from_CM_Date":"14-09-2020",
+   "Status":"In Process"
+
+  }, {
+   "slno": "2",
+   "Mbr_Last_Name": "Ross",
+   "Mbr_First_Name":"Roman",
+   "BCBSRI_ID": "674587564564",
+   "Mbr_DOB":"15-08-1990",
+   "BCBSRI_Risk_Categorization":"High",
+   "Perf_Guarantee_Mbr":"",
+   "Practice_Site":"Brown Medicine-WARWICK",
+   "Practice_Identified_Indicator":"",
+   "Outreach_Attempted_Date":"10-09-2020",
+   "Enrolled_Status_Date":"10-09-2020",
+   "BH_Screening_PHQ-2_PHQ9_Completed_Date":"12-09-2020",
+   "Care_Plan_Established_Date":"13-09-2020",
+   "Discharged_from_CM_Date":"14-09-2020",
+   "Status":"In Process"
+  }, {
+   "slno": "3",
+   "Mbr_Last_Name": "Rhodes",
+   "Mbr_First_Name":"Jonny",
+   "BCBSRI_ID": "98754564564",
+   "Mbr_DOB":"15-08-1990",
+   "BCBSRI_Risk_Categorization":"Medium",
+   "Perf_Guarantee_Mbr":"",
+   "Practice_Site":"Brown Medicine-WARWICK",
+   "Practice_Identified_Indicator":"",
+   "Outreach_Attempted_Date":"10-09-2020",
+   "Enrolled_Status_Date":"10-09-2020",
+   "BH_Screening_PHQ-2_PHQ9_Completed_Date":"12-09-2020",
+   "Care_Plan_Established_Date":"13-09-2020",
+   "Discharged_from_CM_Date":"14-09-2020",
+   "Status":"Complated"
+  }]
+ }

@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html ng-app="update_report">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Care Management</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="../plugins/datepicker/datepicker3.css">
+  <link rel="stylesheet" href="../plugins/datatables-bs4/css/dataTables.bootstrap4.css">
+  <link rel="stylesheet" href="../dist/css/admin_lte.css">
+  <!-- Google Font: Source Sans Pro -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <style>
+    .main-sidebar{
+      background-color: #048db7 !important;
+    }
+    .small
+    {
+      border-bottom: 1px solid #eee;
+      padding-top: 7px;
+      padding-bottom: 7px;
+      font-size:90%;
+    }
+    
+    .error{
+        color: red;
+      }
+  </style>
+  <script src="../dist/js/angular.min.js"></script>
+</head>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+  <!-- Navbar -->
+  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <!-- Left navbar links -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="#" class="nav-link">Home</a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="#" class="nav-link">Contact</a>
+      </li>
+    </ul>
+
+   
+
+    <!-- Right navbar links -->
+    <div class="navbar-custom-menu ml-auto">
+      
+      <ul class="navbar-nav ml-auto">
+        <li class="dropdown user user-menu" style="top: 5px;">
+                  
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <img src="../dist/img/default.png" class="user-image" alt="User Image">
+                                    
+              <span class="hidden-xs">PCMH</span>
+          </a>
+          <ul class="dropdown-menu" style="width: 200px;">
+            <li class="user-header">
+              <img src="../dist/img/default.png" class="img-circle" alt="User Image">
+              <p>PCMH</p>
+            </li>
+            <li class="user-footer">
+              <div class="pull-left">
+                
+              </div>
+              <div class="pull-right">
+                <a href="../index.html" class="btn btn-danger btn-flat">Logout</a>
+              </div>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <!-- /.navbar -->
+
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="#" class="brand-link">
+      <img src="../dist/img/AdminLTELogo.png"
+           alt="Care Management"
+           class="brand-image img-circle elevation-3"
+           style="opacity: .8">
+      <span class="brand-text font-weight-light">Care Management</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user (optional) -->
+      
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+          <li class="nav-item has-treeview">
+            <a href="" class="nav-link">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Dashboard
+               
+              </p>
+            </a>
+            
+          </li>
+          <li class="nav-item">
+            <a href="view.html" class="nav-link "> 
+              <i class="nav-icon fas fa-user-alt"></i>
+              <p>
+                PCMH Reports
+                
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="return_report.html" class="nav-link"> 
+              <i class="nav-icon fas fa-file-alt"></i>
+              <p>
+                Return Report File
+                
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="return_report_individual.html" class="nav-link active"> 
+              <i class="nav-icon fas fa-file-alt"></i>
+              <p>
+                Return Report Individual
+                
+              </p>
+            </a>
+          </li>
+
+          
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>PCMH Reports</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">PCMH Reports</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+
+   
+
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <!-- left column -->
+          <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="card card-primary" >
+              <div class="card-header" style="background-color: #048db7 !important;">
+                <h3 class="card-title">PCMH Reports</h3>
+              </div>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-4">
+        
+                    <!-- Profile Image -->
+                    <div class="card card-primary card-outline">
+                      <div class="card-body box-profile">
+                        <div class="row">
+                          <div class="col-2 text-center">
+                            <div class="user-block">
+                              <img class="img-circle img-bordered-sm" src="../dist/img/default.png" alt="User Image">
+                            </div>
+                          </div>
+                          <div class="col-10">
+                            <h2 class="lead"><b>Alexander Bob Pierce</b></h2>
+                            
+                            <ul class="ml-0 mb-0 fa-ul text-muted">
+                              <li class="small"><b>BCBSRI ID: </b><input type="text" name="bcbsriid" id="bcbsriid"  class="form-control" style="border: 1px solid #ffffff;background-color: #ffffff; display: initial; width: 60%;" readonly> </li>
+                              <li class="small"><b>Mbr DOB: </b> <input type="text" name="dob" id="dob"  class="form-control" style="border: 1px solid #ffffff;background-color: #ffffff; display: initial; width: 60%;" readonly>  </li>
+                              <li class="small"><b>BCBSRI Risk Categorization: </b> <input type="text" name="riskcat" id="riskcat"  class="form-control" style="border: 1px solid #ffffff;background-color: #ffffff; display: initial; width: 60%;" readonly>  </li>
+                              <li class="small"><b>Perf Guarantee Mbr: </b> <input type="text" name="guaranteembr" id="guaranteembr"  class="form-control" style="border: 1px solid #ffffff;background-color: #ffffff; display: initial; width: 60%;" readonly>  </li>
+                              <li class="small"><b>Practice Site: </b><br> <input type="text" name="practicesite" id="practicesite"  class="form-control" style="border: 1px solid #ffffff;background-color: #ffffff; display: initial; width: 60%;" readonly> </li>
+                              <li class="small"><b>Practice Identified Indicator: </b><input type="text" name="practiceid" id="practiceid"  class="form-control" style="border: 1px solid #ffffff;background-color: #ffffff; display: initial; width: 60%;" readonly></li>
+
+                             
+
+                            </ul>
+                            
+                          </div>
+                          
+                        </div>
+                        
+                      </div>
+                      <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+        
+                    <!-- About Me Box -->
+                  
+                    <!-- /.card -->
+                  </div>
+                  <!-- /.col -->
+                  <div class="col-md-8">
+                    <div class="card card-primary card-outline">
+                      <div class="card-body">
+                        <form id="form" name="form" role="form" ng-controller="return_report" ng-submit="submitForm()">
+                          <div class="row">
+                            <div class="col-md-6">
+                             <div class="form-group">
+                                <label>Outreach Attempted Date <span style="color:red;">*</span></label>
+                                <input type="date" name="outreach_attempted_date" id="outreach_attempted_date"  placeholder="Outreach Attempted Date" data-datepicker-popup="MM/dd/yyyy"  class="form-control" value=""  autocomplete="off" ng-model="view_details.outreach_attempted_date">
+                                 <span class="error" ng-show="form.outreach_attempted_date.$dirty && form.outreach_attempted_date.$error.required">Select Outreach Attempted Date !.</span>
+								              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label>Enrolled Status Date <span style="color:red;">*</span></label>
+                                <input type="date" name="enrolled_status_date" id="enrolled_status_date"  placeholder="Enrolled Status Date" data-datepicker-popup="MM/dd/yyyy" class="form-control" value=""  autocomplete="off" ng-model="view_details.enrolled_status_date">
+                                <span class="error" ng-show="form.enrolled_status_date.$dirty && form.enrolled_status_date.$error.required">Select Enrolled Status Date!.</span>
+								              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-6">
+                             <div class="form-group">
+                                <label>BH Screening PHQ-2 PHQ9 Completed Date <span style="color:red;">*</span></label>
+                                <input type="date" name="bh_screening_phq2_phq9_completed_date" id="bh_screening_phq2_phq9_completed_date"  placeholder="BH Screening PHQ-2 PHQ9 Completed Date" data-datepicker-popup="MM/dd/yyyy"  class="form-control " value=""  autocomplete="off" ng-model="view_details.bh_screening_phq2_phq9_completed_date">
+                                <span class="error" ng-show="form.bh_screening_phq2_phq9_completed_date.$dirty && form.bh_screening_phq2_phq9_completed_date.$error.required">Select BH Screening PHQ-2 PHQ9 Completed Date!.</span>
+								              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label>Care Plan Established Date <span style="color:red;">*</span></label>
+                                <input type="date" name="care_plan_established_date" id="care_plan_established_date"  placeholder="Care Plan Established Date" data-datepicker-popup="MM/dd/yyyy"  class="form-control " value=""  autocomplete="off" ng-model="view_details.care_plan_established_date">
+                                <span class="error" ng-show="form.care_plan_established_date.$dirty && form.care_plan_established_date.$error.required">Select Care Plan Established Date!.</span>
+								              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-6">
+                             <div class="form-group">
+                                <label>Discharged from CM Date <span style="color:red;">*</span></label>
+                                <input type="date" name="discharged_from_cm_date" id="discharged_from_cm_date"  placeholder="Discharged from CM Date" data-datepicker-popup="MM/dd/yyyy"  class="form-control " value=""  autocomplete="off" ng-model="view_details.discharged_from_cm_date">
+                                <span class="error" ng-show="form.discharged_from_cm_date.$dirty && form.discharged_from_cm_date.$error.required">Select Discharged from CM Date!.</span>
+								              </div>
+                            </div>
+                            
+                           
+                          </div>
+
+                         
+
+                          <div class="row">
+                    
+                            <div class="col-md-12" style="text-align: center;">
+                              <div id="loader" style="display: none;"></div>
+                              <input type="submit" id="submit" name="submit" class="btn btn-primary" value="Submit" ng-disabled="form.$invalid">
+                              <button type="reset" id="reset" name="reset" ng-click="resetForm()" class="btn btn-danger">Cancel</button>
+                            </div>
+                          </div>
+
+                          
+                        </form>
+
+                        <div id="result"></div>
+                        <!-- /.tab-content -->
+                      </div><!-- /.card-body -->
+                    </div>
+                    <!-- /.nav-tabs-custom -->
+                  </div>
+                  <!-- /.col -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+       
+
+        
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  <footer class="main-footer">
+    <div class="float-right d-none d-sm-block">
+      
+    </div>
+    <strong>Copyright &copy; 2020 <a href="#">BCBSRI Delegated Care Management</a>.</strong> All rights
+    reserved.
+  </footer>
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+<style>
+  /* Center the loader */
+  #loader {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    z-index: 1;
+    width: 150px;
+    height: 150px;
+    margin: -75px 0 0 -75px;
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid blue;
+    border-bottom: 16px solid;
+    border-top: 16px solid #3498db;
+    width: 60px;
+    height: 60px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+    
+  }
+  
+  @-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  /* Add animation to "page content" */
+  .animate-bottom {
+    position: relative;
+    -webkit-animation-name: animatebottom;
+    -webkit-animation-duration: 1s;
+    animation-name: animatebottom;
+    animation-duration: 1s
+  }
+  
+  @-webkit-keyframes animatebottom {
+    from { bottom:-100px; opacity:0 } 
+    to { bottom:0px; opacity:1 }
+  }
+  
+  @keyframes animatebottom { 
+    from{ bottom:-100px; opacity:0 } 
+    to{ bottom:0; opacity:1 }
+  }
+  
+  #myDiv {
+    display: none;
+    text-align: center;
+  }
+  </style>
+<!-- jQuery -->
+<script src="../plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- bs-custom-file-input -->
+<script src="../plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+<!-- AdminLTE App -->
+<script src="../dist/js/adminlte.min.js"></script>
+
+<script src="../plugins/datatables/jquery.dataTables.js"></script>
+<script src="../plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+
+<!-- AdminLTE for demo purposes -->
+<script src="../dist/js/demo.js"></script>
+<script src="../plugins/datepicker/bootstrap-datepicker.js"></script>
+<!-- End: Script to conver excel data to json-->
+<link rel="stylesheet" href="../plugins/toastr/toastr.min.css">
+<script src="../plugins/toastr/toastr.min.js"></script>
+<script src="../dist/js/aes.js"></script>
+<script type="text/javascript">
+$(document).ready(function () {
+  bsCustomFileInput.init();
+  $("#example1").DataTable();
+  $("#example2").DataTable();
+  $("#example3").DataTable();
+});
+
+$('.datepicker').datepicker({
+     
+			}).on('change', function(){
+       // $('.datepicker').datepicker('setDate', $(this).val());
+				$('.datepicker-dropdown').hide();
+			});
+
+
+      //Start : Generate Json
+  
+  //Genareate File objects
+    
+      
+    $.fn.serializeObject = function()
+    {
+        var o = {};
+        var a = this.serializeArray();
+        $.each(a, function() {
+            if (o[this.name] !== undefined) {
+                if (!o[this.name].push) {
+                    o[this.name] = [o[this.name]];
+                }
+                o[this.name].push(this.value || '');
+            } else {
+                o[this.name] = this.value || '';
+            }
+        });
+        return o;
+    };
+  
+    
+  
+  //End : Generate Json
+</script>
+
+
+<script>
+   var app = angular.module('update_report', []);
+  
+app.controller('return_report', ['$scope', function($scope) {
+
+
+  $scope.submitForm = function () {
+    document.getElementById("loader").style.display = "block";
+       var result = JSON.stringify($('form').serializeObject());
+      //  $('#result').text(JSON.stringify($('form').serializeObject()));
+       var json1 = $('form').serializeObject();
+
+            var bcbsriidkey = "bcbsriid";
+            var ob  = {};
+            ob[bcbsriidkey] = resbcbsriid;
+
+            bcbsriidval = ob;
+
+            var jsonData = JSON.stringify($.extend({}, json1,bcbsriidval));
+             console.log("jsonData===== "+jsonData)
+
+        fetch("https://apimsdcm.azure-api.net/PCMH/update_returnreport_dates", {
+        method: 'post',
+       // mode: 'no-cors', // no-cors, *cors, same-origin
+
+          headers: { 'Content-Type': 'application/json',
+            "x-functions-key": "Y75v69weCc0+ZanTjf0jSihLRlZAOUJGRM8xTAbdDLMZdQiXYNiJfg==",
+            "Ocp-Apim-Subscription-Key": "2584a9c08dd04aa49db05cbb265c9b91",
+            // "subscription-key":"da91fd77-c908-4f23-9469-52acf3239a11"
+            },
+        body: jsonData
+         }).then((response) => {
+
+     
+      // updatedata(jsonData);
+
+                if (response.ok) {
+                  return response
+                } else {
+                  throw `Looks like something went wrong. Status: ${response.status}`;
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log("data:" + JSON.stringify(data)+"")
+               
+                var jsondata=data.Outreach_Attempted_Date;
+                console.log("Outreach_Attempted_Date:" + jsondata);
+                if(data.Outreach_Attempted_Date!='' && data.BH_Screening_PHQ2_PHQ9_Completed_Date!='' && data.Care_Plan_Established_Date!='' && data.Discharged_from_CM_Date!='' && data.Enrolled_Status_Date!='')
+                {
+                  console.log("Call function updatecurrentstatus:" + jsondata);
+                  $scope.updatecurrentstatus(2);
+                }
+                else
+                {
+                  $scope.updatecurrentstatus(1);
+                }
+                // pcmdata = "["+JSON.stringify(data)+"]";
+                // getResult(pcmdata);
+               
+               
+            })
+            .catch(error => {
+                console.log(error);
+                document.getElementById("loader").style.display = "none";
+                toastr.error('Something went wrong, Please try again!.');
+            })   
+
+
+       $scope.view_details = {};
+       $scope.resulted_returnreport;
+      //  $scope.view_details.$setPristine();
+      //  return false;
+   };
+
+   $scope.updatecurrentstatus=function(statuscode)
+   {
+     
+      console.log("updatecurrentstatus"+statuscode);
+        var data='{"bcbsriid":'+resbcbsriid+',"statuscode":'+statuscode+'}';
+      //alert("pcmhid "+pcmhid+" bcbsriid "+bcbsriid);
+      
+
+      fetch("https://apimsdcm.azure-api.net/PCMH/updatecurrentstatus", {
+            method: 'post',
+          // mode: 'no-cors', // no-cors, *cors, same-origin
+
+          headers: { 'Content-Type': 'application/json',
+                "x-functions-key": "r+lQxhhDlsEjzLRGYDttArBECmxoI4Chasc4QcbBakuDXFwK9TeLSw==",
+                "Ocp-Apim-Subscription-Key": "7b5df9ff9a28485282adcff8f50ea933",
+                // "subscription-key":"da91fd77-c908-4f23-9469-52acf3239a11"
+                },
+            body: data
+        }).then((response) => {
+
+                        if (response.ok) {
+                        return response
+                    } else {
+                        throw `update Looks like something went wrong. Status: ${response}`;
+                    }
+                })
+                .then(response => response.text())
+                .then(data => {
+                    console.log("data: [" + JSON.stringify(data)+"]")
+                    $scope.resulted_returnreport=data;
+                    // console.log("data===="+ $scope.resulted_returnreport.Mbr_First_Name);
+                    
+
+                    var databcbsriid='{"bcbsriid":'+resbcbsriid+'}';
+
+                    fetch("https://apimsdcm.azure-api.net/PCMH/get_returnreport_individual", {
+                            method: 'post',
+                          // mode: 'no-cors', // no-cors, *cors, same-origin
+
+                          headers: { 'Content-Type': 'application/json',
+                                "x-functions-key": "r+lQxhhDlsEjzLRGYDttArBECmxoI4Chasc4QcbBakuDXFwK9TeLSw==",
+                                "Ocp-Apim-Subscription-Key": "7b5df9ff9a28485282adcff8f50ea933",
+                                // "subscription-key":"da91fd77-c908-4f23-9469-52acf3239a11"
+                                },
+                            body: databcbsriid
+                        }).then((response) => {
+
+                                        if (response.ok) {
+                                        return response
+                                    } else {
+                                        throw `update Looks like something went wrong. Status: ${response}`;
+                                    }
+                                })
+                                .then(response => response.json())
+                                .then(data => {
+                                    console.log("data: [" + JSON.stringify(data)+"]")
+                                    $scope.resulted_returnreport=data;
+                                    console.log("data===="+ $scope.resulted_returnreport.Mbr_First_Name);
+
+                                              
+                                    document.getElementById('bcbsriid').value = data.BCBSRI_ID;
+                                    document.getElementById('dob').value = data.Mbr_DOB;
+                                    document.getElementById('riskcat').value = data.BCBSRI_Risk_Categorization;
+                                    document.getElementById('guaranteembr').value = data.Perf_Guarantee_Mbr;
+                                    document.getElementById('practicesite').value = data.Practice_Site;
+                                    document.getElementById('practiceid').value = data.Practice_Identified_Indicator;
+
+                                    document.getElementById('outreach_attempted_date').value = data.Outreach_Attempted_Date;
+                                    document.getElementById('enrolled_status_date').value = data.Enrolled_Status_Date;
+                                    document.getElementById('bh_screening_phq2_phq9_completed_date').value = data.BH_Screening_PHQ2_PHQ9_Completed_Date;
+                                    document.getElementById('care_plan_established_date').value = data.Care_Plan_Established_Date;
+                                    document.getElementById('discharged_from_cm_date').value = data.Discharged_from_CM_Date;
+                                    
+                                  
+                                    document.getElementById("loader").style.display = "none";
+                                    // document.getElementById("loader").style.display = "none";
+                                     toastr.success('Date updated Successfully!.');  
+                                  })
+                                  .catch(error => {
+                                    console.log(error);
+                                    document.getElementById("loader").style.display = "none";
+                                    toastr.error('Something went wrong, Please try again!.');
+                                })  
+                  
+                  })
+                  .catch(error => {
+                    console.log(error);
+                    document.getElementById("loader").style.display = "none";
+                    toastr.error('Something went wrong, Please try again!.');
+                })  
+      
+
+   }
+   //Start : Get PCMH ID from URL
+      const queryString = window.location.search;
+      const urlParams = new URLSearchParams(queryString);
+      const bcbsriid = urlParams.get('bcbsriid')
+      var decrypted = CryptoJS.AES.decrypt(bcbsriid, "getreturnreport");
+      const resbcbsriid = decrypted.toString(CryptoJS.enc.Utf8);
+
+    //End : Get PCMH ID from URL
+    console.log("resbcbsriid=== "+resbcbsriid);
+   
+
+    var data='{"bcbsriid":'+resbcbsriid+'}';
+   //alert("pcmhid "+pcmhid+" bcbsriid "+bcbsriid);
+   setTimeout(function() {
+    // alert("resbcbsriid "+resbcbsriid+" bcbsriid "+bcbsriid);
+    document.getElementById("loader").style.display = "block";
+  fetch("https://apimsdcm.azure-api.net/PCMH/get_returnreport_individual", {
+        method: 'post',
+      // mode: 'no-cors', // no-cors, *cors, same-origin
+
+      headers: { 'Content-Type': 'application/json',
+            "x-functions-key": "r+lQxhhDlsEjzLRGYDttArBECmxoI4Chasc4QcbBakuDXFwK9TeLSw==",
+            "Ocp-Apim-Subscription-Key": "7b5df9ff9a28485282adcff8f50ea933",
+            // "subscription-key":"da91fd77-c908-4f23-9469-52acf3239a11"
+            },
+        body: data
+    }).then((response) => {
+
+                    if (response.ok) {
+                    return response
+                } else {
+                    throw `update Looks like something went wrong. Status: ${response}`;
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log("data: [" + JSON.stringify(data)+"]")
+                $scope.resulted_returnreport=data;
+                console.log("data===="+ $scope.resulted_returnreport.Mbr_First_Name);
+
+                          
+                document.getElementById('bcbsriid').value = data.BCBSRI_ID;
+                document.getElementById('dob').value = data.Mbr_DOB;
+                document.getElementById('riskcat').value = data.BCBSRI_Risk_Categorization;
+                document.getElementById('guaranteembr').value = data.Perf_Guarantee_Mbr;
+                document.getElementById('practicesite').value = data.Practice_Site;
+                document.getElementById('practiceid').value = data.Practice_Identified_Indicator;
+
+                document.getElementById('outreach_attempted_date').value = data.Outreach_Attempted_Date;
+                document.getElementById('enrolled_status_date').value = data.Enrolled_Status_Date;
+                document.getElementById('bh_screening_phq2_phq9_completed_date').value = data.BH_Screening_PHQ2_PHQ9_Completed_Date;
+                document.getElementById('care_plan_established_date').value = data.Care_Plan_Established_Date;
+                document.getElementById('discharged_from_cm_date').value = data.Discharged_from_CM_Date;
+                
+               
+                document.getElementById("loader").style.display = "none";
+              })
+              .catch(error => {
+                console.log(error);
+                document.getElementById("loader").style.display = "none";
+                toastr.error('Something went wrong, Please try again!.');
+             })  
+    //End : Get PCMH Data by using PCMHID
+
+   },1000);
+
+    $scope.resetForm = function() {
+      $scope.view_details = {};
+    }
+
+   
+
+  }]);
+</script>
+</body>
+</html>

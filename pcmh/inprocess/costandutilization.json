@@ -1,0 +1,64 @@
+{
+  "data": [
+  {
+   "postID": "1",
+   "Mbr_Last_Name": "Pierce",
+   "Mbr_First_Name":"Alexander",
+   "CONSISTENT_MEMBER_ID": "856963",
+   "BCBSRI_ID": "646464564564",
+   "Mbr_DOB":"15-08-1990",
+   "BCBSRI_Risk_Categorization":"High",
+   "Probability_of_IP_in_6mos":"",
+   "IP_Medical_Cnt":"",
+   "OP_ER_Cnt":"",
+   "Total_Cost":"",
+   "Medical_Cost":"",
+   "Rx_Cost":"",
+   "High_Cost_50k":"",
+   "High_Cost_Driver":"",
+   "RxSpecialty_Drug":"",
+   "RxSpecialty_Disease_Desc":""
+  },
+  
+  {
+    "postID": "2",
+    "Mbr_Last_Name": "Doe",
+    "Mbr_First_Name":"Bob",
+    "CONSISTENT_MEMBER_ID": "656565",
+    "BCBSRI_ID": "856464564596",
+    "Mbr_DOB":"20-08-1992",
+    "BCBSRI_Risk_Categorization":"High",
+    "Probability_of_IP_in_6mos":"",
+    "IP_Medical_Cnt":"",
+    "OP_ER_Cnt":"",
+    "Total_Cost":"",
+    "Medical_Cost":"",
+    "Rx_Cost":"",
+    "High_Cost_50k":"",
+    "High_Cost_Driver":"",
+    "RxSpecialty_Drug":"",
+    "RxSpecialty_Disease_Desc":""
+    
+   },
+   
+   {
+    "postID": "3",
+    "Mbr_Last_Name": "Doe",
+    "Mbr_First_Name":"Riya",
+    "CONSISTENT_MEMBER_ID": "356478",
+    "BCBSRI_ID": "659745236125",
+    "Mbr_DOB":"20-01-1991",
+    "BCBSRI_Risk_Categorization":"Medium",
+    "Probability_of_IP_in_6mos":"",
+    "IP_Medical_Cnt":"",
+    "OP_ER_Cnt":"",
+    "Total_Cost":"",
+    "Medical_Cost":"",
+    "Rx_Cost":"",
+    "High_Cost_50k":"",
+    "High_Cost_Driver":"",
+    "RxSpecialty_Drug":"",
+    "RxSpecialty_Disease_Desc":""
+    
+   }] 
+ }

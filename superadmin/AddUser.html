@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html ng-app="adduser">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Care Management</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Theme style -->
+    
+    <link rel="stylesheet" href="../dist/css/admin_lte.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <style>
+      .main-sidebar{
+        background-color: #048db7 !important;
+      }
+      .nav-link.active{
+        background-color:  #aab8c6 !important;
+      
+      }
+      .error{
+        color: red;
+      }
+    </style>
+  </head>
+<script src="../dist/js/angular.min.js"></script>
+<body class="hold-transition sidebar-mini">
+  <div class="wrapper">
+    <!-- Navbar -->
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+      <!-- Left navbar links -->
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+          <a href="#" class="nav-link">Home</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+          <a href="#" class="nav-link">Contact</a>
+        </li>
+      </ul>
+  
+     
+  
+      <!-- Right navbar links -->
+      <div class="navbar-custom-menu ml-auto">
+        
+        <ul class="navbar-nav ml-auto">
+          <li class="dropdown user user-menu" style="top: 5px;">
+                    
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <img src="../dist/img/default.png" class="user-image" alt="User Image">
+                                      
+                <span class="hidden-xs">Super Admin</span>
+            </a>
+            <ul class="dropdown-menu" style="width: 200px;">
+              <li class="user-header">
+                <img src="../dist/img/default.png" class="img-circle" alt="User Image">
+                <p> Super Admin</p>
+              </li>
+              <li class="user-footer">
+                <div class="pull-left">
+                  
+                </div>
+                <div class="pull-right">
+                  <a href="../index.html" class="btn btn-danger btn-flat">Logout</a>
+                </div>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <!-- /.navbar -->
+  
+    <!-- Main Sidebar Container -->
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+      <!-- Brand Logo -->
+      <a href="#" class="brand-link">
+        <img src="../dist/img/AdminLTELogo.png"
+             alt="Care Management"
+             class="brand-image img-circle elevation-3"
+             style="opacity: .8">
+        <span class="brand-text font-weight-light">Care Management</span>
+      </a>
+  
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <!-- Sidebar user (optional) -->
+        
+  
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <!-- Add icons to the links using the .nav-icon class
+                 with font-awesome or any other icon font library -->
+            <li class="nav-item has-treeview">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <p>
+                  Dashboard
+                 
+                </p>
+              </a>
+              
+            </li>
+            <li class="nav-item">
+              <a href="PCMH.html" class="nav-link "> 
+                <i class="nav-icon fas fa-user-alt"></i>
+                <p>
+                  Add PCMH
+                  
+                </p>
+              </a>
+            </li>
+  
+            <li class="nav-item">
+              <a href="user.html" class="nav-link active">
+                <i class="nav-icon fas fa-user"></i>
+                <p>
+                  Add User
+                 
+                </p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="return_report.html" class="nav-link"> 
+                <i class="nav-icon fas fa-file-alt"></i>
+                <p>
+                  Review Return Report
+                  
+                </p>
+              </a>
+            </li>
+           
+          </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
+      </div>
+      <!-- /.sidebar -->
+    </aside>
+  
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6">
+              <h1>Add User</h1>
+            </div>
+            <div class="col-sm-6">
+              <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active">Add User</li>
+              </ol>
+            </div>
+          </div>
+        </div><!-- /.container-fluid -->
+      </section>
+  
+      <!-- Main content -->
+      <section class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+              <!-- general form elements -->
+              <div class="card card-primary" >
+                <div class="card-header" style="background-color: #048db7 !important;">
+                  <h3 class="card-title">Add User</h3>
+                </div>
+                <!-- /.card-header -->
+                <!-- form start -->
+                <form id="form" name="form" enctype="multipart/form-data" ng-controller="adduserController" ng-submit="submitForm()">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-6">
+                       <div class="form-group">
+                          <label>First Name <span style="color:red;">*</span></label>
+                          <input type="text" name="firstname" id="firstname"  class="form-control" placeholder="First Name" ng-model="user.firstname" required>
+                          <span class="error" ng-show="form.firstname.$dirty && form.firstname.$error.required">Enter Your First Name!.</span>
+                          
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label>Last Name <span style="color:red;">*</span></label>
+                          <input type="text" name="lastname" id="lastname"  class="form-control" placeholder="Last Name" ng-model="user.lastname" required>
+                          <span class="error" ng-show="form.lastname.$dirty && form.lastname.$error.required">Enter Your Last Name!.</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                         <div class="form-group">
+                          <label>Phone No <span style="color:red;">*</span></label>
+                          <input type="number" name="phone_no" id="phone_no"  class="form-control" placeholder="Phone No" ng-model="user.phone_no" required ng-minlength="10" ng-maxlength="10" >
+                          <span class="error" ng-show="form.phone_no.$dirty && form.phone_no.$error.required && form.phone_no.$error.number">Enter Valid Phone Number!.</span>
+                          <span class="error" ng-show="(form.phone_no.$dirty && (form.phone_no.$error.minlength || form.phone_no.$error.maxlength))">Phone Number should be 10 digits!.</span>
+                          
+
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label>Email <span style="color:red;">*</span></label>
+                          <input type="email" name="email" id="email"  class="form-control" placeholder="Email" ng-model="user.email" required>
+                          <span class="error" ng-show="form.email.$dirty && form.email.$error.required">Enter Your Email Address!.</span>
+                          <span class="error" ng-show="form.email.$dirty && form.email.$error.email">Enter Your Valid Email Address!.</span>
+                        </div>
+                      </div>
+                    </div>
+  
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="exampleInputPassword1">Select PCMH <span style="color:red;">*</span></label>
+                          <select name="pcmh" id="pcmh" class="form-control" ng-model="user.pcmh" >
+                            <option value="">--Select--</option>
+                            <!-- <option value="PCMH1">PCMH1</option>
+                            <option value="PCMH2">PCMH2</option>
+                            <option value="PCMH3">PCMH3</option> -->
+                          </select>
+                          <!-- <span class="error" ng-show="form.pcmh.$dirty && form.pcmh.$error.required">Select PCMH!.</span> -->
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                         
+                        <div class="form-group">
+                          <label for="exampleInputaddress">Address <span style="color:red;">*</span></label>
+                          <textarea class="form-control" id="address" name="address" rows="2" placeholder="Address" ng-model="user.address" required></textarea>
+                          <span class="error" ng-show="form.address.$dirty && form.address.$error.required">Enter Your Address!.</span>
+                        </div>
+                      </div>
+                     
+                    </div>
+  
+                    <div class="row">
+
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="exampleInputPassword1">Select User Type <span style="color:red;">*</span></label>
+                          <select name="usertype" id="usertype" class="form-control" ng-model="user.usertype" >
+                            <option value="">--Select--</option>
+                           
+                          </select>
+                         
+                        </div>
+                      </div>
+
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label>User ID <span style="color:red;">*</span></label>
+                          <input type="text" name="pcmh_user_id" id="pcmh_user_id"  class="form-control" placeholder="PCMH User ID" ng-model="pcmh.pcmh_user_id" required>
+                          <span class="error" ng-show="form.pcmh_user_id.$dirty && form.pcmh_user_id.$error.required">Enter PCMH User ID!.</span>
+                        </div>
+                        
+                      </div>
+                     
+                     
+                      
+                    </div>
+                    <div class="row">
+                     
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="exampleInputPassword">Password <span style="color:red;">*</span></label>
+                          <input type="password" class="form-control" id="password" name="password" placeholder="Password" ng-model="user.password" required>
+                          <span class="error" ng-show="form.password.$dirty && form.password.$error.required">Enter Your Password!.</span>
+                        </div>
+                      </div>
+  
+                     
+                      
+                    </div>
+                    <br>
+                    <div class="row">
+                      
+                      <div class="col-md-12" style="text-align: center;">
+                        <input type="submit" id="submit" name="submit" class="btn btn-primary" value="Submit" ng-disabled="form.$invalid">
+                        <button type="reset" id="reset" name="reset" ng-click="resetForm()" class="btn btn-danger">Cancel</button>
+                      </div>
+                    </div>
+                    <br>
+                  </div>
+                  <!-- /.card-body -->
+  
+                  
+                </form>
+  
+               
+              </div>
+              <!-- /.card -->
+            </div>
+          </div>
+  
+          <div id="result"></div>
+          <!-- /.row -->
+        </div><!-- /.container-fluid -->
+      </section>
+      <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    <footer class="main-footer">
+      <div class="float-right d-none d-sm-block">
+        
+      </div>
+      <strong>Copyright &copy; 2020 <a href="#">BCBSRI Delegated Care Management</a>.</strong> All rights
+    reserved.
+    </footer>
+  
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+      <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+  </div>
+  <!-- ./wrapper -->
+  
+  <!-- jQuery -->
+  <script src="../plugins/jquery/jquery.min.js"></script>
+  <!-- Bootstrap 4 -->
+  <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- bs-custom-file-input -->
+  <script src="../plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+  <!-- AdminLTE App -->
+  <script src="../dist/js/adminlte.min.js"></script>
+  <!-- AdminLTE for demo purposes -->
+  <script src="../dist/js/demo.js"></script>
+  <link rel="stylesheet" href="../plugins/toastr/toastr.min.css">
+<script src="../plugins/toastr/toastr.min.js"></script>
+
+  <script type="text/javascript">
+  $(document).ready(function () {
+    bsCustomFileInput.init();
+  });
+  
+  var app = angular.module('adduser', []);
+  //Start : Generate Json
+  
+  //Genareate File objects
+    $('input:file').each( function(){
+        $(this).after('<input type="text" readonly name="' + $(this).attr("id").replace("_", " ") + '" hidden value=""/>');
+      });
+      
+      
+      // When the user selects a file to be uploaded...
+      $('input:file').change( function(){
+      
+        // If a file is selected set the text input value as the filename
+        if($(this).get(0).files.length !== 0){
+          $(this).next('input:text').val($(this).get(0).files[0].name);
+        }
+      
+      });
+      
+    $.fn.serializeObject = function()
+    {
+        var o = {};
+        var a = this.serializeArray();
+        $.each(a, function() {
+            if (o[this.name] !== undefined) {
+                if (!o[this.name].push) {
+                    o[this.name] = [o[this.name]];
+                }
+                o[this.name].push(this.value || '');
+            } else {
+                o[this.name] = this.value || '';
+            }
+        });
+        return o;
+    };
+  
+  
+var jsonData;
+    
+
+    app.controller('adduserController', function($scope) {
+
+
+      $scope.submitForm = function () {
+       
+        var result = JSON.stringify($('form').serializeObject());
+        // var result = $('form').serializeObject();
+        
+        // var usertypeid = "usertypeid";
+        //     var ob  = {};
+        //     ob[usertypeid] = 3;
+        //     usertypeid_n = ob;
+            // var pcmh_id = "pcmhid";
+            // var ob2  = {};
+            // ob2[pcmh_id] = 2;
+            // res_pcmh_id = ob2;
+
+        // jsonData = JSON.stringify($.extend({}, usertypeid_n,  result));
+
+        console.log("result==== "+result)
+        // $('#result').text(JSON.stringify($('form').serializeObject()));
+       
+        fetch("https://apimsdcm.azure-api.net/dcmAPIM/CreatePCMHUser", {
+            method: 'post',
+            // mode: 'no-cors', // no-cors, *cors, same-origin
+   
+            headers: { 'Content-Type': 'application/json',
+            "x-functions-key": "R8W3hwyA4rGnD2tqy1tJaF3VmlybLdrqMxyX0qcFAS4PS6bO79weNA==",
+            "Ocp-Apim-Subscription-Key": "0ac8f354200c4ddb89bb6dcb7528cfea",
+            // "subscription-key":"da91fd77-c908-4f23-9469-52acf3239a11"
+            },
+            body: result
+        })
+        .then(function(response){
+            console.log("seeeeeee==== "+JSON.stringify(response));
+            toastr.success('PCMH User Created Successfully!.');
+            window.location.replace("user.html");
+             $scope.pcmh = {};
+          //$('#result').text("Successfully PCMH is created");
+          //Perform action based on response
+            }).catch(function(error){
+              // alert(error);
+              toastr.error('Error in Creating PCMH!.');
+              //$('#result').text("Error occured while creating pcmh, please try again");
+                console.log(error.status);
+                //Perform action based on error
+              });
+              // .then((response) => {
+
+              //         if (response.ok) {
+              //         return response
+              //         } else {
+              //         throw `update Looks like something went wrong. Status: ${response}`;
+              //     }
+              //     })
+              //     .then(response => response.json())
+              //     .then(data => {
+              //         console.log("data: [" + JSON.stringify(data)+"]")
+              //         pcmdata = "["+JSON.stringify(data)+"]";
+              //         toastr.success('PCMH User Created Successfully!.');
+              //         $scope.user = {};
+              //         $scope.form.$setPristine();
+              //     })
+              //     .catch(error => {
+              //        console.log(error);
+              //        toastr.error('Error in Creating PCMH User!.');
+              //     })  
+
+
+        return false;
+    };
+    var pcmhdata='{"pcmhid":-1}';
+    fetch("https://apimdcm-v.azure-api.net/dcmfunctionapps-v/fileupload", {
+        method: 'post',
+       // mode: 'no-cors', // no-cors, *cors, same-origin
+
+       headers: { 'Content-Type': 'application/json',
+            "x-functions-key": "Y75v69weCc0+ZanTjf0jSihLRlZAOUJGRM8xTAbdDLMZdQiXYNiJfg==",
+            "Ocp-Apim-Subscription-Key": "2584a9c08dd04aa49db05cbb265c9b91",
+            // "subscription-key":"da91fd77-c908-4f23-9469-52acf3239a11"
+            },
+        body: pcmhdata
+    }).then((response) => {
+
+                     if (response.ok) {
+                    return response
+                } else {
+                    throw `update Looks like something went wrong. Status: ${response}`;
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+             
+                console.log("data:" + JSON.stringify(data))
+                
+                pcmdata = JSON.stringify(data);
+               
+               
+                select = document.getElementById('pcmh');
+                for(var i=0;i<data.length;i++)
+                {
+                  var opt = document.createElement('option');
+                  
+                  opt.value = data[i].pcmhid;
+                  opt.innerHTML = data[i].pcmhname;
+                
+                  select.appendChild(opt);
+                
+                  console.log("pcmhname = "+data[i].pcmhname);
+                }
+               
+            })
+            .catch(error => {
+                console.log("error")
+            }) 
+           
+            
+            //Fetch Usertypes
+            //var pcmhdata='{"pcmhid":-1}';
+         fetch("https://apimsdcm.azure-api.net/dcmAPIM/getusertypes", {
+            method: 'post',
+       // mode: 'no-cors', // no-cors, *cors, same-origin
+
+            headers: { 'Content-Type': 'application/json',
+            "x-functions-key": "Y75v69weCc0+ZanTjf0jSihLRlZAOUJGRM8xTAbdDLMZdQiXYNiJfg==",
+            "Ocp-Apim-Subscription-Key": "2584a9c08dd04aa49db05cbb265c9b91",
+            // "subscription-key":"da91fd77-c908-4f23-9469-52acf3239a11"
+            },
+        body: {"test":"test"}
+    }).then((response) => {
+
+                     if (response.ok) {
+                    return response
+                } else {
+                    throw `update Looks like something went wrong. Status: ${response}`;
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+             
+                console.log("Usertypes : " + JSON.stringify(data))
+                
+                pcmdata = JSON.stringify(data);
+               
+               
+                select = document.getElementById('usertype');
+                for(var i=0;i<data.length;i++)
+                {
+
+                
+                  var opt = document.createElement('option');
+                  
+                  opt.value = data[i].usertypeid;
+                  opt.innerHTML = data[i].usertype;
+                
+                  select.appendChild(opt);
+                
+                  console.log("pcmhname = "+data[i].usertype);
+              }
+               
+            })
+            .catch(error => {
+                console.log("error")
+            }) 
+
+      $scope.resetForm = function() {
+        //$scope.user = {};
+        $scope.form.$setPristine();
+      }
+
+    
+
+    });
+
+    function test()
+    {
+      alert(444);
+      app.controller('adduserController', function($scope) {
+        $scope.form.$setPristine();
+      });
+     
+    }
+  //End : Generate Json
+  </script>
+  </body>
+</html>
+

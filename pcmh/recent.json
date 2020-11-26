@@ -1,0 +1,28 @@
+{
+  "data": [
+  {
+   "postID": "1",
+   "pacmh_name": "PCMH1",
+   "name":"Alexander Bob Pierce",
+   "email": "alepierce@gmail.com ",
+   "phone_no": "954 325 5852",
+   "risk":"High",
+   "url": "#"
+  }, {
+   "postID": "2",
+   "pacmh_name": "PCMH1",
+   "name": "Bob Rocky Doe",
+   "email": "rockydoe@gmail.com ",
+   "phone_no": "985 653 5632",
+   "risk":"Medium",
+   "url": "#"
+  }, {
+   "postID": "3",
+   "pacmh_name": "PCMH2",
+   "name": "Rocky Bob Pierce",
+   "email": "rockyPierce@gmail.com ",
+   "phone_no": "934 125 7584",
+   "risk":"Low",
+   "url": "#"
+  }]
+ }

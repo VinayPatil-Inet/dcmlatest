@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html ng-app="pcmhreports">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Care Management</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="../plugins/datepicker/datepicker3.css">
+  <link rel="stylesheet" href="../plugins/datatables-bs4/css/dataTables.bootstrap4.css">
+  <link rel="stylesheet" href="../dist/css/admin_lte.css">
+  <!-- Google Font: Source Sans Pro -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <style>
+    .main-sidebar{
+      background-color: #048db7 !important;
+    }
+    
+    
+  </style>
+</head>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+  <!-- Navbar -->
+  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <!-- Left navbar links -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="#" class="nav-link">Home</a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="#" class="nav-link">Contact</a>
+      </li>
+    </ul>
+
+   
+
+    <!-- Right navbar links -->
+    <div class="navbar-custom-menu ml-auto">
+      
+      <ul class="navbar-nav ml-auto">
+        <li class="dropdown user user-menu" style="top: 5px;">
+                  
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <img src="../dist/img/default.png" class="user-image" alt="User Image">
+                                    
+              <span class="hidden-xs">PCMH</span>
+          </a>
+          <ul class="dropdown-menu" style="width: 200px;">
+            <li class="user-header">
+              <img src="../dist/img/default.png" class="img-circle" alt="User Image">
+              <p>PCMH</p>
+            </li>
+            <li class="user-footer">
+              <div class="pull-left">
+                
+              </div>
+              <div class="pull-right">
+                <a href="../index.html" class="btn btn-danger btn-flat">Logout</a>
+              </div>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <!-- /.navbar -->
+
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="#" class="brand-link">
+      <img src="../dist/img/AdminLTELogo.png"
+           alt="Care Management"
+           class="brand-image img-circle elevation-3"
+           style="opacity: .8">
+      <span class="brand-text font-weight-light">Care Management</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user (optional) -->
+      
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+          <li class="nav-item has-treeview">
+            <a href="" class="nav-link">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Dashboard
+               
+              </p>
+            </a>
+            
+          </li>
+          <li class="nav-item">
+            <a href="view.html" class="nav-link active"> 
+              <i class="nav-icon fas fa-user-alt"></i>
+              <p>
+                PCMH Reports
+                
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="return_report.html" class="nav-link"> 
+              <i class="nav-icon fas fa-file-alt"></i>
+              <p>
+                Return Report File
+                
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="return_report_individual.html" class="nav-link"> 
+              <i class="nav-icon fas fa-file-alt"></i>
+              <p>
+                Return Report Individual
+                
+              </p>
+            </a>
+          </li>
+
+          
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>PCMH Reports</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">PCMH Reports</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+
+   
+
+    <section class="content">
+      <div class="container-fluid">
+
+        <div class="row">
+          <!-- left column -->
+          <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="card card-primary" >
+             
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form role="form" id="form" name="form" ng-controller="MyCtrl" enctype="multipart/form-data"  ng-submit="submit()">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-3">
+                     <div class="form-group">
+                        <label>Select Month</label>
+                        <select name="month" id="month" class="form-control">
+                          <option value="">--Select Month--</option>
+                          <option value="1">January</option>
+                          <option value="2">February</option>
+                          <option value="3">March</option>
+                          <option value="4">April</option>
+                          <option value="5">May</option>
+                          <option value="6">June</option>
+                          <option value="7">July</option>
+                          <option value="8">August</option>
+                          <option value="9">September</option>
+                          <option value="10">October</option>
+                          <option value="11">November</option>
+                          <option value="12">December</option>
+                         
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <div class="form-group">
+                        <label>Select Year</label>
+                        <select name="year" id="year" class="form-control">
+                          <option value="">--Select Year--</option>
+                          <option value="2020" selected="selected">2020</option>
+                          <option value="2019">2019</option>
+                          <option value="2018">2018</option>
+                         
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <div class="form-group">
+                        <label>Risk</label>
+                        <select name="risk" id="risk" class="form-control">
+                          <option value="">--Select--</option>
+                          <option value="High">High</option>
+                          <option value="Medium">Medium</option>
+                          <option value="Low">Low</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <div class="form-group">
+                        <label>&nbsp;</label><br>
+                        <div id="loader" style="display: none;"></div>
+                        <button type="button" id="btn_search" class="btn btn-success"><i class="fas fa-search"></i> Search</button>
+                        <!-- <button type="button" id="btn_download" class="btn btn-primary" onclick="downloadfile()"><i class="fas fa-download"></i> Download Data</button> -->
+                        <input type="submit" id="btn_download" name="submit" class="btn btn-primary" value="Download Data" ng-disabled="form.$invalid">
+                    
+                      </div>
+                      </div>
+                  </div>
+                  
+                </div>
+                <!-- /.card-body -->
+
+                
+              </form>
+            </div>
+            <!-- /.card -->
+          </div>
+        </div>
+
+        <div class="row">
+          
+          <div class="col-md-12">
+          
+               <!-- Start : Inner Tab For Recent -->
+                    <div class="card card-primary card-tabs" >
+                      <div class="card-header p-0 pt-1" style="background-color: #4d5355 !important;">
+                        <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
+                          <li class="nav-item">
+                            <a class="nav-link active" id="demographics_tab" data-toggle="pill" href="#demographics" role="tab" aria-controls="custom-tabs-one-home" aria-selected="true"><strong>Demographics</strong></a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" id="conditionsandrisk_tab" data-toggle="pill" href="#conditionsandrisk" role="tab" aria-controls="custom-tabs-one-profile" aria-selected="false"><strong>Conditions & Risks</strong></a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" id="costandutilization_tab" data-toggle="pill" href="#costandutilization" role="tab" aria-controls="custom-tabs-one-messages" aria-selected="false"><strong>Cost & Utilization</strong></a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" id="bcbsriprogram_tab" data-toggle="pill" href="#bcbsriprogram" role="tab" aria-controls="custom-tabs-one-messages" aria-selected="false"><strong>BCBSRI Programs</strong></a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" id="patientpanelalldata_tab" data-toggle="pill" href="#patientpanelalldata" role="tab" aria-controls="custom-tabs-one-messages" aria-selected="false"><strong>Patient Panel All Data</strong></a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" id="reportingdata_tab" data-toggle="pill" href="#returnreportingdata" role="tab" aria-controls="custom-tabs-one-messages" aria-selected="false"><strong>Return Reporting</strong></a>
+                          </li>
+                          
+                        </ul>
+                      </div>
+                      <div class="card-body ">
+                        <div class="tab-content" id="custom-tabs-one-tabContent">
+                          
+                           <!--Start : Demographics-->
+                          <div class="tab-pane fade show active" id="demographics" role="tabpanel" aria-labelledby="demographics_tab">
+                            <div class="col-12 table-responsive">
+                              <table id="dt_recent_demographics" class="table table-bordered table-striped" >
+                                <thead>
+                                <tr>
+                                  <th>Mbr_Last_Name</th>
+                                  <th>Mbr_First_Name</th>
+                                  <th>CONSISTENT_MEMBER_ID</th>
+                                  <th>BCBSRI_ID</th>
+                                  <th>Mbr_DOB</th>
+                                  <th>Mbr_Age</th>
+                                  <th>Mbr_Gender</th>
+                                  <th>BCBSRI_Risk_Categorization</th>
+                                  <th>New_PCMH_HR_Flag</th>
+                                  <th>Perf_Guarantee_Mbr</th>
+                                  <th>contracted_group_name</th>
+                                  <th>Practice_Site</th>
+                                  <th>PCP_Last_Name</th>
+                                  <th>PCP_First_name</th>
+                                  <th>Last_PCP_Visit_dt</th>
+                                  <th>Product</th>
+                                  <th>Requires_PCP_Referral</th>
+                                  <th>Medicare_Dual_Coverage_Type</th>
+                                  <th>Mbr_Addr1</th>
+                                  <th>Mbr_Addr2</th>
+                                  <th>Mbr_City</th>
+                                  <th>Mbr_State</th>
+                                  <th>Mbr_Zip</th>
+                                  <th>Mbr_Phone_Nbr</th>
+                                  <th>Month</th>
+                                  <th>Year</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                
+                                </tbody>
+                              </table>    
+                            </div>
+                            
+                            
+                            
+                          
+                          </div>
+                        <!--End : Demographics-->
+
+                        <!--Start : Conditions & Risk-->
+                          <div class="tab-pane fade" id="conditionsandrisk" role="tabpanel" aria-labelledby="conditionsandrisk_tab">
+                            <div class="col-12 table-responsive">
+                              <table id="dt_recent_conditionsandrisk" class="table table-bordered table-striped" style="width: 100%;">
+                                <thead>
+                                <tr>
+                                  <th>Mbr_Last_Name</th>
+                                  <th>Mbr_First_Name</th>
+                                  <th>CONSISTENT_MEMBER_ID</th>
+                                  <th>BCBSRI_ID</th>
+                                  <th>Mbr_DOB</th>
+                                  <th>BCBSRI_Risk_Categorization</th>
+                                  <th>New_PCMH_HR_Flag</th>
+                                  <th>RUB</th>
+                                  <th>Medicare_Risk_Index</th>
+                                  <th>Hypertension</th>
+                                  <th>Hyperlipid</th>
+                                  <th>LowBackPain</th>
+                                  <th>Diabetes</th>
+                                  <th>IschemicHD</th>
+                                  <th>Asthma</th>
+                                  <th>COPD</th>
+                                  <th>CHF</th>
+                                  <th>Cancer</th>
+                                  <th>Depression</th>
+                                  <th>ESRD</th>
+                                  <th>CKD</th>
+                                  <th>Hospice_Flag</th>
+                                  <th>BH_Risk_Category</th>
+                                  <th>Adv_Dir_S0257</th>
+                                  <th>Month</th>
+                                  <th>Year</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                
+                                </tbody>
+                              </table>    
+                            </div>
+
+                            
+                            
+                          </div>
+
+                          <!--End : Conditions & Risk-->
+
+                          <!--Start : Costand Utilization-->
+                          <div class="tab-pane fade" id="costandutilization" role="tabpanel" aria-labelledby="costandutilization_tab">
+                            <div class="col-12 table-responsive">
+                              <table id="dt_recent_costandutilization" class="table table-bordered table-striped" style="width: 100%;">
+                                <thead>
+                                <tr>
+                                  <th>Mbr_Last_Name</th>
+                                  <th>Mbr_First_Name</th>
+                                  <th>CONSISTENT_MEMBER_ID</th>
+                                  <th>BCBSRI_ID</th>
+                                  <th>Mbr_DOB</th>
+                                  <th>BCBSRI_Risk_Categorization</th>
+                                  <th>Probability_of_IP_in_6mos</th>
+                                  <th>IP_Medical_Cnt</th>
+                                  <th>OP_ER_Cnt</th>
+                                  <th>Total_Cost</th>
+                                  <th>Medical_Cost</th>
+                                  <th>Rx_Cost</th>
+                                  <th>High_Cost_50k</th>
+                                  <th>High_Cost_Driver</th>
+                                  <th>RxSpecialty_Drug</th>
+                                  <th>RxSpecialty_Disease_Desc</th>
+                                  <th>Month</th>
+                                  <th>Year</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                
+                                </tbody>
+                              </table>    
+                            </div>
+                            
+                            
+                          </div>
+
+                          <!--End : Costand Utilization-->
+
+                           <!--Start : BCBSRI Program-->
+                          <div class="tab-pane fade" id="bcbsriprogram" role="tabpanel" aria-labelledby="bcbsriprogram_tab">
+                            <div class="col-12 table-responsive">
+                             
+                              <table id="dt_recent_bcbsriprogram" class="table table-bordered table-striped" style="width: 100%;">
+                                <thead>
+                                <tr>
+                                  <th>Mbr_Last_Name</th>
+                                  <th>Mbr_First_Name</th>
+                                  <th>CONSISTENT_MEMBER_ID</th>
+                                  <th>BCBSRI_ID</th>
+                                  <th>Mbr_DOB</th>
+                                  <th>BCBSRI_Risk_Categorization</th>
+                                  <th>In_Home_Assessment_Status</th>
+                                  <th>In_Home_Assessment_Status_date</th>
+                                  <th>BH_CM_Flag</th>
+                                  <th>BH_CM_Discharge_Dt</th>
+                                  <th>BH_CM_Discharge_Reason</th>
+                                  <th>HCBB_Eligible</th>
+                                  <th>HCBB_Engaged</th>
+                                  <th>Month</th>
+                                  <th>Year</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                
+                                </tbody>
+                              </table>    
+                            </div>
+                            
+                          </div>
+
+                           <!--End : BCBSRI Program-->
+                          
+                          <!-- Start : Patient Panel All Data -->
+                          <div class="tab-pane fade" id="patientpanelalldata" role="tabpanel" aria-labelledby="patientpanelalldata_tab">
+                            <div class="col-12 table-responsive">
+                              <table id="dt_recent_patientpanelalldata" class="table table-bordered table-striped" style="width: 100%;">
+                                <thead>
+                                <tr>
+                                  <th>Mbr_Last_Name</th>
+                                  <th>Mbr_First_Name</th>
+                                  <th>CONSISTENT_MEMBER_ID</th>
+                                  <th>BCBSRI_ID</th>
+                                  <th>Mbr_DOB</th>
+                                  <th>Mbr_Age</th>
+                                  <th>Mbr_Gender</th>
+                                  <th>BCBSRI_Risk_Categorization</th>
+                                  <th>New_PCMH_HR_Flag</th>
+                                  <th>Perf_Guarantee_Mbr</th>
+                                  <th>contracted_group_name</th>
+                                  <th>Practice_Site</th>
+                                  <th>PCP_Last_Name</th>
+                                  <th>PCP_First_name</th>
+                                  <!-- <th>Last_PCP_Visit_dt</th> -->
+                                  <th>Product</th>
+                                  <th>Requires_PCP_Referral</th>
+                                  <th>Medicare_Dual_Coverage_Type</th>
+                                  <th>Mbr_Addr1</th>
+                                  <th>Mbr_Addr2</th>
+                                  <th>Mbr_City</th>
+                                  <th>Mbr_State</th>
+                                  <th>Mbr_Zip</th>
+                                  <th>Mbr_Phone_Nbr</th>
+                                  <th>RUB</th>
+                                  <th>Medicare_Risk_Index</th>
+                                  <th>Hypertension</th>
+                                  <th>Hyperlipid</th>
+                                  <th>LowBackPain</th>
+                                  <th>Diabetes</th>
+                                  <th>IschemicHD</th>
+                                  <th>Asthma</th>
+                                  <th>COPD</th>
+                                  <th>CHF</th>
+                                  <th>Cancer</th>
+                                  <th>Depression</th>
+                                  <th>ESRD</th>
+                                  <th>CKD</th>
+                                  <th>Hospice_Flag</th>
+                                  <th>BH_Risk_Category</th>
+                                  <th>Adv_Dir_S0257</th>
+                                  <th>Probability_of_IP_in_6mos</th>
+                                  <th>IP_Medical_Cnt</th>
+                                  <th>OP_ER_Cnt</th>
+                                  <th>Total_Cost</th>
+                                  <th>Medical_Cost</th>
+                                  <!-- <th>Rx_Cost</th>
+                                  <th>High_Cost_50k</th> -->
+                                  <th>High_Cost_Driver</th>
+                                  <th>RxSpecialty_Drug</th>
+                                  <th>RxSpecialty_Disease_Desc</th>
+                                  <th>In_Home_Assessment_Status</th>
+                                  <!-- <th>In_Home_Assessment_Status_date</th>
+                                  <th>BH_CM_Flag</th>
+                                  <th>BH_CM_Discharge_Dt</th> -->
+                                  <th>BH_CM_Discharge_Reason</th>
+                                  <th>HCBB_Eligible</th>
+                                  <th>HCBB_Engaged</th>
+                                  <th>Month</th>
+                                  <th>Year</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                
+                                </tbody>
+                              </table>    
+                            </div>  
+                            
+                          </div>
+
+                          <!-- End : Patient Panel All Data -->
+
+
+                          <!-- Start : Return Reporting Data -->
+                          <div class="tab-pane fade" id="returnreportingdata" role="tabpanel" aria-labelledby="reportingdata_tab">
+                            <div class="col-12 table-responsive">
+                              <table id="dt_recent_return_report" class="table table-bordered table-striped">
+                                <thead>
+                                <tr>
+                                  <th>Mbr_Last_Name</th>
+                                  <th>Mbr_First_Name</th>
+                                  <th>BCBSRI_ID</th>
+                                  <th>Mbr_DOB</th>
+                                  <th>BCBSRI_Risk_Categorization</th>
+                                  <th>Perf_Guarantee_Mbr</th>
+                                  <th>Practice_Site</th>
+                                  <th>Practice_Identified_Indicator</th>
+                                  <th>Outreach_Attempted_Date</th>
+                                  <th>Enrolled_Status_Date</th>
+                                  <th>BH_Screening_PHQ-2_PHQ9_Completed_Date</th>
+                                  <th>Care_Plan_Established_Date</th>
+                                  <th>Discharged_from_CM_Date</th>
+                                  <th>Status</th>
+                                  <th>Month</th>
+                                  <th>Year</th>
+                                </tr>
+                                </thead>
+                                
+                              </table>
+
+                                 
+                            </div>
+                            
+                            
+                          </div>
+
+                          <!-- End : Return Reporting Data -->
+
+                        </div>
+                      </div>
+
+                    </div>
+
+                    <!-- End : Inner Tab For Recent -->
+                
+          </div>
+          <!-- left column -->
+          
+        </div>
+
+        
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+
+     
+
+      <div class="modal fade" id="modal-default">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Upload Data</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-md-12">
+                 <div class="form-group">
+                    <label>Select Month</label>
+                    <select name="month" id="month" class="form-control">
+                      <option value="">--Select Month--</option>
+                      <option value="1">January</option>
+                      <option value="2">February</option>
+                      <option value="3">March</option>
+                      <option value="4">April</option>
+                      <option value="5">May</option>
+                      <option value="6">June</option>
+                      <option value="7">July</option>
+                      <option value="8">August</option>
+                      <option value="9">September</option>
+                      <option value="10">October</option>
+                      <option value="11">November</option>
+                      <option value="12">December</option>
+                     
+                    </select>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label>Select Year</label>
+                    <select name="year" id="year" class="form-control">
+                      <option value="">--Select Year--</option>
+                      <option value="2020">2020</option>
+                      <option value="2019">2019</option>
+                      <option value="2018">2018</option>
+                     
+                    </select>
+                  </div>
+                </div>
+
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="exampleInputFile">Select File</label>
+                    <div class="input-group">
+                      <div class="custom-file">
+                        <input type="file" id="file" name="file" class="custom-file-input" >
+                        <label class="custom-file-label" for="exampleInputFile">Select File</label>
+                      </div>
+                      
+                    </div>
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+            <div class="modal-footer justify-content-between">
+              
+              <button type="button" class="btn btn-primary">Upload</button>
+             
+            </div>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      <!-- /.modal -->
+      
+    </section>
+    <!-- /.content -->
+  </div>
+  
+
+  <!-- /.content-wrapper -->
+  <footer class="main-footer">
+    <div class="float-right d-none d-sm-block">
+      
+    </div>
+    <strong>Copyright &copy; 2020 <a href="#">BCBSRI Delegated Care Management</a>.</strong> All rights
+    reserved.
+  </footer>
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery -->
+<script src="../plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- bs-custom-file-input -->
+<script src="../plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+<!-- AdminLTE App -->
+<script src="../dist/js/adminlte.min.js"></script>
+
+<script src="../plugins/datatables/jquery.dataTables.js"></script>
+<script src="../plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+
+<link rel="stylesheet" href="../plugins/toastr/toastr.min.css">
+<script src="../plugins/toastr/toastr.min.js"></script>
+
+<!-- AdminLTE for demo purposes -->
+<script src="../dist/js/demo.js"></script>
+<script src="../plugins/datepicker/bootstrap-datepicker.js"></script>
+<script type="text/javascript" src="../dist/js/angular.min.js"></script>
+
+<style>
+  /* Center the loader */
+  #loader {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    z-index: 1;
+    width: 150px;
+    height: 150px;
+    margin: -75px 0 0 -75px;
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid blue;
+    border-bottom: 16px solid;
+    border-top: 16px solid #3498db;
+    width: 60px;
+    height: 60px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+    
+  }
+  
+  @-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  /* Add animation to "page content" */
+  .animate-bottom {
+    position: relative;
+    -webkit-animation-name: animatebottom;
+    -webkit-animation-duration: 1s;
+    animation-name: animatebottom;
+    animation-duration: 1s
+  }
+  
+  @-webkit-keyframes animatebottom {
+    from { bottom:-100px; opacity:0 } 
+    to { bottom:0px; opacity:1 }
+  }
+  
+  @keyframes animatebottom { 
+    from{ bottom:-100px; opacity:0 } 
+    to{ bottom:0; opacity:1 }
+  }
+  
+  #myDiv {
+    display: none;
+    text-align: center;
+  }
+  </style>
+
+<script src="js/getdata.js"></script>
+<!--<script src="js/inprocess.js"></script>
+<script src="js/complated.js"></script>-->
+
+<script type="text/javascript">
+$(document).ready(function () {
+  bsCustomFileInput.init();
+  
+});
+
+
+$.fn.serializeObject = function()
+{
+ 
+    var o = {};
+    var a = this.serializeArray();
+    $.each(a, function() {
+        if (o[this.name] !== undefined) {
+            if (!o[this.name].push) {
+                o[this.name] = [o[this.name]];
+            }
+            o[this.name].push(this.value || '');
+        } else {
+            o[this.name] = this.value || '';
+        }
+    });
+    return o;
+};
+
+
+$('.datepicker').datepicker({
+     
+			}).on('change', function(){
+				$('.datepicker-dropdown').hide();
+      });
+
+      function getuploadedfileid(json1,filename_n,  result)
+      {
+
+       
+        
+}
+
+var app = angular.module('pcmhreports', []);
+
+app.controller('MyCtrl', ['$scope', function ($scope) {
+
+let res_pcmh_id;
+// upload later on form submit or something similar
+$scope.submit = function() {
+     
+  document.getElementById("loader").style.display = "block";
+      var json1 = $('form').serializeObject();
+      var pcmh_id = "pcmh_id";
+            var ob2  = {};
+            ob2[pcmh_id] = 1;
+            res_pcmh_id = ob2;
+            var jsonData2 = JSON.stringify($.extend({}, json1,res_pcmh_id));
+            
+            // window.open("https://storageaccountdcm8caa.blob.core.windows.net/bcbsriuploadedfiles/dcm-1605243195000.xlsx", "");
+       downloadfile(jsonData2);
+     
+   };
+
+     function downloadfile(json1)
+     {
+      // var result11=JSON.stringify($('form').serializeObject());
+
+      
+        console.log("downloadfile====");
+
+        console.log("downloadfile ="+json1);
+        // document.getElementById("result11").innerHTML = data;
+
+
+         fetch("https://apimsdcm.azure-api.net/PCMH/getfilename", {
+              method: 'post',
+              // mode: 'no-cors', // no-cors, *cors, same-origin
+
+              headers: { 'Content-Type': 'application/json',
+              "x-functions-key": "R8W3hwyA4rGnD2tqy1tJaF3VmlybLdrqMxyX0qcFAS4PS6bO79weNA==",
+              "Ocp-Apim-Subscription-Key": "0ac8f354200c4ddb89bb6dcb7528cfea",
+
+              // "subscription-key":"91d00dc5-c863-4541-8cfa-8429d39b0926"
+              },
+              body: json1
+          }).then((response) => {
+
+     
+      // updatedata(jsonData);
+
+                if (response.ok) {
+                    return response
+                } else {
+                    throw `Looks like something went wrong. Status: ${response.status}`;
+                }
+            })
+            // .then(response => response.json())
+            .then(response => response.text())
+            .then(data => {
+                console.log("data: " + data)
+
+                  var resfilename = data.toString();
+                 
+                  console.log("resulted data=== "+resfilename);
+                  
+                  window.open("https://storageaccountdcm8caa.blob.core.windows.net/bcbsriuploadedfiles/"+resfilename, "");
+                  // window.open("https://storageaccountdcm8caa.blob.core.windows.net/bcbsriuploadedfiles/dcm.xlsx", "");
+                  document.getElementById("loader").style.display = "none";
+            })
+            .catch(error => {
+                console.log("Errroorrr "+error)
+                document.getElementById("loader").style.display = "none";
+                toastr.error('There is no data exist!.');
+            })  
+
+
+        
+
+     }
+
+    //   function downloadfile()
+    //  {
+    //     console.log("downloadfile====");
+        
+    //     window.open("https://storageaccountdcm8caa.blob.core.windows.net/bcbsriuploadedfiles/dcm.xlsx", "");
+
+    //  }
+    }]);
+</script>
+</body>
+</html>
