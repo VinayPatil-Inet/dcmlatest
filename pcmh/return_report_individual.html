@@ -25,6 +25,62 @@
     
     }
   </style>
+   <style>
+    /* Center the loader */
+    #loader {
+      position: fixed;
+      left: 50%;
+      top: 50%;
+      z-index: 1;
+      width: 150px;
+      height: 150px;
+      margin: -75px 0 0 -75px;
+      border: 16px solid #f3f3f3;
+      border-radius: 50%;
+      border-top: 16px solid blue;
+      border-bottom: 16px solid;
+      border-top: 16px solid #3498db;
+      width: 60px;
+      height: 60px;
+      -webkit-animation: spin 2s linear infinite;
+      animation: spin 2s linear infinite;
+      
+    }
+    
+    @-webkit-keyframes spin {
+      0% { -webkit-transform: rotate(0deg); }
+      100% { -webkit-transform: rotate(360deg); }
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    /* Add animation to "page content" */
+    .animate-bottom {
+      position: relative;
+      -webkit-animation-name: animatebottom;
+      -webkit-animation-duration: 1s;
+      animation-name: animatebottom;
+      animation-duration: 1s
+    }
+    
+    @-webkit-keyframes animatebottom {
+      from { bottom:-100px; opacity:0 } 
+      to { bottom:0px; opacity:1 }
+    }
+    
+    @keyframes animatebottom { 
+      from{ bottom:-100px; opacity:0 } 
+      to{ bottom:0; opacity:1 }
+    }
+    
+    #myDiv {
+      display: none;
+      text-align: center;
+    }
+    </style>
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -193,7 +249,7 @@
                            <option value="July">July</option>
                            <option value="August">August</option>
                            <option value="September">September</option>
-                           <option value="October" selected="selected">October</option>
+                           <option value="October">October</option>
                            <option value="November">November</option>
                            <option value="December">December</option>
                           
@@ -205,7 +261,7 @@
                          <label>Select Year</label>
                          <select name="year" id="year" class="form-control">
                            <option value="">--Select Year--</option>
-                           <option value="2020" selected="selected">2020</option>
+                           <option value="2020">2020</option>
                            <option value="2019">2019</option>
                            <option value="2018">2018</option>
                           
@@ -216,6 +272,7 @@
                     <div class="col-md-3">
                       <div class="form-group">
                         <label>&nbsp;</label><br>
+                        <div id="loader" style="display: none;"></div>
                         <button type="button"  id="btn_search" class="btn btn-success"><i class="fas fa-search"></i> Search</button>
                       </div>
                       </div>
@@ -238,119 +295,127 @@
             <!-- general form elements -->
             <div class="card card-primary" >
               <div class="card-header" style="background-color: #048db7 !important;">
-                <h3 class="card-title">Return Report Individual</h3>
+                <h3 class="card-title">Return Report Individual </h3>
                 
               </div>
              
 
                 <div class="card-body">
-                    <div class="card card-primary card-tabs" >
-                       <div class="card-header p-0 pt-1" style="background-color: #4d5355 !important;">
-                         <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
-                           <li class="nav-item">
-                             <a class="nav-link active" id="recent-tab" data-toggle="pill" href="#recent" role="tab" aria-controls="custom-tabs-one-home" aria-selected="true"><strong>Recent</strong></a>
-                           </li>
-                           <li class="nav-item">
-                             <a class="nav-link" id="inprocess-tab" data-toggle="pill" href="#inprocess" role="tab" aria-controls="custom-tabs-one-profile" aria-selected="false"><strong>In Process</strong></a>
-                           </li>
-                           <li class="nav-item">
-                             <a class="nav-link" id="completed-tab" data-toggle="pill" href="#completed" role="tab" aria-controls="custom-tabs-one-messages" aria-selected="false"><strong>Completed</strong></a>
-                           </li>
-                           
-                         </ul>
-                       </div>
-                       <div class="card-body ">
-                          <div class="tab-content" id="custom-tabs-one-tabContent">
-                            <div class="tab-pane fade show active" id="recent" role="tabpanel" aria-labelledby="recent-tab">
-                              <div class="col-12 table-responsive">
-                                <table id="dt_recent_returnreport" class="table table-bordered table-striped" style="width: 100%;">
-                                  <thead>
-                                    <tr>
-                                      <th>Action</th>
-                                      <th>Mbr_Last_Name</th>
-                                      <th>Mbr_First_Name</th>
-                                      
-                                      <th>BCBSRI_ID</th>
-                                      <th>Mbr_DOB</th>
-                                      <th>BCBSRI_Risk_Categorization</th>
-                                      <th>Perf_Guarantee_Mbr</th>
-                                      <th>Practice_Site</th>
-                                      <th>Practice_Identified_Indicator</th>
-                                      <th>Outreach_Attempted_Date</th>
-                                      <th>Enrolled_Status_Date</th>
-                                      <th>BH_Screening_PHQ-2_PHQ9_Completed_Date</th>
-                                      <th>Care_Plan_Established_Date</th>
-                                      <th>Discharged_from_CM_Date</th>
-                                      
-                                    </tr>
-                                  </thead>
-                                  <tbody>
-                                  
-                                  </tbody>
-                                </table>   
-                              </div>
-                            </div>
 
-                            <div class="tab-pane fade show" id="inprocess" role="tabpanel" aria-labelledby="inprocess-tab">
-                              <div class="col-12 table-responsive">
-                                <table id="dt_inprocess_returnreport" class="table table-bordered table-striped" style="width: 100%;">
-                                  <thead>
-                                    <tr>
-                                      <th>Action</th>
-                                      <th>Mbr_Last_Name</th>
-                                      <th>Mbr_First_Name</th>
-                                     <th>BCBSRI_ID</th>
-                                      <th>Mbr_DOB</th>
-                                      <th>BCBSRI_Risk_Categorization</th>
-                                      <th>Perf_Guarantee_Mbr</th>
-                                      <th>Practice_Site</th>
-                                      <th>Practice_Identified_Indicator</th>
-                                      <th>Outreach_Attempted_Date</th>
-                                      <th>Enrolled_Status_Date</th>
-                                      <th>BH_Screening_PHQ-2_PHQ9_Completed_Date</th>
-                                      <th>Care_Plan_Established_Date</th>
-                                      <th>Discharged_from_CM_Date</th>
-                                      
-                                    </tr>
-                                  </thead>
-                                  <tbody>
-                                  
-                                  </tbody>
-                                </table>   
-                              </div>
-                            </div>
-
-                            <div class="tab-pane fade show" id="completed" role="tabpanel" aria-labelledby="completed-tab">
-                              <div class="col-12 table-responsive">
-                                <table id="dt_complated_returnreport" class="table table-bordered table-striped" style="width: 100%;">
-                                  <thead>
-                                    <tr>
-                                      <th>Action</th>
-                                      <th>Mbr_Last_Name</th>
-                                      <th>Mbr_First_Name</th>
-                                      <th>BCBSRI_ID</th>
-                                      <th>Mbr_DOB</th>
-                                      <th>BCBSRI_Risk_Categorization</th>
-                                      <th>Perf_Guarantee_Mbr</th>
-                                      <th>Practice_Site</th>
-                                      <th>Practice_Identified_Indicator</th>
-                                      <th>Outreach_Attempted_Date</th>
-                                      <th>Enrolled_Status_Date</th>
-                                      <th>BH_Screening_PHQ-2_PHQ9_Completed_Date</th>
-                                      <th>Care_Plan_Established_Date</th>
-                                      <th>Discharged_from_CM_Date</th>
-                                     
-                                    </tr>
-                                  </thead>
-                                  <tbody>
-                                  
-                                  </tbody>
-                                </table>   
-                              </div>
-                            </div>
-                          </div>
-                        </div>
+                  <div class="card card-primary card-tabs" >
+                    <div class="card-header p-0 pt-1" style="background-color: #4d5355 !important;">
+                      <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
+                        <li class="nav-item">
+                          <a class="nav-link active" id="recent-tab" data-toggle="pill" href="#recent" role="tab" aria-controls="custom-tabs-one-home" aria-selected="true"><strong>Recent</strong></a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" id="inprocess-tab" data-toggle="pill" href="#inprocess" role="tab" aria-controls="custom-tabs-one-profile" aria-selected="false"><strong>In Process</strong></a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" id="completed-tab" data-toggle="pill" href="#completed" role="tab" aria-controls="custom-tabs-one-messages" aria-selected="false"><strong>Completed</strong></a>
+                        </li>
+                        
+                      </ul>
                     </div>
+                    <div class="card-body ">
+                       <div class="tab-content" id="custom-tabs-one-tabContent">
+                         <div class="tab-pane fade show active" id="recent" role="tabpanel" aria-labelledby="recent-tab">
+                          <div class="col-12 table-responsive">
+                            <table id="dt-recent" class="table table-bordered table-striped">
+                              <thead>
+                              <tr>
+                                <th>Action</th>
+                                <th>Mbr_Last_Name</th>
+                                <th>Mbr_First_Name</th>
+                                
+                                <th>BCBSRI_ID</th>
+                                <th>Mbr_DOB</th>
+                                <th>BCBSRI_Risk_Categorization</th>
+                                <th>Perf_Guarantee_Mbr</th>
+                                <th>Practice_Site</th>
+                                <th>Practice_Identified_Indicator</th>
+                                <th>Outreach_Attempted_Date</th>
+                                <th>Enrolled_Status_Date</th>
+                                <th>BH_Screening_PHQ-2_PHQ9_Completed_Date</th>
+                                <th>Care_Plan_Established_Date</th>
+                                <th>Discharged_from_CM_Date</th>
+                                <th>Year</th>
+                                <th>Month</th>
+                               
+                              </tr>
+                              </thead>
+                              
+                            </table>
+                          </div>
+
+                          
+                        </div>
+
+                        <div class="tab-pane fade show" id="inprocess" role="tabpanel" aria-labelledby="inprocess-tab">
+                          <div class="col-12 table-responsive">
+                            <table id="dt-inprocess" class="table table-bordered table-striped">
+                              <thead>
+                              <tr>
+                                <th>Action</th>
+                                <th>Mbr_Last_Name</th>
+                                <th>Mbr_First_Name</th>
+                               <th>BCBSRI_ID</th>
+                                <th>Mbr_DOB</th>
+                                <th>BCBSRI_Risk_Categorization</th>
+                                <th>Perf_Guarantee_Mbr</th>
+                                <th>Practice_Site</th>
+                                <th>Practice_Identified_Indicator</th>
+                                <th>Outreach_Attempted_Date</th>
+                                <th>Enrolled_Status_Date</th>
+                                <th>BH_Screening_PHQ-2_PHQ9_Completed_Date</th>
+                                <th>Care_Plan_Established_Date</th>
+                                <th>Discharged_from_CM_Date</th>
+                                <th>Year</th>
+                                <th>Month</th>
+                               
+                              </tr>
+                              </thead>
+                              
+                            </table>
+                          </div>
+
+                          
+                        </div>
+
+                        <div class="tab-pane fade show" id="completed" role="tabpanel" aria-labelledby="completed-tab">
+                          <div class="col-12 table-responsive">
+                            <table id="dt-complated" class="table table-bordered table-striped">
+                              <thead>
+                              <tr>
+                                <th>Action</th>
+                                <th>Mbr_Last_Name</th>
+                                <th>Mbr_First_Name</th>
+                                <th>BCBSRI_ID</th>
+                                <th>Mbr_DOB</th>
+                                <th>BCBSRI_Risk_Categorization</th>
+                                <th>Perf_Guarantee_Mbr</th>
+                                <th>Practice_Site</th>
+                                <th>Practice_Identified_Indicator</th>
+                                <th>Outreach_Attempted_Date</th>
+                                <th>Enrolled_Status_Date</th>
+                                <th>BH_Screening_PHQ-2_PHQ9_Completed_Date</th>
+                                <th>Care_Plan_Established_Date</th>
+                                <th>Discharged_from_CM_Date</th>
+                                <th>Year</th>
+                                <th>Month</th>
+                               
+                              </tr>
+                              </thead>
+                              
+                            </table>
+                          </div>
+
+                          
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
                   
                 </div>
 
@@ -398,374 +463,391 @@
 <!-- AdminLTE App -->
 <script src="../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
+
 <script src="../dist/js/aes.js"></script>
-<script src="../dist/js/demo.js"></script>
 <script type="text/javascript">
 $(document).ready(function () {
   bsCustomFileInput.init();
   
-  //Start : Load json Data into the datatable 
-
-  var recent_returnreport_data = [{
-   "slno": "1",
-   "Mbr_Last_Name": "Roy",
-   "Mbr_First_Name":"Bob",
-   "view": "1",
-   "BCBSRI_ID": "646464564564",
-   "Mbr_DOB":"15-08-1990",
-   "BCBSRI_Risk_Categorization":"High",
-   "Perf_Guarantee_Mbr":"",
-   "Practice_Site":"Brown Medicine-WARWICK",
-   "Practice_Identified_Indicator":"",
-   "Outreach_Attempted_Date":"10-09-2020",
-   "Enrolled_Status_Date":"10-09-2020",
-   "BH_Screening_PHQ-2_PHQ9_Completed_Date":"12-09-2020",
-   "Care_Plan_Established_Date":"13-09-2020",
-   "Discharged_from_CM_Date":"14-09-2020",
-   "Status":"In Process"
-
-  }, {
-   "slno": "2",
-   "Mbr_Last_Name": "Ross",
-   "Mbr_First_Name":"Roman",
-   "view": "2",
-   "BCBSRI_ID": "674587564564",
-   "Mbr_DOB":"15-08-1990",
-   "BCBSRI_Risk_Categorization":"High",
-   "Perf_Guarantee_Mbr":"",
-   "Practice_Site":"Brown Medicine-WARWICK",
-   "Practice_Identified_Indicator":"",
-   "Outreach_Attempted_Date":"10-09-2020",
-   "Enrolled_Status_Date":"10-09-2020",
-   "BH_Screening_PHQ-2_PHQ9_Completed_Date":"12-09-2020",
-   "Care_Plan_Established_Date":"13-09-2020",
-   "Discharged_from_CM_Date":"14-09-2020",
-   "Status":"In Process"
-  }, {
-   "slno": "3",
-   "Mbr_Last_Name": "Rhodes",
-   "Mbr_First_Name":"Jonny",
-   "view": "3",
-   "BCBSRI_ID": "98754564564",
-   "Mbr_DOB":"15-08-1990",
-   "BCBSRI_Risk_Categorization":"Medium",
-   "Perf_Guarantee_Mbr":"",
-   "Practice_Site":"Brown Medicine-WARWICK",
-   "Practice_Identified_Indicator":"",
-   "Outreach_Attempted_Date":"10-09-2020",
-   "Enrolled_Status_Date":"10-09-2020",
-   "BH_Screening_PHQ-2_PHQ9_Completed_Date":"12-09-2020",
-   "Care_Plan_Established_Date":"13-09-2020",
-   "Discharged_from_CM_Date":"14-09-2020",
-   "Status":"Complated"
-  }];
-
-  var recent_returnreportTable= $('#dt_recent_returnreport').DataTable( {
-      "aaData": recent_returnreport_data,
-  
-      "aoColumnDefs": [ {
-      "aTargets": 5,
-      "adata": "url",
-      "mRender": function(adata){
-        if(adata=='High')
-        {
-        return '<button type="button" class="btn bg-gradient-danger btn-xs">'+adata+'</button> ';
-        }
-        else  if(adata=='Medium')
-        {
-        return '<button type="button" class="btn bg-gradient-warning btn-xs">'+adata+'</button> ';
-        }
-        else
-        {
-        return '<button type="button" class="btn bg-gradient-success btn-xs">'+adata+'</button> ';
-        }
+  //Start : Load json Data into the datatable (recent)
+  document.getElementById("loader").style.display = "block";
+  //Start : Get uploaded file ID from URL
+    const queryString = window.location.search;
+      const urlParams = new URLSearchParams(queryString);
+      if(urlParams!="")
+      {
+        const uploaded_fileid = urlParams.get('uploadedfileid')
+        var decrypted = CryptoJS.AES.decrypt(uploaded_fileid, "retrun_report");
+        var uploadedfileid = decrypted.toString(CryptoJS.enc.Utf8);
       }
-      },{
-      "aTargets": 0,
-      "adata": "url",
-      "mRender": function(adata){
-        return '<a href="view_details.html?bcbsriid='+CryptoJS.AES.encrypt(""+adata+"", "getreturnreport")+'"><button type="button" class="btn bg-gradient-primary btn-xs">View</button></a>';
+      else
+      {
+        var uploadedfileid = "";
       }
-      }],
-      
-            "aoColumns": [
-            { "data": "view" },
-            { "data": "Mbr_Last_Name" },
-            { "data": "Mbr_First_Name" },
-            
-            { "data": "BCBSRI_ID" },
 
-            { "data": "Mbr_DOB" },
-            { "data": "BCBSRI_Risk_Categorization" },
-            { "data": "Perf_Guarantee_Mbr" },
-            { "data": "Practice_Site" },
-            { "data": "Practice_Identified_Indicator" },
-            { "data": "Outreach_Attempted_Date" },
-            { "data": "Enrolled_Status_Date" },
-            { "data": "BH_Screening_PHQ-2_PHQ9_Completed_Date" },
-            { "data": "Care_Plan_Established_Date" },
-            { "data": "Discharged_from_CM_Date" }
-            ]
-        } );
-      //End : Load json Data into the datatable 
+  //End : Get uploaded file ID from URL
 
-      //Start : Search Button Result
-      
-      $('#btn_search').click(function(){
- 
-      var month = $('#month').val();
-      var year = $('#year').val();
-      var searchresult = month+' '+year;
-      recent_returnreportTable.search(searchresult).draw();
-
-      })
-      //End : Search Button Result
-
-  
-
-
-      var inprocess_returnreport_data = [{
-        "slno": "1",
-        "Mbr_Last_Name": "Roy",
-        "Mbr_First_Name":"Bob",
-        "view": "view",
-        "BCBSRI_ID": "646464564564",
-        "Mbr_DOB":"15-08-1990",
-        "BCBSRI_Risk_Categorization":"High",
-        "Perf_Guarantee_Mbr":"",
-        "Practice_Site":"Brown Medicine-WARWICK",
-        "Practice_Identified_Indicator":"",
-        "Outreach_Attempted_Date":"10-09-2020",
-        "Enrolled_Status_Date":"10-09-2020",
-        "BH_Screening_PHQ-2_PHQ9_Completed_Date":"12-09-2020",
-        "Care_Plan_Established_Date":"13-09-2020",
-        "Discharged_from_CM_Date":"14-09-2020",
-        "Status":"In Process"
-
-        }, {
-        "slno": "2",
-        "Mbr_Last_Name": "Ross",
-        "Mbr_First_Name":"Roman",
-        "view": "view",
-        "BCBSRI_ID": "674587564564",
-        "Mbr_DOB":"15-08-1990",
-        "BCBSRI_Risk_Categorization":"High",
-        "Perf_Guarantee_Mbr":"",
-        "Practice_Site":"Brown Medicine-WARWICK",
-        "Practice_Identified_Indicator":"",
-        "Outreach_Attempted_Date":"10-09-2020",
-        "Enrolled_Status_Date":"10-09-2020",
-        "BH_Screening_PHQ-2_PHQ9_Completed_Date":"12-09-2020",
-        "Care_Plan_Established_Date":"13-09-2020",
-        "Discharged_from_CM_Date":"14-09-2020",
-        "Status":"In Process"
-        }, {
-        "slno": "3",
-        "Mbr_Last_Name": "Rhodes",
-        "Mbr_First_Name":"Jonny",
-        "view": "view",
-        "BCBSRI_ID": "98754564564",
-        "Mbr_DOB":"15-08-1990",
-        "BCBSRI_Risk_Categorization":"Medium",
-        "Perf_Guarantee_Mbr":"",
-        "Practice_Site":"Brown Medicine-WARWICK",
-        "Practice_Identified_Indicator":"",
-        "Outreach_Attempted_Date":"10-09-2020",
-        "Enrolled_Status_Date":"10-09-2020",
-        "BH_Screening_PHQ-2_PHQ9_Completed_Date":"12-09-2020",
-        "Care_Plan_Established_Date":"13-09-2020",
-        "Discharged_from_CM_Date":"14-09-2020",
-        "Status":"Complated"
-        }];
-
-
-      var inprocess_returnreportTable= $('#dt_inprocess_returnreport').DataTable( {
-      "aaData": inprocess_returnreport_data,
-  
-      "aoColumnDefs": [ {
-      "aTargets": 5,
-      "adata": "url",
-      "mRender": function(adata){
-        if(adata=='High')
-        {
-        return '<button type="button" class="btn bg-gradient-danger btn-xs">'+adata+'</button> ';
-        }
-        else  if(adata=='Medium')
-        {
-        return '<button type="button" class="btn bg-gradient-warning btn-xs">'+adata+'</button> ';
-        }
-        else
-        {
-        return '<button type="button" class="btn bg-gradient-success btn-xs">'+adata+'</button> ';
-        }
-      }
-      },{
-      "aTargets": 0,
-      "adata": "url",
-      "mRender": function(adata){
-       // return '<a href="view_details.html">'+adata+'</a>';
-        return '<a href="view_details.html?bcbsriid='+CryptoJS.AES.encrypt(""+adata+"", "getreturnreport")+'"><button type="button" class="btn bg-gradient-primary btn-xs">View</button></a>';
-      }
-      }],
-      
-            "aoColumns": [
-            { "data": "view" },
-            { "data": "Mbr_Last_Name" },
-            { "data": "Mbr_First_Name" },
-            
-            { "data": "BCBSRI_ID" },
-            { "data": "Mbr_DOB" },
-            { "data": "BCBSRI_Risk_Categorization" },
-            { "data": "Perf_Guarantee_Mbr" },
-            { "data": "Practice_Site" },
-            { "data": "Practice_Identified_Indicator" },
-            { "data": "Outreach_Attempted_Date" },
-            { "data": "Enrolled_Status_Date" },
-            { "data": "BH_Screening_PHQ-2_PHQ9_Completed_Date" },
-            { "data": "Care_Plan_Established_Date" },
-            { "data": "Discharged_from_CM_Date" }
-            ]
-        } );
-      //End : Load json Data into the datatable 
-
-      //Start : Search Button Result
-      
-      $('#btn_search').click(function(){
- 
-      var month = $('#month').val();
-      var year = $('#year').val();
-      var searchresult = month+' '+year;
-      inprocess_returnreportTable.search(searchresult).draw();
-
-      })
-      //End : Search Button Result
-
-
-
-      var complated_returnreport_data = [{
-        "slno": "1",
-        "Mbr_Last_Name": "Roy",
-        "Mbr_First_Name":"Bob",
-        "view": "view",
-        "BCBSRI_ID": "646464564564",
-        "Mbr_DOB":"15-08-1990",
-        "BCBSRI_Risk_Categorization":"High",
-        "Perf_Guarantee_Mbr":"",
-        "Practice_Site":"Brown Medicine-WARWICK",
-        "Practice_Identified_Indicator":"",
-        "Outreach_Attempted_Date":"10-09-2020",
-        "Enrolled_Status_Date":"10-09-2020",
-        "BH_Screening_PHQ-2_PHQ9_Completed_Date":"12-09-2020",
-        "Care_Plan_Established_Date":"13-09-2020",
-        "Discharged_from_CM_Date":"14-09-2020",
-        "Status":"In Process"
-
-        }, {
-        "slno": "2",
-        "Mbr_Last_Name": "Ross",
-        "Mbr_First_Name":"Roman",
-        "view": "view",
-        "BCBSRI_ID": "674587564564",
-        "Mbr_DOB":"15-08-1990",
-        "BCBSRI_Risk_Categorization":"High",
-        "Perf_Guarantee_Mbr":"",
-        "Practice_Site":"Brown Medicine-WARWICK",
-        "Practice_Identified_Indicator":"",
-        "Outreach_Attempted_Date":"10-09-2020",
-        "Enrolled_Status_Date":"10-09-2020",
-        "BH_Screening_PHQ-2_PHQ9_Completed_Date":"12-09-2020",
-        "Care_Plan_Established_Date":"13-09-2020",
-        "Discharged_from_CM_Date":"14-09-2020",
-        "Status":"In Process"
-        }, {
-        "slno": "3",
-        "Mbr_Last_Name": "Rhodes",
-        "Mbr_First_Name":"Jonny",
-        "view": "view",
-        "BCBSRI_ID": "98754564564",
-        "Mbr_DOB":"15-08-1990",
-        "BCBSRI_Risk_Categorization":"Medium",
-        "Perf_Guarantee_Mbr":"",
-        "Practice_Site":"Brown Medicine-WARWICK",
-        "Practice_Identified_Indicator":"",
-        "Outreach_Attempted_Date":"10-09-2020",
-        "Enrolled_Status_Date":"10-09-2020",
-        "BH_Screening_PHQ-2_PHQ9_Completed_Date":"12-09-2020",
-        "Care_Plan_Established_Date":"13-09-2020",
-        "Discharged_from_CM_Date":"14-09-2020",
-        "Status":"Complated"
-        }];
-
-      var complated_returnreportTable= $('#dt_complated_returnreport').DataTable( {
-      "aaData": complated_returnreport_data,
-  
-      "aoColumnDefs": [ {
-      "aTargets": 5,
-      "adata": "url",
-      "mRender": function(adata){
-        if(adata=='High')
-        {
-        return '<button type="button" class="btn bg-gradient-danger btn-xs">'+adata+'</button> ';
-        }
-        else  if(adata=='Medium')
-        {
-        return '<button type="button" class="btn bg-gradient-warning btn-xs">'+adata+'</button> ';
-        }
-        else
-        {
-        return '<button type="button" class="btn bg-gradient-success btn-xs">'+adata+'</button> ';
-        }
-      }
-      },{
-      "aTargets": 0,
-      "adata": "url",
-      "mRender": function(adata){
-        //return '<a href="view_details.html">'+adata+'</a>';
-        return '<a href="view_details.html?bcbsriid='+CryptoJS.AES.encrypt(""+adata+"", "getreturnreport")+'"><button type="button" class="btn bg-gradient-primary btn-xs">View</button></a>';
-     
-      }
-      }],
-      
-            "aoColumns": [
-            { "data": "view" },
-            { "data": "Mbr_Last_Name" },
-            { "data": "Mbr_First_Name" },
-            
-            { "data": "BCBSRI_ID" },
-            { "data": "Mbr_DOB" },
-            { "data": "BCBSRI_Risk_Categorization" },
-            { "data": "Perf_Guarantee_Mbr" },
-            { "data": "Practice_Site" },
-            { "data": "Practice_Identified_Indicator" },
-            { "data": "Outreach_Attempted_Date" },
-            { "data": "Enrolled_Status_Date" },
-            { "data": "BH_Screening_PHQ-2_PHQ9_Completed_Date" },
-            { "data": "Care_Plan_Established_Date" },
-            { "data": "Discharged_from_CM_Date" }
-            ]
-        } );
-      //End : Load json Data into the datatable 
-
-      //Start : Search Button Result
-      
-      $('#btn_search').click(function(){
- 
-      var month = $('#month').val();
-      var year = $('#year').val();
-      var searchresult = month+' '+year;
-      complated_returnreportTable.search(searchresult).draw();
-
-      })
-      //End : Search Button Result
-
-
+  //review_return_report_details(uploadedfileid);
+  recent_review_return_report_individual_view(uploadedfileid);
+  inprocess_review_return_report_individual_view(uploadedfileid);
+  complated_review_return_report_individual_view(uploadedfileid);
 
 
     });
 
-    
+    //Start : Load json Data into the datatable (Recent)
+    function recent_review_return_report_individual_view(uploadedfileid)
+    {
+      var recentdata ='{"uploadedfileid":"'+uploadedfileid+'","user_role_id":"2","currentstatus":"0"}';
+      fetch("https://apimsdcm.azure-api.net/dcmAPIM/review_return_report_individual_view", {
+        method: 'post',
+       // mode: 'no-cors', // no-cors, *cors, same-origin
 
-  //End : Load json Data into the datatable 
+       headers: { 'Content-Type': 'application/json',
+            "x-functions-key": "Y75v69weCc0+ZanTjf0jSihLRlZAOUJGRM8xTAbdDLMZdQiXYNiJfg==",
+            "Ocp-Apim-Subscription-Key": "2584a9c08dd04aa49db05cbb265c9b91",
+            // "subscription-key":"da91fd77-c908-4f23-9469-52acf3239a11"
+            },
+        body: recentdata
+    }).then((response) => {
+
+                     if (response.ok) {
+                    return response
+                } else {
+                    throw `update Looks like something went wrong. Status: ${response}`;
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log("data: [" + JSON.stringify(data)+"]")
+                review_return_recentdata = JSON.stringify(data);
+                
+              setTimeout(function() {
+                var dt_recent_table= $('#dt-recent').DataTable( {
+                "aaData": JSON.parse(review_return_recentdata),
+
+                "aoColumnDefs": [ {
+                "aTargets": 5,
+                "adata": "BCBSRI_Risk_Categorization",
+                "mRender": function(adata){
+                  if(adata=='High')
+                  {
+                  return '<button type="button" class="btn bg-gradient-danger btn-xs">'+adata+'</button> ';
+                  }
+                  else  if(adata=='Medium')
+                  {
+                  return '<button type="button" class="btn bg-gradient-warning btn-xs">'+adata+'</button> ';
+                  }
+                  else
+                  {
+                  return '<button type="button" class="btn bg-gradient-success btn-xs">'+adata+'</button> ';
+                  }
+                }
+                
+                },{
+                "aTargets": 0,
+                "adata": "url",
+                "mRender": function(adata){
+                  return '<a href="view_details.html?bcbsriid='+CryptoJS.AES.encrypt(""+adata+"", "getreturnreport")+'"><button type="button" class="btn bg-gradient-primary btn-xs">View</button></a>';
+                }
+                }],
+                
+                "aoColumns": [
+                    { "data": "returnreport_data_id" },
+                    { "data": "Mbr_Last_Name" },
+                    { "data": "Mbr_First_Name" },
+                    { "data": "BCBSRI_ID" },
+                    { "data": "Mbr_DOB" },
+                    { "data": "BCBSRI_Risk_Categorization" },
+                    { "data": "Perf_Guarantee_Mbr" },
+                    { "data": "Practice_Site" },
+                    { "data": "Practice_Identified_Indicator" },
+                    { "data": "Outreach_Attempted_Date" },
+                    { "data": "Enrolled_Status_Date" },
+                    { "data": "BH_Screening_PHQ2_PHQ9_Completed_Date" },
+                    { "data": "Care_Plan_Established_Date" },
+                    { "data": "Discharged_from_CM_Date" },
+                    { "data": "for_year" },
+                    { "data": "month_name" },
+                   
+                   
+                      ]
+                  } );
+
+                //Start : Search Button Result
+      
+              $('#btn_search').click(function(){
+              
+              var month = $('#month').val();
+              var year = $('#year').val();
+              var searchresult = month+' '+year;
+              dt_recent_table.search(searchresult).draw();
+
+              })
+              //End : Search Button Result
+              },2000);     
+              
+             
+               
+            })
+            .catch(error => {
+                console.log(error)
+            })  
+    }
+  //End : Load json Data into the datatable (Recent)
+
+
+  //Start : Load json Data into the datatable (inprocess)
+    function inprocess_review_return_report_individual_view(uploadedfileid)
+    {
+      var inprocessdata ='{"uploadedfileid":"'+uploadedfileid+'","currentstatus":"1","user_role_id":"2"}';
+      fetch("https://apimsdcm.azure-api.net/dcmAPIM/review_return_report_individual_view", {
+        method: 'post',
+       // mode: 'no-cors', // no-cors, *cors, same-origin
+
+       headers: { 'Content-Type': 'application/json',
+            "x-functions-key": "Y75v69weCc0+ZanTjf0jSihLRlZAOUJGRM8xTAbdDLMZdQiXYNiJfg==",
+            "Ocp-Apim-Subscription-Key": "2584a9c08dd04aa49db05cbb265c9b91",
+            // "subscription-key":"da91fd77-c908-4f23-9469-52acf3239a11"
+            },
+        body: inprocessdata
+      }).then((response) => {
+
+                     if (response.ok) {
+                    return response
+                } else {
+                    throw `update Looks like something went wrong. Status: ${response}`;
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log("data: [" + JSON.stringify(data)+"]")
+                review_return_inprocessdata = JSON.stringify(data);
+                
+              setTimeout(function() {
+                var dt_inprocess_table= $('#dt-inprocess').DataTable( {
+                "aaData": JSON.parse(review_return_inprocessdata),
+
+                "aoColumnDefs": [ {
+                "aTargets": 5,
+                "adata": "BCBSRI_Risk_Categorization",
+                "mRender": function(adata){
+                  if(adata=='High')
+                  {
+                  return '<button type="button" class="btn bg-gradient-danger btn-xs">'+adata+'</button> ';
+                  }
+                  else  if(adata=='Medium')
+                  {
+                  return '<button type="button" class="btn bg-gradient-warning btn-xs">'+adata+'</button> ';
+                  }
+                  else
+                  {
+                  return '<button type="button" class="btn bg-gradient-success btn-xs">'+adata+'</button> ';
+                  }
+                }
+                },{
+                "aTargets": 0,
+                "adata": "url",
+                "mRender": function(adata){
+                // return '<a href="view_details.html">'+adata+'</a>';
+                  return '<a href="view_details.html?bcbsriid='+CryptoJS.AES.encrypt(""+adata+"", "getreturnreport")+'"><button type="button" class="btn bg-gradient-primary btn-xs">View</button></a>';
+                }
+                }],
+                
+                "aoColumns": [
+                    { "data": "returnreport_data_id" },
+                    { "data": "Mbr_Last_Name" },
+                    { "data": "Mbr_First_Name" },
+                    { "data": "BCBSRI_ID" },
+                    { "data": "Mbr_DOB" },
+                    { "data": "BCBSRI_Risk_Categorization" },
+                    { "data": "Perf_Guarantee_Mbr" },
+                    { "data": "Practice_Site" },
+                    { "data": "Practice_Identified_Indicator" },
+                    { "data": "Outreach_Attempted_Date" },
+                    { "data": "Enrolled_Status_Date" },
+                    { "data": "BH_Screening_PHQ2_PHQ9_Completed_Date" },
+                    { "data": "Care_Plan_Established_Date" },
+                    { "data": "Discharged_from_CM_Date" },
+                    { "data": "for_year" },
+                    { "data": "month_name" },
+                   
+                    
+                      ]
+                  } );
+                  //Start : Search Button Result
+      
+                  $('#btn_search').click(function(){
+                  
+                  var month = $('#month').val();
+                  var year = $('#year').val();
+                  var searchresult = month+' '+year;
+                  dt_inprocess_table.search(searchresult).draw();
+
+                  })
+                  //End : Search Button Result
+               
+              },2000);     
+     
+               
+            })
+            .catch(error => {
+                console.log(error)
+            })  
+     }
+  //End : Load json Data into the datatable (inprocess)
+
+  //Start : Load json Data into the datatable (complated)
+  function complated_review_return_report_individual_view(uploadedfileid)
+    {
+      
+      var complateddata ='{"uploadedfileid":"'+uploadedfileid+'","currentstatus":"2","user_role_id":"2"}';
+      fetch("https://apimsdcm.azure-api.net/dcmAPIM/review_return_report_individual_view", {
+        method: 'post',
+       // mode: 'no-cors', // no-cors, *cors, same-origin
+
+       headers: { 'Content-Type': 'application/json',
+            "x-functions-key": "Y75v69weCc0+ZanTjf0jSihLRlZAOUJGRM8xTAbdDLMZdQiXYNiJfg==",
+            "Ocp-Apim-Subscription-Key": "2584a9c08dd04aa49db05cbb265c9b91",
+            // "subscription-key":"da91fd77-c908-4f23-9469-52acf3239a11"
+            },
+        body: complateddata
+      }).then((response) => {
+
+                     if (response.ok) {
+                    return response
+                } else {
+                  document.getElementById("loader").style.display = "none";
+                    throw `update Looks like something went wrong. Status: ${response}`;
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log("data: [" + JSON.stringify(data)+"]")
+                review_return_complated = JSON.stringify(data);
+                
+              setTimeout(function() {
+                var dt_complated_table= $('#dt-complated').DataTable( {
+                "aaData": JSON.parse(review_return_complated),
+
+                "aoColumnDefs": [ {
+                "aTargets": 5,
+                "adata": "BCBSRI_Risk_Categorization",
+                "mRender": function(adata){
+                  if(adata=='High')
+                  {
+                  return '<button type="button" class="btn bg-gradient-danger btn-xs">'+adata+'</button> ';
+                  }
+                  else  if(adata=='Medium')
+                  {
+                  return '<button type="button" class="btn bg-gradient-warning btn-xs">'+adata+'</button> ';
+                  }
+                  else
+                  {
+                  return '<button type="button" class="btn bg-gradient-success btn-xs">'+adata+'</button> ';
+                  }
+                }
+                },{
+                  "aTargets": 0,
+                  "adata": "url",
+                  "mRender": function(adata){
+                    //return '<a href="view_details.html">'+adata+'</a>';
+                    return '<a href="view_details.html?bcbsriid='+CryptoJS.AES.encrypt(""+adata+"", "getreturnreport")+'"><button type="button" class="btn bg-gradient-primary btn-xs">View</button></a>';
+                
+                  }
+                  }],
+                
+                "aoColumns": [
+                   { "data": "returnreport_data_id" },
+                    { "data": "Mbr_Last_Name" },
+                    { "data": "Mbr_First_Name" },
+                    { "data": "BCBSRI_ID" },
+                    { "data": "Mbr_DOB" },
+                    { "data": "BCBSRI_Risk_Categorization" },
+                    { "data": "Perf_Guarantee_Mbr" },
+                    { "data": "Practice_Site" },
+                    { "data": "Practice_Identified_Indicator" },
+                    { "data": "Outreach_Attempted_Date" },
+                    { "data": "Enrolled_Status_Date" },
+                    { "data": "BH_Screening_PHQ2_PHQ9_Completed_Date" },
+                    { "data": "Care_Plan_Established_Date" },
+                    { "data": "Discharged_from_CM_Date" },
+                    { "data": "for_year" },
+                    { "data": "month_name" },
+                   
+                    
+                      ]
+                  } );
+
+                  //Start : Search Button Result
+      
+                    $('#btn_search').click(function(){
+                    
+                    var month = $('#month').val();
+                    var year = $('#year').val();
+                    var searchresult = month+' '+year;
+                    dt_complated_table.search(searchresult).draw();
+
+                    })
+                    //End : Search Button Result
+                    document.getElementById("loader").style.display = "none";
+                    
+              },2000);     
+     
+               
+            })
+            .catch(error => {
+                console.log(error)
+            })  
+     }
+  //End : Load json Data into the datatable (complated)
+
+  
+
+  function review_return_report_details(uploadedfileid)
+    {
+      var review_return_report_details ='{"uploadedfileid":"'+uploadedfileid+'","currentstatus":"-1","user_role_id":"1"}';
+      fetch("https://apimsdcm.azure-api.net/dcmAPIM/review_return_report_individual_view", {
+        method: 'post',
+       // mode: 'no-cors', // no-cors, *cors, same-origin
+
+       headers: { 'Content-Type': 'application/json',
+            "x-functions-key": "Y75v69weCc0+ZanTjf0jSihLRlZAOUJGRM8xTAbdDLMZdQiXYNiJfg==",
+            "Ocp-Apim-Subscription-Key": "2584a9c08dd04aa49db05cbb265c9b91",
+            // "subscription-key":"da91fd77-c908-4f23-9469-52acf3239a11"
+            },
+        body: review_return_report_details
+      }).then((response) => {
+
+                     if (response.ok) {
+                    return response
+                } else {
+                    throw `update Looks like something went wrong. Status: ${response}`;
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+             
+             console.log("datasdfsfs: [" + JSON.stringify(data)+"]")
+                review_return_data = JSON.stringify(data);
+                
+              setTimeout(function() {
+                var obj = JSON.parse(JSON.stringify(data))
+                //document.getElementById("added_byname").appendChild("ddd");
+                document.getElementById("month_name").textContent += obj.month_name;
+                document.getElementById("for_year").textContent += obj.for_year;
+                document.getElementById("file_name").textContent += obj.filename;
+                document.getElementById("added_byname").textContent += obj.username;
+               
+              },2000);     
+     
+               
+            })
+            .catch(error => {
+                console.log(error)
+            })  
+     }
+
 </script>
 </body>
 </html>
