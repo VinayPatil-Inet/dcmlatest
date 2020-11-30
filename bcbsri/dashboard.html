@@ -23,11 +23,7 @@
     }
     
     
-    
   </style>
-
-
-
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -180,7 +176,7 @@
                     <div class="col-md-3">
                       <div class="form-group">
                          <label>Select Month</label>
-                         <select name="month" id="month" class="form-control">
+                         <select name="date" id="date" class="form-control">
                            <option value="">--Select Month--</option>
                            <option value="January">January</option>
                            <option value="February">February</option>
@@ -191,7 +187,7 @@
                            <option value="July">July</option>
                            <option value="August">August</option>
                            <option value="September">September</option>
-                           <option value="October">October</option>
+                           <option value="October" selected="selected">October</option>
                            <option value="November">November</option>
                            <option value="December">December</option>
                           
@@ -203,7 +199,7 @@
                          <label>Select Year</label>
                          <select name="year" id="year" class="form-control">
                            <option value="">--Select Year--</option>
-                           <option value="2020">2020</option>
+                           <option value="2020" selected="selected">2020</option>
                            <option value="2019">2019</option>
                            <option value="2018">2018</option>
                           
@@ -225,7 +221,6 @@
                     <div class="col-md-3">
                       <div class="form-group">
                         <label>&nbsp;</label><br>
-                        <div id="loader" style="display: none;"></div>
                         <button type="button"  id="btn_search" class="btn btn-success"><i class="fas fa-search"></i> Search</button>
                       </div>
                       </div>
@@ -245,8 +240,7 @@
         <div class="row">
           
           <div class="col-md-12">
-          
-               <!-- Start : Inner Tab For Recent -->
+            <!-- Start : Inner Tab For Recent -->
                     <div class="card card-primary card-tabs" >
                       <div class="card-header p-0 pt-1" style="background-color: #4d5355 !important;">
                         <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
@@ -266,61 +260,59 @@
                             <a class="nav-link" id="patientpanelalldata_tab" data-toggle="pill" href="#patientpanelalldata" role="tab" aria-controls="custom-tabs-one-messages" aria-selected="false"><strong>Patient Panel All Data</strong></a>
                           </li>
                           <li class="nav-item">
-                            <a class="nav-link" id="reportingdata_tab" data-toggle="pill" href="#returnreportingdata" role="tab" aria-controls="custom-tabs-one-messages" aria-selected="false"><strong>Return Reporting</strong></a>
+                            <a class="nav-link" id="reportingdata_tab" data-toggle="pill" href="#reportingdata" role="tab" aria-controls="custom-tabs-one-messages" aria-selected="false"><strong>Return Reporting</strong></a>
                           </li>
                           
                         </ul>
                       </div>
                       <div class="card-body ">
                         <div class="tab-content" id="custom-tabs-one-tabContent">
-                          
-                           <!--Start : Demographics-->
-                          <div class="tab-pane fade show active" id="demographics" role="tabpanel" aria-labelledby="demographics_tab">
-                            <div class="col-12 table-responsive">
-                              <table id="dt_recent_demographics" class="table table-bordered table-striped" >
-                                <thead>
-                                <tr>
-                                  <th>Mbr_Last_Name</th>
-                                  <th>Mbr_First_Name</th>
-                                  <th>CONSISTENT_MEMBER_ID</th>
-                                  <th>BCBSRI_ID</th>
-                                  <th>Mbr_DOB</th>
-                                  <th>Mbr_Age</th>
-                                  <th>Mbr_Gender</th>
-                                  <th>BCBSRI_Risk_Categorization</th>
-                                  <th>New_PCMH_HR_Flag</th>
-                                  <th>Perf_Guarantee_Mbr</th>
-                                  <th>contracted_group_name</th>
-                                  <th>Practice_Site</th>
-                                  <th>PCP_Last_Name</th>
-                                  <th>PCP_First_name</th>
-                                  <th>Last_PCP_Visit_dt</th>
-                                  <th>Product</th>
-                                  <th>Requires_PCP_Referral</th>
-                                  <th>Medicare_Dual_Coverage_Type</th>
-                                  <th>Mbr_Addr1</th>
-                                  <th>Mbr_Addr2</th>
-                                  <th>Mbr_City</th>
-                                  <th>Mbr_State</th>
-                                  <th>Mbr_Zip</th>
-                                  <th>Mbr_Phone_Nbr</th>
-                                  <th>Month</th>
-                                  <th>Year</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                
-                                </tbody>
-                              </table>    
-                            </div>
+                          <!-- Start : Demographics-->
+                          <div class="tab-pane fade show active" id="demographics" role="tabpanel" aria-labelledby="recent-demographics_tab">
                             
+                              <div class="col-12 table-responsive">
+                                <table id="dt_recent_demographics" class="table table-bordered table-striped" >
+                                  <thead>
+                                  <tr>
+                                    <th>Mbr_Last_Name</th>
+                                    <th>Mbr_First_Name</th>
+                                    <th>CONSISTENT_MEMBER_ID</th>
+                                    <th>BCBSRI_ID</th>
+                                    <th>Mbr_DOB</th>
+                                    <th>Mbr_Age</th>
+                                    <th>Mbr_Gender</th>
+                                    <th>BCBSRI_Risk_Categorization</th>
+                                    <th>New_PCMH_HR_Flag</th>
+                                    <th>Perf_Guarantee_Mbr</th>
+                                    <th>contracted_group_name</th>
+                                    <th>Practice_Site</th>
+                                    <th>PCP_Last_Name</th>
+                                    <th>PCP_First_name</th>
+                                    <th>Last_PCP_Visit_dt</th>
+                                    <th>Product</th>
+                                    <th>Requires_PCP_Referral</th>
+                                    <th>Medicare_Dual_Coverage_Type</th>
+                                    <th>Mbr_Addr1</th>
+                                    <th>Mbr_Addr2</th>
+                                    <th>Mbr_City</th>
+                                    <th>Mbr_State</th>
+                                    <th>Mbr_Zip</th>
+                                    <th>Mbr_Phone_Nbr</th>
+                                  </tr>
+                                  </thead>
+                                  <tbody>
+                                  
+                                  </tbody>
+                                </table>    
+                              </div>
+                              
+                              
                             
-                            
-                          
                           </div>
-                        <!--End : Demographics-->
+                          <!-- End : Demographics-->
 
-                        <!--Start : Conditions & Risk-->
+
+                          <!-- Start : Conditions & Risk-->
                           <div class="tab-pane fade" id="conditionsandrisk" role="tabpanel" aria-labelledby="conditionsandrisk_tab">
                             <div class="col-12 table-responsive">
                               <table id="dt_recent_conditionsandrisk" class="table table-bordered table-striped" style="width: 100%;">
@@ -350,8 +342,6 @@
                                   <th>Hospice_Flag</th>
                                   <th>BH_Risk_Category</th>
                                   <th>Adv_Dir_S0257</th>
-                                  <th>Month</th>
-                                  <th>Year</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -359,15 +349,17 @@
                                 </tbody>
                               </table>    
                             </div>
-
+                            
                             
                             
                           </div>
 
-                          <!--End : Conditions & Risk-->
+                          <!-- End : Conditions & Risk-->
 
-                          <!--Start : Costand Utilization-->
+                          <!-- Start : Cost & tilization-->
+
                           <div class="tab-pane fade" id="costandutilization" role="tabpanel" aria-labelledby="costandutilization_tab">
+                            
                             <div class="col-12 table-responsive">
                               <table id="dt_recent_costandutilization" class="table table-bordered table-striped" style="width: 100%;">
                                 <thead>
@@ -388,8 +380,6 @@
                                   <th>High_Cost_Driver</th>
                                   <th>RxSpecialty_Drug</th>
                                   <th>RxSpecialty_Disease_Desc</th>
-                                  <th>Month</th>
-                                  <th>Year</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -397,13 +387,13 @@
                                 </tbody>
                               </table>    
                             </div>
-                            
-                            
+  
                           </div>
 
-                          <!--End : Costand Utilization-->
+                          <!-- End : Cost & tilization-->
 
-                           <!--Start : BCBSRI Program-->
+                          <!-- Start : BCBSRI Program-->
+
                           <div class="tab-pane fade" id="bcbsriprogram" role="tabpanel" aria-labelledby="bcbsriprogram_tab">
                             <div class="col-12 table-responsive">
                              
@@ -423,8 +413,6 @@
                                   <th>BH_CM_Discharge_Reason</th>
                                   <th>HCBB_Eligible</th>
                                   <th>HCBB_Engaged</th>
-                                  <th>Month</th>
-                                  <th>Year</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -432,11 +420,14 @@
                                 </tbody>
                               </table>    
                             </div>
+
+                            
+                            
                             
                           </div>
 
-                           <!--End : BCBSRI Program-->
-                          
+                           <!-- End : BCBSRI Program-->
+
                           <!-- Start : Patient Panel All Data -->
                           <div class="tab-pane fade" id="patientpanelalldata" role="tabpanel" aria-labelledby="patientpanelalldata_tab">
                             <div class="col-12 table-responsive">
@@ -457,7 +448,7 @@
                                   <th>Practice_Site</th>
                                   <th>PCP_Last_Name</th>
                                   <th>PCP_First_name</th>
-                                 <!-- <th>Last_PCP_Visit_dt</th>-->
+                                  <th>Last_PCP_Visit_dt</th>
                                   <th>Product</th>
                                   <th>Requires_PCP_Referral</th>
                                   <th>Medicare_Dual_Coverage_Type</th>
@@ -489,75 +480,71 @@
                                   <th>OP_ER_Cnt</th>
                                   <th>Total_Cost</th>
                                   <th>Medical_Cost</th>
-                                  <!--<th>Rx_Cost</th>
-                                  <th>High_Cost_50k</th>-->
+                                  <th>Rx_Cost</th>
+                                  <th>High_Cost_50k</th>
                                   <th>High_Cost_Driver</th>
                                   <th>RxSpecialty_Drug</th>
                                   <th>RxSpecialty_Disease_Desc</th>
                                   <th>In_Home_Assessment_Status</th>
-                                  <!--<th>In_Home_Assessment_Status_date</th>
+                                  <th>In_Home_Assessment_Status_date</th>
                                   <th>BH_CM_Flag</th>
-                                  <th>BH_CM_Discharge_Dt</th>-->
+                                  <th>BH_CM_Discharge_Dt</th>
                                   <th>BH_CM_Discharge_Reason</th>
                                   <th>HCBB_Eligible</th>
                                   <th>HCBB_Engaged</th>
-                                  <th>Month</th>
-                                  <th>Year</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 
                                 </tbody>
                               </table>    
-                            </div>  
-                            
-                          </div>
-
-                          <!-- End : Patient Panel All Data -->
-
-
-                          <!-- Start : Return Reporting Data -->
-                          <div class="tab-pane fade" id="returnreportingdata" role="tabpanel" aria-labelledby="reportingdata_tab">
-                            <div class="col-12 table-responsive">
-                              <table id="dt_recent_return_report" class="table table-bordered table-striped">
-                                <thead>
-                                <tr>
-                                  <th>Mbr_Last_Name</th>
-                                  <th>Mbr_First_Name</th>
-                                  <th>BCBSRI_ID</th>
-                                  <th>Mbr_DOB</th>
-                                  <th>BCBSRI_Risk_Categorization</th>
-                                  <th>Perf_Guarantee_Mbr</th>
-                                  <th>Practice_Site</th>
-                                  <th>Practice_Identified_Indicator</th>
-                                  <th>Outreach_Attempted_Date</th>
-                                  <th>Enrolled_Status_Date</th>
-                                  <th>BH_Screening_PHQ-2_PHQ9_Completed_Date</th>
-                                  <th>Care_Plan_Established_Date</th>
-                                  <th>Discharged_from_CM_Date</th>
-                                  <th>Status</th>
-                                  <th>Month</th>
-                                  <th>Year</th>
-                                </tr>
-                                </thead>
-                                
-                              </table>
-
-                                 
                             </div>
                             
                             
                           </div>
+                          <!-- End : Patient Panel All Data -->
 
-                          <!-- End : Return Reporting Data -->
-
+                          <!-- Start : Reporting Data -->
+                          <div class="tab-pane fade" id="reportingdata" role="tabpanel" aria-labelledby="reportingdata_tab">
+                            <div class="col-12 table-responsive">
+                              <table id="dt_recent_returnreport" class="table table-bordered table-striped" style="width: 100%;">
+                                <thead>
+                                  <tr>
+                                    <th>Mbr_Last_Name</th>
+                                    <th>Mbr_First_Name</th>
+                                    <th>BCBSRI_ID</th>
+                                    <th>Mbr_DOB</th>
+                                    <th>BCBSRI_Risk_Categorization</th>
+                                    <th>Perf_Guarantee_Mbr</th>
+                                    <th>Practice_Site</th>
+                                    <th>Practice_Identified_Indicator</th>
+                                    <th>Outreach_Attempted_Date</th>
+                                    <th>Enrolled_Status_Date</th>
+                                    <th>BH_Screening_PHQ-2_PHQ9_Completed_Date</th>
+                                    <th>Care_Plan_Established_Date</th>
+                                    <th>Discharged_from_CM_Date</th>
+                                    <th>Status</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                
+                                </tbody>
+                              </table>    
+                            </div>
+                          
+                            
+                          </div>
+                          <!-- End : Reporting Data -->
                         </div>
                       </div>
 
                     </div>
 
-                    <!-- End : Inner Tab For Recent -->
-                
+                   
+
+                 
+              <!-- /.card -->
+            </div>
           </div>
           <!-- left column -->
           
@@ -566,87 +553,9 @@
         
         <!-- /.row -->
       </div><!-- /.container-fluid -->
-
-     
-
-      <div class="modal fade" id="modal-default">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title">Upload Data</h4>
-             
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <div class="row">
-                <div class="col-md-12">
-                 <div class="form-group">
-                    <label>Select Month</label>
-                    <select name="month" id="month" class="form-control">
-                      <option value="">--Select Month--</option>
-                      <option value="January">January</option>
-                      <option value="February">February</option>
-                      <option value="March">March</option>
-                      <option value="April">April</option>
-                      <option value="May">May</option>
-                      <option value="June">June</option>
-                      <option value="July">July</option>
-                      <option value="August">August</option>
-                      <option value="September">September</option>
-                      <option value="October">October</option>
-                      <option value="November">November</option>
-                      <option value="December">December</option>
-                     
-                    </select>
-                    </div>
-                </div>
-                <div class="col-md-12">
-                  <div class="form-group">
-                    <label>Select Year</label>
-                    <select name="year" id="year" class="form-control">
-                      <option value="">--Select Year--</option>
-                      <option value="2020">2020</option>
-                      <option value="2019">2019</option>
-                      <option value="2018">2018</option>
-                     
-                    </select>
-                  </div>
-                </div>
-
-                <div class="col-md-12">
-                  <div class="form-group">
-                    <label for="exampleInputFile">Select File</label>
-                    <div class="input-group">
-                      <div class="custom-file">
-                        <input type="file" id="file" name="file" class="custom-file-input" >
-                        <label class="custom-file-label" for="exampleInputFile">Select File</label>
-                      </div>
-                      
-                    </div>
-                  </div>
-                </div>
-                
-              </div>
-            </div>
-            <div class="modal-footer justify-content-between">
-             
-              <button type="button" class="btn btn-primary">Upload</button>
-             
-            </div>
-          </div>
-          <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-      </div>
-      <!-- /.modal -->
-      
     </section>
     <!-- /.content -->
   </div>
-  
-
   <!-- /.content-wrapper -->
   <footer class="main-footer">
     <div class="float-right d-none d-sm-block">
@@ -664,63 +573,6 @@
 </div>
 <!-- ./wrapper -->
 
-<style>
-  /* Center the loader */
-  #loader {
-    position: fixed;
-    left: 50%;
-    top: 50%;
-    z-index: 1;
-    width: 150px;
-    height: 150px;
-    margin: -75px 0 0 -75px;
-    border: 16px solid #f3f3f3;
-    border-radius: 50%;
-    border-top: 16px solid blue;
-    border-bottom: 16px solid;
-    border-top: 16px solid #3498db;
-    width: 60px;
-    height: 60px;
-    -webkit-animation: spin 2s linear infinite;
-    animation: spin 2s linear infinite;
-    
-  }
-  
-  @-webkit-keyframes spin {
-    0% { -webkit-transform: rotate(0deg); }
-    100% { -webkit-transform: rotate(360deg); }
-  }
-  
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
-  
-  /* Add animation to "page content" */
-  .animate-bottom {
-    position: relative;
-    -webkit-animation-name: animatebottom;
-    -webkit-animation-duration: 1s;
-    animation-name: animatebottom;
-    animation-duration: 1s
-  }
-  
-  @-webkit-keyframes animatebottom {
-    from { bottom:-100px; opacity:0 } 
-    to { bottom:0px; opacity:1 }
-  }
-  
-  @keyframes animatebottom { 
-    from{ bottom:-100px; opacity:0 } 
-    to{ bottom:0; opacity:1 }
-  }
-  
-  #myDiv {
-    display: none;
-    text-align: center;
-  }
-  </style>
-
 <!-- jQuery -->
 <script src="../plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
@@ -734,27 +586,27 @@
 <script src="../plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
 
 <!-- AdminLTE for demo purposes -->
-
+<script src="../dist/js/demo.js"></script>
 <script src="../plugins/datepicker/bootstrap-datepicker.js"></script>
 
 <script src="js/getdata.js"></script>
-<!--<script src="js/inprocess.js"></script>
-<script src="js/complated.js"></script>-->
+
 
 <script type="text/javascript">
 $(document).ready(function () {
   bsCustomFileInput.init();
-  
-});
+  //var example1oTable = $('#example1').DataTable();    
 
-
+} );
 
 $('.datepicker').datepicker({
      
 			}).on('change', function(){
 				$('.datepicker-dropdown').hide();
 			});
+
+
+
 </script>
 </body>
 </html>
-

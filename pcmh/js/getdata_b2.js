@@ -82,32 +82,26 @@
                   { "data": "Mbr_City" },
                   { "data": "Mbr_State" },
                   { "data": "Mbr_Zip" },
-                  { "data": "Mbr_Phone_Nbr" },
-                  { "data": "month_name" },
-                  { "data": "for_year" }
+                  { "data": "Mbr_Phone_Nbr" }
                       ]
                   } );
 
-
-                  $('#btn_search').click(function(){
-  
-                    var risk = $('#risk').val();
-                    var year = $('#year').val();
-                    var month = $('#month').val();
-                    var searchresult = risk+' '+month+' '+year;
-                    demographicsTable.search(searchresult).draw();
-                
-                  })
                
               },2000);     
      
-             
+               
             })
             .catch(error => {
                 console.log(error)
             })  
 
-            
+            $('#btn_search').click(function(){
+  
+              var risk = $('#risk').val();
+              var searchresult = risk;
+              demographicsTable.search(searchresult).draw();
+          
+            })
   }
   
 
@@ -195,22 +189,11 @@
                   { "data": "CKD" },
                   { "data": "Hospice_Flag" },
                   { "data": "BH_Risk_Category" },
-                  { "data": "Adv_Dir_S0257" },
-                  { "data": "month_name" },
-                  { "data": "for_year" }
+                  { "data": "Adv_Dir_S0257" }
                       ]
                   } );
 
-                  $('#btn_search').click(function(){
-  
-                    var risk = $('#risk').val();
-                    var year = $('#year').val();
-                    var month = $('#month').val();
-                    var searchresult = risk+' '+month+' '+year;
-                    conditionsandriskTable.search(searchresult).draw();
-                
-                  })
-
+               
               },2000);     
      
                
@@ -219,7 +202,13 @@
                 console.log(error)
             })  
 
-            
+            $('#btn_search').click(function(){
+  
+              var risk = $('#risk').val();
+              var searchresult = risk;
+              conditionsandriskTable.search(searchresult).draw();
+          
+            })
   }
 
 
@@ -301,21 +290,10 @@ function costandutilization_data()
                 { "data": "High_Cost_50k" },
                 { "data": "High_Cost_Driver" },
                 { "data": "RxSpecialty_Drug" },
-                { "data": "RxSpecialty_Disease_Desc" },
-                { "data": "month_name" },
-                { "data": "for_year" }
+                { "data": "RxSpecialty_Disease_Desc" }
                     ]
                 } );
 
-                $('#btn_search').click(function(){
-
-                  var risk = $('#risk').val();
-                  var year = $('#year').val();
-                  var month = $('#month').val();
-                  var searchresult = risk+' '+month+' '+year;
-                  costandutilizationTable.search(searchresult).draw();
-              
-                })
              
             },2000);     
    
@@ -325,7 +303,13 @@ function costandutilization_data()
               console.log(error)
           })  
 
-         
+          $('#btn_search').click(function(){
+
+            var risk = $('#risk').val();
+            var searchresult = risk;
+            costandutilizationTable.search(searchresult).draw();
+        
+          })
     }
 
   //Start : Load json Data into the datatable (cost and utilization[recent])
@@ -406,22 +390,11 @@ function bcbsriprogram_data()
                 { "data": "BH_CM_Discharge_Dt" },
                 { "data": "BH_CM_Discharge_Reason" },
                 { "data": "HCBB_Eligible" },
-                { "data": "HCBB_Engaged" },
-                { "data": "month_name" },
-                { "data": "for_year" }
+                { "data": "HCBB_Engaged" }
                     ]
                 } );
 
-                $('#btn_search').click(function(){
-
-                  var risk = $('#risk').val();
-                  var year = $('#year').val();
-                  var month = $('#month').val();
-                  var searchresult = risk+' '+month+' '+year;
-                  bcbsriprogramTable.search(searchresult).draw();
-              
-                })
-
+             
             },2000);     
    
              
@@ -430,7 +403,13 @@ function bcbsriprogram_data()
               console.log(error)
           })  
 
-         
+          $('#btn_search').click(function(){
+
+            var risk = $('#risk').val();
+            var searchresult = risk;
+            bcbsriprogramTable.search(searchresult).draw();
+        
+          })
     }
 
 
@@ -557,21 +536,10 @@ function bcbsriprogram_data()
                 //{ "data": "BH_CM_Discharge_Dt" },
                 { "data": "BH_CM_Discharge_Reason" },
                 { "data": "HCBB_Eligible" },
-                { "data": "HCBB_Engaged" },
-                { "data": "month_name" },
-                { "data": "for_year" }
+                { "data": "HCBB_Engaged" }
                     ]
                 } );
 
-                $('#btn_search').click(function(){
-
-                  var risk = $('#risk').val();
-                  var year = $('#year').val();
-                  var month = $('#month').val();
-                  var searchresult = risk+' '+month+' '+year;
-                  patientpanelalldataTable.search(searchresult).draw();
-              
-                })
              
             },2000);     
    
@@ -581,7 +549,13 @@ function bcbsriprogram_data()
               console.log(error)
           })  
 
-         
+          $('#btn_search').click(function(){
+
+            var risk = $('#risk').val();
+            var searchresult = risk;
+            patientpanelalldataTable.search(searchresult).draw();
+        
+          })
     }
 
   
@@ -663,22 +637,11 @@ function bcbsriprogram_data()
           { "data": "BH_Screening_PHQ2_PHQ9_Completed_Date" },
           { "data": "Care_Plan_Established_Date" },
           { "data": "Discharged_from_CM_Date" },
-          { "data": "Status" },
-          { "data": "month_name" },
-          { "data": "for_year" }
+          { "data": "Status" }
                     ]
                 } );
 
-                $('#btn_search').click(function(){
-
-                  var risk = $('#risk').val();
-                  var year = $('#year').val();
-                  var month = $('#month').val();
-                  var searchresult = risk+' '+month+' '+year;
-                  reportingtableTable.search(searchresult).draw();
-              
-                })
-
+             
             },2000);     
    
              
@@ -687,7 +650,13 @@ function bcbsriprogram_data()
               console.log(error)
           })  
 
-         
+          $('#btn_search').click(function(){
+
+            var risk = $('#risk').val();
+            var searchresult = risk;
+            reportingtableTable.search(searchresult).draw();
+        
+          })
     }
 
 

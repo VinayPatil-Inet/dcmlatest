@@ -227,12 +227,12 @@
                       <div class="col-md-12">
                         <div class="form-group">
                           <label>Select PCMH <span style="color:red;">*</span></label>
-                          <select name="pcmh" id="pcmh" class="form-control" ng-model="user.pcmh">
+                          <select name="pcmh" id="pcmh" class="form-control" ng-model="user.pcmh" required onchange="GetPCMH(this.value)">
                             <option value="">--Select--</option>
                             <option value="0" selected>ALL</option>
-                            <!-- <option value="1">PCMH1</option>
+                            <option value="1">PCMH1</option>
                             <option value="2">PCMH2</option>
-                            <option value="3">PCMH3</option> -->
+                            <option value="3">PCMH3</option>
                           </select>
                           <span class="error" ng-show="form.pcmh.$dirty && form.pcmh.$error.required">Select PCMH!.</span>
                         </div>
@@ -246,7 +246,7 @@
                        
                             </div>
                       </div>
-                      <input type="text" id="userid" name="userid" style="display: none;">
+                      <input type="text" id="userid" name="userid" value="6" style="display: none;">
                       <!-- <input id="userid" ng-model="user.userid" value="3" name="userid" required type="text" /> -->
                     </div>
                     
@@ -404,7 +404,7 @@
 
 $(document).ready(function () {
   bsCustomFileInput.init();
- document.getElementById('userid').value=sessionStorage.getItem("userid");
+ 
 });
 
 
@@ -457,7 +457,7 @@ $.fn.serializeObject = function()
       loop.push({id: x});
     }
       pcmh_result = JSON.stringify({pcmh: loop});
-      console.log("selected pcmh "+pcmh_result);
+      console.log(pcmh_result);
       pcmh_data = {pcmh: loop};
   }
 
@@ -486,50 +486,7 @@ let selectedFile;
 
   var result = {};
 
-  var pcmhdata='{"pcmhid":-1}';
-    fetch("https://apimsdcm.azure-api.net/dcmAPIM/fileupload", {
-        method: 'post',
-       // mode: 'no-cors', // no-cors, *cors, same-origin
 
-       headers: { 'Content-Type': 'application/json',
-            "x-functions-key": "Y75v69weCc0+ZanTjf0jSihLRlZAOUJGRM8xTAbdDLMZdQiXYNiJfg==",
-            "Ocp-Apim-Subscription-Key": "2584a9c08dd04aa49db05cbb265c9b91",
-            // "subscription-key":"da91fd77-c908-4f23-9469-52acf3239a11"
-            },
-        body: pcmhdata
-    }).then((response) => {
-
-                     if (response.ok) {
-                    return response
-                } else {
-                    throw `update Looks like something went wrong. Status: ${response}`;
-                }
-            })
-            .then(response => response.json())
-            .then(data => {
-             
-                console.log("pcmh data:" + JSON.stringify(data))
-                
-                pcmdata = JSON.stringify(data);
-               
-               
-                select = document.getElementById('pcmh');
-                for(var i=0;i<data.length;i++)
-                {
-                  var opt = document.createElement('option');
-                  
-                  opt.value = data[i].pcmhid;
-                  opt.innerHTML = data[i].pcmhname;
-                
-                  select.appendChild(opt);
-                
-                  console.log("pcmhname = "+data[i].pcmhname);
-                }
-               
-            })
-            .catch(error => {
-                console.log("error")
-            }) 
 // //Start : File Upload Validation
 
 var app = angular.module('uploadfiles', ['ngFileUpload']);
@@ -710,8 +667,6 @@ function Insertfiledata(data)
       //       console.log(error.status);
       //       //Perform action based on error
       //     });      
-
-    
             
 }
 </script>

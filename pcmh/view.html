@@ -790,14 +790,9 @@ $('.datepicker').datepicker({
 
 var app = angular.module('pcmhreports', []);
 
-app.controller('MyCtrl', ['$scope','$window', function ($scope,$window) {
+app.controller('MyCtrl', ['$scope', function ($scope) {
 
 let res_pcmh_id;
-
-$scope.usertype = sessionStorage.getItem("usertype");
-$scope.userid = sessionStorage.getItem("userid");
-$scope.pcmhid = sessionStorage.getItem("pcmhid");
-console.log("Sessionusertype === "+$scope.name);
 // upload later on form submit or something similar
 $scope.submit = function() {
      
@@ -805,7 +800,7 @@ $scope.submit = function() {
       var json1 = $('form').serializeObject();
       var pcmh_id = "pcmh_id";
             var ob2  = {};
-            ob2[pcmh_id] = $scope.pcmhid;
+            ob2[pcmh_id] = 1;
             res_pcmh_id = ob2;
             var jsonData2 = JSON.stringify($.extend({}, json1,res_pcmh_id));
             
@@ -844,7 +839,6 @@ $scope.submit = function() {
                 if (response.ok) {
                     return response
                 } else {
-                  toastr.error('Related file not found!.');
                     throw `Looks like something went wrong. Status: ${response.status}`;
                 }
             })

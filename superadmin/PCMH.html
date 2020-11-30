@@ -28,62 +28,7 @@
     
     }
   </style>
-   <style>
-    /* Center the loader */
-    #loader {
-      position: fixed;
-      left: 50%;
-      top: 50%;
-      z-index: 1;
-      width: 150px;
-      height: 150px;
-      margin: -75px 0 0 -75px;
-      border: 16px solid #f3f3f3;
-      border-radius: 50%;
-      border-top: 16px solid blue;
-      border-bottom: 16px solid;
-      border-top: 16px solid #3498db;
-      width: 60px;
-      height: 60px;
-      -webkit-animation: spin 2s linear infinite;
-      animation: spin 2s linear infinite;
-      
-    }
-    
-    @-webkit-keyframes spin {
-      0% { -webkit-transform: rotate(0deg); }
-      100% { -webkit-transform: rotate(360deg); }
-    }
-    
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-    
-    /* Add animation to "page content" */
-    .animate-bottom {
-      position: relative;
-      -webkit-animation-name: animatebottom;
-      -webkit-animation-duration: 1s;
-      animation-name: animatebottom;
-      animation-duration: 1s
-    }
-    
-    @-webkit-keyframes animatebottom {
-      from { bottom:-100px; opacity:0 } 
-      to { bottom:0px; opacity:1 }
-    }
-    
-    @keyframes animatebottom { 
-      from{ bottom:-100px; opacity:0 } 
-      to{ bottom:0; opacity:1 }
-    }
-    
-    #myDiv {
-      display: none;
-      text-align: center;
-    }
-    </style>
+</head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
   <!-- Navbar -->
@@ -230,7 +175,6 @@
               <div class="card-header" style="background-color: #048db7 !important;">
                 <h3 class="card-title">PCMH </h3>
                 <div class="card-tools">
-                  <div id="loader" style="display: none;"></div>
                  <a href="AddPCMH.html"> <button type="button" class="btn btn-warning btn-sm"><strong>Add PCMH</strong></button></a>
                 </div>
               </div>
@@ -341,7 +285,6 @@ getpcmh(data);
     
 function getpcmh(data)
 {
-  document.getElementById("loader").style.display = "block";
   fetch("https://apimsdcm.azure-api.net/dcmAPIM/fileupload", {
         method: 'post',
        // mode: 'no-cors', // no-cors, *cors, same-origin
@@ -357,18 +300,13 @@ function getpcmh(data)
                      if (response.ok) {
                     return response
                 } else {
-                  document.getElementById("loader").style.display = "none";
                     throw `update Looks like something went wrong. Status: ${response}`;
                 }
             })
             .then(response => response.json())
             .then(data => {
-                console.log("data:" + JSON.stringify(data))
+                console.log("data: [" + JSON.stringify(data)+"]")
                 pcmdata = JSON.stringify(data);
-                if(data.length==0)
-                {
-                  document.getElementById("loader").style.display = "none";
-                }
                 getResult(pcmdata);
                
             })
@@ -391,7 +329,7 @@ function getResult(pcmdata)
             { "data": "pcmhsitename" },
             { "data": "emailID" },
             { render: function(data, type, full) {
-            var ret = '<a href="updatepcmh.html?pcmhid='+CryptoJS.AES.encrypt(""+full.pcmhid+"", "getpcmh")+'"> <button type="button" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i> Edit</button></a>';
+            var ret = '<a href="http://localhost/dcm_azur/superadmin/updatepcmh.html?pcmhid='+CryptoJS.AES.encrypt(""+full.pcmhid+"", "getpcmh")+'"> <button type="button" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i> Edit</button></a>';
             
             
             if (!full.isactive) {
@@ -399,7 +337,6 @@ function getResult(pcmdata)
             } else {
               ret += ' <button onclick="DeletePcmh('+full.pcmhid+',0)" style="margin-left:2px;" type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Deactivate</button>';
             }
-            document.getElementById("loader").style.display = "none";
             return ret;
           }
         },

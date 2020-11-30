@@ -25,64 +25,6 @@
     
     }
   </style>
-
-<style>
-  /* Center the loader */
-  #loader {
-    position: fixed;
-    left: 50%;
-    top: 50%;
-    z-index: 1;
-    width: 150px;
-    height: 150px;
-    margin: -75px 0 0 -75px;
-    border: 16px solid #f3f3f3;
-    border-radius: 50%;
-    border-top: 16px solid blue;
-    border-bottom: 16px solid;
-    border-top: 16px solid #3498db;
-    width: 60px;
-    height: 60px;
-    -webkit-animation: spin 2s linear infinite;
-    animation: spin 2s linear infinite;
-    
-  }
-  
-  @-webkit-keyframes spin {
-    0% { -webkit-transform: rotate(0deg); }
-    100% { -webkit-transform: rotate(360deg); }
-  }
-  
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
-  
-  /* Add animation to "page content" */
-  .animate-bottom {
-    position: relative;
-    -webkit-animation-name: animatebottom;
-    -webkit-animation-duration: 1s;
-    animation-name: animatebottom;
-    animation-duration: 1s
-  }
-  
-  @-webkit-keyframes animatebottom {
-    from { bottom:-100px; opacity:0 } 
-    to { bottom:0px; opacity:1 }
-  }
-  
-  @keyframes animatebottom { 
-    from{ bottom:-100px; opacity:0 } 
-    to{ bottom:0; opacity:1 }
-  }
-  
-  #myDiv {
-    display: none;
-    text-align: center;
-  }
-  </style>
-
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -232,7 +174,9 @@
                          <label>Select PCMH</label>
                          <select name="pcmh" id="pcmh" class="form-control">
                            <option value="">--Select PCMH--</option>
-                           
+                           <option value="PCMH1">PCMH1</option>
+                           <option value="PCMH2">PCMH2</option>
+                           <option value="PCMH3">PCMH3</option>
                          </select>
                        </div>
                      </div>
@@ -251,7 +195,7 @@
                            <option value="July">July</option>
                            <option value="August">August</option>
                            <option value="September">September</option>
-                           <option value="October">October</option>
+                           <option value="October" selected="selected">October</option>
                            <option value="November">November</option>
                            <option value="December">December</option>
                           
@@ -263,7 +207,7 @@
                          <label>Select Year</label>
                          <select name="year" id="year" class="form-control">
                            <option value="">--Select Year--</option>
-                           <option value="2020">2020</option>
+                           <option value="2020" selected="selected">2020</option>
                            <option value="2019">2019</option>
                            <option value="2018">2018</option>
                           
@@ -274,7 +218,6 @@
                     <div class="col-md-3">
                       <div class="form-group">
                         <label>&nbsp;</label><br>
-                        <div id="loader" style="display: none;"></div>
                         <button type="button" id="btn_search" class="btn btn-success"><i class="fas fa-search"></i> Search</button>
                       </div>
                       </div>
@@ -304,9 +247,10 @@
 
                 <div class="card-body">
                   <div class="col-12 table-responsive">
-                    <table id="dt_review_return_report" class="table table-bordered table-striped">
+                    <table id="example1" class="table table-bordered table-striped">
                       <thead>
                       <tr>
+                        <th>Sl No</th>
                         <th>PCMH</th>
                         <th>Month</th>
                         <th>Year</th>
@@ -363,147 +307,75 @@
 <!-- AdminLTE App -->
 <script src="../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="../dist/js/aes.js"></script>
+<script src="../dist/js/demo.js"></script>
 <script type="text/javascript">
-get_review_return_file();
-getpcmh();
 $(document).ready(function () {
   bsCustomFileInput.init();
   
   //Start : Load json Data into the datatable 
+  var return_report_data = [{
+      "slno": "1",
+      "pcmh": "PCMH1",
+      "month": "October",
+      "year": "2020",
+      "file_name":"Return_report1",
+      "url": "#"
+      }, {
+      "slno": "2",
+      "pcmh": "PCMH2",
+      "month": "September",
+      "year": "2020",
+      "file_name": "Return_report2",
+        "url": "#"
+      }, {
+      "slno": "3",
+      "pcmh": "PCMH3",
+      "month": "August",
+      "year": "2020",
+      "file_name": "Return_report3",
+        "url": "#"
+      }];
+
+  var return_reportTable= $('#example1').DataTable( {
+      "aaData": return_report_data,
   
+      "aoColumnDefs": [ {
+      "aTargets": 5,
+      "adata": "url",
+      "mRender": function(adata){
+        return '<button type="button" class="btn btn-primary btn-sm"><i class="fas fa-eye"></i> <a style="color:#fff;" href="view_return_report.html">View</a></button> <!--<a href="'+adata+'">view</a>-->';
+      }
+      }],
+      
+            "aoColumns": [
+            { "data": "slno" },
+            { "data": "pcmh" },
+            { "data": "month" },
+            { "data": "year" },
+            { "data": "file_name" },
+            { "data": "url" }
+            ]
+        } );
+      //End : Load json Data into the datatable 
+
+      //Start : Search Button Result
+      
+      $('#btn_search').click(function(){
+ 
+      var pcmh = $('#pcmh').val();
+      var month = $('#month').val();
+      var year = $('#year').val();
+      var searchresult = pcmh+' '+month+' '+year;
+      return_reportTable.search(searchresult).draw();
+
+      })
+      //End : Search Button Result
 
 
 
     });
 
     
-
-    function get_review_return_file()
-    {
-      document.getElementById("loader").style.display = "block";
-      var logged_in_userid=6;
-      var data='{"user_role_id":"1","logged_in_userid":"'+logged_in_userid+'"}';
-
-      var review_return_filedata="";
-      fetch("https://apimsdcm.azure-api.net/dcmAPIM/review_return_report_file", {
-        method: 'post',
-       // mode: 'no-cors', // no-cors, *cors, same-origin
-
-       headers: { 'Content-Type': 'application/json',
-            "x-functions-key": "Y75v69weCc0+ZanTjf0jSihLRlZAOUJGRM8xTAbdDLMZdQiXYNiJfg==",
-            "Ocp-Apim-Subscription-Key": "2584a9c08dd04aa49db05cbb265c9b91",
-            // "subscription-key":"da91fd77-c908-4f23-9469-52acf3239a11"
-            },
-        body: data
-    }).then((response) => {
-
-                     if (response.ok) {
-                    return response
-                } else {
-                  document.getElementById("loader").style.display = "none";
-                    throw `update Looks like something went wrong. Status: ${response}`;
-                }
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log("data: [" + JSON.stringify(data)+"]")
-                review_return_filedata = JSON.stringify(data);
-                setTimeout(function() {
-                var review_return_reportTable= $('#dt_review_return_report').DataTable( {
-                "aaData": JSON.parse(review_return_filedata),
-
-                "aoColumnDefs": [ {
-                "aTargets": 4,
-                "adata": "BCBSRI_Risk_Categorization",
-                "mRender": function(adata){
-                  return '<button type="button" class="btn btn-primary btn-sm"><i class="fas fa-eye"></i> <a style="color:#fff;" href="view_return_report.html?uploadedfileid='+CryptoJS.AES.encrypt(""+adata+"", "retrun_report")+'">View</a></button>';
-            
-                }
-                }],
-                
-                "aoColumns": [
-                { "data": "pcmhname" },
-                { "data": "month_name" },
-                { "data": "for_year" },
-                { "data": "filename" },
-                { "data": "uploadedfileid" }
-                      ]
-                  } );
-
-                   //Start : Search Button Result
-      
-                      $('#btn_search').click(function(){
-                
-                var pcmh = $('#pcmh').val();
-                var month = $('#month').val();
-                var year = $('#year').val();
-                var searchresult = pcmh+' '+month+' '+year;
-                review_return_reportTable.search(searchresult).draw();
-
-                })
-                //End : Search Button Result
-                document.getElementById("loader").style.display = "none";
-
-              },2000);   
-
-               
-            })
-            .catch(error => {
-                console.log(error)
-            })  
-    }
-
-    function getpcmh()
-    {
-      var data='{"pcmhid":-1}';
-      fetch("https://apimsdcm.azure-api.net/dcmAPIM/fileupload", {
-        method: 'post',
-       // mode: 'no-cors', // no-cors, *cors, same-origin
-
-       headers: { 'Content-Type': 'application/json',
-            "x-functions-key": "Y75v69weCc0+ZanTjf0jSihLRlZAOUJGRM8xTAbdDLMZdQiXYNiJfg==",
-            "Ocp-Apim-Subscription-Key": "2584a9c08dd04aa49db05cbb265c9b91",
-            // "subscription-key":"da91fd77-c908-4f23-9469-52acf3239a11"
-            },
-        body: data
-    }).then((response) => {
-
-                     if (response.ok) {
-                    return response
-                } else {
-                  document.getElementById("loader").style.display = "none";
-                    throw `update Looks like something went wrong. Status: ${response}`;
-                }
-            })
-            .then(response => response.json())
-            .then(data => {
-             
-                console.log("data: [" + JSON.stringify(data)+"]")
-                
-                pcmdata = JSON.stringify(data);
-               
-               
-                select = document.getElementById('pcmh');
-                for(var i=0;i<data.length;i++)
-                {
-                var opt = document.createElement('option');
-                
-                opt.value = data[i].pcmhname;
-                opt.innerHTML = data[i].pcmhname;
-               
-                select.appendChild(opt);
-               
-                console.log("pcmhname = "+data[i].pcmhname);
-                }
-               
-                
-               
-            })
-            .catch(error => {
-                console.log("error")
-            })  
-    }
 
  
 </script>
