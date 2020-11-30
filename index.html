@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="validateuser">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,6 +17,63 @@
     <link rel="stylesheet" href="dist/css/adminlte.min.css">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <script src="dist/js/angular.min.js"></script>
+    <style>
+      /* Center the loader */
+      #loader {
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        z-index: 1;
+        width: 150px;
+        height: 150px;
+        margin: -75px 0 0 -75px;
+        border: 16px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 16px solid blue;
+        border-bottom: 16px solid;
+        border-top: 16px solid #3498db;
+        width: 60px;
+        height: 60px;
+        -webkit-animation: spin 2s linear infinite;
+        animation: spin 2s linear infinite;
+        
+      }
+      
+      @-webkit-keyframes spin {
+        0% { -webkit-transform: rotate(0deg); }
+        100% { -webkit-transform: rotate(360deg); }
+      }
+      
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      
+      /* Add animation to "page content" */
+      .animate-bottom {
+        position: relative;
+        -webkit-animation-name: animatebottom;
+        -webkit-animation-duration: 1s;
+        animation-name: animatebottom;
+        animation-duration: 1s
+      }
+      
+      @-webkit-keyframes animatebottom {
+        from { bottom:-100px; opacity:0 } 
+        to { bottom:0px; opacity:1 }
+      }
+      
+      @keyframes animatebottom { 
+        from{ bottom:-100px; opacity:0 } 
+        to{ bottom:0; opacity:1 }
+      }
+      
+      #myDiv {
+        display: none;
+        text-align: center;
+      }
+      </style>
   </head>
   <body class="hold-transition login-page">
   <div class="login-box">
@@ -28,11 +85,11 @@
       <div class="card-body login-card-body" style="box-shadow: 2px 2px #3c8dbc;border: 1px solid #3c8dbc;">
         <p class="login-box-msg"></p>
 
-        <form action="" method="post" name="login" id="login">
+        <form method="post" name="login" id="login" ng-controller="validuserController" ng-submit="submitForm()" enctype="multipart/form-data">
           
           <div class="input-group mb-3">
-            <label style="width:100%;" for="inputName" class="control-label"><span style="color:red;">*</span> User Id</label>
-            <input type="email" class="form-control" name="email" id="email" placeholder="User Id">
+            <label style="width:100%;" for="inputName" class="control-label"><span style="color:red;">*</span> User Name</label>
+            <input type="text" class="form-control" name="email" id="email" placeholder="User Id">
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-envelope"></span>
@@ -54,6 +111,7 @@
             
             <!-- /.col -->
             <div class="col-6">
+              <div id="loader" style="display: none;"></div>
               <input type="submit" name="submit" id="submit" class="btn btn-primary btn-block" value="Sign In">
             </div>
             <!-- /.col -->
@@ -70,30 +128,109 @@
   <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
   <!-- AdminLTE App -->
   <script src="dist/js/adminlte.min.js"></script>
+ 
+  <!-- bs-custom-file-input -->
+  <script src="plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+  <!-- AdminLTE App -->
+  <script src="dist/js/adminlte.min.js"></script>
+  <!-- AdminLTE for demo purposes -->
+  <script src="dist/js/demo.js"></script>
+  <link rel="stylesheet" href="plugins/toastr/toastr.min.css">
+<script src="plugins/toastr/toastr.min.js"></script>
+<link rel="stylesheet" href="plugins/toastr/toastr.min.css">
+<script src="plugins/toastr/toastr.min.js"></script>
 
   </body>
 </html>
 
 <script>
  
-  $("input#submit").click(function (e) {
+ var app = angular.module('validateuser', []);
+
+ app.controller('validuserController', function($scope,$window) {
+
+ $scope.submitForm = function () {
          
+          //  var email = "nnn";
+          document.getElementById("loader").style.display = "block";
+          //  var password = "566666";
            var email = $("#email").val();
            var password = $("#password").val();
-           if((email=="superadmin@gmail.com") && (password=="123456"))
-           {
-             $("#login").attr('action', 'superadmin/PCMH.html');
-           
-           }
-           else if((email=="bcbsri@gmail.com") && (password=="123456"))
-           {
-             $("#login").attr('action', 'bcbsri/dashboard.html');
-           
-           }
-           else if((email=="pcmh@gmail.com") && (password=="123456"))
-           {
-             $("#login").attr('action', 'pcmh/view.html');
-           
-           }
-           });
+          //  var userid = 2;
+
+           var data='{"username":"'+email+'","password":"'+password+'"}';
+          //  var data='{"username":"nnn","password":"566666"}';
+          console.log("User Id=== "+email+" data---- "+data);
+
+    // setTimeout(function() {
+  
+      fetch("https://apimsdcm.azure-api.net/dcmAPIM/validateuser", {
+        method: 'post',
+         // mode: 'no-cors', // no-cors, *cors, same-origin
+
+        headers: { 'Content-Type': 'application/json',
+            "x-functions-key": "R8W3hwyA4rGnD2tqy1tJaF3VmlybLdrqMxyX0qcFAS4PS6bO79weNA==",
+            "Ocp-Apim-Subscription-Key": "0ac8f354200c4ddb89bb6dcb7528cfea",
+            // "subscription-key":"da91fd77-c908-4f23-9469-52acf3239a11"
+            },
+        body: data
+        }).then((response) => {
+
+                    if (response.ok) {
+                    return response
+                } else {
+
+                  toastr.error('Please check username and password!.');
+                  document.getElementById("loader").style.display = "none";
+                    throw `update Looks like something went wrong. Status: ${response}`;
+                    
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log("user data: [" + JSON.stringify(data)+"]");
+                // $("#login").attr('action', 'pcmh/view.html');
+                // $scope.user.pcmh = data.pcmhid;
+               console.log("usertypeusertype = "+data.usertype);
+               sessionStorage.setItem("usertype", data.usertype);
+               sessionStorage.setItem("userid", data.userid);
+               sessionStorage.setItem("pcmhid", data.pcmhid);
+               document.getElementById("loader").style.display = "none";
+                  if(data.usertype=="Super Admin")
+                  {
+                    // $("#login").attr('action', 'superadmin/PCMH.html')
+                    
+                    window.location.replace("superadmin/PCMH.html");
+                   
+                  
+                  }
+                  if(data.usertype=="Admin")
+                  {
+                    // $("#login").attr('action', 'bcbsri/dashboard.html');
+                    window.location.replace("bcbsri/dashboard.html");
+                  
+                  }
+                  if(data.usertype=="PCMH")
+                  {
+                    // $("#login").attr('action', 'pcmh/view.html');
+                    window.location.replace("pcmh/view.html");
+                  
+                  }
+                               
+              
+              })
+              .catch(error => {
+                console.log("herrrr "+error);
+             })  
+    //End : Get PCMH Data by using PCMHID
+
+   
+
+// },2000);
+
+          
+           };
+
+          
+          });
 </script>

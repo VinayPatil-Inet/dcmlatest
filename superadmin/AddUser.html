@@ -456,7 +456,7 @@ var jsonData;
         return false;
     };
     var pcmhdata='{"pcmhid":-1}';
-    fetch("https://apimdcm-v.azure-api.net/dcmfunctionapps-v/fileupload", {
+    fetch("https://apimsdcm.azure-api.net/dcmAPIM/fileupload", {
         method: 'post',
        // mode: 'no-cors', // no-cors, *cors, same-origin
 
@@ -477,7 +477,7 @@ var jsonData;
             .then(response => response.json())
             .then(data => {
              
-                console.log("data:" + JSON.stringify(data))
+                console.log("pcmh data:" + JSON.stringify(data))
                 
                 pcmdata = JSON.stringify(data);
                
