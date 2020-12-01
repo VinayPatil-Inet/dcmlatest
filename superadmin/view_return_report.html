@@ -389,9 +389,9 @@ $(document).ready(function () {
   //Start : Get uploaded file ID from URL
     const queryString = window.location.search;
       const urlParams = new URLSearchParams(queryString);
-      const uploaded_fileid = urlParams.get('uploadedfileid')
-      var decrypted = CryptoJS.AES.decrypt(uploaded_fileid, "retrun_report");
-      const uploadedfileid = decrypted.toString(CryptoJS.enc.Utf8);
+      const uploadedfileid = urlParams.get('uploadedfileid')
+      // var decrypted = CryptoJS.AES.decrypt(uploaded_fileid, "retrun_report");
+      // const uploadedfileid = decrypted.toString(CryptoJS.enc.Utf8);
   //End : Get uploaded file ID from URL
 
   var logged_in_userid=sessionStorage.getItem("userid");
