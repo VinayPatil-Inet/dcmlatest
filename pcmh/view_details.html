@@ -637,9 +637,9 @@ app.controller('return_report', ['$scope', function($scope) {
    //Start : Get PCMH ID from URL
       const queryString = window.location.search;
       const urlParams = new URLSearchParams(queryString);
-      const bcbsriid = urlParams.get('bcbsriid')
-      var decrypted = CryptoJS.AES.decrypt(bcbsriid, "getreturnreport");
-      const resbcbsriid = decrypted.toString(CryptoJS.enc.Utf8);
+      const resbcbsriid = urlParams.get('bcbsriid')
+      // var decrypted = CryptoJS.AES.decrypt(bcbsriid, "getreturnreport");
+      // const resbcbsriid = decrypted.toString(CryptoJS.enc.Utf8);
 
     //End : Get PCMH ID from URL
     console.log("resbcbsriid=== "+resbcbsriid);

@@ -553,7 +553,7 @@ $(document).ready(function () {
                 "aTargets": 0,
                 "adata": "url",
                 "mRender": function(adata){
-                  return '<a href="view_details.html?bcbsriid='+CryptoJS.AES.encrypt(""+adata+"", "getreturnreport")+'"><button type="button" class="btn bg-gradient-primary btn-xs">View</button></a>';
+                  return '<a href="view_details.html?bcbsriid=bcbsriid='+adata+'"><button type="button" class="btn bg-gradient-primary btn-xs">View</button></a>';
                 }
                 }],
                 
