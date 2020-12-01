@@ -584,9 +584,11 @@ app.controller('return_report', ['$scope', function($scope) {
                                 .then(data => {
                                     console.log("data: [" + JSON.stringify(data)+"]")
                                     $scope.resulted_returnreport=data;
-                                    console.log("Outreach_Attempted_Date date===="+ new Date(data.Outreach_Attempted_Date));
-
+                                   
+                                   $scope.updatedate= $scope.formatDate(data.Outreach_Attempted_Date);
                                               
+                                    console.log("Outreach_Attempted_Date date===="+ $scope.updatedate);
+
                                     document.getElementById('bcbsriid').value = data.BCBSRI_ID;
                                     document.getElementById('dob').value = data.Mbr_DOB;
                                     document.getElementById('riskcat').value = data.BCBSRI_Risk_Categorization;
@@ -594,11 +596,11 @@ app.controller('return_report', ['$scope', function($scope) {
                                     document.getElementById('practicesite').value = data.Practice_Site;
                                     document.getElementById('practiceid').value = data.Practice_Identified_Indicator;
 
-                                    document.getElementById('outreach_attempted_date').value =data.Outreach_Attempted_Date;
-                                    document.getElementById('enrolled_status_date').value = data.Enrolled_Status_Date;
-                                    document.getElementById('bh_screening_phq2_phq9_completed_date').value = data.BH_Screening_PHQ2_PHQ9_Completed_Date;
-                                    document.getElementById('care_plan_established_date').value = data.Care_Plan_Established_Date;
-                                    document.getElementById('discharged_from_cm_date').value = data.Discharged_from_CM_Date;
+                                    document.getElementById('outreach_attempted_date').value =$scope.formatDate(data.Outreach_Attempted_Date);
+                                    document.getElementById('enrolled_status_date').value = $scope.formatDate(data.Enrolled_Status_Date);
+                                    document.getElementById('bh_screening_phq2_phq9_completed_date').value = $scope.formatDate(data.BH_Screening_PHQ2_PHQ9_Completed_Date);
+                                    document.getElementById('care_plan_established_date').value = $scope.formatDate(data.Care_Plan_Established_Date);
+                                    document.getElementById('discharged_from_cm_date').value = $scope.formatDate(data.Discharged_from_CM_Date);
                                     
                                   
                                     document.getElementById("loader").style.display = "none";
@@ -620,6 +622,18 @@ app.controller('return_report', ['$scope', function($scope) {
       
 
    }
+
+    $scope.formatDate=function(date) {
+     var d = new Date(date),
+         month = '' + (d.getMonth() + 1),
+         day = '' + d.getDate(),
+         year = d.getFullYear();
+
+     if (month.length < 2) month = '0' + month;
+     if (day.length < 2) day = '0' + day;
+
+     return [year, month, day].join('-');
+ }
    //Start : Get PCMH ID from URL
       const queryString = window.location.search;
       const urlParams = new URLSearchParams(queryString);
@@ -660,15 +674,11 @@ app.controller('return_report', ['$scope', function($scope) {
                 // console.log("data: [" + JSON.stringify(data)+"]")
                 $scope.resulted_returnreport=data;
                 console.log("data===="+ $scope.resulted_returnreport.Mbr_First_Name);
-                var d = new Date(data.Outreach_Attempted_Date);
-                var curr_date = d.getDate();
-                var curr_month = d.getMonth();
-                curr_month++;
-                var curr_year = d.getFullYear();
-                // document.write(curr_date + "-" + curr_month + "-" + curr_year);
-              $scope.date = curr_year + "/" + curr_month + "/" + curr_date;
-                console.log("Outreach_Attempted_Date date===="+ $scope.date);
-                          
+               
+                $scope.updatedate= $scope.formatDate(data.Outreach_Attempted_Date);
+                                              
+                 console.log("newww Outreach_Attempted_Date date===="+ $scope.updatedate);
+                
                 document.getElementById('bcbsriid').value = data.BCBSRI_ID;
                 document.getElementById('dob').value = data.Mbr_DOB;
                 document.getElementById('riskcat').value = data.BCBSRI_Risk_Categorization;
@@ -676,11 +686,11 @@ app.controller('return_report', ['$scope', function($scope) {
                 document.getElementById('practicesite').value = data.Practice_Site;
                 document.getElementById('practiceid').value = data.Practice_Identified_Indicator;
 
-                document.getElementById('outreach_attempted_date').value =data.Outreach_Attempted_Date;
-                document.getElementById('enrolled_status_date').value = data.Enrolled_Status_Date;
-                document.getElementById('bh_screening_phq2_phq9_completed_date').value = data.BH_Screening_PHQ2_PHQ9_Completed_Date;
-                document.getElementById('care_plan_established_date').value = data.Care_Plan_Established_Date;
-                document.getElementById('discharged_from_cm_date').value = data.Discharged_from_CM_Date;
+                document.getElementById('outreach_attempted_date').value =$scope.formatDate(data.Outreach_Attempted_Date);
+                document.getElementById('enrolled_status_date').value = $scope.formatDate(data.Enrolled_Status_Date);
+                document.getElementById('bh_screening_phq2_phq9_completed_date').value = $scope.formatDate(data.BH_Screening_PHQ2_PHQ9_Completed_Date);
+                document.getElementById('care_plan_established_date').value = $scope.formatDate(data.Care_Plan_Established_Date);
+                document.getElementById('discharged_from_cm_date').value = $scope.formatDate(data.Discharged_from_CM_Date);
                 
                
                 document.getElementById("loader").style.display = "none";
