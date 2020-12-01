@@ -365,6 +365,9 @@
 <!-- AdminLTE for demo purposes -->
 <script src="../dist/js/aes.js"></script>
 <script type="text/javascript">
+ var logged_in_userid=sessionStorage.getItem("userid");
+  var usertype=sessionStorage.getItem("usertype");
+
 get_review_return_file();
 getpcmh();
 $(document).ready(function () {
@@ -382,8 +385,9 @@ $(document).ready(function () {
     function get_review_return_file()
     {
       document.getElementById("loader").style.display = "block";
-      var logged_in_userid=6;
-      var data='{"user_role_id":"1","logged_in_userid":"'+logged_in_userid+'"}';
+     
+     
+      var data='{"usertype":"'+usertype+'","logged_in_userid":"'+logged_in_userid+'"}';
 
       var review_return_filedata="";
       fetch("https://apimsdcm.azure-api.net/dcmAPIM/review_return_report_file", {

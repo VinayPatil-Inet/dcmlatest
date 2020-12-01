@@ -364,6 +364,10 @@
 
 <script src="../dist/js/aes.js"></script>
 <script type="text/javascript">
+
+var logged_in_userid=sessionStorage.getItem("userid");
+var usertype=sessionStorage.getItem("usertype");
+
 $(document).ready(function () {
   bsCustomFileInput.init();
   
@@ -387,7 +391,8 @@ $(document).ready(function () {
 //Start : Load json Data into the datatable (Recent)
 function recent_review_return_report_individual_view(uploadedfileid)
     {
-      var recentdata ='{"uploadedfileid":"'+uploadedfileid+'","user_role_id":"1","currentstatus":"0"}';
+      
+      var recentdata ='{"uploadedfileid":"'+uploadedfileid+'","usertype":"'+usertype+'","currentstatus":"0"}';
       fetch("https://apimsdcm.azure-api.net/dcmAPIM/review_return_report_individual_view", {
         method: 'post',
        // mode: 'no-cors', // no-cors, *cors, same-origin
@@ -468,7 +473,7 @@ function recent_review_return_report_individual_view(uploadedfileid)
   //Start : Load json Data into the datatable (inprocess)
     function inprocess_review_return_report_individual_view(uploadedfileid)
     {
-      var inprocessdata ='{"uploadedfileid":"'+uploadedfileid+'","currentstatus":"1","user_role_id":"1"}';
+      var inprocessdata ='{"uploadedfileid":"'+uploadedfileid+'","currentstatus":"1","usertype":"'+usertype+'"}';
       fetch("https://apimsdcm.azure-api.net/dcmAPIM/review_return_report_individual_view", {
         method: 'post',
        // mode: 'no-cors', // no-cors, *cors, same-origin
@@ -548,7 +553,7 @@ function recent_review_return_report_individual_view(uploadedfileid)
   //Start : Load json Data into the datatable (complated)
   function complated_review_return_report_individual_view(uploadedfileid)
     {
-      var complateddata ='{"uploadedfileid":"'+uploadedfileid+'","currentstatus":"2","user_role_id":"1"}';
+      var complateddata ='{"uploadedfileid":"'+uploadedfileid+'","currentstatus":"2","usertype":"'+usertype+'"}';
       fetch("https://apimsdcm.azure-api.net/dcmAPIM/review_return_report_individual_view", {
         method: 'post',
        // mode: 'no-cors', // no-cors, *cors, same-origin
@@ -629,7 +634,7 @@ function recent_review_return_report_individual_view(uploadedfileid)
 
   function review_return_report_details(uploadedfileid)
     {
-      var review_return_report_details ='{"uploadedfileid":"'+uploadedfileid+'","currentstatus":"-1","user_role_id":"1"}';
+      var review_return_report_details ='{"uploadedfileid":"'+uploadedfileid+'","currentstatus":"-1","usertype":"'+usertype+'"}';
       fetch("https://apimsdcm.azure-api.net/dcmAPIM/review_return_report_individual_view", {
         method: 'post',
        // mode: 'no-cors', // no-cors, *cors, same-origin

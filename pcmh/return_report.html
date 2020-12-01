@@ -309,6 +309,11 @@
 <script src="../dist/js/aes.js"></script>
 
 <script type="text/javascript">
+
+var logged_in_userid=sessionStorage.getItem("userid");
+var usertype=sessionStorage.getItem("usertype");
+var pcmhid=sessionStorage.getItem("pcmhid");
+
 $(document).ready(function () {
   bsCustomFileInput.init();
   get_review_return_file();
@@ -323,8 +328,8 @@ $(document).ready(function () {
   function get_review_return_file()
   {
     
-   var logged_in_userid=2;
-    var data='{"user_role_id":"2","logged_in_userid":"'+logged_in_userid+'"}';
+  
+    var data='{"logged_in_userid":"'+logged_in_userid+'","usertype":"'+usertype+'","pcmhid":"'+pcmhid+'"}';
       var review_return_filedata="";
       fetch("https://apimsdcm.azure-api.net/dcmAPIM/review_return_report_file", {
         method: 'post',

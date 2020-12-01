@@ -1,6 +1,8 @@
 //Start : Demographics
   //Start : Load json Data into the datatable (Demographics)
-
+  var logged_in_userid=sessionStorage.getItem("userid");
+  var usertype=sessionStorage.getItem("usertype");
+  var pcmhid=sessionStorage.getItem("pcmhid");
   demographics_data()
   conditionsandrisk_data()
   costandutilization_data()
@@ -8,11 +10,14 @@
   patient_all_data()
   returnreporting_data()
 
+ 
+
   function demographics_data()
   {
-    var logged_in_userid=2
-    var demographicsdata ='{"demographicsdatatype":"demographics","logged_in_userid":"'+logged_in_userid+'","user_role_id":"2"}';
-      fetch("https://apimsdcm.azure-api.net/PCMH/pcmhreports", {
+    
+    var demographicsdata ='{"demographicsdatatype":"demographics","logged_in_userid":"'+logged_in_userid+'","usertype":"'+usertype+'","pcmhid":"'+pcmhid+'"}';
+   
+    fetch("https://apimsdcm.azure-api.net/PCMH/pcmhreports", {
         method: 'post',
        // mode: 'no-cors', // no-cors, *cors, same-origin
 
@@ -123,8 +128,8 @@
 
   function conditionsandrisk_data()
   {
-    var logged_in_userid=2
-    var conditionsandriskdata ='{"conditionsandriskype":"conditionsandrisk","logged_in_userid":"'+logged_in_userid+'","user_role_id":"2"}';
+    
+    var conditionsandriskdata ='{"conditionsandriskype":"conditionsandrisk","logged_in_userid":"'+logged_in_userid+'","usertype":"'+usertype+'","pcmhid":"'+pcmhid+'"}';
       fetch("https://apimsdcm.azure-api.net/PCMH/pcmhreports", {
         method: 'post',
        // mode: 'no-cors', // no-cors, *cors, same-origin
@@ -237,8 +242,8 @@
 
 function costandutilization_data()
 {
-  var logged_in_userid=2
-  var costandutilizationkdata ='{"costandutilizationtype":"costandutilizationtype","logged_in_userid":"'+logged_in_userid+'","user_role_id":"2"}';
+  
+  var costandutilizationkdata ='{"costandutilizationtype":"costandutilizationtype","logged_in_userid":"'+logged_in_userid+'","usertype":"'+usertype+'","pcmhid":"'+pcmhid+'"}';
     fetch("https://apimsdcm.azure-api.net/PCMH/pcmhreports", {
       method: 'post',
      // mode: 'no-cors', // no-cors, *cors, same-origin
@@ -345,8 +350,8 @@ function costandutilization_data()
 
 function bcbsriprogram_data()
 {
-  var logged_in_userid=2
-  var bcbsriprogramdata ='{"bcbsriprogramtype":"bcbsriprogram","logged_in_userid":"'+logged_in_userid+'","user_role_id":"2"}';
+  
+  var bcbsriprogramdata ='{"bcbsriprogramtype":"bcbsriprogram","logged_in_userid":"'+logged_in_userid+'","usertype":"'+usertype+'","pcmhid":"'+pcmhid+'"}';
     fetch("https://apimsdcm.azure-api.net/PCMH/pcmhreports", {
       method: 'post',
      // mode: 'no-cors', // no-cors, *cors, same-origin
@@ -451,8 +456,8 @@ function bcbsriprogram_data()
 
   function patient_all_data()
 {
-  var logged_in_userid=2
-  var patient_alldata ='{"patientalldatatype":"patientalldata","logged_in_userid":"'+logged_in_userid+'","user_role_id":"2"}';
+  
+  var patient_alldata ='{"patientalldatatype":"patientalldata","logged_in_userid":"'+logged_in_userid+'","usertype":"'+usertype+'","pcmhid":"'+pcmhid+'"}';
     fetch("https://apimsdcm.azure-api.net/PCMH/pcmhreports", {
       method: 'post',
      // mode: 'no-cors', // no-cors, *cors, same-origin
@@ -601,8 +606,8 @@ function bcbsriprogram_data()
 
  function returnreporting_data()
 {
-  var logged_in_userid=2
-  var returnreportingdata ='{"returnreportingdatatype":"returnreporting","logged_in_userid":"'+logged_in_userid+'","user_role_id":"2"}';
+  
+  var returnreportingdata ='{"returnreportingdatatype":"returnreporting","logged_in_userid":"'+logged_in_userid+'","usertype":"'+usertype+'","pcmhid":"'+pcmhid+'"}';
     fetch("https://apimsdcm.azure-api.net/PCMH/pcmhreports", {
       method: 'post',
      // mode: 'no-cors', // no-cors, *cors, same-origin

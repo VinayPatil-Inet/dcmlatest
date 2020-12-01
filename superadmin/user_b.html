@@ -270,27 +270,6 @@
     </section>
     <!-- /.content -->
   </div>
-
-  <div class="modal fade" id="modal-default" align="center" data-backdrop="static">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        
-        <div class="modal-body">
-          <br>
-          <input type="hidden" id="deleted_user_id" name="deleted_user_id" value="">
-          <input type="hidden" id="deleted_user_status" name="deleted_user_status" value="">
-          <h5 id="delete_msg"></h5>
-          <br>
-          <button type="button" onclick="Deleteuser()" class="btn btn-success">Yes</button>
-          <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
-        </div>
-        <br>
-      </div>
-      <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-  </div>
-
   <!-- /.content-wrapper -->
   <footer class="main-footer">
     <div class="float-right d-none d-sm-block">
@@ -433,10 +412,9 @@ function getResult(user_data)
             
             document.getElementById("loader").style.display = "none";
             if (!full.isactive) {
-              ret += '<button onclick="DeleteButton('+full.userid+',1)" type="button" style="margin-left:2px;" class="btn btn-success btn-sm"><i class="fas fa-check"></i> Active</button>';
+              ret += '<button onclick="Deleteuser('+full.userid+',1)" type="button" style="margin-left:2px;" class="btn btn-success btn-sm"><i class="fas fa-check"></i> Active</button>';
             } else {
-              ret += ' <button onclick="DeleteButton('+full.userid+',0)" style="margin-left:2px;" type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Deactivate</button>';
-            
+              ret += ' <button onclick="Deleteuser('+full.userid+',0)" style="margin-left:2px;" type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Deactivate</button>';
             }
             return ret;
            
@@ -447,15 +425,12 @@ function getResult(user_data)
 }
 
 
-
-
-  function Deleteuser(id,status)
-  {
-    $('#modal-default').modal('hide');
-    var deleted_user_id= $('#deleted_user_id').val();
-    var deleted_user_status= $('#deleted_user_status').val();
-
-    var data='{"userid":"'+deleted_user_id+'","isactive":"'+deleted_user_status+'"}';
+function Deleteuser(id,status)
+{
+  var confirm_msg = confirm("Are you sure you want to delete?");
+        if (confirm_msg == true) 
+        {
+          var data='{"userid":"'+id+'","isactive":"'+status+'"}';
 
           console.log("datadata=== "+JSON.stringify(data));
           fetch("https://apimsdcm.azure-api.net/dcmAPIM/deleteuser", {
@@ -484,27 +459,8 @@ function getResult(user_data)
             .catch(error => {
              console.log(error)
         })  
-    
+    }
   }
-
-  function DeleteButton(id,status)
-{
-    $('#modal-default').modal('show');
-    
-    $('#deleted_user_id').val(id);
-    if(status==1)
-    {
-      $("#delete_msg").empty().append("<b>Are you sure you want to Activate?</b>");
-     
-    }
-    else
-    {
-      $("#delete_msg").empty().append("<b>Are you sure you want to Deactivate?</b>");
-      
-    }
-    $('#deleted_user_status').val(status);
-}
-
 </script>
 </body>
 </html>

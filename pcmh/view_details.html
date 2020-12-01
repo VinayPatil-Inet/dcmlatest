@@ -464,7 +464,13 @@ app.controller('return_report', ['$scope', function($scope) {
 
             bcbsriidval = ob;
 
-            var jsonData = JSON.stringify($.extend({}, json1,bcbsriidval));
+            var useridkey = "userid";
+            var ob2  = {};
+            ob2[useridkey] = sessionStorage.getItem("userid");
+            
+            userid = ob2;
+
+            var jsonData = JSON.stringify($.extend({}, json1,bcbsriidval,userid));
              console.log("jsonData===== "+jsonData)
 
         fetch("https://apimsdcm.azure-api.net/PCMH/update_returnreport_dates", {
@@ -472,8 +478,8 @@ app.controller('return_report', ['$scope', function($scope) {
        // mode: 'no-cors', // no-cors, *cors, same-origin
 
           headers: { 'Content-Type': 'application/json',
-            "x-functions-key": "Y75v69weCc0+ZanTjf0jSihLRlZAOUJGRM8xTAbdDLMZdQiXYNiJfg==",
-            "Ocp-Apim-Subscription-Key": "2584a9c08dd04aa49db05cbb265c9b91",
+            "x-functions-key": "R8W3hwyA4rGnD2tqy1tJaF3VmlybLdrqMxyX0qcFAS4PS6bO79weNA==",
+            "Ocp-Apim-Subscription-Key": "0ac8f354200c4ddb89bb6dcb7528cfea",
             // "subscription-key":"da91fd77-c908-4f23-9469-52acf3239a11"
             },
         body: jsonData
@@ -578,7 +584,7 @@ app.controller('return_report', ['$scope', function($scope) {
                                 .then(data => {
                                     console.log("data: [" + JSON.stringify(data)+"]")
                                     $scope.resulted_returnreport=data;
-                                    console.log("data===="+ $scope.resulted_returnreport.Mbr_First_Name);
+                                    console.log("Outreach_Attempted_Date date===="+ new Date(data.Outreach_Attempted_Date));
 
                                               
                                     document.getElementById('bcbsriid').value = data.BCBSRI_ID;
@@ -588,7 +594,7 @@ app.controller('return_report', ['$scope', function($scope) {
                                     document.getElementById('practicesite').value = data.Practice_Site;
                                     document.getElementById('practiceid').value = data.Practice_Identified_Indicator;
 
-                                    document.getElementById('outreach_attempted_date').value = data.Outreach_Attempted_Date;
+                                    document.getElementById('outreach_attempted_date').value =new Date(data.Outreach_Attempted_Date);
                                     document.getElementById('enrolled_status_date').value = data.Enrolled_Status_Date;
                                     document.getElementById('bh_screening_phq2_phq9_completed_date').value = data.BH_Screening_PHQ2_PHQ9_Completed_Date;
                                     document.getElementById('care_plan_established_date').value = data.Care_Plan_Established_Date;
@@ -645,15 +651,23 @@ app.controller('return_report', ['$scope', function($scope) {
                     if (response.ok) {
                     return response
                 } else {
+                  
                     throw `update Looks like something went wrong. Status: ${response}`;
                 }
             })
             .then(response => response.json())
             .then(data => {
-                console.log("data: [" + JSON.stringify(data)+"]")
+                // console.log("data: [" + JSON.stringify(data)+"]")
                 $scope.resulted_returnreport=data;
                 console.log("data===="+ $scope.resulted_returnreport.Mbr_First_Name);
-
+                var d = new Date(data.Outreach_Attempted_Date);
+                var curr_date = d.getDate();
+                var curr_month = d.getMonth();
+                curr_month++;
+                var curr_year = d.getFullYear();
+                // document.write(curr_date + "-" + curr_month + "-" + curr_year);
+              $scope.date = curr_year + "/" + curr_month + "/" + curr_date;
+                console.log("Outreach_Attempted_Date date===="+ $scope.date);
                           
                 document.getElementById('bcbsriid').value = data.BCBSRI_ID;
                 document.getElementById('dob').value = data.Mbr_DOB;
@@ -662,7 +676,7 @@ app.controller('return_report', ['$scope', function($scope) {
                 document.getElementById('practicesite').value = data.Practice_Site;
                 document.getElementById('practiceid').value = data.Practice_Identified_Indicator;
 
-                document.getElementById('outreach_attempted_date').value = data.Outreach_Attempted_Date;
+                document.getElementById('outreach_attempted_date').value =data.Outreach_Attempted_Date;
                 document.getElementById('enrolled_status_date').value = data.Enrolled_Status_Date;
                 document.getElementById('bh_screening_phq2_phq9_completed_date').value = data.BH_Screening_PHQ2_PHQ9_Completed_Date;
                 document.getElementById('care_plan_established_date').value = data.Care_Plan_Established_Date;
@@ -674,7 +688,7 @@ app.controller('return_report', ['$scope', function($scope) {
               .catch(error => {
                 console.log(error);
                 document.getElementById("loader").style.display = "none";
-                toastr.error('Something went wrong, Please try again!.');
+                //toastr.error('Something went wrong, Please try again!.');
              })  
     //End : Get PCMH Data by using PCMHID
 

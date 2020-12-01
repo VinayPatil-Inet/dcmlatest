@@ -285,6 +285,27 @@
     </section>
     <!-- /.content -->
   </div>
+
+  <div class="modal fade" id="modal-default" align="center" data-backdrop="static">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        
+        <div class="modal-body">
+          <br>
+          <input type="hidden" id="deleted_pcmh_id" name="deleted_pcmh_id" value="">
+          <input type="hidden" id="deleted_pcmh_status" name="deleted_pcmh_status" value="">
+          <h5 id="delete_msg"></h5>
+          <br>
+          <button type="button" onclick="DeletePcmh()" class="btn btn-success">Yes</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+        </div>
+        <br>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+
   <!-- /.content-wrapper -->
   <footer class="main-footer">
     <div class="float-right d-none d-sm-block">
@@ -395,9 +416,10 @@ function getResult(pcmdata)
             
             
             if (!full.isactive) {
-              ret += '<button onclick="DeletePcmh('+full.pcmhid+',1)" type="button" style="margin-left:2px;" class="btn btn-success btn-sm"><i class="fas fa-check"></i> Active</button>';
+              ret += '<button onclick="DeleteButton('+full.pcmhid+',1)" type="button" style="margin-left:2px;" class="btn btn-success btn-sm"><i class="fas fa-check"></i> Active</button>';
             } else {
-              ret += ' <button onclick="DeletePcmh('+full.pcmhid+',0)" style="margin-left:2px;" type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Deactivate</button>';
+             // ret += ' <button onclick="DeletePcmh('+full.pcmhid+',0)" style="margin-left:2px;" type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Deactivate</button>';
+              ret += ' <button onclick="DeleteButton('+full.pcmhid+',0)" style="margin-left:2px;" type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Deactivate</button>';
             }
             document.getElementById("loader").style.display = "none";
             return ret;
@@ -411,10 +433,65 @@ function getResult(pcmdata)
 }
 
 
-function DeletePcmh(id,status)
+function DeleteButton(id,status)
 {
+    $('#modal-default').modal('show');
+    
+    $('#deleted_pcmh_id').val(id);
+    if(status==1)
+    {
+      $("#delete_msg").empty().append("<b>Are you sure you want to Activate?</b>");
+     
+    }
+    else
+    {
+      $("#delete_msg").empty().append("<b>Are you sure you want to Deactivate?</b>");
+      
+    }
+    $('#deleted_pcmh_status').val(status);
+}
+
+function DeletePcmh()
+{
+  $('#modal-default').modal('hide');
+ var deleted_pcmh_id= $('#deleted_pcmh_id').val();
+ var deleted_pcmh_status= $('#deleted_pcmh_status').val();
+ 
+  var data='{"pcmhid":"'+deleted_pcmh_id+'","isactive":"'+deleted_pcmh_status+'"}';
+          fetch("https://apimsdcm.azure-api.net/dcmAPIM/deletepcmh", {
+                method: 'post',
+              // mode: 'no-cors', // no-cors, *cors, same-origin
+
+              headers: { 'Content-Type': 'application/json',
+                    "x-functions-key": "Y75v69weCc0+ZanTjf0jSihLRlZAOUJGRM8xTAbdDLMZdQiXYNiJfg==",
+                    "Ocp-Apim-Subscription-Key": "2584a9c08dd04aa49db05cbb265c9b91",
+                    // "subscription-key":"da91fd77-c908-4f23-9469-52acf3239a11"
+                    },
+                body: data
+            }).then((response) => {
+
+              if (response.ok) {
+                toastr.success('PCMH Deactivate Successfully!.');
+                var pcmhdata='{"pcmhid":"all"}';
+                $("#dt_getpcmhdata").dataTable().fnDestroy()
+                getpcmh(pcmhdata);
+              } else 
+              {
+                  toastr.error('Erro in Deactivate PCMH!.');
+              }
+            })
+                    
+            .catch(error => {
+             console.log(error)
+        })  
+}
+
+function DeletePcmh1(id,status)
+{
+ 
   if(status==1)
   {
+   
     var confirm_msg = confirm("Are you sure you want to Activate?");
   }
   else

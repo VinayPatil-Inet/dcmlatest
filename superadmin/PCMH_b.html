@@ -13,6 +13,9 @@
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="../plugins/datatables-bs4/css/dataTables.bootstrap4.css">
+
+  <link rel="stylesheet" href="../plugins/toastr/toastr.min.css">
+
   <link rel="stylesheet" href="../dist/css/admin_lte.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
@@ -81,7 +84,6 @@
       text-align: center;
     }
     </style>
-</head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
   <!-- Navbar -->
@@ -164,7 +166,7 @@
             
           </li>
           <li class="nav-item">
-            <a href="PCMH.html" class="nav-link "> 
+            <a href="PCMH.html" class="nav-link active"> 
               <i class="nav-icon fas fa-user-alt"></i>
               <p>
                 Add PCMH
@@ -174,7 +176,7 @@
           </li>
 
           <li class="nav-item">
-            <a href="user.html" class="nav-link active">
+            <a href="user.html" class="nav-link">
               <i class="nav-icon fas fa-user"></i>
               <p>
                 Add User
@@ -182,8 +184,7 @@
               </p>
             </a>
           </li>
-
-           <li class="nav-item">
+          <li class="nav-item">
             <a href="return_report.html" class="nav-link"> 
               <i class="nav-icon fas fa-file-alt"></i>
               <p>
@@ -192,7 +193,6 @@
               </p>
             </a>
           </li>
-         
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -207,12 +207,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>User</h1>
+            <h1>PCMH</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">User</li>
+              <li class="breadcrumb-item active">PCMH</li>
             </ol>
           </div>
         </div>
@@ -228,37 +228,52 @@
             <!-- general form elements -->
             <div class="card card-primary" >
               <div class="card-header" style="background-color: #048db7 !important;">
-                <h3 class="card-title">User </h3>
+                <h3 class="card-title">PCMH </h3>
                 <div class="card-tools">
                   <div id="loader" style="display: none;"></div>
-                 <a href="AddUser.html"> <button type="button" class="btn btn-warning btn-sm"><strong>Add User</strong></button></a>
+                 <a href="AddPCMH.html"> <button type="button" class="btn btn-warning btn-sm"><strong>Add PCMH</strong></button></a>
                 </div>
               </div>
-              
+             
+
+               <!-- <div class="card-body">
+                  <button onclick="updatedata(1)" name="test">dsfds</button>
+                  <div class="col-12 table-responsive">
+                    <table id="dt_getpcmh" class="table table-bordered table-striped">
+                      <thead>
+                      <tr>
+                        <th>PCMH Name</th>
+                        <th>Designated User Name</th>
+                        <th>User ID</th>
+                        <th>Email ID </th>
+                        <th>Action</th>
+                      </tr>
+                      </thead>
+                      
+                    </table>
+                  </div>
+                </div>-->
+
                 <div class="card-body">
                   <div class="col-12 table-responsive">
-                    <table id="dt_getuser" class="table table-bordered table-striped">
+                    <table id="dt_getpcmhdata" class="table table-bordered table-striped">
                       <thead>
-                        <tr>
-                         
-                          <!-- <th>User Id</th> -->
-                          <th>User Name</th>
-                          <th>First Name</th>
-                          <th>Last Name</th>
-                          <th>User Type</th>
-                          <th>Email</th>
-                          <th>PCMH</th>
-                          <th>Phone</th>
-                          <th>Action</th>
-                        </tr>
+                      <tr>
+                        <th>PCMH Name</th>
+                        <th>Designated User Name</th>
+                        <th>PCMH Sitename</th>
+                        <th>Email ID </th>
+                        <th>Action</th>
+                       
+                      </tr>
                       </thead>
                       
                     </table>
                   </div>
                 </div>
+
                 
                 
-             
             </div>
             <!-- /.card -->
           </div>
@@ -270,27 +285,6 @@
     </section>
     <!-- /.content -->
   </div>
-
-  <div class="modal fade" id="modal-default" align="center" data-backdrop="static">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        
-        <div class="modal-body">
-          <br>
-          <input type="hidden" id="deleted_user_id" name="deleted_user_id" value="">
-          <input type="hidden" id="deleted_user_status" name="deleted_user_status" value="">
-          <h5 id="delete_msg"></h5>
-          <br>
-          <button type="button" onclick="Deleteuser()" class="btn btn-success">Yes</button>
-          <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
-        </div>
-        <br>
-      </div>
-      <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-  </div>
-
   <!-- /.content-wrapper -->
   <footer class="main-footer">
     <div class="float-right d-none d-sm-block">
@@ -308,12 +302,9 @@
 </div>
 <!-- ./wrapper -->
 
-
-<link rel="stylesheet" href="../plugins/toastr/toastr.min.css">
-
 <!-- jQuery -->
-<script src="../plugins/jquery/jquery.min.js"></script>
 
+<script src="../plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- bs-custom-file-input -->
@@ -321,52 +312,37 @@
 
 <script src="../plugins/datatables/jquery.dataTables.js"></script>
 <script src="../plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
-<script src="../plugins/toastr/toastr.min.js"></script>
 
 <!-- AdminLTE App -->
 <script src="../dist/js/adminlte.min.js"></script>
+
+<script src="../plugins/toastr/toastr.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../dist/js/demo.js"></script>
+<script src="../dist/FileSaver.js"></script>
 <script src="../dist/js/aes.js"></script>
+
 <script type="text/javascript">
 $(document).ready(function () {
   bsCustomFileInput.init();
-  //$("#example1").DataTable();
   
-  //Start : Load json Data into the datatable 
-    // var user_data = [{"id":"1", "name": "Alexander Pierce","email": "alepierce@gmail.com ", "userid": "alepierce","pcmh": "PCMH2","url": "#"},{"id": "2","name": "Rocky Doe", "email": "rockydoe@gmail.com ","userid": "rockydoe","pcmh": "PCMH2","url": "#"},{"id": "3","name": "Bob Doe","email": "bobdoe@gmail.com ","userid": "bobdoe","pcmh": "PCMH1","url": "#"}];
 
-  
-    // $('#dt_getuser').dataTable({
-    //   "aaData": user_data,
+    
+     
+    
+var pcmdata="";
+var data='{"pcmhid":"all"}';
+// console.log("ttttrowObject ="+JSON.stringify(data));
 
-    //   "aoColumnDefs": [ {
-    //   "aTargets": 4,
-    //   "adata": "title",
-    //   "mRender": function(adata){
-    //     return '<button type="button" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i> Edit</button> <!--<a href="'+adata+'">view</a>-->';
-    //   }
-    //   }],
+getpcmh(data);
 
-    //   "aoColumns": [
-    //       { "data": "name" },
-    //       { "data": "email" },
-    //       { "data": "userid" },
-    //       { "data": "pcmh" },
-    //       { "data": "url" }
-    //   ]
-    // });
-   //End : Load json Data into the datatable 
-   var user_data="";
-var data='{"pcmhid":2}';
+    });
 
-   getuserdata(data);
-});
-
-function getuserdata(data)
+    
+function getpcmh(data)
 {
   document.getElementById("loader").style.display = "block";
-  fetch("https://apimsdcm.azure-api.net/dcmAPIM/getallusers", {
+  fetch("https://apimsdcm.azure-api.net/dcmAPIM/fileupload", {
         method: 'post',
        // mode: 'no-cors', // no-cors, *cors, same-origin
 
@@ -387,13 +363,13 @@ function getuserdata(data)
             })
             .then(response => response.json())
             .then(data => {
-                console.log("data: " + JSON.stringify(data))
-                user_data = JSON.stringify(data);
+                console.log("data:" + JSON.stringify(data))
+                pcmdata = JSON.stringify(data);
                 if(data.length==0)
                 {
                   document.getElementById("loader").style.display = "none";
                 }
-                getResult(user_data);
+                getResult(pcmdata);
                
             })
             .catch(error => {
@@ -401,64 +377,54 @@ function getuserdata(data)
             })  
 }
     
-function getResult(user_data)
+function getResult(pcmdata)
 {
 
  
-  var getpcmhdatatable= $('#dt_getuser').dataTable({
-          "aaData": JSON.parse(user_data),
-
-         /* "aoColumnDefs": [ {
-          "aTargets": 7,
-          "adata": "userid",
-          "mRender": function(adata){
-          //var pid= CryptoJS.AES.encrypt(adata, "test");
-            return '<a href="http://localhost/dcm/superadmin/updateuser.html?userid='+CryptoJS.AES.encrypt(""+adata+"", "getuser")+'"><button type="button" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i> Edit</button></a> <button onclick="Deleteuser('+adata+')"  type="button" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i> Delete</button>';
-            
-          }
-          }],*/
+  var getpcmhdatatable= $('#dt_getpcmhdata').dataTable({
+          "aaData": JSON.parse(pcmdata),
 
           "aoColumns": [
           
-          { "data": "username" },
-          { "data": "firstname" },
-          { "data": "lastname" },
-          { "data": "usertype" },
-          { "data": "email" },
-          { "data": "pcmhname" },
-          { "data": "phone" },
-        //  { "data": "userid" },
-          { render: function(data, type, full) {
-            var ret = '<a href="updateuser.html?userid='+CryptoJS.AES.encrypt(""+full.userid+"", "getuser")+'"> <button type="button" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i> Edit</button></a>';
+            { "data": "pcmhname" },
+            { "data": "pcmh_dgn_username" },
+            { "data": "pcmhsitename" },
+            { "data": "emailID" },
+            { render: function(data, type, full) {
+            var ret = '<a href="updatepcmh.html?pcmhid='+CryptoJS.AES.encrypt(""+full.pcmhid+"", "getpcmh")+'"> <button type="button" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i> Edit</button></a>';
             
-            document.getElementById("loader").style.display = "none";
+            
             if (!full.isactive) {
-              ret += '<button onclick="DeleteButton('+full.userid+',1)" type="button" style="margin-left:2px;" class="btn btn-success btn-sm"><i class="fas fa-check"></i> Active</button>';
+              ret += '<button onclick="DeletePcmh('+full.pcmhid+',1)" type="button" style="margin-left:2px;" class="btn btn-success btn-sm"><i class="fas fa-check"></i> Active</button>';
             } else {
-              ret += ' <button onclick="DeleteButton('+full.userid+',0)" style="margin-left:2px;" type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Deactivate</button>';
-            
+              ret += ' <button onclick="DeletePcmh('+full.pcmhid+',0)" style="margin-left:2px;" type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Deactivate</button>';
             }
+            document.getElementById("loader").style.display = "none";
             return ret;
-           
           }
         },
-           ]
+           
+          ]
+
+          
         });
 }
 
 
-
-
-  function Deleteuser(id,status)
+function DeletePcmh(id,status)
+{
+  if(status==1)
   {
-    $('#modal-default').modal('hide');
-    var deleted_user_id= $('#deleted_user_id').val();
-    var deleted_user_status= $('#deleted_user_status').val();
-
-    var data='{"userid":"'+deleted_user_id+'","isactive":"'+deleted_user_status+'"}';
-
-          console.log("datadata=== "+JSON.stringify(data));
-          fetch("https://apimsdcm.azure-api.net/dcmAPIM/deleteuser", {
+    var confirm_msg = confirm("Are you sure you want to Activate?");
+  }
+  else
+  {
+    var confirm_msg = confirm("Are you sure you want to Deactivate?");
+  }
+        if (confirm_msg == true) 
+        {
+          var data='{"pcmhid":"'+id+'","isactive":"'+status+'"}';
+          fetch("https://apimsdcm.azure-api.net/dcmAPIM/deletepcmh", {
                 method: 'post',
               // mode: 'no-cors', // no-cors, *cors, same-origin
 
@@ -471,40 +437,24 @@ function getResult(user_data)
             }).then((response) => {
 
               if (response.ok) {
-                toastr.success('User Status Changed!.');
-                var data='{"pcmhid":2}';
-                $("#dt_getuser").dataTable().fnDestroy()
-                getuserdata(data);
+                toastr.success('PCMH Deactivate Successfully!.');
+                var pcmhdata='{"pcmhid":"all"}';
+                $("#dt_getpcmhdata").dataTable().fnDestroy()
+                getpcmh(pcmhdata);
               } else 
               {
-                  toastr.error('Erro in Deleting User!.');
+                  toastr.error('Erro in Deactivate PCMH!.');
               }
             })
                     
             .catch(error => {
              console.log(error)
         })  
-    
+    }
   }
 
-  function DeleteButton(id,status)
-{
-    $('#modal-default').modal('show');
-    
-    $('#deleted_user_id').val(id);
-    if(status==1)
-    {
-      $("#delete_msg").empty().append("<b>Are you sure you want to Activate?</b>");
-     
-    }
-    else
-    {
-      $("#delete_msg").empty().append("<b>Are you sure you want to Deactivate?</b>");
-      
-    }
-    $('#deleted_user_status').val(status);
-}
 
+  
 </script>
 </body>
 </html>

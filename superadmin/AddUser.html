@@ -223,14 +223,12 @@
                     <div class="row">
                       <div class="col-md-6">
                         <div class="form-group">
-                          <label for="exampleInputPassword1">Select PCMH <span style="color:red;">*</span></label>
-                          <select name="pcmh" id="pcmh" class="form-control" ng-model="user.pcmh" >
+                          <label for="exampleInputPassword1">Select User Type <span style="color:red;">*</span></label>
+                          <select name="usertype" id="usertype" class="form-control" ng-model="user.usertype" ng-change="checkusertype(user)">
                             <option value="">--Select--</option>
-                            <!-- <option value="PCMH1">PCMH1</option>
-                            <option value="PCMH2">PCMH2</option>
-                            <option value="PCMH3">PCMH3</option> -->
+                           
                           </select>
-                          <!-- <span class="error" ng-show="form.pcmh.$dirty && form.pcmh.$error.required">Select PCMH!.</span> -->
+                         
                         </div>
                       </div>
                       <div class="col-md-6">
@@ -246,14 +244,18 @@
   
                     <div class="row">
 
+                     
+
                       <div class="col-md-6">
                         <div class="form-group">
-                          <label for="exampleInputPassword1">Select User Type <span style="color:red;">*</span></label>
-                          <select name="usertype" id="usertype" class="form-control" ng-model="user.usertype" >
+                          <label for="exampleInputPassword1">Select PCMH <span style="color:red;">*</span></label>
+                          <select name="pcmh" id="pcmh" class="form-control" ng-model="user.pcmh" >
                             <option value="">--Select--</option>
-                           
+                            <!-- <option value="PCMH1">PCMH1</option>
+                            <option value="PCMH2">PCMH2</option>
+                            <option value="PCMH3">PCMH3</option> -->
                           </select>
-                         
+                          <!-- <span class="error" ng-show="form.pcmh.$dirty && form.pcmh.$error.required">Select PCMH!.</span> -->
                         </div>
                       </div>
 
@@ -347,6 +349,8 @@
   var app = angular.module('adduser', []);
   //Start : Generate Json
   
+
+
   //Genareate File objects
     $('input:file').each( function(){
         $(this).after('<input type="text" readonly name="' + $(this).attr("id").replace("_", " ") + '" hidden value=""/>');
@@ -386,6 +390,11 @@ var jsonData;
 
     app.controller('adduserController', function($scope) {
 
+
+      // $scope.checkusertype=function(usertype)
+      // {
+      //   alert(usertype.usertype);
+      // }
 
       $scope.submitForm = function () {
        

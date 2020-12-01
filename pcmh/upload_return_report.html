@@ -528,7 +528,7 @@ $scope.submitForm = function () {
             fileReader.readAsBinaryString(selectedFile);
             fileReader.onload = (event)=>{
             let data = event.target.result;
-            let workbook = XLSX.read(data,{type:"binary"});
+            let workbook = XLSX.read(data,{type:"binary",cellDates: true});
             console.log("workbook "+filename_n);
             workbook.SheetNames.forEach(sheet => {
                 var rowObject = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheet]);
@@ -617,7 +617,13 @@ fetch("https://apimsdcm.azure-api.net/PCMH/getuploadfileid", {
 
                    var  uploadedfileid_id = obj;
 
-                  jsonData = JSON.stringify($.extend({}, json1,filename_n,uploadedfileid_id,  result));
+                   var useridkey = "userid";
+                  var ob2  = {};
+                  ob2[useridkey] = sessionStorage.getItem("userid");
+                  
+                  userid = ob2;
+
+                  jsonData = JSON.stringify($.extend({}, json1,filename_n,userid,uploadedfileid_id,  result));
 
                   console.log("resulted data=== "+jsonData);
 
@@ -654,10 +660,12 @@ fetch("https://apimsdcm.azure-api.net/PCMH/updatereturnreportdata_from_file", {
                     throw `update Looks like something went wrong. Status: ${response.status}`;
                 }
             })
-            .then(response => response.json())
+            .then(response => response.text())
             .then(data => {
                 console.log("data: " + data);
+                toastr.success('File uploaded sucessfully!.');
                 document.getElementById("loader").style.display = "none";
+                window.location.replace("return_report.html");
             })
             .catch(error => {
                 console.log(error);

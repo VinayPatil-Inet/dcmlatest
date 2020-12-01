@@ -443,8 +443,11 @@ $(document).ready(function () {
 
     function get_review_return_file()
     {
-      var logged_in_userid=1;
-      var data='{"user_role_id":"0","logged_in_userid":"'+logged_in_userid+'"}';
+      var logged_in_userid=sessionStorage.getItem("userid");
+      var usertype=sessionStorage.getItem("usertype");
+     
+
+      var data='{"usertype":"'+usertype+'","logged_in_userid":"'+logged_in_userid+'"}';
 
       var review_return_filedata="";
       fetch("https://apimsdcm.azure-api.net/dcmAPIM/review_return_report_file", {
