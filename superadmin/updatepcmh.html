@@ -435,9 +435,9 @@ $(document).ready(function () {
     //Start : Get PCMH ID from URL
       const queryString = window.location.search;
       const urlParams = new URLSearchParams(queryString);
-      const pcmh_id = urlParams.get('pcmhid')
-      var decrypted = CryptoJS.AES.decrypt(pcmh_id, "getpcmh");
-      const pcmhid = decrypted.toString(CryptoJS.enc.Utf8);
+      const pcmhid = urlParams.get('pcmhid')
+      // var decrypted = CryptoJS.AES.decrypt(pcmh_id, "getpcmh");
+      // const pcmhid = decrypted.toString(CryptoJS.enc.Utf8);
 
     //End : Get PCMH ID from URL
     

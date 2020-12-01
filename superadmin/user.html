@@ -429,7 +429,7 @@ function getResult(user_data)
           { "data": "phone" },
         //  { "data": "userid" },
           { render: function(data, type, full) {
-            var ret = '<a href="updateuser.html?userid='+CryptoJS.AES.encrypt(""+full.userid+"", "getuser")+'"> <button type="button" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i> Edit</button></a>';
+            var ret = '<a href="updateuser.html?userid='+full.userid+'"> <button type="button" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i> Edit</button></a>';
             
             document.getElementById("loader").style.display = "none";
             if (!full.isactive) {

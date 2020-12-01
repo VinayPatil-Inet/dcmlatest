@@ -412,7 +412,7 @@ function getResult(pcmdata)
             { "data": "pcmhsitename" },
             { "data": "emailID" },
             { render: function(data, type, full) {
-            var ret = '<a href="updatepcmh.html?pcmhid='+CryptoJS.AES.encrypt(""+full.pcmhid+"", "getpcmh")+'"> <button type="button" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i> Edit</button></a>';
+            var ret = '<a href="updatepcmh.html?pcmhid='+full.pcmhid+'"> <button type="button" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i> Edit</button></a>';
             
             
             if (!full.isactive) {

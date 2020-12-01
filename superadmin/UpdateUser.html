@@ -520,9 +520,9 @@ var jsonData;
        //Start : Get PCMH ID from URL
       const queryString = window.location.search;
       const urlParams = new URLSearchParams(queryString);
-      const user_id = urlParams.get('userid')
-      var decrypted = CryptoJS.AES.decrypt(user_id, "getuser");
-      const userid = decrypted.toString(CryptoJS.enc.Utf8);
+      const userid = urlParams.get('userid')
+      // var decrypted = CryptoJS.AES.decrypt(user_id, "getuser");
+      // const userid = decrypted.toString(CryptoJS.enc.Utf8);
 
     //End : Get PCMH ID from URL
     
