@@ -481,9 +481,9 @@ $(document).ready(function () {
       const urlParams = new URLSearchParams(queryString);
       if(urlParams!="")
       {
-        const uploadedfileid = urlParams.get('uploadedfileid')
-        // var decrypted = CryptoJS.AES.decrypt(uploaded_fileid, "retrun_report");
-        // var uploadedfileid = decrypted.toString(CryptoJS.enc.Utf8);
+        const uploaded_fileid = urlParams.get('uploadedfileid')
+        var decrypted = CryptoJS.AES.decrypt(uploaded_fileid, "retrun_report");
+        var uploadedfileid = decrypted.toString(CryptoJS.enc.Utf8);
       }
       else
       {
