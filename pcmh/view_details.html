@@ -594,7 +594,7 @@ app.controller('return_report', ['$scope', function($scope) {
                                     document.getElementById('practicesite').value = data.Practice_Site;
                                     document.getElementById('practiceid').value = data.Practice_Identified_Indicator;
 
-                                    document.getElementById('outreach_attempted_date').value =new Date(data.Outreach_Attempted_Date);
+                                    document.getElementById('outreach_attempted_date').value =data.Outreach_Attempted_Date;
                                     document.getElementById('enrolled_status_date').value = data.Enrolled_Status_Date;
                                     document.getElementById('bh_screening_phq2_phq9_completed_date').value = data.BH_Screening_PHQ2_PHQ9_Completed_Date;
                                     document.getElementById('care_plan_established_date').value = data.Care_Plan_Established_Date;
