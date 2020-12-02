@@ -59,7 +59,7 @@
             <ul class="dropdown-menu" style="width: 200px;">
               <li class="user-header">
                 <img src="../dist/img/default.png" class="img-circle" alt="User Image">
-                <p id="usertype"></p>
+                <p id="usertypem"></p>
               <p id="username"></p>
               </li>
               <li class="user-footer">
@@ -348,7 +348,7 @@
     var usertype=sessionStorage.getItem("usertype");
   var username=sessionStorage.getItem("username");
 
-  document.getElementById('usertype').innerHTML=usertype;
+  document.getElementById('usertypem').innerHTML=usertype;
   document.getElementById('username').innerHTML=username;
   });
   
