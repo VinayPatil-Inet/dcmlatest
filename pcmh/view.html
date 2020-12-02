@@ -806,6 +806,16 @@ $scope.pcmhid = sessionStorage.getItem("pcmhid");
 // upload later on form submit or something similar
 $scope.submit = function() {
      
+ var month= document.getElementById("month").value;
+ var year= document.getElementById("year").value;
+ if(month=='' || year=='')
+ {
+  toastr.error('Please select Month and Year!.');
+ }
+ else{
+
+ 
+
   document.getElementById("loader").style.display = "block";
       var json1 = $('form').serializeObject();
       var pcmh_id = "pcmh_id";
@@ -816,7 +826,7 @@ $scope.submit = function() {
             
             // window.open("https://storageaccountdcm8caa.blob.core.windows.net/bcbsriuploadedfiles/dcm-1605243195000.xlsx", "");
        downloadfile(jsonData2);
-     
+ }
    };
 
      function downloadfile(json1)
