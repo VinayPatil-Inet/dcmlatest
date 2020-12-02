@@ -14,7 +14,7 @@
   <!-- Theme style -->
   
   <link rel="stylesheet" href="../dist/css/admin_lte.css">
-
+  <link rel ="stylesheet" href="../dist/css/loader.css">
   <link rel="stylesheet" href="../plugins/datepicker/datepicker3.css">
   <link href="../plugins/bootstrap-fileinput/css/fileinput.min.css" rel="stylesheet" />
   
@@ -53,12 +53,7 @@
       <li class="nav-item">
         <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
       </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Home</a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Contact</a>
-      </li>
+      
     </ul>
 
    
@@ -293,62 +288,7 @@
 
 <!-- jQuery -->
 
-<style>
-  /* Center the loader */
-  #loader {
-    position: fixed;
-    left: 50%;
-    top: 50%;
-    z-index: 1;
-    width: 150px;
-    height: 150px;
-    margin: -75px 0 0 -75px;
-    border: 16px solid #f3f3f3;
-    border-radius: 50%;
-    border-top: 16px solid blue;
-    border-bottom: 16px solid;
-    border-top: 16px solid #3498db;
-    width: 60px;
-    height: 60px;
-    -webkit-animation: spin 2s linear infinite;
-    animation: spin 2s linear infinite;
-    
-  }
-  
-  @-webkit-keyframes spin {
-    0% { -webkit-transform: rotate(0deg); }
-    100% { -webkit-transform: rotate(360deg); }
-  }
-  
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
-  
-  /* Add animation to "page content" */
-  .animate-bottom {
-    position: relative;
-    -webkit-animation-name: animatebottom;
-    -webkit-animation-duration: 1s;
-    animation-name: animatebottom;
-    animation-duration: 1s
-  }
-  
-  @-webkit-keyframes animatebottom {
-    from { bottom:-100px; opacity:0 } 
-    to { bottom:0px; opacity:1 }
-  }
-  
-  @keyframes animatebottom { 
-    from{ bottom:-100px; opacity:0 } 
-    to{ bottom:0; opacity:1 }
-  }
-  
-  #myDiv {
-    display: none;
-    text-align: center;
-  }
-  </style>
+
 
 
 <script src="../plugins/jquery/jquery.min.js"></script>
@@ -360,6 +300,8 @@
 <script src="../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../dist/js/demo.js"></script>
+
+<script src="../dist/js/pcmh.js"></script>
 <script src="../plugins/datepicker/bootstrap-datepicker.js"></script>
 
 
@@ -668,7 +610,10 @@ fetch("https://apimsdcm.azure-api.net/PCMH/updatereturnreportdata_from_file", {
                 console.log("data: " + data);
                 toastr.success('File uploaded sucessfully!.');
                 document.getElementById("loader").style.display = "none";
-                window.location.replace("return_report.html");
+                setTimeout(function() { 
+                  window.location.replace("return_report.html");
+                },2000);  
+                
             })
             .catch(error => {
                 console.log(error);

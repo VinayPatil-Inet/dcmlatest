@@ -14,7 +14,7 @@
 
   function demographics_data()
   {
-    
+    document.getElementById("loader").style.display = "block";
     var demographicsdata ='{"demographicsdatatype":"demographics","logged_in_userid":"'+logged_in_userid+'","usertype":"'+usertype+'","pcmhid":"'+pcmhid+'"}';
    
     fetch("https://apimsdcm.azure-api.net/PCMH/pcmhreports", {
@@ -95,18 +95,20 @@
 
 
                   $('#btn_search').click(function(){
-  
-                    var risk = $('#risk').val();
-                    var year = $('#year').val();
-                    var month = $('#month').val();
-                    var searchresult = risk+' '+month+' '+year;
-                    demographicsTable.search(searchresult).draw();
-                
+                    document.getElementById("loader").style.display = "block";
+                    setTimeout(function() {
+                      var risk = $('#risk').val();
+                      var year = $('#year').val();
+                      var month = $('#month').val();
+                      var searchresult = risk+' '+month+' '+year;
+                      demographicsTable.search(searchresult).draw();
+                      document.getElementById("loader").style.display = "none";
+                    },1000);  
                   })
-               
+                  document.getElementById("loader").style.display = "none";
               },2000);     
      
-             
+              
             })
             .catch(error => {
                 console.log(error)

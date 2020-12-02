@@ -1,3 +1,4 @@
+/*Start : Loader */
 #loader {
     position: fixed;
     left: 50%;
@@ -15,6 +16,7 @@
     height: 60px;
     -webkit-animation: spin 2s linear infinite;
     animation: spin 2s linear infinite;
+    
   }
   
   @-webkit-keyframes spin {
@@ -50,3 +52,5 @@
     display: none;
     text-align: center;
   }
+  
+  /*End : Loader */

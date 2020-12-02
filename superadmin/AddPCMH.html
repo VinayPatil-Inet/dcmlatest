@@ -14,6 +14,7 @@
   <!-- Theme style -->
   
   <link rel="stylesheet" href="../dist/css/admin_lte.css">
+  <link rel ="stylesheet" href="../dist/css/loader.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <style>
@@ -28,6 +29,8 @@
     .error{
         color: red;
       }
+
+      
   </style>
 </head>
 <script src="../dist/js/angular.min.js"></script>
@@ -41,12 +44,7 @@
       <li class="nav-item">
         <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
       </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Home</a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Contact</a>
-      </li>
+      
     </ul>
 
    
@@ -179,6 +177,7 @@
             <div class="card card-primary" >
               <div class="card-header" style="background-color: #048db7 !important;">
                 <h3 class="card-title">Add PCMH</h3>
+                <div id="loader" style="display: none;"></div>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
@@ -341,6 +340,9 @@
 <!-- AdminLTE App -->
 <script src="../dist/js/adminlte.min.js"></script>
 
+
+<script src="../dist/js/superadmin.js"></script>
+
 <!-- AdminLTE for demo purposes -->
 <script src="../dist/js/demo.js"></script>
 <script src="../dist/FileSaver.js"></script>
@@ -394,6 +396,7 @@ $(document).ready(function () {
 
   $(function() {
       $('form').submit(function() {
+        document.getElementById("loader").style.display = "block";
         // const fetch = require('node-fetch');
         // const fetch =require('node-fetch').request()
         var result = JSON.stringify($('form').serializeObject());
@@ -411,6 +414,7 @@ $(document).ready(function () {
             },
             body: result
         }).then(function(response){
+          document.getElementById("loader").style.display = "none";
             console.log("seeeeeee==== "+JSON.stringify(response));
             toastr.success('PCMH Created Successfully!.');
             $('#modal-default').modal('show');

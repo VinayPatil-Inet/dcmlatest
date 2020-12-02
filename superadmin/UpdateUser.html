@@ -14,6 +14,7 @@
     <!-- Theme style -->
     
     <link rel="stylesheet" href="../dist/css/admin_lte.css">
+    <link rel ="stylesheet" href="../dist/css/loader.css">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     <style>
@@ -39,12 +40,7 @@
         <li class="nav-item">
           <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
         </li>
-        <li class="nav-item d-none d-sm-inline-block">
-          <a href="#" class="nav-link">Home</a>
-        </li>
-        <li class="nav-item d-none d-sm-inline-block">
-          <a href="#" class="nav-link">Contact</a>
-        </li>
+        
       </ul>
   
      
@@ -177,6 +173,7 @@
               <div class="card card-primary" >
                 <div class="card-header" style="background-color: #048db7 !important;">
                   <h3 class="card-title">Update User</h3>
+                  <div id="loader" style="display: none;"></div>
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
@@ -336,6 +333,9 @@
   <script src="../plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
   <!-- AdminLTE App -->
   <script src="../dist/js/adminlte.min.js"></script>
+
+  <script src="../dist/js/superadmin.js"></script>
+  
   <!-- AdminLTE for demo purposes -->
   <script src="../dist/js/demo.js"></script>
   <script src="../dist/js/aes.js"></script>
@@ -391,7 +391,7 @@ var jsonData;
 
 
       $scope.submitForm = function () {
-       
+        document.getElementById("loader").style.display = "block";
         var result = JSON.stringify($('form').serializeObject());
         // $('#result').text(JSON.stringify($('form').serializeObject()));
 
@@ -416,7 +416,10 @@ var jsonData;
                 } else {
                   toastr.error('Erro in Updating PCMH User!.');
                 }
-                window.location.replace("user.html");
+                document.getElementById("loader").style.display = "none";
+                setTimeout(function() {
+                  window.location.replace("user.html");
+                },2000);
             })
             .catch(error => {
                 console.log("Errroorrr "+error)

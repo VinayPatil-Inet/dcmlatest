@@ -53,12 +53,7 @@
       <li class="nav-item">
         <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
       </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Home</a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Contact</a>
-      </li>
+      
     </ul>
 
    
@@ -270,13 +265,7 @@
                
             
                 <!-- </form> -->
-              <div id="result"></div>
-
-              <pre id="jsondata"></pre>
-
-              ---------------------------------------------------------------------
-
-              <div id="result11"></div>
+             
             </div>
             <!-- /.card -->
           </div>
@@ -391,6 +380,8 @@
 
    <script src="../dist/js/azure-storage.blob.js" charset="utf-8"></script>
    <!-- <script src="../dist/js/azure-storage-blob.min.js" charset="utf-8"></script> -->
+
+   <script src="../dist/js/admin.js"></script>
 
    <script src="../node_modules/ng-file-upload/dist/ng-file-upload-shim.min.js"></script>
    <script src="../node_modules/ng-file-upload/dist/ng-file-upload.min.js"></script>
@@ -690,8 +681,10 @@ function Insertfiledata(data)
       .then(data => {
           console.log("data:" + JSON.stringify(data)+"")
           document.getElementById("loader").style.display = "none";
-          toastr.success('File is uploaded Successfully!.');     
-          window.location.replace("dashboard.html");             
+          toastr.success('File is uploaded Successfully!.'); 
+          setTimeout(function() {    
+            window.location.replace("dashboard.html");    
+          },2000);         
          
       })
       .catch(error => {

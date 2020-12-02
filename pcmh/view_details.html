@@ -44,12 +44,7 @@
       <li class="nav-item">
         <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
       </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Home</a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Contact</a>
-      </li>
+      
     </ul>
 
    
@@ -236,14 +231,14 @@
                           <div class="row">
                             <div class="col-md-6">
                              <div class="form-group">
-                                <label>Outreach Attempted Date <span style="color:red;">*</span></label>
+                                <label>Outreach Attempted Date </label>
                                 <input type="date" name="outreach_attempted_date" id="outreach_attempted_date"  placeholder="Outreach Attempted Date" data-datepicker-popup="MM/dd/yyyy"  class="form-control" value=""  autocomplete="off" ng-model="view_details.outreach_attempted_date">
                                  <span class="error" ng-show="form.outreach_attempted_date.$dirty && form.outreach_attempted_date.$error.required">Select Outreach Attempted Date !.</span>
 								              </div>
                             </div>
                             <div class="col-md-6">
                               <div class="form-group">
-                                <label>Enrolled Status Date <span style="color:red;">*</span></label>
+                                <label>Enrolled Status Date </label>
                                 <input type="date" name="enrolled_status_date" id="enrolled_status_date"  placeholder="Enrolled Status Date" data-datepicker-popup="MM/dd/yyyy" class="form-control" value=""  autocomplete="off" ng-model="view_details.enrolled_status_date">
                                 <span class="error" ng-show="form.enrolled_status_date.$dirty && form.enrolled_status_date.$error.required">Select Enrolled Status Date!.</span>
 								              </div>
@@ -252,14 +247,14 @@
                           <div class="row">
                             <div class="col-md-6">
                              <div class="form-group">
-                                <label>BH Screening PHQ-2 PHQ9 Completed Date <span style="color:red;">*</span></label>
+                                <label>BH Screening PHQ-2 PHQ9 Completed Date </label>
                                 <input type="date" name="bh_screening_phq2_phq9_completed_date" id="bh_screening_phq2_phq9_completed_date"  placeholder="BH Screening PHQ-2 PHQ9 Completed Date" data-datepicker-popup="MM/dd/yyyy"  class="form-control " value=""  autocomplete="off" ng-model="view_details.bh_screening_phq2_phq9_completed_date">
                                 <span class="error" ng-show="form.bh_screening_phq2_phq9_completed_date.$dirty && form.bh_screening_phq2_phq9_completed_date.$error.required">Select BH Screening PHQ-2 PHQ9 Completed Date!.</span>
 								              </div>
                             </div>
                             <div class="col-md-6">
                               <div class="form-group">
-                                <label>Care Plan Established Date <span style="color:red;">*</span></label>
+                                <label>Care Plan Established Date </label>
                                 <input type="date" name="care_plan_established_date" id="care_plan_established_date"  placeholder="Care Plan Established Date" data-datepicker-popup="MM/dd/yyyy"  class="form-control " value=""  autocomplete="off" ng-model="view_details.care_plan_established_date">
                                 <span class="error" ng-show="form.care_plan_established_date.$dirty && form.care_plan_established_date.$error.required">Select Care Plan Established Date!.</span>
 								              </div>
@@ -268,7 +263,7 @@
                           <div class="row">
                             <div class="col-md-6">
                              <div class="form-group">
-                                <label>Discharged from CM Date <span style="color:red;">*</span></label>
+                                <label>Discharged from CM Date </label>
                                 <input type="date" name="discharged_from_cm_date" id="discharged_from_cm_date"  placeholder="Discharged from CM Date" data-datepicker-popup="MM/dd/yyyy"  class="form-control " value=""  autocomplete="off" ng-model="view_details.discharged_from_cm_date">
                                 <span class="error" ng-show="form.discharged_from_cm_date.$dirty && form.discharged_from_cm_date.$error.required">Select Discharged from CM Date!.</span>
 								              </div>
@@ -309,6 +304,24 @@
         <!-- /.row -->
       </div><!-- /.container-fluid -->
     </section>
+    <div class="modal fade" id="modal-default" align="center" data-backdrop="static">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          
+          <div class="modal-body">
+            <br>
+            
+            <h5>Date updated Successfully.<br>Do you want to Continue..?</h5>
+            <br>
+            <button type="button" class="btn btn-success" data-dismiss="modal">Yes</button>
+            <a href="return_report_individual"><button type="button" class="btn btn-danger">No</button></a>
+          </div>
+          <br>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
@@ -395,6 +408,8 @@
 <script src="../plugins/datatables/jquery.dataTables.js"></script>
 <script src="../plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
 
+
+<script src="../dist/js/pcmh.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../dist/js/demo.js"></script>
 <script src="../plugins/datepicker/bootstrap-datepicker.js"></script>
@@ -606,6 +621,7 @@ app.controller('return_report', ['$scope', function($scope) {
                                     document.getElementById("loader").style.display = "none";
                                     // document.getElementById("loader").style.display = "none";
                                      toastr.success('Date updated Successfully!.');  
+                                     $('#modal-default').modal('show');
                                   })
                                   .catch(error => {
                                     console.log(error);

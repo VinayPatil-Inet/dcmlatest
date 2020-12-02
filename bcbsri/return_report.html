@@ -93,12 +93,7 @@
       <li class="nav-item">
         <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
       </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Home</a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Contact</a>
-      </li>
+      
     </ul>
 
    
@@ -362,6 +357,8 @@
 
 <!-- AdminLTE App -->
 <script src="../dist/js/adminlte.min.js"></script>
+
+<script src="../dist/js/admin.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../dist/js/aes.js"></script>
 <script type="text/javascript">
@@ -437,13 +434,16 @@ $(document).ready(function () {
 
                    //Start : Search Button Result
       
-                      $('#btn_search').click(function(){
-                
-                var pcmh = $('#pcmh').val();
-                var month = $('#month').val();
-                var year = $('#year').val();
-                var searchresult = pcmh+' '+month+' '+year;
-                review_return_reportTable.search(searchresult).draw();
+                $('#btn_search').click(function(){
+                  document.getElementById("loader").style.display = "block";
+                  setTimeout(function() {
+                    var pcmh = $('#pcmh').val();
+                    var month = $('#month').val();
+                    var year = $('#year').val();
+                    var searchresult = pcmh+' '+month+' '+year;
+                    review_return_reportTable.search(searchresult).draw();
+                    document.getElementById("loader").style.display = "none";
+                    },1000);  
 
                 })
                 //End : Search Button Result
