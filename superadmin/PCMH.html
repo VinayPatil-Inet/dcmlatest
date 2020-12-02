@@ -404,7 +404,7 @@ function getResult(pcmdata)
  
   var getpcmhdatatable= $('#dt_getpcmhdata').dataTable({
           "aaData": JSON.parse(pcmdata),
-
+          "aaSorting": [],
           "aoColumns": [
           
             { "data": "pcmhname" },

@@ -532,7 +532,7 @@ $(document).ready(function () {
               setTimeout(function() {
                 var dt_recent_table= $('#dt-recent').DataTable( {
                 "aaData": JSON.parse(review_return_recentdata),
-
+                "aaSorting": [],
                 "aoColumnDefs": [ {
                 "aTargets": 5,
                 "adata": "BCBSRI_Risk_Categorization",
@@ -584,12 +584,14 @@ $(document).ready(function () {
                 //Start : Search Button Result
       
               $('#btn_search').click(function(){
-              
-              var month = $('#month').val();
-              var year = $('#year').val();
-              var searchresult = month+' '+year;
-              dt_recent_table.search(searchresult).draw();
-
+                document.getElementById("loader").style.display = "block";
+                    setTimeout(function() {
+                    var month = $('#month').val();
+                    var year = $('#year').val();
+                    var searchresult = month+' '+year;
+                    dt_recent_table.search(searchresult).draw();
+                    document.getElementById("loader").style.display = "none";
+                    },1000); 
               })
               //End : Search Button Result
               },2000);     
@@ -634,7 +636,7 @@ $(document).ready(function () {
               setTimeout(function() {
                 var dt_inprocess_table= $('#dt-inprocess').DataTable( {
                 "aaData": JSON.parse(review_return_inprocessdata),
-
+                "aaSorting": [],
                 "aoColumnDefs": [ {
                 "aTargets": 5,
                 "adata": "BCBSRI_Risk_Categorization",
@@ -736,7 +738,7 @@ $(document).ready(function () {
               setTimeout(function() {
                 var dt_complated_table= $('#dt-complated').DataTable( {
                 "aaData": JSON.parse(review_return_complated),
-
+                "aaSorting": [],
                 "aoColumnDefs": [ {
                 "aTargets": 5,
                 "adata": "BCBSRI_Risk_Categorization",

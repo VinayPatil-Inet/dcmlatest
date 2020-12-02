@@ -43,6 +43,7 @@
               setTimeout(function() {
                 var demographicsTable= $('#dt_recent_demographics').DataTable( {
                 "aaData": JSON.parse(review_return_filedata),
+                "aaSorting": [],
 
                 "aoColumnDefs": [ {
                 "aTargets": 7,
@@ -97,9 +98,12 @@
                   $('#btn_search').click(function(){
                     document.getElementById("loader").style.display = "block";
                     setTimeout(function() {
+                      var month_number = $('#month').val();
+                      var  months_names_array = ["","January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+                      var month=months_names_array[month_number];
                       var risk = $('#risk').val();
                       var year = $('#year').val();
-                      var month = $('#month').val();
+                      
                       var searchresult = risk+' '+month+' '+year;
                       demographicsTable.search(searchresult).draw();
                       document.getElementById("loader").style.display = "none";
@@ -158,6 +162,7 @@
               setTimeout(function() {
                 var conditionsandriskTable= $('#dt_recent_conditionsandrisk').DataTable( {
                 "aaData": JSON.parse(conditionsandrisk_return_data),
+                "aaSorting": [],
 
                 "aoColumnDefs": [ {
                 "aTargets": 5,
@@ -210,9 +215,11 @@
 
                   $('#btn_search').click(function(){
   
-                    var risk = $('#risk').val();
-                    var year = $('#year').val();
-                    var month = $('#month').val();
+                    var month_number = $('#month').val();
+                      var  months_names_array = ["","January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+                      var month=months_names_array[month_number];
+                      var risk = $('#risk').val();
+                      var year = $('#year').val();
                     var searchresult = risk+' '+month+' '+year;
                     conditionsandriskTable.search(searchresult).draw();
                 
@@ -272,6 +279,7 @@ function costandutilization_data()
             setTimeout(function() {
               var costandutilizationTable= $('#dt_recent_costandutilization').DataTable( {
               "aaData": JSON.parse(costandutilization_return_data),
+              "aaSorting": [],
 
               "aoColumnDefs": [ {
               "aTargets": 5,
@@ -316,9 +324,11 @@ function costandutilization_data()
 
                 $('#btn_search').click(function(){
 
-                  var risk = $('#risk').val();
-                  var year = $('#year').val();
-                  var month = $('#month').val();
+                  var month_number = $('#month').val();
+                      var  months_names_array = ["","January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+                      var month=months_names_array[month_number];
+                      var risk = $('#risk').val();
+                      var year = $('#year').val();
                   var searchresult = risk+' '+month+' '+year;
                   costandutilizationTable.search(searchresult).draw();
               
@@ -380,6 +390,7 @@ function bcbsriprogram_data()
             setTimeout(function() {
               var bcbsriprogramTable= $('#dt_recent_bcbsriprogram').DataTable( {
               "aaData": JSON.parse(bcbsriprogram_returndata),
+              "aaSorting": [],
 
               "aoColumnDefs": [ {
               "aTargets": 5,
@@ -421,9 +432,11 @@ function bcbsriprogram_data()
 
                 $('#btn_search').click(function(){
 
-                  var risk = $('#risk').val();
-                  var year = $('#year').val();
-                  var month = $('#month').val();
+                  var month_number = $('#month').val();
+                      var  months_names_array = ["","January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+                      var month=months_names_array[month_number];
+                      var risk = $('#risk').val();
+                      var year = $('#year').val();
                   var searchresult = risk+' '+month+' '+year;
                   bcbsriprogramTable.search(searchresult).draw();
               
@@ -486,6 +499,7 @@ function bcbsriprogram_data()
             setTimeout(function() {
               var patientpanelalldataTable= $('#dt_recent_patientpanelalldata').DataTable( {
               "aaData": JSON.parse(patientallreturn_data),
+              "aaSorting": [],
 
               "aoColumnDefs": [ {
               "aTargets": 7,
@@ -572,9 +586,11 @@ function bcbsriprogram_data()
 
                 $('#btn_search').click(function(){
 
-                  var risk = $('#risk').val();
-                  var year = $('#year').val();
-                  var month = $('#month').val();
+                  var month_number = $('#month').val();
+                      var  months_names_array = ["","January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+                      var month=months_names_array[month_number];
+                      var risk = $('#risk').val();
+                      var year = $('#year').val();
                   var searchresult = risk+' '+month+' '+year;
                   patientpanelalldataTable.search(searchresult).draw();
               
@@ -636,6 +652,7 @@ function bcbsriprogram_data()
             setTimeout(function() {
               var reportingtableTable= $('#dt_recent_return_report').DataTable( {
               "aaData": JSON.parse(returnreporting_data),
+              "aaSorting": [],
 
               "aoColumnDefs": [ {
               "aTargets": 4,
@@ -678,9 +695,11 @@ function bcbsriprogram_data()
 
                 $('#btn_search').click(function(){
 
+                  var month_number = $('#month').val();
+                  var  months_names_array = ["","January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+                  var month=months_names_array[month_number];
                   var risk = $('#risk').val();
                   var year = $('#year').val();
-                  var month = $('#month').val();
                   var searchresult = risk+' '+month+' '+year;
                   reportingtableTable.search(searchresult).draw();
               

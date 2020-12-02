@@ -44,6 +44,7 @@
               setTimeout(function() {
                 var demographicsTable= $('#dt_recent_demographics').DataTable( {
                 "aaData": JSON.parse(review_return_filedata),
+                "aaSorting": [],
 
                 "aoColumnDefs": [ {
                 "aTargets": 7,
@@ -160,6 +161,7 @@
               setTimeout(function() {
                 var conditionsandriskTable= $('#dt_recent_conditionsandrisk').DataTable( {
                 "aaData": JSON.parse(conditionsandrisk_return_data),
+                "aaSorting": [],
 
                 "aoColumnDefs": [ {
                 "aTargets": 5,
@@ -274,6 +276,7 @@ function costandutilization_data()
             setTimeout(function() {
               var costandutilizationTable= $('#dt_recent_costandutilization').DataTable( {
               "aaData": JSON.parse(costandutilization_return_data),
+              "aaSorting": [],
 
               "aoColumnDefs": [ {
               "aTargets": 5,
@@ -382,6 +385,7 @@ function bcbsriprogram_data()
             setTimeout(function() {
               var bcbsriprogramTable= $('#dt_recent_bcbsriprogram').DataTable( {
               "aaData": JSON.parse(bcbsriprogram_returndata),
+              "aaSorting": [],
 
               "aoColumnDefs": [ {
               "aTargets": 5,
@@ -488,6 +492,7 @@ function bcbsriprogram_data()
             setTimeout(function() {
               var patientpanelalldataTable= $('#dt_recent_patientpanelalldata').DataTable( {
               "aaData": JSON.parse(patientallreturn_data),
+              "aaSorting": [],
 
               "aoColumnDefs": [ {
               "aTargets": 7,
@@ -638,6 +643,7 @@ function bcbsriprogram_data()
             setTimeout(function() {
               var reportingtableTable= $('#dt_recent_return_report').DataTable( {
               "aaData": JSON.parse(returnreporting_data),
+              "aaSorting": [],
 
               "aoColumnDefs": [ {
               "aTargets": 4,

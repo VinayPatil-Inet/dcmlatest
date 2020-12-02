@@ -362,7 +362,7 @@ $(document).ready(function () {
                 setTimeout(function() {
                 var return_reportTable= $('#dt_return_report').DataTable( {
                 "aaData": JSON.parse(review_return_filedata),
-
+                "aaSorting": [],
                 "aoColumnDefs": [ {
                 "aTargets": 3,
                 "adata": "BCBSRI_Risk_Categorization",

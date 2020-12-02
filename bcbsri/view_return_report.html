@@ -422,7 +422,7 @@ function recent_review_return_report_individual_view(uploadedfileid)
               setTimeout(function() {
                 var dt_recent_table= $('#dt-recent').DataTable( {
                 "aaData": JSON.parse(review_return_recentdata),
-
+                "aaSorting": [],
                 "aoColumnDefs": [ {
                 "aTargets": 4,
                 "adata": "BCBSRI_Risk_Categorization",
@@ -503,7 +503,7 @@ function recent_review_return_report_individual_view(uploadedfileid)
               setTimeout(function() {
                 var dt_inprocess_table= $('#dt-inprocess').DataTable( {
                 "aaData": JSON.parse(review_return_inprocessdata),
-
+                "aaSorting": [],
                 "aoColumnDefs": [ {
                 "aTargets": 4,
                 "adata": "BCBSRI_Risk_Categorization",
@@ -583,7 +583,7 @@ function recent_review_return_report_individual_view(uploadedfileid)
               setTimeout(function() {
                 var dt_complated_table= $('#dt-complated').DataTable( {
                 "aaData": JSON.parse(review_return_complated),
-
+                "aaSorting": [],
                 "aoColumnDefs": [ {
                 "aTargets": 4,
                 "adata": "BCBSRI_Risk_Categorization",
