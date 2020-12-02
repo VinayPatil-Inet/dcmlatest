@@ -49,12 +49,13 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="../dist/img/default.png" class="user-image" alt="User Image">
                                     
-              <span class="hidden-xs">PCMH</span>
+              <span id="username" class="hidden-xs"></span>
           </a>
           <ul class="dropdown-menu" style="width: 200px;">
             <li class="user-header">
               <img src="../dist/img/default.png" class="img-circle" alt="User Image">
-              <p>PCMH</p>
+              <p id="usertype"></p>
+              <p id="username"></p>
             </li>
             <li class="user-footer">
               <div class="pull-left">
@@ -182,18 +183,18 @@
                         <label>Select Month</label>
                         <select name="month" id="month" class="form-control">
                           <option value="">--Select Month--</option>
-                          <option value="January">January</option>
-                          <option value="February">February</option>
-                          <option value="March">March</option>
-                          <option value="April">April</option>
-                          <option value="May">May</option>
-                          <option value="June">June</option>
-                          <option value="July">July</option>
-                          <option value="August">August</option>
-                          <option value="September">September</option>
-                          <option value="October">October</option>
-                          <option value="November">November</option>
-                          <option value="December">December</option>
+                          <option value="1">January</option>
+                          <option value="2">February</option>
+                          <option value="3">March</option>
+                          <option value="4">April</option>
+                          <option value="5">May</option>
+                          <option value="6">June</option>
+                          <option value="7">July</option>
+                          <option value="8">August</option>
+                          <option value="9">September</option>
+                          <option value="10">October</option>
+                          <option value="11">November</option>
+                          <option value="12">December</option>
                          
                         </select>
                       </div>
@@ -751,6 +752,12 @@
 $(document).ready(function () {
   bsCustomFileInput.init();
   
+  var usertype=sessionStorage.getItem("usertype");
+  var username=sessionStorage.getItem("username");
+
+  document.getElementById('usertype').innerHTML=usertype;
+  document.getElementById('username').innerHTML=username;
+
 });
 
 

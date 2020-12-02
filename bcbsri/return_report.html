@@ -107,12 +107,13 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="../dist/img/default.png" class="user-image" alt="User Image">
                                     
-              <span class="hidden-xs">BCBSRI</span>
+              <span id="username" class="hidden-xs"></span>
           </a>
           <ul class="dropdown-menu" style="width: 200px;">
             <li class="user-header">
               <img src="../dist/img/default.png" class="img-circle" alt="User Image">
-              <p> BCBSRI</p>
+              <p id="usertype"></p>
+              <p id="username"></p>
             </li>
             <li class="user-footer">
               <div class="pull-left">
@@ -364,6 +365,10 @@
 <script type="text/javascript">
  var logged_in_userid=sessionStorage.getItem("userid");
   var usertype=sessionStorage.getItem("usertype");
+  var username=sessionStorage.getItem("username");
+
+  document.getElementById('usertype').innerHTML=usertype;
+  document.getElementById('username').innerHTML=username;
 
 get_review_return_file();
 getpcmh();

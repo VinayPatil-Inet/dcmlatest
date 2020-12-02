@@ -58,12 +58,13 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="../dist/img/default.png" class="user-image" alt="User Image">
                                     
-              <span class="hidden-xs">PCMH</span>
+              <span id="username" class="hidden-xs"></span>
           </a>
           <ul class="dropdown-menu" style="width: 200px;">
             <li class="user-header">
               <img src="../dist/img/default.png" class="img-circle" alt="User Image">
-              <p>PCMH</p>
+              <p id="usertype"></p>
+              <p id="username"></p>
             </li>
             <li class="user-footer">
               <div class="pull-left">
@@ -423,6 +424,11 @@ $(document).ready(function () {
   $("#example1").DataTable();
   $("#example2").DataTable();
   $("#example3").DataTable();
+  var usertype=sessionStorage.getItem("usertype");
+  var username=sessionStorage.getItem("username");
+
+  document.getElementById('usertype').innerHTML=usertype;
+  document.getElementById('username').innerHTML=username;
 });
 
 $('.datepicker').datepicker({
