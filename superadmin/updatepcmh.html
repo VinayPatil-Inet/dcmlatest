@@ -327,7 +327,7 @@
 
 <script src="../plugins/toastr/toastr.min.js"></script>
 
-<script src="../dist/js/superadmin.js"></script>
+<!--<script src="../dist/js/superadmin.js"></script>-->
 
 <!-- AdminLTE for demo purposes -->
 <script src="../dist/js/demo.js"></script>
@@ -458,21 +458,25 @@ $(document).ready(function () {
     
     setTimeout(function() {
   
-    fetch("https://apimsdcm.azure-api.net/dcmAPIM/fileupload", {
-          method: 'post',
+    fetch("https://apimsdcm.azure-api.net/dcmAPIM/PCMHData", {
+          method: 'POST',
         // mode: 'no-cors', // no-cors, *cors, same-origin
 
-        headers: { 'Content-Type': 'application/json',
+        headers: { 'Content-Type': 'application/json;charset=utf-8',
               "x-functions-key": "Y75v69weCc0+ZanTjf0jSihLRlZAOUJGRM8xTAbdDLMZdQiXYNiJfg==",
               "Ocp-Apim-Subscription-Key": "2584a9c08dd04aa49db05cbb265c9b91",
               // "subscription-key":"da91fd77-c908-4f23-9469-52acf3239a11"
               },
           body: data
+          
       }).then((response) => {
-
+        
                       if (response.ok) {
+                        
                       return response
+                      
                   } else {
+
                       throw `update Looks like something went wrong. Status: ${response}`;
                   }
               })

@@ -475,7 +475,7 @@ var jsonData;
         return false;
     };
     var pcmhdata='{"pcmhid":-1}';
-    fetch("https://apimsdcm.azure-api.net/dcmAPIM/fileupload", {
+    fetch("https://apimsdcm.azure-api.net/dcmAPIM/PCMHData", {
         method: 'post',
        // mode: 'no-cors', // no-cors, *cors, same-origin
 
@@ -484,7 +484,7 @@ var jsonData;
             "Ocp-Apim-Subscription-Key": "2584a9c08dd04aa49db05cbb265c9b91",
             // "subscription-key":"da91fd77-c908-4f23-9469-52acf3239a11"
             },
-        body: pcmhdata
+        body: JSON.stringify(pcmhdata)
     }).then((response) => {
 
                      if (response.ok) {

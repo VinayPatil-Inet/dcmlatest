@@ -14,36 +14,58 @@
 
   function demographics_data()
   {
+    var logged_in_userid=sessionStorage.getItem("userid");
+  var usertype=sessionStorage.getItem("usertype");
+  var pcmhid=sessionStorage.getItem("pcmhid");
     document.getElementById("loader").style.display = "block";
+    $.fn.dataTable.ext.errMode = 'throw';
     var demographicsdata ='{"demographicsdatatype":"demographics","logged_in_userid":"'+logged_in_userid+'","usertype":"'+usertype+'","pcmhid":"'+pcmhid+'"}';
    
-    fetch("https://apimsdcm.azure-api.net/PCMH/pcmhreports", {
-        method: 'post',
-       // mode: 'no-cors', // no-cors, *cors, same-origin
-
-       headers: { 'Content-Type': 'application/json',
-            "x-functions-key": "Y75v69weCc0+ZanTjf0jSihLRlZAOUJGRM8xTAbdDLMZdQiXYNiJfg==",
-            "Ocp-Apim-Subscription-Key": "2584a9c08dd04aa49db05cbb265c9b91",
-            // "subscription-key":"da91fd77-c908-4f23-9469-52acf3239a11"
-            },
-        body: demographicsdata
-    }).then((response) => {
-
-                     if (response.ok) {
-                    return response
-                } else {
-                    throw `update Looks like something went wrong. Status: ${response}`;
-                }
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log("data: [" + JSON.stringify(data)+"]")
-                review_return_filedata = JSON.stringify(data);
+   
                 
               setTimeout(function() {
                 var demographicsTable= $('#dt_recent_demographics').DataTable( {
-                "aaData": JSON.parse(review_return_filedata),
-                "aaSorting": [],
+                // "aaData": JSON.parse(review_return_filedata),
+               
+                "paging": true,  
+                "ordering": true,  
+                "filter": true,  
+                "destroy": true,  
+                "pageLength": 10,
+                "orderMulti": false,  
+                "serverSide": true,  
+                "processing": true, 
+                "searching": true,
+                ajax: {
+                    url: 'https://apimsdcm.azure-api.net/PCMH/pcmhreports',
+                    dataType: "JSON",
+                    type: 'POST',
+                    data:jQuery.parseJSON(demographicsdata),
+                    dataFilter: function(data){
+                      console.log("demographicsdata==== "+data);
+                        var json = jQuery.parseJSON( data );
+                        json.recordsTotal = json.recordsTotal;
+                        json.recordsFiltered = json.recordsFiltered;
+                        json.data = json.data;
+            
+                        console.log("jsondemographicsdata==== "+JSON.stringify( json ));
+
+                        return JSON.stringify( json ); // return JSON string
+                    },
+                    error: function (xhr, error, code)
+                    {
+                        console.log("vxxxxx=== "+xhr);
+                        console.log(code);
+                        $('#dt_recent_demographics').hide();
+                       //  json_encode(array('data'=>''));
+                      //  var json = jQuery.parseJSON( data );
+                      //   json.recordsTotal = 0;
+                      //   json.recordsFiltered = 0;
+                      //   json.data = 'No data Found';
+                      //   //  var json ='No data Found'
+                      //    return JSON.stringify(json) ;
+                    }
+                    },
 
                 "aoColumnDefs": [ {
                 "aTargets": 7,
@@ -113,55 +135,65 @@
               },2000);     
      
               
-            })
-            .catch(error => {
-                console.log(error)
-            })  
+            // })
+            // .catch(error => {
+            //     console.log(error)
+            // })  
 
             
   }
-  
-
-    //End : Load json Data into the datatable (Demographics)
-
-  
-//End : Demographics
-
-//==============================================================================================//
-
-//Start : conditions and risk
-  //Start : Load json Data into the datatable (conditions and risk[Recent])
 
   function conditionsandrisk_data()
   {
-    
+    var logged_in_userid=sessionStorage.getItem("userid");
+  var usertype=sessionStorage.getItem("usertype");
+  var pcmhid=sessionStorage.getItem("pcmhid");
+  $.fn.dataTable.ext.errMode = 'throw';
     var conditionsandriskdata ='{"conditionsandriskype":"conditionsandrisk","logged_in_userid":"'+logged_in_userid+'","usertype":"'+usertype+'","pcmhid":"'+pcmhid+'"}';
-      fetch("https://apimsdcm.azure-api.net/PCMH/pcmhreports", {
-        method: 'post',
-       // mode: 'no-cors', // no-cors, *cors, same-origin
-
-       headers: { 'Content-Type': 'application/json',
-            "x-functions-key": "Y75v69weCc0+ZanTjf0jSihLRlZAOUJGRM8xTAbdDLMZdQiXYNiJfg==",
-            "Ocp-Apim-Subscription-Key": "2584a9c08dd04aa49db05cbb265c9b91",
-            // "subscription-key":"da91fd77-c908-4f23-9469-52acf3239a11"
-            },
-        body: conditionsandriskdata
-    }).then((response) => {
-
-                     if (response.ok) {
-                    return response
-                } else {
-                    throw `update Looks like something went wrong. Status: ${response}`;
-                }
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log("data: [" + JSON.stringify(data)+"]")
-                conditionsandrisk_return_data = JSON.stringify(data);
+     console.log("conditionsandriskdata=== "+conditionsandriskdata);
                 
               setTimeout(function() {
                 var conditionsandriskTable= $('#dt_recent_conditionsandrisk').DataTable( {
-                "aaData": JSON.parse(conditionsandrisk_return_data),
+                  "paging": true,  
+                "ordering": true,  
+                "filter": true,  
+                "destroy": true,  
+                "pageLength": 10,
+                "orderMulti": false,  
+                "serverSide": true,  
+                "processing": true, 
+                "searching": true,
+                ajax: {
+                    url: 'https://apimsdcm.azure-api.net/PCMH/pcmhreports',
+                    dataType: "JSON",
+                    type: 'POST',
+                    data:jQuery.parseJSON(conditionsandriskdata),
+                    dataFilter: function(data){
+                      console.log("conditionsandriskdata==== "+data);
+                        var json = jQuery.parseJSON( data );
+                        json.recordsTotal = json.recordsTotal;
+                        json.recordsFiltered = json.recordsFiltered;
+                        json.data = json.data;
+            
+                        console.log("JSONconditionsandriskdata==== "+JSON.stringify( json ));
+
+                        return JSON.stringify( json ); // return JSON string
+                    } ,
+                    error: function (xhr, error, code)
+                    {
+                        console.log("vxxxxx=== "+xhr);
+                        console.log(code);
+                        $('#dt_recent_conditionsandrisk').hide();
+                       //  json_encode(array('data'=>''));
+                      //  var json = jQuery.parseJSON( data );
+                      //   json.recordsTotal = 0;
+                      //   json.recordsFiltered = 0;
+                      //   json.data = 'No data Found';
+                      //   //  var json ='No data Found'
+                      //    return JSON.stringify(json) ;
+                    }
+                    },
+
                 "aaSorting": [],
 
                 "aoColumnDefs": [ {
@@ -228,57 +260,60 @@
               },2000);     
      
                
-            })
-            .catch(error => {
-                console.log(error)
-            })  
-
+           
             
   }
 
-
-  //End : Load json Data into the datatable (conditions and risk[Recent])
-
-   
-
-//End : conditions and risk
-
-//==================================================================================================//
-
-
-
-//Start : cost and utilization
-
-function costandutilization_data()
+  function costandutilization_data()
 {
-  
+  var logged_in_userid=sessionStorage.getItem("userid");
+  var usertype=sessionStorage.getItem("usertype");
+  var pcmhid=sessionStorage.getItem("pcmhid");
+  $.fn.dataTable.ext.errMode = 'throw';
   var costandutilizationkdata ='{"costandutilizationtype":"costandutilizationtype","logged_in_userid":"'+logged_in_userid+'","usertype":"'+usertype+'","pcmhid":"'+pcmhid+'"}';
-    fetch("https://apimsdcm.azure-api.net/PCMH/pcmhreports", {
-      method: 'post',
-     // mode: 'no-cors', // no-cors, *cors, same-origin
-
-     headers: { 'Content-Type': 'application/json',
-          "x-functions-key": "Y75v69weCc0+ZanTjf0jSihLRlZAOUJGRM8xTAbdDLMZdQiXYNiJfg==",
-          "Ocp-Apim-Subscription-Key": "2584a9c08dd04aa49db05cbb265c9b91",
-          // "subscription-key":"da91fd77-c908-4f23-9469-52acf3239a11"
-          },
-      body: costandutilizationkdata
-  }).then((response) => {
-
-                   if (response.ok) {
-                  return response
-              } else {
-                  throw `update Looks like something went wrong. Status: ${response}`;
-              }
-          })
-          .then(response => response.json())
-          .then(data => {
-              console.log("data: [" + JSON.stringify(data)+"]")
-              costandutilization_return_data = JSON.stringify(data);
+    
               
             setTimeout(function() {
               var costandutilizationTable= $('#dt_recent_costandutilization').DataTable( {
-              "aaData": JSON.parse(costandutilization_return_data),
+                "paging": true,  
+                "ordering": true,  
+                "filter": true,  
+                "destroy": true,  
+                "pageLength": 10,
+                "orderMulti": false,  
+                "serverSide": true,  
+                "processing": true, 
+                "searching": true,
+                ajax: {
+                    url: 'https://apimsdcm.azure-api.net/PCMH/pcmhreports',
+                    dataType: "JSON",
+                    type: 'POST',
+                    data:jQuery.parseJSON(costandutilizationkdata),
+                    dataFilter: function(data){
+                      console.log("conditionsandriskdata==== "+data);
+                        var json = jQuery.parseJSON( data );
+                        json.recordsTotal = json.recordsTotal;
+                        json.recordsFiltered = json.recordsFiltered;
+                        json.data = json.data;
+            
+                        console.log("JSONconditionsandriskdata==== "+JSON.stringify( json ));
+
+                        return JSON.stringify( json ); // return JSON string
+                    },
+                    error: function (xhr, error, code)
+                    {
+                        console.log("vxxxxx=== "+xhr);
+                        console.log(code);
+                        $('#dt_recent_costandutilization').hide();
+                       //  json_encode(array('data'=>''));
+                      //  var json = jQuery.parseJSON( data );
+                      //   json.recordsTotal = 0;
+                      //   json.recordsFiltered = 0;
+                      //   json.data = 'No data Found';
+                      //   //  var json ='No data Found'
+                      //    return JSON.stringify(json) ;
+                    }
+                    },
               "aaSorting": [],
 
               "aoColumnDefs": [ {
@@ -336,60 +371,58 @@ function costandutilization_data()
              
             },2000);     
    
-             
-          })
-          .catch(error => {
-              console.log(error)
-          })  
-
-         
+          
     }
 
-  //Start : Load json Data into the datatable (cost and utilization[recent])
-  
- 
-
-  
-  //End : Load json Data into the datatable (cost and utilization[recent])
-
-  
-
-//End : cost and utilization
-
-//===========================================================================================//
-
-//Start : BCBSRI Program
-
-function bcbsriprogram_data()
+    function bcbsriprogram_data()
 {
-  
+  var logged_in_userid=sessionStorage.getItem("userid");
+  var usertype=sessionStorage.getItem("usertype");
+  var pcmhid=sessionStorage.getItem("pcmhid");
+  $.fn.dataTable.ext.errMode = 'throw';
   var bcbsriprogramdata ='{"bcbsriprogramtype":"bcbsriprogram","logged_in_userid":"'+logged_in_userid+'","usertype":"'+usertype+'","pcmhid":"'+pcmhid+'"}';
-    fetch("https://apimsdcm.azure-api.net/PCMH/pcmhreports", {
-      method: 'post',
-     // mode: 'no-cors', // no-cors, *cors, same-origin
-
-     headers: { 'Content-Type': 'application/json',
-          "x-functions-key": "Y75v69weCc0+ZanTjf0jSihLRlZAOUJGRM8xTAbdDLMZdQiXYNiJfg==",
-          "Ocp-Apim-Subscription-Key": "2584a9c08dd04aa49db05cbb265c9b91",
-          // "subscription-key":"da91fd77-c908-4f23-9469-52acf3239a11"
-          },
-      body: bcbsriprogramdata
-  }).then((response) => {
-
-                   if (response.ok) {
-                  return response
-              } else {
-                  throw `update Looks like something went wrong. Status: ${response}`;
-              }
-          })
-          .then(response => response.json())
-          .then(data => {
-              console.log("data: [" + JSON.stringify(data)+"]")
-              bcbsriprogram_returndata = JSON.stringify(data);
-              
+                 
             setTimeout(function() {
               var bcbsriprogramTable= $('#dt_recent_bcbsriprogram').DataTable( {
-              "aaData": JSON.parse(bcbsriprogram_returndata),
+                "paging": true,  
+                 "ordering": true,  
+                 "filter": true,  
+                 "destroy": true,  
+                 "pageLength": 10,
+                 "orderMulti": false,  
+                 "serverSide": true,  
+                 "processing": true, 
+                 "searching": true,
+                 ajax: {
+                    url: 'https://apimsdcm.azure-api.net/PCMH/pcmhreports',
+                    dataType: "JSON",
+                    type: 'POST',
+                    data:jQuery.parseJSON(bcbsriprogramdata),
+                    dataFilter: function(data){
+                      console.log("conditionsandriskdata==== "+data);
+                        var json = jQuery.parseJSON( data );
+                        json.recordsTotal = json.recordsTotal;
+                        json.recordsFiltered = json.recordsFiltered;
+                        json.data = json.data;
+            
+                        console.log("JSONconditionsandriskdata==== "+JSON.stringify( json ));
+
+                        return JSON.stringify( json ); // return JSON string
+                    },
+                    error: function (xhr, error, code)
+                    {
+                        console.log("vxxxxx=== "+xhr);
+                        console.log(code);
+                        $('#dt_recent_bcbsriprogram').hide();
+                       //  json_encode(array('data'=>''));
+                      //  var json = jQuery.parseJSON( data );
+                      //   json.recordsTotal = 0;
+                      //   json.recordsFiltered = 0;
+                      //   json.data = 'No data Found';
+                      //   //  var json ='No data Found'
+                      //    return JSON.stringify(json) ;
+                    }
+                    },
               "aaSorting": [],
 
               "aoColumnDefs": [ {
@@ -445,60 +478,60 @@ function bcbsriprogram_data()
             },2000);     
    
              
-          })
-          .catch(error => {
-              console.log(error)
-          })  
+        
 
          
     }
 
-
-
-  
-  //End : Load json Data into the datatable (BCBSRI Program[recent])
-
-
-  
-
-
-//End : BCBSRI Program
-
-//==============================================================================================//
-
-//Start : Patient all data
-  //Start : Load json Data into the datatable (Patient all data[recent])
-
-  function patient_all_data()
+    function patient_all_data()
 {
-  
+  var logged_in_userid=sessionStorage.getItem("userid");
+  var usertype=sessionStorage.getItem("usertype");
+  var pcmhid=sessionStorage.getItem("pcmhid");
+  $.fn.dataTable.ext.errMode = 'throw';
   var patient_alldata ='{"patientalldatatype":"patientalldata","logged_in_userid":"'+logged_in_userid+'","usertype":"'+usertype+'","pcmhid":"'+pcmhid+'"}';
-    fetch("https://apimsdcm.azure-api.net/PCMH/pcmhreports", {
-      method: 'post',
-     // mode: 'no-cors', // no-cors, *cors, same-origin
-
-     headers: { 'Content-Type': 'application/json',
-          "x-functions-key": "Y75v69weCc0+ZanTjf0jSihLRlZAOUJGRM8xTAbdDLMZdQiXYNiJfg==",
-          "Ocp-Apim-Subscription-Key": "2584a9c08dd04aa49db05cbb265c9b91",
-          // "subscription-key":"da91fd77-c908-4f23-9469-52acf3239a11"
-          },
-      body: patient_alldata
-  }).then((response) => {
-
-                   if (response.ok) {
-                  return response
-              } else {
-                  throw `update Looks like something went wrong. Status: ${response}`;
-              }
-          })
-          .then(response => response.json())
-          .then(data => {
-              console.log("data: [" + JSON.stringify(data)+"]")
-              patientallreturn_data = JSON.stringify(data);
-              
+    
             setTimeout(function() {
               var patientpanelalldataTable= $('#dt_recent_patientpanelalldata').DataTable( {
-              "aaData": JSON.parse(patientallreturn_data),
+                "paging": true,  
+                 "ordering": true,  
+                 "filter": true,  
+                 "destroy": true,  
+                 "pageLength": 10,
+                 "orderMulti": false,  
+                 "serverSide": true,  
+                 "processing": true, 
+                 "searching": true,
+                 ajax: {
+                    url: 'https://apimsdcm.azure-api.net/PCMH/pcmhreports',
+                    dataType: "JSON",
+                    type: 'POST',
+                    data:jQuery.parseJSON(patient_alldata),
+                    dataFilter: function(data){
+                      console.log("conditionsandriskdata==== "+data);
+                        var json = jQuery.parseJSON( data );
+                        json.recordsTotal = json.recordsTotal;
+                        json.recordsFiltered = json.recordsFiltered;
+                        json.data = json.data;
+            
+                        console.log("JSONconditionsandriskdata==== "+JSON.stringify( json ));
+
+                        return JSON.stringify( json ); // return JSON string
+                    },
+                    error: function (xhr, error, code)
+                    {
+                        console.log("vxxxxx=== "+xhr);
+                        console.log(code);
+                        $('#dt_recent_patientpanelalldata_processing').hide();
+                       //  json_encode(array('data'=>''));
+                      //  var json = jQuery.parseJSON( data );
+                      //   json.recordsTotal = 0;
+                      //   json.recordsFiltered = 0;
+                      //   json.data = 'No data Found';
+                      //   //  var json ='No data Found'
+                      //    return JSON.stringify(json) ;
+                    }
+                    },
               "aaSorting": [],
 
               "aoColumnDefs": [ {
@@ -598,60 +631,61 @@ function bcbsriprogram_data()
              
             },2000);     
    
-             
-          })
-          .catch(error => {
-              console.log(error)
-          })  
+          
 
          
     }
 
-  
-  //End : Load json Data into the datatable (Patient all data[recent])
-
-  
-
-//End : Patient all data
-
-//=================================================================================================//
-
-
-//Start : Return Reporting
-
- //Start : Load json Data into the datatable (Return Reporting[recent])
- 
-
- function returnreporting_data()
+    function returnreporting_data()
 {
-  
+  var logged_in_userid=sessionStorage.getItem("userid");
+  var usertype=sessionStorage.getItem("usertype");
+  var pcmhid=sessionStorage.getItem("pcmhid");
+  $.fn.dataTable.ext.errMode = 'throw';
   var returnreportingdata ='{"returnreportingdatatype":"returnreporting","logged_in_userid":"'+logged_in_userid+'","usertype":"'+usertype+'","pcmhid":"'+pcmhid+'"}';
-    fetch("https://apimsdcm.azure-api.net/PCMH/pcmhreports", {
-      method: 'post',
-     // mode: 'no-cors', // no-cors, *cors, same-origin
-
-     headers: { 'Content-Type': 'application/json',
-          "x-functions-key": "Y75v69weCc0+ZanTjf0jSihLRlZAOUJGRM8xTAbdDLMZdQiXYNiJfg==",
-          "Ocp-Apim-Subscription-Key": "2584a9c08dd04aa49db05cbb265c9b91",
-          // "subscription-key":"da91fd77-c908-4f23-9469-52acf3239a11"
-          },
-      body: returnreportingdata
-  }).then((response) => {
-
-                   if (response.ok) {
-                  return response
-              } else {
-                  throw `update Looks like something went wrong. Status: ${response}`;
-              }
-          })
-          .then(response => response.json())
-          .then(data => {
-              console.log("data: [" + JSON.stringify(data)+"]")
-              returnreporting_data = JSON.stringify(data);
               
             setTimeout(function() {
               var reportingtableTable= $('#dt_recent_return_report').DataTable( {
-              "aaData": JSON.parse(returnreporting_data),
+                "paging": true,  
+                 "ordering": true,  
+                 "filter": true,  
+                 "destroy": true,  
+                 "pageLength": 10,
+                 "orderMulti": false,  
+                 "serverSide": true,  
+                 "processing": true, 
+                 "searching": true,
+                 ajax: {
+                    url: 'https://apimsdcm.azure-api.net/PCMH/pcmhreports',
+                    dataType: "JSON",
+                    type: 'POST',
+                    data:jQuery.parseJSON(returnreportingdata),
+                    dataFilter: function(data){
+                      console.log("conditionsandriskdata==== "+data);
+                        var json = jQuery.parseJSON( data );
+                        json.recordsTotal = json.recordsTotal;
+                        json.recordsFiltered = json.recordsFiltered;
+                        json.data = json.data;
+            
+                        console.log("JSONconditionsandriskdata==== "+JSON.stringify( json ));
+
+                        return JSON.stringify( json ); // return JSON string
+                    }
+                    ,
+                    error: function (xhr, error, code)
+                    {
+                        console.log("vxxxxx=== "+xhr);
+                        console.log(code);
+                        $('#dt_recent_return_report_processing').hide();
+                       //  json_encode(array('data'=>''));
+                      //  var json = jQuery.parseJSON( data );
+                      //   json.recordsTotal = 0;
+                      //   json.recordsFiltered = 0;
+                      //   json.data = 'No data Found';
+                      //   //  var json ='No data Found'
+                      //    return JSON.stringify(json) ;
+                    }
+                    },
               "aaSorting": [],
 
               "aoColumnDefs": [ {
@@ -708,11 +742,7 @@ function bcbsriprogram_data()
             },2000);     
    
              
-          })
-          .catch(error => {
-              console.log(error)
-          })  
-
+         
          
     }
 

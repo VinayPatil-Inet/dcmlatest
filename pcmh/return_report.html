@@ -300,7 +300,7 @@
 <script src="../plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
 
 <!-- AdminLTE App -->
-<script src="../dist/js/adminlte.min.js"></script>
+<script src="../dist/js/adminlte.minw.js"></script>
 
 <script src="../dist/js/pcmh.js"></script>
 <!-- AdminLTE for demo purposes -->
@@ -327,8 +327,80 @@ $(document).ready(function () {
     });
 
     
-
   function get_review_return_file()
+  {
+      document.getElementById("loader").style.display = "block";
+      var pcmh= "";
+      var month =document.getElementById('month').value;
+      var year =document.getElementById('year').value;
+
+      var data='{"usertype":"'+usertype+'","logged_in_userid":"'+logged_in_userid+'","pcmhid":"'+pcmhid+'","pcmh":"'+pcmh+'","month":"'+month+'" ,"year":"'+year+'"}';
+      var return_reportTable= $('#dt_return_report').DataTable( {
+        "paging": true,  
+                 "ordering": true,  
+                 "filter": true,  
+                 "destroy": true,  
+                 "pageLength": 10,
+                 "orderMulti": false,  
+                 "serverSide": true,  
+                 "processing": true, 
+                 "searching": true,
+                 ajax: {
+            url: 'https://apimsdcm.azure-api.net/dcmAPIM/review_return_report_file',
+            data:jQuery.parseJSON(data),
+            dataFilter: function(data){
+              console.log("getallusers==== "+data);
+                var json = jQuery.parseJSON( data );
+                json.recordsTotal = json.recordsTotal;
+                json.recordsFiltered = json.recordsFiltered;
+                json.data = json.data;
+    
+                console.log("jsongetallusers==== "+JSON.stringify( json ));
+
+                return JSON.stringify( json ); // return JSON string
+            }
+            },
+            "aaSorting": [],
+      "aoColumnDefs": [ {
+          "aTargets": 3,
+          "adata": "uploadedfileid",
+          "mRender": function(adata){
+             //var pid= CryptoJS.AES.encrypt(adata, "retrun_report");
+            //return '<a href="http://localhost/dcm_azur/superadmin/updatepcmh.html?pcmhid='+CryptoJS.AES.encrypt(""+adata+"", "getpcmh")+'"><button type="button" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i> Edit</button></a> ';
+            return '<button type="button" class="btn btn-primary btn-sm"><i class="fas fa-eye"></i> <a style="color:#fff;" href="view_return_report.html?uploadedfileid='+adata+'">View</a></button>';
+            
+          }
+          }],
+          "aoColumns": [
+          
+         { "data": "month_name" },
+          { "data": "for_year" },
+          { "data": "filename" },
+          { "data": "uploadedfileid" }
+        ]
+        } );
+        document.getElementById("loader").style.display = "none";
+      //End : Load json Data into the datatable 
+
+      //Start : Search Button Result
+      
+      $('#btn_search').click(function(){
+       
+       document.getElementById("loader").style.display = "block";
+       setTimeout(function() {
+         var pcmh = $('#pcmh').val();
+         var month = $('#month').val();
+         var year = $('#year').val();
+         var searchresult = pcmh+' '+month+' '+year;
+         review_return_reportTable.search(searchresult).draw();
+         document.getElementById("loader").style.display = "none";
+       },1000);  
+     })
+      //End : Search Button Result
+
+  }
+
+  function get_review_return_file1()
   {
     document.getElementById("loader").style.display = "block";
   

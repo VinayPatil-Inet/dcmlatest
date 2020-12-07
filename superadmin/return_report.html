@@ -246,18 +246,18 @@
                          <label>Select Month</label>
                          <select name="month" id="month" class="form-control">
                            <option value="">--Select Month--</option>
-                           <option value="January">January</option>
-                           <option value="February">February</option>
-                           <option value="March">March</option>
-                           <option value="April">April</option>
-                           <option value="May">May</option>
-                           <option value="June">June</option>
-                           <option value="July">July</option>
-                           <option value="August">August</option>
-                           <option value="September">September</option>
-                           <option value="October">October</option>
-                           <option value="November">November</option>
-                           <option value="December">December</option>
+                           <option value="1">January</option>
+                           <option value="2">February</option>
+                           <option value="3">March</option>
+                           <option value="4">April</option>
+                           <option value="5">May</option>
+                           <option value="6">June</option>
+                           <option value="7">July</option>
+                           <option value="8">August</option>
+                           <option value="9">September</option>
+                           <option value="10">October</option>
+                           <option value="11">November</option>
+                           <option value="12">December</option>
                           
                          </select>
                        </div>
@@ -279,7 +279,7 @@
                       <div class="form-group">
                         <label>&nbsp;</label><br>
                         <div id="loader" style="display: none;"></div>
-                        <button type="button" id="btn_search" class="btn btn-success"><i class="fas fa-search"></i> Search</button>
+                        <button type="button" id="btn_search1" onclick="get_review_return_file()" class="btn btn-success"><i class="fas fa-search"></i> Search</button>
                       </div>
                       </div>
                   </div>
@@ -389,16 +389,17 @@ $(document).ready(function () {
      
     var pcmdata="";
     var data='{"pcmhid":-1}';
-    getpcmh(data);
     get_review_return_file();
+    getpcmh(data);
+    
     });
 
     
   
     function getpcmh(data)
     {
-      document.getElementById("loader").style.display = "block";
-      fetch("https://apimsdcm.azure-api.net/dcmAPIM/fileupload", {
+      //document.getElementById("loader").style.display = "block";
+      fetch("https://apimsdcm.azure-api.net/dcmAPIM/PCMHData", {
         method: 'post',
        // mode: 'no-cors', // no-cors, *cors, same-origin
 
@@ -429,7 +430,7 @@ $(document).ready(function () {
                {
                var opt = document.createElement('option');
                
-               opt.value = data[i].pcmhname;
+               opt.value = data[i].pcmhid;
                opt.innerHTML = data[i].pcmhname;
               
                select.appendChild(opt);
@@ -445,8 +446,9 @@ $(document).ready(function () {
     }
     
 
-    function get_review_return_file()
+    function get_review_return_file1()
     {
+      
       var logged_in_userid=sessionStorage.getItem("userid");
       var usertype=sessionStorage.getItem("usertype");
      
@@ -484,7 +486,7 @@ $(document).ready(function () {
             })  
     }
 
-    function DisplayResult(review_return_filedata)
+    function DisplayResult1(review_return_filedata)
     {
 
       var review_return_reportTable= $('#dt_review_return_report').DataTable( {
@@ -531,6 +533,96 @@ $(document).ready(function () {
        
     } 
     
+    function get_review_return_file()
+    {
+      var pcmh= document.getElementById('pcmh').value;
+      var month =document.getElementById('month').value;
+      var year =document.getElementById('year').value;
+
+      document.getElementById("loader").style.display = "block";
+      var logged_in_userid=sessionStorage.getItem("userid");
+      var usertype=sessionStorage.getItem("usertype");
+     
+      
+      
+      var data='{"usertype":"'+usertype+'","logged_in_userid":"'+logged_in_userid+'","pcmh":"'+pcmh+'","month":"'+month+'" ,"year":"'+year+'"}';
+
+
+
+      var review_return_reportTable= $('#dt_review_return_report').DataTable( {
+        "paging": true,  
+                 "ordering": true,  
+                 "filter": true,  
+                 "destroy": true,  
+                 "pageLength": 10,
+                 "orderMulti": false,  
+                 "serverSide": true,  
+                 "processing": true, 
+                 "searching": true,
+                 ajax: {
+            url: 'https://apimsdcm.azure-api.net/dcmAPIM/review_return_report_file',
+            data:jQuery.parseJSON(data),
+            
+            
+            
+            dataFilter: function(data){
+              console.log("getallusers==== "+data);
+                var json = jQuery.parseJSON( data );
+                json.recordsTotal = json.recordsTotal;
+                json.recordsFiltered = json.recordsFiltered;
+                json.data = json.data;
+    
+                console.log("jsongetallusers==== "+JSON.stringify( json ));
+
+                return JSON.stringify( json ); // return JSON string
+            }
+            },
+
+
+      
+      "aaSorting": [],
+      "aoColumnDefs": [ {
+          "aTargets": 4,
+          "adata": "uploadedfileid",
+          "mRender": function(adata){
+             //var pid= CryptoJS.AES.encrypt(adata, "retrun_report");
+            //return '<a href="http://localhost/dcm_azur/superadmin/updatepcmh.html?pcmhid='+CryptoJS.AES.encrypt(""+adata+"", "getpcmh")+'"><button type="button" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i> Edit</button></a> ';
+            return '<button type="button" class="btn btn-primary btn-sm"><i class="fas fa-eye"></i> <a style="color:#fff;" href="view_return_report.html?uploadedfileid='+adata+'">View</a></button>';
+            
+          }
+          }],
+      
+          "aoColumns": [
+          
+          { "data": "pcmhname" },
+          { "data": "month_name" },
+          { "data": "for_year" },
+          { "data": "filename" },
+          { "data": "uploadedfileid" }
+        ]
+        } );
+        document.getElementById("loader").style.display = "none";
+      //End : Load json Data into the datatable 
+
+      //Start : Search Button Result
+      
+      $('#btn_search').click(function(){
+       
+       document.getElementById("loader").style.display = "block";
+       setTimeout(function() {
+         var pcmh = $('#pcmh').val();
+         var month = $('#month').val();
+         var year = $('#year').val();
+         var searchresult = pcmh+' '+month+' '+year;
+         review_return_reportTable.search(searchresult).draw();
+         document.getElementById("loader").style.display = "none";
+       },1000);  
+     })
+      //End : Search Button Result
+      
+       
+    } 
+
   
 
 </script>

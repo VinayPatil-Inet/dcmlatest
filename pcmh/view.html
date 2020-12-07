@@ -757,8 +757,121 @@ $(document).ready(function () {
 
   document.getElementById('usertype').innerHTML=usertype;
   document.getElementById('username').innerHTML=username;
-
+ 
+  // demographics_data();
+  // conditionsandrisk_data();
+  // costandutilization_data();
+  // bcbsriprogram_data();
+  // patient_all_data();
+  // returnreporting_data();
+  // testapp();
+  
 });
+
+function testapp()
+{
+console.log("testapptestapp ");
+var logged_in_userid=sessionStorage.getItem("userid");
+  var usertype=sessionStorage.getItem("usertype");
+  var pcmhid=sessionStorage.getItem("pcmhid");
+    document.getElementById("loader").style.display = "block";
+    var demographicsdata ='{"demographicsdatatype":"demographics","logged_in_userid":"'+logged_in_userid+'","usertype":"'+usertype+'","pcmhid":"'+pcmhid+'"}';
+  var getpcmhdatatable= $('#dt_recent_demographics').dataTable({
+                // "paging": true,  
+                //  "ordering": true,  
+                //  "filter": true,  
+                //  "orderMulti": false,  
+                //  "ServerSide": true,  
+                //  pageLength: 10,
+                //  "Processing": true,  
+                //  "PaginationType":"full_numbers",
+                "paging": true,  
+                 "ordering": true,  
+                 "filter": true,  
+                 "destroy": true,  
+                 "pageLength": 10,
+                 "orderMulti": false,  
+                 "serverSide": true,  
+                 "processing": true, 
+                 "searching": true,
+        ajax: {
+            url: 'https://apimsdcm.azure-api.net/PCMH/testapp',
+            dataType: "JSON",
+            data:jQuery.parseJSON(demographicsdata),
+            dataFilter: function(data){
+              console.log("getallusers==== "+data);
+                var json = jQuery.parseJSON( data );
+                json.recordsTotal = json.recordsTotal;
+                json.recordsFiltered = json.recordsFiltered;
+                json.data = json.data;
+    
+                console.log("jsongetallusers==== "+JSON.stringify( json ));
+
+                return JSON.stringify( json ); // return JSON string
+            }
+            },
+          // "aaSorting": [],
+         /* "aoColumnDefs": [ {
+          "aTargets": 7,
+          "adata": "userid",
+          "mRender": function(adata){
+          //var pid= CryptoJS.AES.encrypt(adata, "test");
+            return '<a href="http://localhost/dcm/superadmin/updateuser.html?userid='+CryptoJS.AES.encrypt(""+adata+"", "getuser")+'"><button type="button" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i> Edit</button></a> <button onclick="Deleteuser('+adata+')"  type="button" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i> Delete</button>';
+            
+          }
+          }],*/
+          "aoColumnDefs": [ {
+                "aTargets": 7,
+                "adata": "BCBSRI_Risk_Categorization",
+                "mRender": function(adata){
+                  if(adata=='High')
+                  {
+                  return '<button type="button" class="btn bg-gradient-danger btn-xs">'+adata+'</button> ';
+                  }
+                  else  if(adata=='Medium')
+                  {
+                  return '<button type="button" class="btn bg-gradient-warning btn-xs">'+adata+'</button> ';
+                  }
+                  else
+                  {
+                  return '<button type="button" class="btn bg-gradient-success btn-xs">'+adata+'</button> ';
+                  }
+                }
+                }],
+
+          "aoColumns": [
+                  {"data":"Mbr_Last_Name"},        
+                  { "data": "Mbr_First_Name" },
+                  { "data": "CONSISTENT_MEMBER_ID" },
+                  { "data": "BCBSRI_ID" },
+                  { "data": "Mbr_DOB" },
+                  { "data": "Mbr_Age" },
+                  { "data": "Mbr_Gender" },
+                  { "data": "BCBSRI_Risk_Categorization" },
+                  { "data": "New_PCMH_HR_Flag" },
+                  { "data": "Perf_Guarantee_Mbr" },
+                  { "data": "contracted_group_name" },
+                  { "data": "Practice_Site" },
+                  { "data": "PCP_Last_Name" },
+                  { "data": "PCP_First_name" },
+                  { "data": "Last_PCP_Visit_dt" },
+                  { "data": "Product" },
+                  { "data": "Requires_PCP_Referral" },
+                  { "data": "Medicare_Dual_Coverage_Type" },
+                  { "data": "Mbr_Addr1" },
+                  { "data": "Mbr_Addr2" },
+                  { "data": "Mbr_City" },
+                  { "data": "Mbr_State" },
+                  { "data": "Mbr_Zip" },
+                  { "data": "Mbr_Phone_Nbr" },
+                  { "data": "month_name" },
+                  { "data": "for_year" },
+                  
+
+        
+           ]
+        });
+}
 
 
 $.fn.serializeObject = function()

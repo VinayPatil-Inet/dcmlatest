@@ -363,7 +363,8 @@ $(document).ready(function () {
    var user_data="";
 var data='{"pcmhid":2}';
 
-   getuserdata(data);
+  //  getuserdata(data);
+  getResult(data);
 });
 
 function getuserdata(data)
@@ -396,6 +397,8 @@ function getuserdata(data)
                 {
                   document.getElementById("loader").style.display = "none";
                 }
+
+                
                 getResult(user_data);
                
             })
@@ -407,10 +410,43 @@ function getuserdata(data)
 function getResult(user_data)
 {
 
+
  
   var getpcmhdatatable= $('#dt_getuser').dataTable({
-          "aaData": JSON.parse(user_data),
-          "aaSorting": [],
+                // "paging": true,  
+                //  "ordering": true,  
+                //  "filter": true,  
+                //  "orderMulti": false,  
+                //  "ServerSide": true,  
+                //  pageLength: 10,
+                //  "Processing": true,  
+                //  "PaginationType":"full_numbers",
+                "paging": true,  
+                 "ordering": true,  
+                 "filter": true,  
+                 "destroy": true,  
+                 "pageLength": 10,
+                 "orderMulti": false,  
+                 "serverSide": true,  
+                 "processing": true, 
+                 "searching": true,
+        ajax: {
+            url: 'https://apimsdcm.azure-api.net/dcmAPIM/getallusers',
+            "dataType": "JSON",
+            
+            dataFilter: function(data){
+              console.log("getallusers==== "+data);
+                var json = jQuery.parseJSON( data );
+                json.recordsTotal = json.recordsTotal;
+                json.recordsFiltered = json.recordsFiltered;
+                json.data = json.data;
+    
+                console.log("jsongetallusers==== "+JSON.stringify( json ));
+
+                return JSON.stringify( json ); // return JSON string
+            }
+            },
+          // "aaSorting": [],
          /* "aoColumnDefs": [ {
           "aTargets": 7,
           "adata": "userid",

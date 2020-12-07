@@ -493,8 +493,8 @@ $(document).ready(function () {
       }
 
   //End : Get uploaded file ID from URL
-
-  //review_return_report_details(uploadedfileid);
+  $.fn.dataTable.ext.errMode = 'throw';
+  review_return_report_details(uploadedfileid);
   recent_review_return_report_individual_view(uploadedfileid);
   inprocess_review_return_report_individual_view(uploadedfileid);
   complated_review_return_report_individual_view(uploadedfileid);
@@ -506,32 +506,50 @@ $(document).ready(function () {
     function recent_review_return_report_individual_view(uploadedfileid)
     {
       var recentdata ='{"uploadedfileid":"'+uploadedfileid+'","logged_in_userid":"'+logged_in_userid+'","usertype":"'+usertype+'","pcmhid":"'+pcmhid+'","currentstatus":"0"}';
-      fetch("https://apimsdcm.azure-api.net/dcmAPIM/review_return_report_individual_view", {
-        method: 'post',
-       // mode: 'no-cors', // no-cors, *cors, same-origin
-
-       headers: { 'Content-Type': 'application/json',
-            "x-functions-key": "Y75v69weCc0+ZanTjf0jSihLRlZAOUJGRM8xTAbdDLMZdQiXYNiJfg==",
-            "Ocp-Apim-Subscription-Key": "2584a9c08dd04aa49db05cbb265c9b91",
-            // "subscription-key":"da91fd77-c908-4f23-9469-52acf3239a11"
-            },
-        body: recentdata
-    }).then((response) => {
-
-                     if (response.ok) {
-                    return response
-                } else {
-                    throw `update Looks like something went wrong. Status: ${response}`;
-                }
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log("data: [" + JSON.stringify(data)+"]")
-                review_return_recentdata = JSON.stringify(data);
+      
                
               setTimeout(function() {
                 var dt_recent_table= $('#dt-recent').DataTable( {
-                "aaData": JSON.parse(review_return_recentdata),
+                  "paging": true,  
+                 "ordering": true,  
+                 "filter": true,  
+                 "destroy": true,  
+                 "pageLength": 10,
+                 "orderMulti": false,  
+                 "serverSide": true,  
+                 "processing": true, 
+                 "searching": true,
+                  ajax: {
+                      url: 'https://apimsdcm.azure-api.net/dcmAPIM/review_return_report_individual_view',
+                      dataType: "JSON",
+                    // type: 'POST',
+                    data:jQuery.parseJSON(recentdata),
+                      dataFilter: function(data){
+                        console.log("getallusers==== "+data);
+                          var json = jQuery.parseJSON( data );
+                          json.recordsTotal = json.recordsTotal;
+                          json.recordsFiltered = json.recordsFiltered;
+                          json.data = json.data;
+              
+                          console.log("jsongetallusers==== "+JSON.stringify( json ));
+
+                          return JSON.stringify( json ); // return JSON string
+                      }
+                      ,
+                      error: function (xhr, error, code)
+                      {
+                          console.log("vxxxxx=== "+xhr);
+                          console.log(code);
+                          $('#dt-recent_processing').hide();
+                         //  json_encode(array('data'=>''));
+                        //  var json = jQuery.parseJSON( data );
+                        //   json.recordsTotal = 0;
+                        //   json.recordsFiltered = 0;
+                        //   json.data = 'No data Found';
+                        //   //  var json ='No data Found'
+                        //    return JSON.stringify(json) ;
+                      }
+                      },
                 "aaSorting": [],
                 "aoColumnDefs": [ {
                 "aTargets": 5,
@@ -596,12 +614,7 @@ $(document).ready(function () {
               //End : Search Button Result
               },2000);     
               
-             
-               
-            })
-            .catch(error => {
-                console.log(error)
-            })  
+            
     }
   //End : Load json Data into the datatable (Recent)
 
@@ -610,32 +623,50 @@ $(document).ready(function () {
     function inprocess_review_return_report_individual_view(uploadedfileid)
     {
       var inprocessdata ='{"uploadedfileid":"'+uploadedfileid+'","logged_in_userid":"'+logged_in_userid+'","usertype":"'+usertype+'","pcmhid":"'+pcmhid+'","currentstatus":"1"}';
-      fetch("https://apimsdcm.azure-api.net/dcmAPIM/review_return_report_individual_view", {
-        method: 'post',
-       // mode: 'no-cors', // no-cors, *cors, same-origin
-
-       headers: { 'Content-Type': 'application/json',
-            "x-functions-key": "Y75v69weCc0+ZanTjf0jSihLRlZAOUJGRM8xTAbdDLMZdQiXYNiJfg==",
-            "Ocp-Apim-Subscription-Key": "2584a9c08dd04aa49db05cbb265c9b91",
-            // "subscription-key":"da91fd77-c908-4f23-9469-52acf3239a11"
-            },
-        body: inprocessdata
-      }).then((response) => {
-
-                     if (response.ok) {
-                    return response
-                } else {
-                    throw `update Looks like something went wrong. Status: ${response}`;
-                }
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log("data: [" + JSON.stringify(data)+"]")
-                review_return_inprocessdata = JSON.stringify(data);
-               
+                     
               setTimeout(function() {
                 var dt_inprocess_table= $('#dt-inprocess').DataTable( {
-                "aaData": JSON.parse(review_return_inprocessdata),
+                  "paging": true,  
+                 "ordering": true,  
+                 "filter": true,  
+                 "destroy": true,  
+                 "pageLength": 10,
+                 "orderMulti": false,  
+                 "serverSide": true,  
+                 "processing": true, 
+                 "searching": true,
+                  ajax: {
+                      url: 'https://apimsdcm.azure-api.net/dcmAPIM/review_return_report_individual_view',
+                      dataType: "JSON",
+                    // type: 'POST',
+                    data:jQuery.parseJSON(inprocessdata),
+                      dataFilter: function(data){
+                        console.log("getallusers==== "+data);
+                          var json = jQuery.parseJSON( data );
+                          json.recordsTotal = json.recordsTotal;
+                          json.recordsFiltered = json.recordsFiltered;
+                          json.data = json.data;
+              
+                          console.log("jsongetallusers==== "+JSON.stringify( json ));
+
+                          return JSON.stringify( json ); // return JSON string
+                      }
+                      ,
+                      error: function (xhr, error, code)
+                      {
+                          console.log("vxxxxx=== "+xhr);
+                          console.log(code);
+                          $('#dt-inprocess_processing').hide();
+                         //  json_encode(array('data'=>''));
+                        //  var json = jQuery.parseJSON( data );
+                        //   json.recordsTotal = 0;
+                        //   json.recordsFiltered = 0;
+                        //   json.data = 'No data Found';
+                        //   //  var json ='No data Found'
+                        //    return JSON.stringify(json) ;
+                      } 
+                     
+                      },
                 "aaSorting": [],
                 "aoColumnDefs": [ {
                 "aTargets": 5,
@@ -698,11 +729,6 @@ $(document).ready(function () {
                
               },2000);     
      
-               
-            })
-            .catch(error => {
-                console.log(error)
-            })  
      }
   //End : Load json Data into the datatable (inprocess)
 
@@ -711,33 +737,50 @@ $(document).ready(function () {
     {
       
       var complateddata ='{"uploadedfileid":"'+uploadedfileid+'","logged_in_userid":"'+logged_in_userid+'","usertype":"'+usertype+'","pcmhid":"'+pcmhid+'","currentstatus":"2"}';
-      fetch("https://apimsdcm.azure-api.net/dcmAPIM/review_return_report_individual_view", {
-        method: 'post',
-       // mode: 'no-cors', // no-cors, *cors, same-origin
-
-       headers: { 'Content-Type': 'application/json',
-            "x-functions-key": "Y75v69weCc0+ZanTjf0jSihLRlZAOUJGRM8xTAbdDLMZdQiXYNiJfg==",
-            "Ocp-Apim-Subscription-Key": "2584a9c08dd04aa49db05cbb265c9b91",
-            // "subscription-key":"da91fd77-c908-4f23-9469-52acf3239a11"
-            },
-        body: complateddata
-      }).then((response) => {
-
-                     if (response.ok) {
-                    return response
-                } else {
-                  document.getElementById("loader").style.display = "none";
-                    throw `update Looks like something went wrong. Status: ${response}`;
-                }
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log("data: [" + JSON.stringify(data)+"]")
-                review_return_complated = JSON.stringify(data);
+     
                 
               setTimeout(function() {
                 var dt_complated_table= $('#dt-complated').DataTable( {
-                "aaData": JSON.parse(review_return_complated),
+                  "paging": true,  
+                 "ordering": true,  
+                 "filter": true,  
+                 "destroy": true,  
+                 "pageLength": 10,
+                 "orderMulti": false,  
+                 "serverSide": true,  
+                 "processing": true, 
+                 "searching": true,
+                  ajax: {
+                      url: 'https://apimsdcm.azure-api.net/dcmAPIM/review_return_report_individual_view',
+                      dataType: "JSON",
+                    // type: 'POST',
+                    data:jQuery.parseJSON(complateddata),
+                      dataFilter: function(data){
+                        console.log("getallusers==== "+data);
+                          var json = jQuery.parseJSON( data );
+                          json.recordsTotal = json.recordsTotal;
+                          json.recordsFiltered = json.recordsFiltered;
+                          json.data = json.data;
+              
+                          console.log("jsongetallusers==== "+JSON.stringify( json ));
+
+                          return JSON.stringify( json ); // return JSON string
+                      }
+                      ,
+                      error: function (xhr, error, code)
+                      {
+                          console.log("vxxxxx=== "+xhr);
+                          console.log(code);
+                          $('#dt-complated_processing').hide();
+                         //  json_encode(array('data'=>''));
+                        //  var json = jQuery.parseJSON( data );
+                        //   json.recordsTotal = 0;
+                        //   json.recordsFiltered = 0;
+                        //   json.data = 'No data Found';
+                        //   //  var json ='No data Found'
+                        //    return JSON.stringify(json) ;
+                      }
+                      },
                 "aaSorting": [],
                 "aoColumnDefs": [ {
                 "aTargets": 5,
@@ -803,11 +846,7 @@ $(document).ready(function () {
                     
               },2000);     
      
-               
-            })
-            .catch(error => {
-                console.log(error)
-            })  
+           
      }
   //End : Load json Data into the datatable (complated)
 

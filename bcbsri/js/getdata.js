@@ -3,48 +3,69 @@
   var logged_in_userid=sessionStorage.getItem("userid");
   var usertype=sessionStorage.getItem("usertype");
   
-  demographics_data()
-  conditionsandrisk_data()
-  costandutilization_data()
-  bcbsriprogram_data()
-  patient_all_data()
-  returnreporting_data()
+  demographics_data();
+  conditionsandrisk_data();
+  costandutilization_data();
+  bcbsriprogram_data();
+  patient_all_data();
+  returnreporting_data();
   
 
   function demographics_data()
   {
-    // alert(3);
+    console.log("demographics_data");
+    var logged_in_userid=sessionStorage.getItem("userid");
+  var usertype=sessionStorage.getItem("usertype");
+  $.fn.dataTable.ext.errMode = 'throw';
     document.getElementById("loader").style.display = "block";
-    
-    
+    console.log("demographics_data==== "+usertype);
     var demographicsdata ='{"demographicsdatatype":"demographics","logged_in_userid":"'+logged_in_userid+'","usertype":"'+usertype+'"}';
-      fetch("https://apimsdcm.azure-api.net/PCMH/pcmhreports", {
-        method: 'post',
-       // mode: 'no-cors', // no-cors, *cors, same-origin
-
-       headers: { 'Content-Type': 'application/json',
-            "x-functions-key": "Y75v69weCc0+ZanTjf0jSihLRlZAOUJGRM8xTAbdDLMZdQiXYNiJfg==",
-            "Ocp-Apim-Subscription-Key": "2584a9c08dd04aa49db05cbb265c9b91",
-            // "subscription-key":"da91fd77-c908-4f23-9469-52acf3239a11"
-            },
-        body: demographicsdata
-    }).then((response) => {
-
-                     if (response.ok) {
-                    return response
-                } else {
-                    throw `update Looks like something went wrong. Status: ${response}`;
-                }
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log("data: [" + JSON.stringify(data)+"]")
-                review_return_filedata = JSON.stringify(data);
+   
+   
                 
               setTimeout(function() {
                 var demographicsTable= $('#dt_recent_demographics').DataTable( {
-                "aaData": JSON.parse(review_return_filedata),
-                "aaSorting": [],
+                // "aaData": JSON.parse(review_return_filedata),
+               
+                "paging": true,  
+                "ordering": true,  
+                "filter": true,  
+                "destroy": true,  
+                "pageLength": 10,
+                "orderMulti": false,  
+                "serverSide": true,  
+                "processing": true, 
+                "searching": true,
+                ajax: {
+                    url: 'https://apimsdcm.azure-api.net/PCMH/pcmhreports',
+                    dataType: "JSON",
+                    type: 'POST',
+                    data:jQuery.parseJSON(demographicsdata),
+                    dataFilter: function(data){
+                      console.log("demographics_data==== "+data);
+                        var json = jQuery.parseJSON( data );
+                        json.recordsTotal = json.recordsTotal;
+                        json.recordsFiltered = json.recordsFiltered;
+                        json.data = json.data;
+            
+                        console.log("jsondemographics_data==== "+JSON.stringify( json ));
+
+                        return JSON.stringify( json ); // return JSON string
+                    },
+                    error: function (xhr, error, code)
+                    {
+                        console.log("vxxxxx=== "+xhr);
+                        console.log(code);
+                        $('#dt_recent_demographics').hide();
+                       //  json_encode(array('data'=>''));
+                      //  var json = jQuery.parseJSON( data );
+                      //   json.recordsTotal = 0;
+                      //   json.recordsFiltered = 0;
+                      //   json.data = 'No data Found';
+                      //   //  var json ='No data Found'
+                      //    return JSON.stringify(json) ;
+                    }
+                    },
 
                 "aoColumnDefs": [ {
                 "aTargets": 7,
@@ -97,70 +118,82 @@
 
 
                   $('#btn_search').click(function(){
-                    
                     document.getElementById("loader").style.display = "block";
                     setTimeout(function() {
+                      var month_number = $('#month').val();
+                      var  months_names_array = ["","January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+                      var month=months_names_array[month_number];
                       var risk = $('#risk').val();
                       var year = $('#year').val();
-                      var month = $('#month').val();
+                      
                       var searchresult = risk+' '+month+' '+year;
                       demographicsTable.search(searchresult).draw();
                       document.getElementById("loader").style.display = "none";
-                    },1000);   
+                    },1000);  
                   })
                   document.getElementById("loader").style.display = "none";
               },2000);     
      
-             
-            })
-            .catch(error => {
-                console.log(error)
-            })  
+              
+            // })
+            // .catch(error => {
+            //     console.log(error)
+            // })  
 
             
   }
-  
-
-    //End : Load json Data into the datatable (Demographics)
-
-  
-//End : Demographics
-
-//==============================================================================================//
-
-//Start : conditions and risk
-  //Start : Load json Data into the datatable (conditions and risk[Recent])
 
   function conditionsandrisk_data()
   {
+    console.log("conditionsandrisk_data");
     var logged_in_userid=sessionStorage.getItem("userid");
+  var usertype=sessionStorage.getItem("usertype");
+  $.fn.dataTable.ext.errMode = 'throw';
     var conditionsandriskdata ='{"conditionsandriskype":"conditionsandrisk","logged_in_userid":"'+logged_in_userid+'","usertype":"'+usertype+'"}';
-      fetch("https://apimsdcm.azure-api.net/PCMH/pcmhreports", {
-        method: 'post',
-       // mode: 'no-cors', // no-cors, *cors, same-origin
-
-       headers: { 'Content-Type': 'application/json',
-            "x-functions-key": "Y75v69weCc0+ZanTjf0jSihLRlZAOUJGRM8xTAbdDLMZdQiXYNiJfg==",
-            "Ocp-Apim-Subscription-Key": "2584a9c08dd04aa49db05cbb265c9b91",
-            // "subscription-key":"da91fd77-c908-4f23-9469-52acf3239a11"
-            },
-        body: conditionsandriskdata
-    }).then((response) => {
-
-                     if (response.ok) {
-                    return response
-                } else {
-                    throw `update Looks like something went wrong. Status: ${response}`;
-                }
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log("data: [" + JSON.stringify(data)+"]")
-                conditionsandrisk_return_data = JSON.stringify(data);
+     console.log("conditionsandriskdata=== "+conditionsandriskdata);
                 
               setTimeout(function() {
                 var conditionsandriskTable= $('#dt_recent_conditionsandrisk').DataTable( {
-                "aaData": JSON.parse(conditionsandrisk_return_data),
+                  "paging": true,  
+                "ordering": true,  
+                "filter": true,  
+                "destroy": true,  
+                "pageLength": 10,
+                "orderMulti": false,  
+                "serverSide": true,  
+                "processing": true, 
+                "searching": true,
+                ajax: {
+                    url: 'https://apimsdcm.azure-api.net/PCMH/pcmhreports',
+                    dataType: "JSON",
+                    type: 'POST',
+                    data:jQuery.parseJSON(conditionsandriskdata),
+                    dataFilter: function(data){
+                      console.log("conditionsandrisk_data==== "+data);
+                        var json = jQuery.parseJSON( data );
+                        json.recordsTotal = json.recordsTotal;
+                        json.recordsFiltered = json.recordsFiltered;
+                        json.data = json.data;
+            
+                        console.log("JSONconditionsandrisk_data==== "+JSON.stringify( json ));
+
+                        return JSON.stringify( json ); // return JSON string
+                    },
+                    error: function (xhr, error, code)
+                    {
+                        console.log("vxxxxx=== "+xhr);
+                        console.log(code);
+                        $('#dt_recent_conditionsandrisk').hide();
+                       //  json_encode(array('data'=>''));
+                      //  var json = jQuery.parseJSON( data );
+                      //   json.recordsTotal = 0;
+                      //   json.recordsFiltered = 0;
+                      //   json.data = 'No data Found';
+                      //   //  var json ='No data Found'
+                      //    return JSON.stringify(json) ;
+                    }
+                    },
+
                 "aaSorting": [],
 
                 "aoColumnDefs": [ {
@@ -214,9 +247,11 @@
 
                   $('#btn_search').click(function(){
   
-                    var risk = $('#risk').val();
-                    var year = $('#year').val();
-                    var month = $('#month').val();
+                    var month_number = $('#month').val();
+                      var  months_names_array = ["","January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+                      var month=months_names_array[month_number];
+                      var risk = $('#risk').val();
+                      var year = $('#year').val();
                     var searchresult = risk+' '+month+' '+year;
                     conditionsandriskTable.search(searchresult).draw();
                 
@@ -225,57 +260,60 @@
               },2000);     
      
                
-            })
-            .catch(error => {
-                console.log(error)
-            })  
-
+           
             
   }
 
-
-  //End : Load json Data into the datatable (conditions and risk[Recent])
-
-   
-
-//End : conditions and risk
-
-//==================================================================================================//
-
-
-
-//Start : cost and utilization
-
-function costandutilization_data()
+  function costandutilization_data()
 {
+  console.log("costandutilization_data");
   var logged_in_userid=sessionStorage.getItem("userid");
+  var usertype=sessionStorage.getItem("usertype");
+  $.fn.dataTable.ext.errMode = 'throw';
   var costandutilizationkdata ='{"costandutilizationtype":"costandutilizationtype","logged_in_userid":"'+logged_in_userid+'","usertype":"'+usertype+'"}';
-    fetch("https://apimsdcm.azure-api.net/PCMH/pcmhreports", {
-      method: 'post',
-     // mode: 'no-cors', // no-cors, *cors, same-origin
-
-     headers: { 'Content-Type': 'application/json',
-          "x-functions-key": "Y75v69weCc0+ZanTjf0jSihLRlZAOUJGRM8xTAbdDLMZdQiXYNiJfg==",
-          "Ocp-Apim-Subscription-Key": "2584a9c08dd04aa49db05cbb265c9b91",
-          // "subscription-key":"da91fd77-c908-4f23-9469-52acf3239a11"
-          },
-      body: costandutilizationkdata
-  }).then((response) => {
-
-                   if (response.ok) {
-                  return response
-              } else {
-                  throw `update Looks like something went wrong. Status: ${response}`;
-              }
-          })
-          .then(response => response.json())
-          .then(data => {
-              console.log("data: [" + JSON.stringify(data)+"]")
-              costandutilization_return_data = JSON.stringify(data);
+    
               
             setTimeout(function() {
               var costandutilizationTable= $('#dt_recent_costandutilization').DataTable( {
-              "aaData": JSON.parse(costandutilization_return_data),
+                "paging": true,  
+                "ordering": true,  
+                "filter": true,  
+                "destroy": true,  
+                "pageLength": 10,
+                "orderMulti": false,  
+                "serverSide": true,  
+                "processing": true, 
+                "searching": true,
+                ajax: {
+                    url: 'https://apimsdcm.azure-api.net/PCMH/pcmhreports',
+                    dataType: "JSON",
+                    type: 'POST',
+                    data:jQuery.parseJSON(costandutilizationkdata),
+                    dataFilter: function(data){
+                      console.log("costandutilization_data==== "+data);
+                        var json = jQuery.parseJSON( data );
+                        json.recordsTotal = json.recordsTotal;
+                        json.recordsFiltered = json.recordsFiltered;
+                        json.data = json.data;
+            
+                        console.log("JSONcostandutilization_data==== "+JSON.stringify( json ));
+
+                        return JSON.stringify( json ); // return JSON string
+                    },
+                    error: function (xhr, error, code)
+                    {
+                        console.log("vxxxxx=== "+xhr);
+                        console.log(code);
+                        $('#dt_recent_costandutilization').hide();
+                       //  json_encode(array('data'=>''));
+                      //  var json = jQuery.parseJSON( data );
+                      //   json.recordsTotal = 0;
+                      //   json.recordsFiltered = 0;
+                      //   json.data = 'No data Found';
+                      //   //  var json ='No data Found'
+                      //    return JSON.stringify(json) ;
+                    }
+                    },
               "aaSorting": [],
 
               "aoColumnDefs": [ {
@@ -321,9 +359,11 @@ function costandutilization_data()
 
                 $('#btn_search').click(function(){
 
-                  var risk = $('#risk').val();
-                  var year = $('#year').val();
-                  var month = $('#month').val();
+                  var month_number = $('#month').val();
+                      var  months_names_array = ["","January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+                      var month=months_names_array[month_number];
+                      var risk = $('#risk').val();
+                      var year = $('#year').val();
                   var searchresult = risk+' '+month+' '+year;
                   costandutilizationTable.search(searchresult).draw();
               
@@ -331,60 +371,58 @@ function costandutilization_data()
              
             },2000);     
    
-             
-          })
-          .catch(error => {
-              console.log(error)
-          })  
-
-         
+          
     }
 
-  //Start : Load json Data into the datatable (cost and utilization[recent])
-  
- 
-
-  
-  //End : Load json Data into the datatable (cost and utilization[recent])
-
-  
-
-//End : cost and utilization
-
-//===========================================================================================//
-
-//Start : BCBSRI Program
-
-function bcbsriprogram_data()
+    function bcbsriprogram_data()
 {
+  console.log("bcbsriprogram_data");
   var logged_in_userid=sessionStorage.getItem("userid");
+  var usertype=sessionStorage.getItem("usertype");
+  $.fn.dataTable.ext.errMode = 'throw';
   var bcbsriprogramdata ='{"bcbsriprogramtype":"bcbsriprogram","logged_in_userid":"'+logged_in_userid+'","usertype":"'+usertype+'"}';
-    fetch("https://apimsdcm.azure-api.net/PCMH/pcmhreports", {
-      method: 'post',
-     // mode: 'no-cors', // no-cors, *cors, same-origin
-
-     headers: { 'Content-Type': 'application/json',
-          "x-functions-key": "Y75v69weCc0+ZanTjf0jSihLRlZAOUJGRM8xTAbdDLMZdQiXYNiJfg==",
-          "Ocp-Apim-Subscription-Key": "2584a9c08dd04aa49db05cbb265c9b91",
-          // "subscription-key":"da91fd77-c908-4f23-9469-52acf3239a11"
-          },
-      body: bcbsriprogramdata
-  }).then((response) => {
-
-                   if (response.ok) {
-                  return response
-              } else {
-                  throw `update Looks like something went wrong. Status: ${response}`;
-              }
-          })
-          .then(response => response.json())
-          .then(data => {
-              console.log("data: [" + JSON.stringify(data)+"]")
-              bcbsriprogram_returndata = JSON.stringify(data);
-              
+                 
             setTimeout(function() {
               var bcbsriprogramTable= $('#dt_recent_bcbsriprogram').DataTable( {
-              "aaData": JSON.parse(bcbsriprogram_returndata),
+                "paging": true,  
+                 "ordering": true,  
+                 "filter": true,  
+                 "destroy": true,  
+                 "pageLength": 10,
+                 "orderMulti": false,  
+                 "serverSide": true,  
+                 "processing": true, 
+                 "searching": true,
+                 ajax: {
+                    url: 'https://apimsdcm.azure-api.net/PCMH/pcmhreports',
+                    dataType: "JSON",
+                    type: 'POST',
+                    data:jQuery.parseJSON(bcbsriprogramdata),
+                    dataFilter: function(data){
+                      console.log("bcbsriprogram_data==== "+data);
+                        var json = jQuery.parseJSON( data );
+                        json.recordsTotal = json.recordsTotal;
+                        json.recordsFiltered = json.recordsFiltered;
+                        json.data = json.data;
+            
+                        console.log("JSONbcbsriprogram_data==== "+JSON.stringify( json ));
+
+                        return JSON.stringify( json ); // return JSON string
+                    },
+                    error: function (xhr, error, code)
+                    {
+                        console.log("vxxxxx=== "+xhr);
+                        console.log(code);
+                        $('#dt_recent_bcbsriprogram').hide();
+                       //  json_encode(array('data'=>''));
+                      //  var json = jQuery.parseJSON( data );
+                      //   json.recordsTotal = 0;
+                      //   json.recordsFiltered = 0;
+                      //   json.data = 'No data Found';
+                      //   //  var json ='No data Found'
+                      //    return JSON.stringify(json) ;
+                    }
+                    },
               "aaSorting": [],
 
               "aoColumnDefs": [ {
@@ -427,9 +465,11 @@ function bcbsriprogram_data()
 
                 $('#btn_search').click(function(){
 
-                  var risk = $('#risk').val();
-                  var year = $('#year').val();
-                  var month = $('#month').val();
+                  var month_number = $('#month').val();
+                      var  months_names_array = ["","January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+                      var month=months_names_array[month_number];
+                      var risk = $('#risk').val();
+                      var year = $('#year').val();
                   var searchresult = risk+' '+month+' '+year;
                   bcbsriprogramTable.search(searchresult).draw();
               
@@ -438,211 +478,206 @@ function bcbsriprogram_data()
             },2000);     
    
              
-          })
-          .catch(error => {
-              console.log(error)
-          })  
+        
 
          
     }
-
-
-
-  
-  //End : Load json Data into the datatable (BCBSRI Program[recent])
-
-
-  
-
-
-//End : BCBSRI Program
-
-//==============================================================================================//
-
-//Start : Patient all data
-  //Start : Load json Data into the datatable (Patient all data[recent])
-
-  function patient_all_data()
-{
-  var logged_in_userid=sessionStorage.getItem("userid");
-  var patient_alldata ='{"patientalldatatype":"patientalldata","logged_in_userid":"'+logged_in_userid+'","usertype":"'+usertype+'"}';
-    fetch("https://apimsdcm.azure-api.net/PCMH/pcmhreports", {
-      method: 'post',
-     // mode: 'no-cors', // no-cors, *cors, same-origin
-
-     headers: { 'Content-Type': 'application/json',
-          "x-functions-key": "Y75v69weCc0+ZanTjf0jSihLRlZAOUJGRM8xTAbdDLMZdQiXYNiJfg==",
-          "Ocp-Apim-Subscription-Key": "2584a9c08dd04aa49db05cbb265c9b91",
-          // "subscription-key":"da91fd77-c908-4f23-9469-52acf3239a11"
-          },
-      body: patient_alldata
-  }).then((response) => {
-
-                   if (response.ok) {
-                  return response
-              } else {
-                  throw `update Looks like something went wrong. Status: ${response}`;
-              }
-          })
-          .then(response => response.json())
-          .then(data => {
-              console.log("data: [" + JSON.stringify(data)+"]")
-              patientallreturn_data = JSON.stringify(data);
-              
-            setTimeout(function() {
-              var patientpanelalldataTable= $('#dt_recent_patientpanelalldata').DataTable( {
-              "aaData": JSON.parse(patientallreturn_data),
-              "aaSorting": [],
-
-              "aoColumnDefs": [ {
-              "aTargets": 7,
-              "adata": "BCBSRI_Risk_Categorization",
-              "mRender": function(adata){
-                if(adata=='High')
-                {
-                return '<button type="button" class="btn bg-gradient-danger btn-xs">'+adata+'</button> ';
-                }
-                else  if(adata=='Medium')
-                {
-                return '<button type="button" class="btn bg-gradient-warning btn-xs">'+adata+'</button> ';
-                }
-                else
-                {
-                return '<button type="button" class="btn bg-gradient-success btn-xs">'+adata+'</button> ';
-                }
-              }
-              }],
-              
-              "aoColumns": [
-                {"data":"Mbr_Last_Name"},        
-                { "data": "Mbr_First_Name" },
-                { "data": "CONSISTENT_MEMBER_ID" },
-                { "data": "BCBSRI_ID" },
-                { "data": "Mbr_DOB" },
-                { "data": "Mbr_Age" },
-                { "data": "Mbr_Gender" },
-                { "data": "BCBSRI_Risk_Categorization" },
-                { "data": "New_PCMH_HR_Flag" },
-                { "data": "Perf_Guarantee_Mbr" },
-                { "data": "contracted_group_name" },
-                { "data": "Practice_Site" },
-                { "data": "PCP_Last_Name" },
-                { "data": "PCP_First_name" },
-               // { "data": "Last_PCP_Visit_dt" },
-                { "data": "Product" },
-                { "data": "Requires_PCP_Referral" },
-                { "data": "Medicare_Dual_Coverage_Type" },
-                { "data": "Mbr_Addr1" },
-                { "data": "Mbr_Addr2" },
-                { "data": "Mbr_City" },
-                { "data": "Mbr_State" },
-                { "data": "Mbr_Zip" },
-                { "data": "Mbr_Phone_Nbr" },
-                { "data": "RUB" },
-                { "data": "Medicare_Risk_Index" },
-                { "data": "Hypertension" },
-                { "data": "Hyperlipid" },
-                { "data": "LowBackPain" },
-                { "data": "Diabetes" },
-                { "data": "IschemicHD" },
-                { "data": "Asthma" },
-                { "data": "COPD" },
-                { "data": "CHF" },
-                { "data": "Cancer" },
-                { "data": "Depression" },
-                { "data": "ESRD" },
-                { "data": "CKD" },
-                { "data": "Hospice" },
-                { "data": "BH_Risk_Category" },
-                { "data": "Adv_Dir_S0257" },
-                { "data": "Probability_of_IP_in_6mos" },
-                { "data": "IP_Medical_Cnt" },
-                { "data": "OP_ER_Cnt" },
-                { "data": "Total_Cost" },
-                { "data": "Medical_Cost" },
-                //{ "data": "Rx_Cost" },
-               // { "data": "High_Cost_50k" },
-                { "data": "High_Cost_Driver" },
-                { "data": "RxSpecialty_Drug" },
-                { "data": "RxSpecialty_Disease_Desc" },
-                { "data": "In_Home_Assessment_Status" },
-               // { "data": "In_Home_Assessment_Status_date" },
-                //{ "data": "BH_CM_Flag" },
-                //{ "data": "BH_CM_Discharge_Dt" },
-                { "data": "BH_CM_Discharge_Reason" },
-                { "data": "HCBB_Eligible" },
-                { "data": "HCBB_Engaged" },
-                { "data": "month_name" },
-                { "data": "for_year" }
-                    ]
-                } );
-
-                $('#btn_search').click(function(){
-
-                  var risk = $('#risk').val();
-                  var year = $('#year').val();
-                  var month = $('#month').val();
-                  var searchresult = risk+' '+month+' '+year;
-                  patientpanelalldataTable.search(searchresult).draw();
-              
-                })
-             
-            },2000);     
+    function patient_all_data()
+    {
+      var logged_in_userid=sessionStorage.getItem("userid");
+      var patient_alldata ='{"patientalldatatype":"patientalldata","logged_in_userid":"'+logged_in_userid+'","usertype":"'+usertype+'"}';
+       
+                  
+                setTimeout(function() {
+                  var patientpanelalldataTable= $('#dt_recent_patientpanelalldata').DataTable( {
+                    "paging": true,  
+                    "ordering": true,  
+                    "filter": true,  
+                    "destroy": true,  
+                    "pageLength": 10,
+                    "orderMulti": false,  
+                    "serverSide": true,  
+                    "processing": true, 
+                    "searching": true,
+                    ajax: {
+                       url: 'https://apimsdcm.azure-api.net/PCMH/pcmhreports',
+                       dataType: "JSON",
+                       type: 'POST',
+                       data:jQuery.parseJSON(patient_alldata),
+                       dataFilter: function(data){
+                         console.log("patient_all_data==== "+data);
+                           var json = jQuery.parseJSON( data );
+                           json.recordsTotal = json.recordsTotal;
+                           json.recordsFiltered = json.recordsFiltered;
+                           json.data = json.data;
+               
+                           console.log("JSONpatient_all_data==== "+JSON.stringify( json ));
    
+                           return JSON.stringify( json ); // return JSON string
+                       },
+                       error: function (xhr, error, code)
+                       {
+                           console.log("vxxxxx=== "+xhr);
+                           console.log(code);
+                           $('#dt_recent_patientpanelalldata_processing').hide();
+                          //  json_encode(array('data'=>''));
+                         //  var json = jQuery.parseJSON( data );
+                         //   json.recordsTotal = 0;
+                         //   json.recordsFiltered = 0;
+                         //   json.data = 'No data Found';
+                         //   //  var json ='No data Found'
+                         //    return JSON.stringify(json) ;
+                       }
+                      },
+                  "aaSorting": [],
+    
+                  "aoColumnDefs": [ {
+                  "aTargets": 7,
+                  "adata": "BCBSRI_Risk_Categorization",
+                  "mRender": function(adata){
+                    if(adata=='High')
+                    {
+                    return '<button type="button" class="btn bg-gradient-danger btn-xs">'+adata+'</button> ';
+                    }
+                    else  if(adata=='Medium')
+                    {
+                    return '<button type="button" class="btn bg-gradient-warning btn-xs">'+adata+'</button> ';
+                    }
+                    else
+                    {
+                    return '<button type="button" class="btn bg-gradient-success btn-xs">'+adata+'</button> ';
+                    }
+                  }
+                  }],
+                  
+                  "aoColumns": [
+                    {"data":"Mbr_Last_Name"},        
+                    { "data": "Mbr_First_Name" },
+                    { "data": "CONSISTENT_MEMBER_ID" },
+                    { "data": "BCBSRI_ID" },
+                    { "data": "Mbr_DOB" },
+                    { "data": "Mbr_Age" },
+                    { "data": "Mbr_Gender" },
+                    { "data": "BCBSRI_Risk_Categorization" },
+                    { "data": "New_PCMH_HR_Flag" },
+                    { "data": "Perf_Guarantee_Mbr" },
+                    { "data": "contracted_group_name" },
+                    { "data": "Practice_Site" },
+                    { "data": "PCP_Last_Name" },
+                    { "data": "PCP_First_name" },
+                   // { "data": "Last_PCP_Visit_dt" },
+                    { "data": "Product" },
+                    { "data": "Requires_PCP_Referral" },
+                    { "data": "Medicare_Dual_Coverage_Type" },
+                    { "data": "Mbr_Addr1" },
+                    { "data": "Mbr_Addr2" },
+                    { "data": "Mbr_City" },
+                    { "data": "Mbr_State" },
+                    { "data": "Mbr_Zip" },
+                    { "data": "Mbr_Phone_Nbr" },
+                    { "data": "RUB" },
+                    { "data": "Medicare_Risk_Index" },
+                    { "data": "Hypertension" },
+                    { "data": "Hyperlipid" },
+                    { "data": "LowBackPain" },
+                    { "data": "Diabetes" },
+                    { "data": "IschemicHD" },
+                    { "data": "Asthma" },
+                    { "data": "COPD" },
+                    { "data": "CHF" },
+                    { "data": "Cancer" },
+                    { "data": "Depression" },
+                    { "data": "ESRD" },
+                    { "data": "CKD" },
+                    { "data": "Hospice" },
+                    { "data": "BH_Risk_Category" },
+                    { "data": "Adv_Dir_S0257" },
+                    { "data": "Probability_of_IP_in_6mos" },
+                    { "data": "IP_Medical_Cnt" },
+                    { "data": "OP_ER_Cnt" },
+                    { "data": "Total_Cost" },
+                    { "data": "Medical_Cost" },
+                    //{ "data": "Rx_Cost" },
+                   // { "data": "High_Cost_50k" },
+                    { "data": "High_Cost_Driver" },
+                    { "data": "RxSpecialty_Drug" },
+                    { "data": "RxSpecialty_Disease_Desc" },
+                    { "data": "In_Home_Assessment_Status" },
+                   // { "data": "In_Home_Assessment_Status_date" },
+                    //{ "data": "BH_CM_Flag" },
+                    //{ "data": "BH_CM_Discharge_Dt" },
+                    { "data": "BH_CM_Discharge_Reason" },
+                    { "data": "HCBB_Eligible" },
+                    { "data": "HCBB_Engaged" },
+                    { "data": "month_name" },
+                    { "data": "for_year" }
+                        ]
+                    } );
+    
+                    $('#btn_search').click(function(){
+    
+                      var risk = $('#risk').val();
+                      var year = $('#year').val();
+                      var month = $('#month').val();
+                      var searchresult = risk+' '+month+' '+year;
+                      patientpanelalldataTable.search(searchresult).draw();
+                  
+                    })
+                 
+                },2000);     
+       
              
-          })
-          .catch(error => {
-              console.log(error)
-          })  
-
-         
-    }
-
-  
-  //End : Load json Data into the datatable (Patient all data[recent])
-
-  
-
-//End : Patient all data
-
-//=================================================================================================//
-
-
-//Start : Return Reporting
-
- //Start : Load json Data into the datatable (Return Reporting[recent])
- 
-
- function returnreporting_data()
+        }
+    
+    function returnreporting_data()
 {
+  console.log("returnreporting_data");
   var logged_in_userid=sessionStorage.getItem("userid");
+  var usertype=sessionStorage.getItem("usertype");
+  $.fn.dataTable.ext.errMode = 'throw';
   var returnreportingdata ='{"returnreportingdatatype":"returnreporting","logged_in_userid":"'+logged_in_userid+'","usertype":"'+usertype+'"}';
-    fetch("https://apimsdcm.azure-api.net/PCMH/pcmhreports", {
-      method: 'post',
-     // mode: 'no-cors', // no-cors, *cors, same-origin
-
-     headers: { 'Content-Type': 'application/json',
-          "x-functions-key": "Y75v69weCc0+ZanTjf0jSihLRlZAOUJGRM8xTAbdDLMZdQiXYNiJfg==",
-          "Ocp-Apim-Subscription-Key": "2584a9c08dd04aa49db05cbb265c9b91",
-          // "subscription-key":"da91fd77-c908-4f23-9469-52acf3239a11"
-          },
-      body: returnreportingdata
-  }).then((response) => {
-
-                   if (response.ok) {
-                  return response
-              } else {
-                  throw `update Looks like something went wrong. Status: ${response}`;
-              }
-          })
-          .then(response => response.json())
-          .then(data => {
-              console.log("data: [" + JSON.stringify(data)+"]")
-              returnreporting_data = JSON.stringify(data);
               
             setTimeout(function() {
               var reportingtableTable= $('#dt_recent_return_report').DataTable( {
-              "aaData": JSON.parse(returnreporting_data),
+                "paging": true,  
+                 "ordering": true,  
+                 "filter": true,  
+                 "destroy": true,  
+                 "pageLength": 10,
+                 "orderMulti": false,  
+                 "serverSide": true,  
+                 "processing": true, 
+                 "searching": true,
+                 ajax: {
+                    url: 'https://apimsdcm.azure-api.net/PCMH/pcmhreports',
+                    dataType: "JSON",
+                    type: 'POST',
+                    data:jQuery.parseJSON(returnreportingdata),
+                    dataFilter: function(data){
+                      console.log("returnreporting_data==== "+data);
+                        var json = jQuery.parseJSON( data );
+                        json.recordsTotal = json.recordsTotal;
+                        json.recordsFiltered = json.recordsFiltered;
+                        json.data = json.data;
+            
+                        console.log("JSONreturnreporting_data==== "+JSON.stringify( json ));
+
+                        return JSON.stringify( json ); // return JSON string
+                    },
+                    error: function (xhr, error, code)
+                    {
+                        console.log("vxxxxx=== "+xhr);
+                        console.log(code);
+                        $('#dt_recent_return_report_processing').hide();
+                       //  json_encode(array('data'=>''));
+                      //  var json = jQuery.parseJSON( data );
+                      //   json.recordsTotal = 0;
+                      //   json.recordsFiltered = 0;
+                      //   json.data = 'No data Found';
+                      //   //  var json ='No data Found'
+                      //    return JSON.stringify(json) ;
+                    }
+                    },
               "aaSorting": [],
 
               "aoColumnDefs": [ {
@@ -686,25 +721,23 @@ function bcbsriprogram_data()
 
                 $('#btn_search').click(function(){
 
+                  var month_number = $('#month').val();
+                  var  months_names_array = ["","January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+                  var month=months_names_array[month_number];
                   var risk = $('#risk').val();
                   var year = $('#year').val();
-                  var month = $('#month').val();
                   var searchresult = risk+' '+month+' '+year;
                   reportingtableTable.search(searchresult).draw();
               
                 })
-                document.getElementById("loader").style.display = "none";
 
             },2000);     
    
              
-          })
-          .catch(error => {
-              console.log(error)
-          })  
-
+         
          
     }
+
 
 
   //End : Load json Data into the datatable (Return Reporting[recent])

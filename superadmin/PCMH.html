@@ -330,10 +330,10 @@
 <script src="../plugins/datatables/jquery.dataTables.js"></script>
 <script src="../plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
 
-<script src="../dist/js/superadmin.js"></script>
-
 <!-- AdminLTE App -->
 <script src="../dist/js/adminlte.min.js"></script>
+
+<script src="../dist/js/superadmin.js"></script>
 
 <script src="../plugins/toastr/toastr.min.js"></script>
 <!-- AdminLTE for demo purposes -->
@@ -357,7 +357,7 @@ var pcmdata="";
 var data='{"pcmhid":"all"}';
 // console.log("ttttrowObject ="+JSON.stringify(data));
 
-getpcmh(data);
+getResult(data);
 
     });
 
@@ -375,6 +375,7 @@ function getpcmh(data)
             // "subscription-key":"da91fd77-c908-4f23-9469-52acf3239a11"
             },
         body: data
+        
     }).then((response) => {
 
                      if (response.ok) {
@@ -399,8 +400,77 @@ function getpcmh(data)
                 console.log(error)
             })  
 }
-    
+
 function getResult(pcmdata)
+{
+
+ 
+  var getpcmhdatatable= $('#dt_getpcmhdata').dataTable({
+               
+                "paging": true,  
+                 "ordering": true,  
+                 "filter": true,  
+                 "destroy": true,  
+                 "pageLength": 10,
+                 "orderMulti": false,  
+                 "serverSide": true,  
+                 "processing": true, 
+                 "searching": true,
+        ajax: {
+            url: 'https://apimsdcm.azure-api.net/dcmAPIM/fileupload',
+            data:jQuery.parseJSON(pcmdata),
+            
+            
+            
+            dataFilter: function(data){
+              console.log("getallusers==== "+data);
+                var json = jQuery.parseJSON( data );
+                json.recordsTotal = json.recordsTotal;
+                json.recordsFiltered = json.recordsFiltered;
+                json.data = json.data;
+    
+                console.log("jsongetallusers==== "+JSON.stringify( json ));
+
+                return JSON.stringify( json ); // return JSON string
+            }
+            },
+          // "aaSorting": [],
+         /* "aoColumnDefs": [ {
+          "aTargets": 7,
+          "adata": "userid",
+          "mRender": function(adata){
+          //var pid= CryptoJS.AES.encrypt(adata, "test");
+            return '<a href="http://localhost/dcm/superadmin/updateuser.html?userid='+CryptoJS.AES.encrypt(""+adata+"", "getuser")+'"><button type="button" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i> Edit</button></a> <button onclick="Deleteuser('+adata+')"  type="button" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i> Delete</button>';
+            
+          }
+          }],*/
+
+          "aoColumns": [
+          
+          { "data": "pcmhname" },
+            { "data": "pcmh_dgn_username" },
+            { "data": "pcmhsitename" },
+            { "data": "emailID" },
+       
+            { render: function(data, type, full) {
+                var ret = '<a href="updatepcmh.html?pcmhid='+full.pcmhid+'"> <button type="button" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i> Edit</button></a>';
+                
+                
+                if (!full.isactive) {
+                  ret += '<button onclick="DeleteButton('+full.pcmhid+',1)" type="button" style="margin-left:2px;" class="btn btn-success btn-sm"><i class="fas fa-check"></i> Active</button>';
+                } else {
+                // ret += ' <button onclick="DeletePcmh('+full.pcmhid+',0)" style="margin-left:2px;" type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Deactivate</button>';
+                  ret += ' <button onclick="DeleteButton('+full.pcmhid+',0)" style="margin-left:2px;" type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Deactivate</button>';
+                }
+                document.getElementById("loader").style.display = "none";
+                return ret;
+              }
+            },
+           ]
+        });
+}
+
+function getResult2(pcmdata)
 {
 
  
@@ -476,7 +546,7 @@ function DeletePcmh()
                 toastr.success('PCMH Deactivate Successfully!.');
                 var pcmhdata='{"pcmhid":"all"}';
                 $("#dt_getpcmhdata").dataTable().fnDestroy()
-                getpcmh(pcmhdata);
+                getResult(pcmhdata);
               } else 
               {
                   toastr.error('Erro in Deactivate PCMH!.');
