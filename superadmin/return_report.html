@@ -378,7 +378,8 @@
 var review_return_reportTable="";
 $(document).ready(function () {
   bsCustomFileInput.init();
-  
+  $.fn.dataTable.ext.errMode = 'throw';
+
   var usertype=sessionStorage.getItem("usertype");
   var username=sessionStorage.getItem("username");
 
@@ -575,7 +576,14 @@ $(document).ready(function () {
                 console.log("jsongetallusers==== "+JSON.stringify( json ));
 
                 return JSON.stringify( json ); // return JSON string
-            }
+            },
+              error: function (xhr, error, code)
+              {
+                  console.log("vxxxxx=== "+xhr);
+                  console.log(code);
+                  $('#dt_review_return_report_processing').hide();
+                  //document.getElementById('dt_review_return_report').innerHTML="No data Available";
+             }
             },
 
 
