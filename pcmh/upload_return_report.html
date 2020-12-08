@@ -533,7 +533,7 @@ function getuploadedfileid(json1,filename_n,  result)
 
 console.log("ttttrowObject ="+json1);
 // document.getElementById("result11").innerHTML = data;
-
+var json12 = $('form').serializeObject();
 
 fetch("https://apimsdcm.azure-api.net/PCMH/getuploadfileid", {
         method: 'post',
@@ -574,7 +574,8 @@ fetch("https://apimsdcm.azure-api.net/PCMH/getuploadfileid", {
                   
                   userid = ob2;
 
-                  jsonData = JSON.stringify($.extend({}, json1,filename_n,userid,uploadedfileid_id,  result));
+
+                  jsonData = JSON.stringify($.extend({}, json12,filename_n,userid,uploadedfileid_id,  result));
 
                   console.log("resulted data=== "+jsonData);
 
@@ -592,7 +593,7 @@ fetch("https://apimsdcm.azure-api.net/PCMH/getuploadfileid", {
 function updatedata(data)
 {
 
-// console.log("ttttrowObject ="+JSON.stringify(data));
+console.log("updatedata Object ="+data);
 fetch("https://apimsdcm.azure-api.net/PCMH/updatereturnreportdata_from_file", {
         method: 'post',
        // mode: 'no-cors', // no-cors, *cors, same-origin
