@@ -188,7 +188,7 @@
                       <div class="col-md-12">
                         <div class="form-group">
                           <label>Select Month <span style="color:red;">*</span></label>
-                          <select name="for_month" id="for_month" class="form-control" ng-model="user.for_month" required>
+                          <select name="for_month" id="for_month" class="form-control" ng-model="user.for_month" required ng-change="getmonthname()">
                             <option value="">--Select Month--</option>
                             <option value="1">January</option>
                             <option value="2">February</option>
@@ -204,6 +204,7 @@
                             <option value="12">December</option>
                            
                           </select>
+                          <input id="monthname" ng-model="user.monthname" class="monthname" name="monthname" type="hidden" />
                           <span class="error" ng-show="form.for_month.$dirty && form.for_month.$error.required">Select Month!.</span>
                         </div>
                       </div>
@@ -485,7 +486,7 @@ let selectedFile;
   var result = {};
 
   var pcmhdata='{"pcmhid":-1}';
-    fetch("https://apimsdcm.azure-api.net/dcmAPIM/fileupload", {
+    fetch("https://apimsdcm.azure-api.net/dcmAPIM/PCMHData", {
         method: 'post',
        // mode: 'no-cors', // no-cors, *cors, same-origin
 
@@ -534,6 +535,15 @@ var app = angular.module('uploadfiles', ['ngFileUpload']);
 
 app.controller('MyCtrl', ['$scope', 'Upload', function ($scope, Upload) {
 
+
+  $scope.getmonthname=function()
+{
+// alert(3);
+      var month_number = $('#for_month').val();
+       var  months_names_array = ["","January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        var month=months_names_array[month_number];
+        document.getElementById('monthname').value=month;
+}
 
   app.directive('validFile',function(){
  
