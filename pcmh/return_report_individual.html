@@ -236,18 +236,18 @@
                          <label>Select Month</label>
                          <select name="month" id="month" class="form-control">
                            <option value="">--Select Month--</option>
-                           <option value="January">January</option>
-                           <option value="February">February</option>
-                           <option value="March">March</option>
-                           <option value="April">April</option>
-                           <option value="May">May</option>
-                           <option value="June">June</option>
-                           <option value="July">July</option>
-                           <option value="August">August</option>
-                           <option value="September">September</option>
-                           <option value="October">October</option>
-                           <option value="November">November</option>
-                           <option value="December">December</option>
+                           <option value="1">January</option>
+                           <option value="2">February</option>
+                           <option value="3">March</option>
+                           <option value="4">April</option>
+                           <option value="5">May</option>
+                           <option value="6">June</option>
+                           <option value="7">July</option>
+                           <option value="8">August</option>
+                           <option value="9">September</option>
+                           <option value="10">October</option>
+                           <option value="11">November</option>
+                           <option value="12">December</option>
                           
                          </select>
                        </div>
@@ -269,7 +269,7 @@
                       <div class="form-group">
                         <label>&nbsp;</label><br>
                         <div id="loader" style="display: none;"></div>
-                        <button type="button"  id="btn_search" class="btn btn-success"><i class="fas fa-search"></i> Search</button>
+                        <button type="button"  id="btnsearch" onclick="getadata()" class="btn btn-success"><i class="fas fa-search"></i> Search</button>
                       </div>
                       </div>
                   </div>
@@ -505,7 +505,10 @@ $(document).ready(function () {
     //Start : Load json Data into the datatable (Recent)
     function recent_review_return_report_individual_view(uploadedfileid)
     {
-      var recentdata ='{"uploadedfileid":"'+uploadedfileid+'","logged_in_userid":"'+logged_in_userid+'","usertype":"'+usertype+'","pcmhid":"'+pcmhid+'","currentstatus":"0"}';
+      var month =document.getElementById('month').value;
+      var year =document.getElementById('year').value;
+
+      var recentdata ='{"uploadedfileid":"'+uploadedfileid+'","logged_in_userid":"'+logged_in_userid+'","usertype":"'+usertype+'","pcmhid":"'+pcmhid+'","currentstatus":"0","month":"'+month+'" ,"year":"'+year+'"}';
       
                
               setTimeout(function() {
@@ -622,7 +625,10 @@ $(document).ready(function () {
   //Start : Load json Data into the datatable (inprocess)
     function inprocess_review_return_report_individual_view(uploadedfileid)
     {
-      var inprocessdata ='{"uploadedfileid":"'+uploadedfileid+'","logged_in_userid":"'+logged_in_userid+'","usertype":"'+usertype+'","pcmhid":"'+pcmhid+'","currentstatus":"1"}';
+      var month =document.getElementById('month').value;
+      var year =document.getElementById('year').value;
+
+      var inprocessdata ='{"uploadedfileid":"'+uploadedfileid+'","logged_in_userid":"'+logged_in_userid+'","usertype":"'+usertype+'","pcmhid":"'+pcmhid+'","currentstatus":"1","month":"'+month+'" ,"year":"'+year+'"}';
                      
               setTimeout(function() {
                 var dt_inprocess_table= $('#dt-inprocess').DataTable( {
@@ -735,8 +741,10 @@ $(document).ready(function () {
   //Start : Load json Data into the datatable (complated)
   function complated_review_return_report_individual_view(uploadedfileid)
     {
+      var month =document.getElementById('month').value;
+      var year =document.getElementById('year').value;
       
-      var complateddata ='{"uploadedfileid":"'+uploadedfileid+'","logged_in_userid":"'+logged_in_userid+'","usertype":"'+usertype+'","pcmhid":"'+pcmhid+'","currentstatus":"2"}';
+      var complateddata ='{"uploadedfileid":"'+uploadedfileid+'","logged_in_userid":"'+logged_in_userid+'","usertype":"'+usertype+'","pcmhid":"'+pcmhid+'","currentstatus":"2","month":"'+month+'" ,"year":"'+year+'"}';
      
                 
               setTimeout(function() {
@@ -895,6 +903,13 @@ $(document).ready(function () {
                 console.log(error)
             })  
      }
+
+function getadata()
+    {
+      recent_review_return_report_individual_view();
+      inprocess_review_return_report_individual_view();
+      complated_review_return_report_individual_view();
+    }
 
 </script>
 </body>

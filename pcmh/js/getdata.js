@@ -17,9 +17,14 @@
     var logged_in_userid=sessionStorage.getItem("userid");
   var usertype=sessionStorage.getItem("usertype");
   var pcmhid=sessionStorage.getItem("pcmhid");
+
+  var month =document.getElementById('month').value;
+      var year =document.getElementById('year').value;
+      var risk =document.getElementById('risk').value;
+
     document.getElementById("loader").style.display = "block";
     $.fn.dataTable.ext.errMode = 'throw';
-    var demographicsdata ='{"demographicsdatatype":"demographics","logged_in_userid":"'+logged_in_userid+'","usertype":"'+usertype+'","pcmhid":"'+pcmhid+'"}';
+    var demographicsdata ='{"demographicsdatatype":"demographics","logged_in_userid":"'+logged_in_userid+'","usertype":"'+usertype+'","pcmhid":"'+pcmhid+'","month":"'+month+'","year":"'+year+'","risk":"'+risk+'"}';
    
    
                 
@@ -56,7 +61,7 @@
                     {
                         console.log("vxxxxx=== "+xhr);
                         console.log(code);
-                        $('#dt_recent_demographics').hide();
+                        $('#dt_recent_demographics_processing').hide();
                        //  json_encode(array('data'=>''));
                       //  var json = jQuery.parseJSON( data );
                       //   json.recordsTotal = 0;
@@ -148,8 +153,13 @@
     var logged_in_userid=sessionStorage.getItem("userid");
   var usertype=sessionStorage.getItem("usertype");
   var pcmhid=sessionStorage.getItem("pcmhid");
+
+  var month =document.getElementById('month').value;
+      var year =document.getElementById('year').value;
+      var risk =document.getElementById('risk').value;
+
   $.fn.dataTable.ext.errMode = 'throw';
-    var conditionsandriskdata ='{"conditionsandriskype":"conditionsandrisk","logged_in_userid":"'+logged_in_userid+'","usertype":"'+usertype+'","pcmhid":"'+pcmhid+'"}';
+    var conditionsandriskdata ='{"conditionsandriskype":"conditionsandrisk","logged_in_userid":"'+logged_in_userid+'","usertype":"'+usertype+'","pcmhid":"'+pcmhid+'","month":"'+month+'","year":"'+year+'","risk":"'+risk+'"}';
      console.log("conditionsandriskdata=== "+conditionsandriskdata);
                 
               setTimeout(function() {
@@ -183,7 +193,7 @@
                     {
                         console.log("vxxxxx=== "+xhr);
                         console.log(code);
-                        $('#dt_recent_conditionsandrisk').hide();
+                        $('#dt_recent_conditionsandrisk_processing').hide();
                        //  json_encode(array('data'=>''));
                       //  var json = jQuery.parseJSON( data );
                       //   json.recordsTotal = 0;
@@ -269,8 +279,13 @@
   var logged_in_userid=sessionStorage.getItem("userid");
   var usertype=sessionStorage.getItem("usertype");
   var pcmhid=sessionStorage.getItem("pcmhid");
+
+  var month =document.getElementById('month').value;
+      var year =document.getElementById('year').value;
+      var risk =document.getElementById('risk').value;
+
   $.fn.dataTable.ext.errMode = 'throw';
-  var costandutilizationkdata ='{"costandutilizationtype":"costandutilizationtype","logged_in_userid":"'+logged_in_userid+'","usertype":"'+usertype+'","pcmhid":"'+pcmhid+'"}';
+  var costandutilizationkdata ='{"costandutilizationtype":"costandutilizationtype","logged_in_userid":"'+logged_in_userid+'","usertype":"'+usertype+'","pcmhid":"'+pcmhid+'","month":"'+month+'","year":"'+year+'","risk":"'+risk+'"}';
     
               
             setTimeout(function() {
@@ -304,7 +319,7 @@
                     {
                         console.log("vxxxxx=== "+xhr);
                         console.log(code);
-                        $('#dt_recent_costandutilization').hide();
+                        $('#dt_recent_costandutilization_processing').hide();
                        //  json_encode(array('data'=>''));
                       //  var json = jQuery.parseJSON( data );
                       //   json.recordsTotal = 0;
@@ -379,8 +394,13 @@
   var logged_in_userid=sessionStorage.getItem("userid");
   var usertype=sessionStorage.getItem("usertype");
   var pcmhid=sessionStorage.getItem("pcmhid");
+
+  var month =document.getElementById('month').value;
+      var year =document.getElementById('year').value;
+      var risk =document.getElementById('risk').value;
+
   $.fn.dataTable.ext.errMode = 'throw';
-  var bcbsriprogramdata ='{"bcbsriprogramtype":"bcbsriprogram","logged_in_userid":"'+logged_in_userid+'","usertype":"'+usertype+'","pcmhid":"'+pcmhid+'"}';
+  var bcbsriprogramdata ='{"bcbsriprogramtype":"bcbsriprogram","logged_in_userid":"'+logged_in_userid+'","usertype":"'+usertype+'","pcmhid":"'+pcmhid+'","month":"'+month+'","year":"'+year+'","risk":"'+risk+'"}';
                  
             setTimeout(function() {
               var bcbsriprogramTable= $('#dt_recent_bcbsriprogram').DataTable( {
@@ -413,7 +433,7 @@
                     {
                         console.log("vxxxxx=== "+xhr);
                         console.log(code);
-                        $('#dt_recent_bcbsriprogram').hide();
+                        $('#dt_recent_bcbsriprogram_processing').hide();
                        //  json_encode(array('data'=>''));
                       //  var json = jQuery.parseJSON( data );
                       //   json.recordsTotal = 0;
@@ -488,8 +508,13 @@
   var logged_in_userid=sessionStorage.getItem("userid");
   var usertype=sessionStorage.getItem("usertype");
   var pcmhid=sessionStorage.getItem("pcmhid");
+
+  var month =document.getElementById('month').value;
+      var year =document.getElementById('year').value;
+      var risk =document.getElementById('risk').value;
+
   $.fn.dataTable.ext.errMode = 'throw';
-  var patient_alldata ='{"patientalldatatype":"patientalldata","logged_in_userid":"'+logged_in_userid+'","usertype":"'+usertype+'","pcmhid":"'+pcmhid+'"}';
+  var patient_alldata ='{"patientalldatatype":"patientalldata","logged_in_userid":"'+logged_in_userid+'","usertype":"'+usertype+'","pcmhid":"'+pcmhid+'","month":"'+month+'","year":"'+year+'","risk":"'+risk+'"}';
     
             setTimeout(function() {
               var patientpanelalldataTable= $('#dt_recent_patientpanelalldata').DataTable( {
@@ -641,8 +666,13 @@
   var logged_in_userid=sessionStorage.getItem("userid");
   var usertype=sessionStorage.getItem("usertype");
   var pcmhid=sessionStorage.getItem("pcmhid");
+
+  var month =document.getElementById('month').value;
+      var year =document.getElementById('year').value;
+      var risk =document.getElementById('risk').value;
+
   $.fn.dataTable.ext.errMode = 'throw';
-  var returnreportingdata ='{"returnreportingdatatype":"returnreporting","logged_in_userid":"'+logged_in_userid+'","usertype":"'+usertype+'","pcmhid":"'+pcmhid+'"}';
+  var returnreportingdata ='{"returnreportingdatatype":"returnreporting","logged_in_userid":"'+logged_in_userid+'","usertype":"'+usertype+'","pcmhid":"'+pcmhid+'","month":"'+month+'","year":"'+year+'","risk":"'+risk+'"}';
               
             setTimeout(function() {
               var reportingtableTable= $('#dt_recent_return_report').DataTable( {

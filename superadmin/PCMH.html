@@ -404,7 +404,7 @@ function getpcmh(data)
 function getResult(pcmdata)
 {
 
- 
+  $.fn.dataTable.ext.errMode = 'throw';
   var getpcmhdatatable= $('#dt_getpcmhdata').dataTable({
                
                 "paging": true,  

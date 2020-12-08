@@ -226,7 +226,7 @@
                       <div class="form-group">
                         <label>&nbsp;</label><br>
                         <div id="loader" style="display: none;"></div>
-                        <button type="button" id="btn_search" class="btn btn-success"><i class="fas fa-search"></i> Search</button>
+                        <button type="button" id="btndsearch" onclick="searchdata()" class="btn btn-success"><i class="fas fa-search"></i> Search</button>
                         <!-- <button type="button" id="btn_download" class="btn btn-primary" onclick="downloadfile()"><i class="fas fa-download"></i> Download Data</button> -->
                         <input type="submit" id="btn_download" name="submit" class="btn btn-primary" value="Download Data" ng-disabled="form.$invalid">
                     
@@ -1008,6 +1008,17 @@ $scope.submit = function() {
 
     //  }
     }]);
+
+    function searchdata()
+      {
+        demographics_data();
+        conditionsandrisk_data();
+        costandutilization_data();
+        bcbsriprogram_data();
+        patient_all_data();
+        returnreporting_data();
+ 
+      }
 </script>
 </body>
 </html>

@@ -384,7 +384,7 @@ $(document).ready(function () {
 
     function get_review_return_file()
     {
-
+      $.fn.dataTable.ext.errMode = 'throw';
       var pcmh= document.getElementById('pcmh').value;
       var month =document.getElementById('month').value;
       var year =document.getElementById('year').value;
@@ -412,6 +412,7 @@ $(document).ready(function () {
                  ajax: {
             url: 'https://apimsdcm.azure-api.net/dcmAPIM/review_return_report_file',
             data:jQuery.parseJSON(data),
+            dataType: "JSON",
             
             
             
