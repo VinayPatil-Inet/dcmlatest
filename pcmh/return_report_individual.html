@@ -481,11 +481,13 @@ $(document).ready(function () {
   //Start : Get uploaded file ID from URL
     const queryString = window.location.search;
       const urlParams = new URLSearchParams(queryString);
+     
       if(urlParams!="")
       {
         const uploaded_fileid = urlParams.get('uploadedfileid')
-        var decrypted = CryptoJS.AES.decrypt(uploaded_fileid, "retrun_report");
-        var uploadedfileid = decrypted.toString(CryptoJS.enc.Utf8);
+        var uploadedfileid = urlParams.get('uploadedfileid')
+       // var decrypted = CryptoJS.AES.decrypt(uploaded_fileid, "retrun_report");
+        //var uploadedfileid = decrypted.toString(CryptoJS.enc.Utf8);
       }
       else
       {
@@ -494,17 +496,20 @@ $(document).ready(function () {
 
   //End : Get uploaded file ID from URL
   $.fn.dataTable.ext.errMode = 'throw';
-  review_return_report_details(uploadedfileid);
-  recent_review_return_report_individual_view(uploadedfileid);
-  inprocess_review_return_report_individual_view(uploadedfileid);
-  complated_review_return_report_individual_view(uploadedfileid);
-
+  
+  setTimeout(function() {
+    review_return_report_details(uploadedfileid);
+    recent_review_return_report_individual_view(uploadedfileid);
+    inprocess_review_return_report_individual_view(uploadedfileid);
+    complated_review_return_report_individual_view(uploadedfileid);
+  },2000); 
 
     });
 
     //Start : Load json Data into the datatable (Recent)
     function recent_review_return_report_individual_view(uploadedfileid)
     {
+     // alert(uploadedfileid);
       var month =document.getElementById('month').value;
       var year =document.getElementById('year').value;
 
@@ -906,9 +911,24 @@ $(document).ready(function () {
 
 function getadata()
     {
-      recent_review_return_report_individual_view();
-      inprocess_review_return_report_individual_view();
-      complated_review_return_report_individual_view();
+      const queryString = window.location.search;
+      const urlParams = new URLSearchParams(queryString);
+     
+      if(urlParams!="")
+      {
+        const uploaded_fileid = urlParams.get('uploadedfileid')
+        var uploadedfileid = urlParams.get('uploadedfileid')
+       // var decrypted = CryptoJS.AES.decrypt(uploaded_fileid, "retrun_report");
+        //var uploadedfileid = decrypted.toString(CryptoJS.enc.Utf8);
+      }
+      else
+      {
+        var uploadedfileid = "";
+      }
+
+      recent_review_return_report_individual_view(uploadedfileid);
+      inprocess_review_return_report_individual_view(uploadedfileid);
+      complated_review_return_report_individual_view(uploadedfileid);
     }
 
 </script>
