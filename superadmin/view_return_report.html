@@ -414,8 +414,10 @@ $(document).ready(function () {
     //Start : Load json Data into the datatable (Recent)
     function recent_review_return_report_individual_view(uploadedfileid,usertype)
     {
+      var month ="";
+      var year ="";
       document.getElementById("loader").style.display = "block";
-      var recentdata ='{"uploadedfileid":"'+uploadedfileid+'","usertype":"'+usertype+'","currentstatus":"0"}';
+      var recentdata ='{"uploadedfileid":"'+uploadedfileid+'","usertype":"'+usertype+'","currentstatus":"0","month":"'+month+'" ,"year":"'+year+'"}';
       
               setTimeout(function() {
                 var dt_recent_table= $('#dt-recent').DataTable( {
@@ -512,7 +514,9 @@ $(document).ready(function () {
   //Start : Load json Data into the datatable (inprocess)
     function inprocess_review_return_report_individual_view(uploadedfileid,usertype)
     {
-      var inprocessdata ='{"uploadedfileid":"'+uploadedfileid+'","currentstatus":"1","usertype":"'+usertype+'"}';
+      var month ="";
+      var year ="";
+      var inprocessdata ='{"uploadedfileid":"'+uploadedfileid+'","currentstatus":"1","usertype":"'+usertype+'","month":"'+month+'" ,"year":"'+year+'"}';
       
                 
               setTimeout(function() {
@@ -606,7 +610,9 @@ $(document).ready(function () {
   //Start : Load json Data into the datatable (complated)
   function complated_review_return_report_individual_view(uploadedfileid,usertype)
     {
-      var complateddata ='{"uploadedfileid":"'+uploadedfileid+'","currentstatus":"2","usertype":"'+usertype+'"}';
+      var month ="";
+      var year ="";
+      var complateddata ='{"uploadedfileid":"'+uploadedfileid+'","currentstatus":"2","usertype":"'+usertype+'","month":"'+month+'" ,"year":"'+year+'"}';
       
                 
               setTimeout(function() {
