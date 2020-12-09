@@ -442,6 +442,7 @@ $(document).ready(function () {
                       dataFilter: function(data){
                         console.log("getallusers==== "+data);
                           var json = jQuery.parseJSON( data );
+                          $('#dt-recent').show();
                           json.recordsTotal = json.recordsTotal;
                           json.recordsFiltered = json.recordsFiltered;
                           json.data = json.data;
@@ -456,6 +457,11 @@ $(document).ready(function () {
                           console.log("vxxxxx=== "+xhr);
                           console.log(code);
                           $('#dt-recent_processing').hide();
+                          $('#dt-recent_processing').hide();
+                          $('#dt-recent').hide();
+                          $('#dt-recent_info').show();
+                       
+                        document.getElementById('dt-recent_info').innerHTML="No Data Available"
                          //  json_encode(array('data'=>''));
                         //  var json = jQuery.parseJSON( data );
                         //   json.recordsTotal = 0;
@@ -538,6 +544,7 @@ $(document).ready(function () {
                       dataFilter: function(data){
                         console.log("getallusers==== "+data);
                           var json = jQuery.parseJSON( data );
+                          $('#dt-inprocess').show();
                           json.recordsTotal = json.recordsTotal;
                           json.recordsFiltered = json.recordsFiltered;
                           json.data = json.data;
@@ -552,6 +559,11 @@ $(document).ready(function () {
                           console.log("vxxxxx=== "+xhr);
                           console.log(code);
                           $('#dt-inprocess_processing').hide();
+                          $('#dt-inprocess').hide();
+                        $('#dt-inprocess_info').show();
+                       
+                        document.getElementById('dt-inprocess_info').innerHTML="No Data Available"
+                        
                          //  json_encode(array('data'=>''));
                         //  var json = jQuery.parseJSON( data );
                         //   json.recordsTotal = 0;
@@ -635,6 +647,7 @@ $(document).ready(function () {
                       dataFilter: function(data){
                         console.log("getallusers==== "+data);
                           var json = jQuery.parseJSON( data );
+                          $('#dt-complated').show();
                           json.recordsTotal = json.recordsTotal;
                           json.recordsFiltered = json.recordsFiltered;
                           json.data = json.data;
@@ -648,6 +661,10 @@ $(document).ready(function () {
                           console.log("vxxxxx=== "+xhr);
                           console.log(code);
                           $('#dt-complated_processing').hide();
+                          $('#dt-complated').hide();
+                          $('#dt-complated_info').show();
+                       
+                        document.getElementById('dt-complated_info').innerHTML="No Data Available"
                          //  json_encode(array('data'=>''));
                         //  var json = jQuery.parseJSON( data );
                         //   json.recordsTotal = 0;
