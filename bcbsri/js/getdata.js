@@ -60,7 +60,7 @@
                     },
                     error: function (xhr, error, code)
                     {
-                        console.log("vxxxxx=== "+xhr);
+                        console.log("vxxxxxdemo=== "+JSON.stringify(xhr));
                         console.log(code);
                         $('#dt_recent_demographics_processing').hide();
                         $('#dt_recent_demographics').hide();
@@ -197,7 +197,7 @@
                     },
                     error: function (xhr, error, code)
                     {
-                        console.log("vxxxxx=== "+xhr);
+                        console.log("vxxxxxcondi=== "+JSON.stringify(xhr));
                         console.log(code);
                         $('#dt_recent_conditionsandrisk_processing').hide();
                         $('#dt_recent_conditionsandrisk').hide();
@@ -328,7 +328,7 @@
                     },
                     error: function (xhr, error, code)
                     {
-                        console.log("vxxxxx=== "+xhr);
+                        console.log("vxxxxxcost=== "+JSON.stringify(xhr));
                         console.log(code);
                         $('#dt_recent_costandutilization_processing').hide();
                         $('#dt_recent_costandutilization').hide();
@@ -448,7 +448,7 @@
                     },
                     error: function (xhr, error, code)
                     {
-                        console.log("vxxxxx=== "+xhr);
+                        console.log("vxxxxxbcbsri=== "+JSON.stringify(xhr));
                         console.log(code);
                         $('#dt_recent_bcbsriprogram_processing').hide();
 
@@ -565,7 +565,7 @@
                        },
                        error: function (xhr, error, code)
                        {
-                           console.log("vxxxxx=== "+xhr);
+                           console.log("vxxxxxpatient=== "+JSON.stringify(xhr));
                            console.log(code);
                            $('#dt_recent_patientpanelalldata_processing').hide();
                            $('#dt_recent_patientpanelalldata').hide();
@@ -725,7 +725,7 @@
                     },
                     error: function (xhr, error, code)
                     {
-                        console.log("vxxxxx=== "+xhr);
+                        console.log("vxxxxxreturn=== "+JSON.stringify(xhr));
                         console.log(code);
                         $('#dt_recent_return_report_processing').hide();
                         $('#dt_recent_return_report').hide();
