@@ -563,13 +563,37 @@ app.controller('MyCtrl', ['$scope', 'Upload', function ($scope, Upload) {
     // upload later on form submit or something similar
     $scope.submit = function() {
       if ($scope.form.file.$valid && $scope.file) {
-        
+
+        var file = $('#upload_spreadsheet').get(0).files[0];
+
+           
+
         $scope.upload($scope.file);
       }
     };
 
     // upload on file select or drop
     $scope.upload = function (file) {
+      // alert(file.name);
+      // file.name = file.name + "new";
+      // file.append('file', file.name, newFileName);
+      // var res = res1.split(".");
+       var todaydate = new Date();
+      var datetimeinmili = Date.parse(todaydate);
+      var resultedname= file.name.split(".")[0]+"-"+datetimeinmili+"."+file.name.split(".")[1];
+
+      // filename = 'jihin.' + file.name.split(".")[1];
+       var xlFile = new File([file], resultedname, {type:file.type});
+       console.log(xlFile.name);
+
+       selectedFile=file;
+       var filename = "filename";
+            var ob  = {};
+            ob[filename] = xlFile.name;
+
+          filename_n = ob;
+      // file = Upload.rename(file, "newName.xlsx");
+      // alert(imgFile.name);
         Upload.upload({
             url: 'https://apimsdcm.azure-api.net/bcbsri/uploadfiletoserver',
             headers: { 'Content-Type': 'application/json',
@@ -577,20 +601,20 @@ app.controller('MyCtrl', ['$scope', 'Upload', function ($scope, Upload) {
             "Ocp-Apim-Subscription-Key": "7b5df9ff9a28485282adcff8f50ea933",
             // "subscription-key":"da91fd77-c908-4f23-9469-52acf3239a11"
             },
-            data: {file: file, 'username': $scope.username}
+            data: {file: xlFile, 'username': $scope.username}
         }).then(function (resp) {
             console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
-            var filename = "filename";
-            var ob  = {};
-            ob[filename] = resp.data;
+          //   var filename = "filename";
+          //   var ob  = {};
+          //   ob[filename] = resp.data;
 
-          filename_n = ob;
+          // filename_n = ob;
 
         }, function (resp) {
             console.log('Error status: ' + resp.status);
         }, function (evt) {
             var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-            selectedFile=evt.config.data.file;
+            // selectedFile=evt.config.data.file;
             
             console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
         });
@@ -636,7 +660,7 @@ app.controller('MyCtrl', ['$scope', 'Upload', function ($scope, Upload) {
                 };
                // alert(44);
             }
-            wait(3*1000).then(() => {
+            wait(2*1000).then(() => {
               if(jsonData!="")
               {
                 // document.getElementById("result11").innerHTML = JSON.stringify(jsonData);
