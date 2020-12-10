@@ -644,7 +644,8 @@ app.controller('MyCtrl', ['$scope', 'Upload', function ($scope, Upload) {
               }
               else
               {
-                alert(error);
+                // alert("Something went wrong, please submit once again");
+                toastr.error('Something went wrong, Please try to submit again!.');
                 document.getElementById("loader").style.display = "none";
               }
             }); 

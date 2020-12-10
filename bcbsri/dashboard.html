@@ -759,13 +759,31 @@ $('.datepicker').datepicker({
       
       function searchdata()
       {
+        setTimeout(function() {
         demographics_data();
-        conditionsandrisk_data();
+
+        setTimeout(function() {
+          conditionsandrisk_data();
+          setTimeout(function() {
         costandutilization_data();
+        setTimeout(function() {
         bcbsriprogram_data();
+        setTimeout(function() {
         patient_all_data();
+        setTimeout(function() {
         returnreporting_data();
- 
+      },1000);
+      },1000);
+      },1000);
+      },1000);
+        },1000);
+
+        },1000);
+        
+        
+       
+       
+        
       }
 </script>
 </body>
