@@ -435,7 +435,7 @@ $(document).ready(function () {
                 //   },
                  "searching": true,
                   ajax: {
-                      url: 'https://apimsdcm.azure-api.net/dcmAPIM/review_return_report_individual_view',
+                      url: 'https://apimsdcm.azure-api.net/dcmAPIM/getrecentdata',
                       dataType: "JSON",
                     // type: 'POST',
                     data:jQuery.parseJSON(recentdata),
@@ -457,7 +457,7 @@ $(document).ready(function () {
                           console.log("vxxxxx=== "+xhr);
                           console.log(code);
                           $('#dt-recent_processing').hide();
-                          $('#dt-recent_processing').hide();
+                         
                           $('#dt-recent').hide();
                           $('#dt-recent_info').show();
                        
@@ -537,7 +537,7 @@ $(document).ready(function () {
                  "processing": true, 
                  "searching": true,
                   ajax: {
-                      url: 'https://apimsdcm.azure-api.net/dcmAPIM/review_return_report_individual_view',
+                      url: 'https://apimsdcm.azure-api.net/dcmAPIM/getinprogressdata',
                       dataType: "JSON",
                     // type: 'POST',
                     data:jQuery.parseJSON(inprocessdata),
@@ -640,7 +640,7 @@ $(document).ready(function () {
                  "processing": true, 
                  "searching": true,
                   ajax: {
-                      url: 'https://apimsdcm.azure-api.net/pcmh/review_return_report_individual_view',
+                      url: 'https://apimsdcm.azure-api.net/dcmAPIM/getcompleteddata',
                       dataType: 'JSON',
                     // type: 'POST',
                     data:jQuery.parseJSON(complateddata),

@@ -181,18 +181,18 @@
                          <label>Select Month</label>
                          <select name="month" id="month" class="form-control">
                            <option value="">--Select Month--</option>
-                           <option value="January">January</option>
-                           <option value="February">February</option>
-                           <option value="March">March</option>
-                           <option value="April">April</option>
-                           <option value="May">May</option>
-                           <option value="June">June</option>
-                           <option value="July">July</option>
-                           <option value="August">August</option>
-                           <option value="September">September</option>
-                           <option value="October">October</option>
-                           <option value="November">November</option>
-                           <option value="December">December</option>
+                           <option value="1">January</option>
+                           <option value="2">February</option>
+                           <option value="3">March</option>
+                           <option value="4">April</option>
+                           <option value="5">May</option>
+                           <option value="6">June</option>
+                           <option value="7">July</option>
+                           <option value="8">August</option>
+                           <option value="9">September</option>
+                           <option value="10">October</option>
+                           <option value="11">November</option>
+                           <option value="12">December</option>
                           
                          </select>
                        </div>
@@ -213,7 +213,7 @@
                     <div class="col-md-3">
                       <div class="form-group">
                         <label>&nbsp;</label><br>
-                        <button type="button"  id="btn_search" class="btn btn-success"><i class="fas fa-search"></i> Search</button>
+                        <button type="button"  id="btnsearch" onclick="get_review_return_file()" class="btn btn-success"><i class="fas fa-search"></i> Search</button>
                       </div>
                       </div>
                   </div>
@@ -300,7 +300,7 @@
 <script src="../plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
 
 <!-- AdminLTE App -->
-<script src="../dist/js/adminlte.minw.js"></script>
+<script src="../dist/js/adminlte.min.js"></script>
 
 <script src="../dist/js/pcmh.js"></script>
 <!-- AdminLTE for demo purposes -->
@@ -319,6 +319,7 @@ var username=sessionStorage.getItem("username");
 
 $(document).ready(function () {
   bsCustomFileInput.init();
+  $.fn.dataTable.ext.errMode = 'throw';
   get_review_return_file();
   //Start : Load json Data into the datatable 
   
@@ -350,6 +351,7 @@ $(document).ready(function () {
             data:jQuery.parseJSON(data),
             dataFilter: function(data){
               console.log("getallusers==== "+data);
+              $('#dt_return_report').show();
                 var json = jQuery.parseJSON( data );
                 json.recordsTotal = json.recordsTotal;
                 json.recordsFiltered = json.recordsFiltered;
@@ -358,7 +360,19 @@ $(document).ready(function () {
                 console.log("jsongetallusers==== "+JSON.stringify( json ));
 
                 return JSON.stringify( json ); // return JSON string
-            }
+            },
+            error: function (xhr, error, code)
+                      {
+                          console.log("vxxxxx=== "+xhr);
+                          console.log(code);
+                          $('#dt_return_report_processing').hide();
+                          $('#dt_return_report').hide();
+                          $('#dt_return_report_info').show();
+                          
+                        document.getElementById('dt_return_report_info').innerHTML="No Data Available"
+                     
+                         
+                      }
             },
             "aaSorting": [],
       "aoColumnDefs": [ {
@@ -392,7 +406,7 @@ $(document).ready(function () {
          var month = $('#month').val();
          var year = $('#year').val();
          var searchresult = pcmh+' '+month+' '+year;
-         review_return_reportTable.search(searchresult).draw();
+        //  review_return_reportTable.search(searchresult).draw();
          document.getElementById("loader").style.display = "none";
        },1000);  
      })

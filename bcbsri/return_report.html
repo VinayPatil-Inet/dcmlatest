@@ -418,6 +418,7 @@ $(document).ready(function () {
             
             dataFilter: function(data){
               console.log("getallusers==== "+data);
+              $('#dt_review_return_report').show();
                 var json = jQuery.parseJSON( data );
                 json.recordsTotal = json.recordsTotal;
                 json.recordsFiltered = json.recordsFiltered;
@@ -426,7 +427,19 @@ $(document).ready(function () {
                 console.log("jsongetallusers==== "+JSON.stringify( json ));
 
                 return JSON.stringify( json ); // return JSON string
-            }
+            },
+            error: function (xhr, error, code)
+                      {
+                          console.log("vxxxxx=== "+xhr);
+                          console.log(code);
+                          $('#dt_review_return_report_processing').hide();
+                          $('#dt_review_return_report').hide();
+                          $('#dt_review_return_report_info').show();
+                          
+                        document.getElementById('dt_review_return_report_info').innerHTML="No Data Available"
+                     
+                         
+                      }
             },
 
 

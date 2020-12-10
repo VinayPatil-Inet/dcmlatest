@@ -424,6 +424,7 @@ function getResult(pcmdata)
             
             dataFilter: function(data){
               console.log("getallusers==== "+data);
+              $('#dt_getpcmhdata').show();
                 var json = jQuery.parseJSON( data );
                 json.recordsTotal = json.recordsTotal;
                 json.recordsFiltered = json.recordsFiltered;
@@ -432,7 +433,19 @@ function getResult(pcmdata)
                 console.log("jsongetallusers==== "+JSON.stringify( json ));
 
                 return JSON.stringify( json ); // return JSON string
-            }
+            },
+            error: function (xhr, error, code)
+                      {
+                          console.log("vxxxxx=== "+xhr);
+                          console.log(code);
+                          $('#dt_getpcmhdata_processing').hide();
+                          $('#dt_getpcmhdata').hide();
+                          $('#dt_getpcmhdata_info').show();
+                          
+                        document.getElementById('dt_getpcmhdata_info').innerHTML="No Data Available"
+                     
+                         
+                      }
             },
           // "aaSorting": [],
          /* "aoColumnDefs": [ {

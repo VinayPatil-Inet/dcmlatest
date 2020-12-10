@@ -497,12 +497,12 @@ $(document).ready(function () {
   //End : Get uploaded file ID from URL
   $.fn.dataTable.ext.errMode = 'throw';
   
-  setTimeout(function() {
+  // setTimeout(function() {
     review_return_report_details(uploadedfileid);
     recent_review_return_report_individual_view(uploadedfileid);
     inprocess_review_return_report_individual_view(uploadedfileid);
     complated_review_return_report_individual_view(uploadedfileid);
-  },2000); 
+  // },2000); 
 
     });
 
@@ -528,7 +528,7 @@ $(document).ready(function () {
                  "processing": true, 
                  "searching": true,
                   ajax: {
-                      url: 'https://apimsdcm.azure-api.net/dcmAPIM/review_return_report_individual_view',
+                      url: 'https://apimsdcm.azure-api.net/dcmAPIM/getrecentdata',
                       dataType: "JSON",
                     // type: 'POST',
                     data:jQuery.parseJSON(recentdata),
@@ -653,7 +653,7 @@ $(document).ready(function () {
                  "processing": true, 
                  "searching": true,
                   ajax: {
-                      url: 'https://apimsdcm.azure-api.net/dcmAPIM/review_return_report_individual_view',
+                      url: 'https://apimsdcm.azure-api.net/dcmAPIM/getinprogressdata',
                       dataType: "JSON",
                     // type: 'POST',
                     data:jQuery.parseJSON(inprocessdata),
@@ -776,7 +776,7 @@ $(document).ready(function () {
                  "processing": true, 
                  "searching": true,
                   ajax: {
-                      url: 'https://apimsdcm.azure-api.net/dcmAPIM/review_return_report_individual_view',
+                      url: 'https://apimsdcm.azure-api.net/dcmAPIM/getcompleteddata',
                       dataType: "JSON",
                     // type: 'POST',
                     data:jQuery.parseJSON(complateddata),

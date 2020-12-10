@@ -180,7 +180,7 @@
                 "processing": true, 
                 "searching": true,
                 ajax: {
-                    url: 'https://apimsdcm.azure-api.net/PCMH/pcmhreports',
+                    url: 'https://apimsdcm.azure-api.net/bcbsri/conditionsandrisks',
                     dataType: "JSON",
                     type: 'POST',
                     data:jQuery.parseJSON(conditionsandriskdata),
@@ -312,7 +312,7 @@
                 "processing": true, 
                 "searching": true,
                 ajax: {
-                    url: 'https://apimsdcm.azure-api.net/PCMH/pcmhreports',
+                    url: 'https://apimsdcm.azure-api.net/bcbsri/costandutilization',
                     dataType: "JSON",
                     type: 'POST',
                     data:jQuery.parseJSON(costandutilizationkdata),
@@ -432,7 +432,7 @@
                  "processing": true, 
                  "searching": true,
                  ajax: {
-                    url: 'https://apimsdcm.azure-api.net/PCMH/pcmhreports',
+                    url: 'https://apimsdcm.azure-api.net/bcbsri/bcbsriprograms',
                     dataType: "JSON",
                     type: 'POST',
                     data:jQuery.parseJSON(bcbsriprogramdata),
@@ -552,7 +552,7 @@
                  "processing": true, 
                  "searching": true,
                  ajax: {
-                    url: 'https://apimsdcm.azure-api.net/PCMH/pcmhreports',
+                    url: 'https://apimsdcm.azure-api.net/bcbsri/patientpanelalldata',
                     dataType: "JSON",
                     type: 'POST',
                     data:jQuery.parseJSON(patient_alldata),
@@ -716,7 +716,7 @@
                  "processing": true, 
                  "searching": true,
                  ajax: {
-                    url: 'https://apimsdcm.azure-api.net/PCMH/pcmhreports',
+                    url: 'https://apimsdcm.azure-api.net/bcbsri/returnreporting',
                     dataType: "JSON",
                     type: 'POST',
                     data:jQuery.parseJSON(returnreportingdata),

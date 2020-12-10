@@ -537,13 +537,13 @@ app.controller('MyCtrl', ['$scope', 'Upload', function ($scope, Upload) {
 
 
   $scope.getmonthname=function()
-{
-// alert(3);
-      var month_number = $('#for_month').val();
+  {
+        // alert(3);
+       var month_number = $('#for_month').val();
        var  months_names_array = ["","January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-        var month=months_names_array[month_number];
-        document.getElementById('monthname').value=month;
-}
+       var month=months_names_array[month_number];
+       document.getElementById('monthname').value=month;
+  }
 
   app.directive('validFile',function(){
  

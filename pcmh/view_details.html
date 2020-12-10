@@ -521,7 +521,7 @@ app.controller('return_report', ['$scope', function($scope) {
                
                 var jsondata=data.Outreach_Attempted_Date;
                 console.log("Outreach_Attempted_Date:" + jsondata);
-                if(data.Outreach_Attempted_Date!='' && data.BH_Screening_PHQ2_PHQ9_Completed_Date!='' && data.Care_Plan_Established_Date!='' && data.Discharged_from_CM_Date!='' && data.Enrolled_Status_Date!='')
+                if(data.Discharged_from_CM_Date!='')
                 {
                   console.log("Call function updatecurrentstatus:" + jsondata);
                   $scope.updatecurrentstatus(2);

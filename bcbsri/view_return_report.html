@@ -383,11 +383,12 @@ $(document).ready(function () {
   //End : Get uploaded file ID from URL
 
   $.fn.dataTable.ext.errMode = 'throw';
+document.getElementById("loader").style.display = "block";
   review_return_report_details(uploadedfileid);
-  recent_review_return_report_individual_view(uploadedfileid);
-  inprocess_review_return_report_individual_view(uploadedfileid);
-  complated_review_return_report_individual_view(uploadedfileid);
-
+  
+        recent_review_return_report_individual_view(uploadedfileid);
+        inprocess_review_return_report_individual_view(uploadedfileid);
+        complated_review_return_report_individual_view(uploadedfileid);
 
     });
 
@@ -395,7 +396,7 @@ $(document).ready(function () {
 //Start : Load json Data into the datatable (Recent)
 function recent_review_return_report_individual_view(uploadedfileid)
     {
-      document.getElementById("loader").style.display = "block";
+      
       var month="";
       var year="";
       var recentdata ='{"uploadedfileid":"'+uploadedfileid+'","usertype":"'+usertype+'","currentstatus":"0","month":"'+month+'","year":"'+year+'"}';
@@ -413,7 +414,7 @@ function recent_review_return_report_individual_view(uploadedfileid)
                  "processing": true, 
                  "searching": true,
                   ajax: {
-                      url: 'https://apimsdcm.azure-api.net/dcmAPIM/review_return_report_individual_view',
+                      url: 'https://apimsdcm.azure-api.net/dcmAPIM/getrecentdata',
                       dataType: "JSON",
                     // type: 'POST',
                     data:jQuery.parseJSON(recentdata),
@@ -425,15 +426,15 @@ function recent_review_return_report_individual_view(uploadedfileid)
                           json.recordsFiltered = json.recordsFiltered;
                           json.data = json.data;
               
-                          console.log("jsongetallusers==== "+JSON.stringify( json ));
+                          // console.log("jsongetallusers==== "+JSON.stringify( json ));
 
                           return JSON.stringify( json ); // return JSON string
                       }
                       ,
                       error: function (xhr, error, code)
                       {
-                          console.log("vxxxxx=== "+xhr);
-                          console.log(code);
+                          console.log("vxxxxx=== "+JSON.stringify(xhr)+"error=== "+error);
+                          console.log("code=== "+code);
                           $('#dt-recent_processing').hide();
                           $('#dt-recent').hide();
                           $('#dt-recent_info').show();
@@ -488,7 +489,7 @@ function recent_review_return_report_individual_view(uploadedfileid)
                   } );
 
                   document.getElementById("loader").style.display = "none";
-              },2000);     
+              },3000);     
      
               
     }
@@ -515,7 +516,7 @@ function recent_review_return_report_individual_view(uploadedfileid)
                  "processing": true, 
                  "searching": true,
                   ajax: {
-                      url: 'https://apimsdcm.azure-api.net/dcmAPIM/review_return_report_individual_view',
+                      url: 'https://apimsdcm.azure-api.net/dcmAPIM/getinprogressdata',
                       dataType: "JSON",
                     // type: 'POST',
                     data:jQuery.parseJSON(inprocessdata),
@@ -534,8 +535,8 @@ function recent_review_return_report_individual_view(uploadedfileid)
                       ,
                       error: function (xhr, error, code)
                       {
-                          console.log("vxxxxx=== "+xhr);
-                          console.log(code);
+                        console.log("vxxxxx=== "+JSON.stringify(xhr)+"error=== "+error);
+                          console.log("code=== "+code);
                           $('#dt-inprocess_processing').hide();
                           $('#dt-inprocess').hide();
                         $('#dt-inprocess_info').show();
@@ -615,7 +616,7 @@ function recent_review_return_report_individual_view(uploadedfileid)
                  "processing": true, 
                  "searching": true,
                   ajax: {
-                      url: 'https://apimsdcm.azure-api.net/dcmAPIM/review_return_report_individual_view',
+                      url: 'https://apimsdcm.azure-api.net/dcmAPIM/getcompleteddata',
                       dataType: "JSON",
                       // contentType: 'application/json; charset=utf-8',
                     // type: 'POST',
