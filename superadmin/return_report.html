@@ -574,7 +574,7 @@ $(document).ready(function () {
                 json.data = json.data;
     
                 console.log("jsongetallusers==== "+JSON.stringify( json ));
-
+                $('#dt_review_return_report').show();
                 return JSON.stringify( json ); // return JSON string
             },
               error: function (xhr, error, code)
@@ -582,6 +582,9 @@ $(document).ready(function () {
                   console.log("vxxxxx=== "+xhr);
                   console.log(code);
                   $('#dt_review_return_report_processing').hide();
+                  $('#dt_review_return_report').hide();
+                  $('#dt_review_return_report_info').show();
+                  document.getElementById('dt_review_return_report_info').innerHTML="No Data Available"
                   //document.getElementById('dt_review_return_report').innerHTML="No data Available";
              }
             },
