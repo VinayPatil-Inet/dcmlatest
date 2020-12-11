@@ -409,7 +409,7 @@ function getuserdata(data)
     
 function getResult(user_data)
 {
-
+  $.fn.dataTable.ext.errMode = 'throw';
 
  
   var getpcmhdatatable= $('#dt_getuser').dataTable({
@@ -437,14 +437,28 @@ function getResult(user_data)
             dataFilter: function(data){
               console.log("getallusers==== "+data);
                 var json = jQuery.parseJSON( data );
+                $('#dt_getuser').show();
                 json.recordsTotal = json.recordsTotal;
                 json.recordsFiltered = json.recordsFiltered;
                 json.data = json.data;
     
                 console.log("jsongetallusers==== "+JSON.stringify( json ));
-
+                
                 return JSON.stringify( json ); // return JSON string
-            }
+            },
+            error: function (xhr, error, code)
+                      {
+                          console.log("vxxxxx=== "+xhr);
+                          console.log(code);
+                          $('#dt_getuser_processing').hide();
+                          $('#dt_getuser').hide();
+                          $('#dt_getuser_info').show();
+                          
+                        document.getElementById('dt_getuser_info').innerHTML="No Data Available"
+                     
+                         
+                      }
+            
             },
           // "aaSorting": [],
          /* "aoColumnDefs": [ {
@@ -513,7 +527,7 @@ function getResult(user_data)
                 toastr.success('User Status Changed!.');
                 var data='{"pcmhid":2}';
                 $("#dt_getuser").dataTable().fnDestroy()
-                getuserdata(data);
+                getResult(data);
               } else 
               {
                   toastr.error('Erro in Deleting User!.');

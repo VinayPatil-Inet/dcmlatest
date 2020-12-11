@@ -556,7 +556,7 @@ function DeletePcmh()
             }).then((response) => {
 
               if (response.ok) {
-                toastr.success('PCMH Deactivate Successfully!.');
+                toastr.success('PCMH Status Changed!.');
                 var pcmhdata='{"pcmhid":"all"}';
                 $("#dt_getpcmhdata").dataTable().fnDestroy()
                 getResult(pcmhdata);
