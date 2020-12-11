@@ -159,7 +159,7 @@
     var logged_in_userid=sessionStorage.getItem("userid");
   var usertype=sessionStorage.getItem("usertype");
   var pcmhid=sessionStorage.getItem("pcmhid");
-
+  document.getElementById("loader").style.display = "block";
   var month =document.getElementById('monthrisk').value;
       var year =document.getElementById('yearrisk').value;
       var risk =document.getElementById('condrisk').value;
@@ -193,11 +193,12 @@
                         json.data = json.data;
             
                         console.log("JSONconditionsandriskdata==== "+JSON.stringify( json ));
-
+                        document.getElementById("loader").style.display = "none";
                         return JSON.stringify( json ); // return JSON string
                     } ,
                     error: function (xhr, error, code)
                     {
+                      document.getElementById("loader").style.display = "none";
                         console.log("vxxxxx=== "+xhr);
                         console.log(code);
                         $('#dt_recent_conditionsandrisk_processing').hide();
@@ -291,7 +292,7 @@
   var logged_in_userid=sessionStorage.getItem("userid");
   var usertype=sessionStorage.getItem("usertype");
   var pcmhid=sessionStorage.getItem("pcmhid");
-
+  document.getElementById("loader").style.display = "block";
   var month =document.getElementById('monthcost').value;
       var year =document.getElementById('yearcost').value;
       var risk =document.getElementById('riskcost').value;
@@ -325,11 +326,12 @@
                         json.data = json.data;
             
                         console.log("JSONconditionsandriskdata==== "+JSON.stringify( json ));
-
+                        document.getElementById("loader").style.display = "none";
                         return JSON.stringify( json ); // return JSON string
                     },
                     error: function (xhr, error, code)
                     {
+                      document.getElementById("loader").style.display = "none";
                         console.log("vxxxxx=== "+xhr);
                         console.log(code);
                         $('#dt_recent_costandutilization_processing').hide();
@@ -412,7 +414,7 @@
   var logged_in_userid=sessionStorage.getItem("userid");
   var usertype=sessionStorage.getItem("usertype");
   var pcmhid=sessionStorage.getItem("pcmhid");
-
+  document.getElementById("loader").style.display = "block";
   var month =document.getElementById('monthbcbsri').value;
       var year =document.getElementById('yearbcbsri').value;
       var risk =document.getElementById('riskbcbsri').value;
@@ -445,11 +447,12 @@
                         json.data = json.data;
             
                         console.log("JSONconditionsandriskdata==== "+JSON.stringify( json ));
-
+                        document.getElementById("loader").style.display = "none";
                         return JSON.stringify( json ); // return JSON string
                     },
                     error: function (xhr, error, code)
                     {
+                      document.getElementById("loader").style.display = "none";
                         console.log("vxxxxx=== "+xhr);
                         console.log(code);
                         $('#dt_recent_bcbsriprogram_processing').hide();
@@ -532,7 +535,7 @@
   var logged_in_userid=sessionStorage.getItem("userid");
   var usertype=sessionStorage.getItem("usertype");
   var pcmhid=sessionStorage.getItem("pcmhid");
-
+  document.getElementById("loader").style.display = "block";
   var month =document.getElementById('monthpatient').value;
       var year =document.getElementById('yearpatient').value;
       var risk =document.getElementById('riskpatient').value;
@@ -565,11 +568,12 @@
                         json.data = json.data;
             
                         console.log("JSONconditionsandriskdata==== "+JSON.stringify( json ));
-
+                        document.getElementById("loader").style.display = "none";
                         return JSON.stringify( json ); // return JSON string
                     },
                     error: function (xhr, error, code)
                     {
+                      document.getElementById("loader").style.display = "none";
                         console.log("vxxxxx=== "+xhr);
                         console.log(code);
                         $('#dt_recent_patientpanelalldata_processing').hide();
@@ -696,7 +700,7 @@
   var logged_in_userid=sessionStorage.getItem("userid");
   var usertype=sessionStorage.getItem("usertype");
   var pcmhid=sessionStorage.getItem("pcmhid");
-
+  document.getElementById("loader").style.display = "block";
   var month =document.getElementById('monthreturn').value;
       var year =document.getElementById('yearreturn').value;
       var risk =document.getElementById('riskreturn').value;
@@ -729,13 +733,14 @@
                         json.data = json.data;
             
                         console.log("JSONconditionsandriskdata==== "+JSON.stringify( json ));
-
+                        document.getElementById("loader").style.display = "none";
                         return JSON.stringify( json ); // return JSON string
                     }
                     ,
                     error: function (xhr, error, code)
                     {
                         console.log("vxxxxx=== "+xhr);
+                        document.getElementById("loader").style.display = "none";
                         console.log(code);
                         $('#dt_recent_return_report_processing').hide();
                         $('#dt_recent_return_report').hide();
