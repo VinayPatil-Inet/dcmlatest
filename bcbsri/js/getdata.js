@@ -55,7 +55,7 @@
                         json.data = json.data;
             
                         console.log("jsondemographics_data==== "+JSON.stringify( json ));
-
+                        document.getElementById("loader").style.display = "none";
                         return JSON.stringify( json ); // return JSON string
                     },
                     error: function (xhr, error, code)
@@ -67,7 +67,7 @@
                         $('#dt_recent_demographics_info').show();
                        
                         document.getElementById('dt_recent_demographics_info').innerHTML="No Data Available"
-
+                        document.getElementById("loader").style.display = "none";
                        //  json_encode(array('data'=>''));
                       //  var json = jQuery.parseJSON( data );
                       //   json.recordsTotal = 0;
@@ -139,7 +139,7 @@
                       
                       var searchresult = risk+' '+month+' '+year;
                       demographicsTable.search(searchresult).draw();
-                      document.getElementById("loader").style.display = "none";
+                      // document.getElementById("loader").style.display = "none";
                     },1000);  
                   })
                   document.getElementById("loader").style.display = "none";
@@ -156,10 +156,10 @@
 
   function conditionsandrisk_data()
   {
-    var month =document.getElementById('month').value;
-      var year =document.getElementById('year').value;
-      var risk =document.getElementById('risk').value;
-
+    var month =document.getElementById('monthrisk').value;
+      var year =document.getElementById('yearrisk').value;
+      var risk =document.getElementById('condrisk').value;
+      document.getElementById("loader").style.display = "block";
     console.log("conditionsandrisk_data");
     var logged_in_userid=sessionStorage.getItem("userid");
   var usertype=sessionStorage.getItem("usertype");
@@ -192,7 +192,7 @@
                         json.data = json.data;
             
                         console.log("JSONconditionsandrisk_data==== "+JSON.stringify( json ));
-
+                        document.getElementById("loader").style.display = "none";
                         return JSON.stringify( json ); // return JSON string
                     },
                     error: function (xhr, error, code)
@@ -204,7 +204,8 @@
                         $('#dt_recent_conditionsandrisk_info').show();
                        
                         document.getElementById('dt_recent_conditionsandrisk_info').innerHTML="No Data Available"
-                       //  json_encode(array('data'=>''));
+                        document.getElementById("loader").style.display = "none";
+                        //  json_encode(array('data'=>''));
                       //  var json = jQuery.parseJSON( data );
                       //   json.recordsTotal = 0;
                       //   json.recordsFiltered = 0;
@@ -287,10 +288,10 @@
   function costandutilization_data()
 {
 
-  var month =document.getElementById('month').value;
-      var year =document.getElementById('year').value;
-      var risk =document.getElementById('risk').value;
-
+  var month =document.getElementById('monthcost').value;
+      var year =document.getElementById('yearcost').value;
+      var risk =document.getElementById('riskcost').value;
+      document.getElementById("loader").style.display = "block";
   console.log("costandutilization_data");
   var logged_in_userid=sessionStorage.getItem("userid");
   var usertype=sessionStorage.getItem("usertype");
@@ -323,7 +324,7 @@
                         json.data = json.data;
             
                         console.log("JSONcostandutilization_data==== "+JSON.stringify( json ));
-
+                        document.getElementById("loader").style.display = "none";
                         return JSON.stringify( json ); // return JSON string
                     },
                     error: function (xhr, error, code)
@@ -335,7 +336,7 @@
                         $('#dt_recent_costandutilization_info').show();
                        
                         document.getElementById('dt_recent_costandutilization_info').innerHTML="No Data Available"
-                     
+                        document.getElementById("loader").style.display = "none";
                        //  json_encode(array('data'=>''));
                       //  var json = jQuery.parseJSON( data );
                       //   json.recordsTotal = 0;
@@ -408,10 +409,10 @@
     function bcbsriprogram_data()
 {
 
-  var month =document.getElementById('month').value;
-      var year =document.getElementById('year').value;
-      var risk =document.getElementById('risk').value;
-      
+  var month =document.getElementById('monthbcbsri').value;
+      var year =document.getElementById('yearbcbsri').value;
+      var risk =document.getElementById('riskbcbsri').value;
+      document.getElementById("loader").style.display = "block";
   console.log("bcbsriprogram_data");
   var logged_in_userid=sessionStorage.getItem("userid");
   var usertype=sessionStorage.getItem("usertype");
@@ -443,7 +444,7 @@
                         json.data = json.data;
             
                         console.log("JSONbcbsriprogram_data==== "+JSON.stringify( json ));
-
+                        document.getElementById("loader").style.display = "none";
                         return JSON.stringify( json ); // return JSON string
                     },
                     error: function (xhr, error, code)
@@ -456,7 +457,7 @@
                         $('#dt_recent_bcbsriprogram_info').show();
                        
                         document.getElementById('dt_recent_bcbsriprogram_info').innerHTML="No Data Available"
-                     
+                        document.getElementById("loader").style.display = "none";
                        //  json_encode(array('data'=>''));
                       //  var json = jQuery.parseJSON( data );
                       //   json.recordsTotal = 0;
@@ -527,10 +528,10 @@
     }
     function patient_all_data()
     {
-      var month =document.getElementById('month').value;
-      var year =document.getElementById('year').value;
-      var risk =document.getElementById('risk').value;
-
+      var month =document.getElementById('monthpatient').value;
+      var year =document.getElementById('yearpatient').value;
+      var risk =document.getElementById('riskpatient').value;
+      document.getElementById("loader").style.display = "block";
       var logged_in_userid=sessionStorage.getItem("userid");
       var patient_alldata ='{"patientalldatatype":"patientalldata","logged_in_userid":"'+logged_in_userid+'","usertype":"'+usertype+'" ,"month":"'+month+'","year":"'+year+'","risk":"'+risk+'"}';
        
@@ -560,7 +561,7 @@
                            json.data = json.data;
                
                            console.log("JSONpatient_all_data==== "+JSON.stringify( json ));
-   
+                           document.getElementById("loader").style.display = "none";
                            return JSON.stringify( json ); // return JSON string
                        },
                        error: function (xhr, error, code)
@@ -572,7 +573,8 @@
                            $('#dt_recent_patientpanelalldata_info').show();
                           
                            document.getElementById('dt_recent_patientpanelalldata_info').innerHTML="No Data Available"
-                          //  json_encode(array('data'=>''));
+                           document.getElementById("loader").style.display = "none";
+                           //  json_encode(array('data'=>''));
                          //  var json = jQuery.parseJSON( data );
                          //   json.recordsTotal = 0;
                          //   json.recordsFiltered = 0;
@@ -685,10 +687,10 @@
     function returnreporting_data()
 {
 
-  var month =document.getElementById('month').value;
-      var year =document.getElementById('year').value;
-      var risk =document.getElementById('risk').value;
-
+  var month =document.getElementById('monthreturn').value;
+      var year =document.getElementById('yearreturn').value;
+      var risk =document.getElementById('riskreturn').value;
+      document.getElementById("loader").style.display = "block";
   console.log("returnreporting_data");
   var logged_in_userid=sessionStorage.getItem("userid");
   var usertype=sessionStorage.getItem("usertype");
@@ -720,7 +722,7 @@
                         json.data = json.data;
             
                         console.log("JSONreturnreporting_data==== "+JSON.stringify( json ));
-
+                        document.getElementById("loader").style.display = "none";
                         return JSON.stringify( json ); // return JSON string
                     },
                     error: function (xhr, error, code)
@@ -732,7 +734,7 @@
                         $('#dt_recent_return_report_info').show();
                        
                         document.getElementById('dt_recent_return_report_info').innerHTML="No Data Available"
-                     
+                        document.getElementById("loader").style.display = "none";
                        //  json_encode(array('data'=>''));
                       //  var json = jQuery.parseJSON( data );
                       //   json.recordsTotal = 0;

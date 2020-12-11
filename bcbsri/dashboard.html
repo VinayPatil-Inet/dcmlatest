@@ -161,82 +161,7 @@
     <section class="content">
       <div class="container-fluid">
 
-        <div class="row">
-          <!-- left column -->
-          <div class="col-md-12">
-            <!-- general form elements -->
-            <div class="card card-primary" >
-             
-              <!-- /.card-header -->
-              <!-- form start -->
-              <form role="form" action="" method="POST">
-                <div class="card-body">
-                  <div class="row">
-                    
-                    <div class="col-md-3">
-                      <div class="form-group">
-                         <label>Select Month</label>
-                         <select name="month" id="month" class="form-control">
-                           <option value="">--Select Month--</option>
-                           <option value="1">January</option>
-                           <option value="2">February</option>
-                           <option value="3">March</option>
-                           <option value="4">April</option>
-                           <option value="5">May</option>
-                           <option value="6">June</option>
-                           <option value="7">July</option>
-                           <option value="8">August</option>
-                           <option value="9">September</option>
-                           <option value="10">October</option>
-                           <option value="11">November</option>
-                           <option value="12">December</option>
-                          
-                         </select>
-                       </div>
-                     </div>
-                     <div class="col-md-3">
-                       <div class="form-group">
-                         <label>Select Year</label>
-                         <select name="year" id="year" class="form-control">
-                           <option value="">--Select Year--</option>
-                           <option value="2020">2020</option>
-                           <option value="2019">2019</option>
-                           <option value="2018">2018</option>
-                          
-                         </select>
-                       </div>
-                     </div>
-                     <div class="col-md-3">
-                       <div class="form-group">
-                         <label>Risk</label>
-                         <select name="risk" id="risk" class="form-control">
-                           <option value="">--Select--</option>
-                           <option value="High">High</option>
-                           <option value="Medium">Medium</option>
-                           <option value="Low">Low</option>
-                         </select>
-                       </div>
-                     </div>
-                    
-                    <div class="col-md-3">
-                      <div class="form-group">
-                        <label>&nbsp;</label><br>
-                        <div id="loader" style="display: none;"></div>
-                        <button type="button"  id="btn_search1" onclick="searchdata()" class="btn btn-success"><i class="fas fa-search"></i> Search</button>
-                      </div>
-                      </div>
-                  </div>
-                  
-                  
-                </div>
-                <!-- /.card-body -->
-
-                
-              </form>
-            </div>
-            <!-- /.card -->
-          </div>
-        </div>
+        
 
         <div class="row">
           
@@ -272,6 +197,83 @@
                           
                            <!--Start : Demographics-->
                           <div class="tab-pane fade show active" id="demographics" role="tabpanel" aria-labelledby="demographics_tab">
+                            <div class="row">
+                              <!-- left column -->
+                              <div class="col-md-12">
+                                <!-- general form elements -->
+                                <div class="card card-primary" >
+                                 
+                                  <!-- /.card-header -->
+                                  <!-- form start -->
+                                  <form role="form" action="" method="POST">
+                                    <div class="card-body">
+                                      <div class="row">
+                                        
+                                        <div class="col-md-3">
+                                          <div class="form-group">
+                                             <label>Select Month</label>
+                                             <select name="month" id="month" class="form-control">
+                                               <option value="">--Select Month--</option>
+                                               <option value="1">January</option>
+                                               <option value="2">February</option>
+                                               <option value="3">March</option>
+                                               <option value="4">April</option>
+                                               <option value="5">May</option>
+                                               <option value="6">June</option>
+                                               <option value="7">July</option>
+                                               <option value="8">August</option>
+                                               <option value="9">September</option>
+                                               <option value="10">October</option>
+                                               <option value="11">November</option>
+                                               <option value="12">December</option>
+                                              
+                                             </select>
+                                           </div>
+                                         </div>
+                                         <div class="col-md-3">
+                                           <div class="form-group">
+                                             <label>Select Year</label>
+                                             <select name="year" id="year" class="form-control">
+                                               <option value="">--Select Year--</option>
+                                               <option value="2020">2020</option>
+                                               <option value="2019">2019</option>
+                                               <option value="2018">2018</option>
+                                              
+                                             </select>
+                                           </div>
+                                         </div>
+                                         <div class="col-md-3">
+                                           <div class="form-group">
+                                             <label>Risk</label>
+                                             <select name="risk" id="risk" class="form-control">
+                                               <option value="">--Select--</option>
+                                               <option value="High">High</option>
+                                               <option value="Medium">Medium</option>
+                                               <option value="Low">Low</option>
+                                             </select>
+                                           </div>
+                                         </div>
+                                        
+                                        <div class="col-md-3">
+                                          <div class="form-group">
+                                            <label>&nbsp;</label><br>
+                                            <div id="loader" style="display: none;"></div>
+                                            <button type="button"  id="btn_search1" onclick="demographics_data()" class="btn btn-success"><i class="fas fa-search"></i> Search</button>
+                                          </div>
+                                          </div>
+                                      </div>
+                                      
+                                      
+                                    </div>
+                                    <!-- /.card-body -->
+                    
+                                    
+                                  </form>
+                                </div>
+                                <!-- /.card -->
+                              </div>
+                            </div>
+                            <br>
                             <div class="col-12 table-responsive">
                               <table id="dt_recent_demographics" class="table table-bordered table-striped" >
                                 <thead>
@@ -318,7 +320,86 @@
 
                         <!--Start : Conditions & Risk-->
                           <div class="tab-pane fade" id="conditionsandrisk" role="tabpanel" aria-labelledby="conditionsandrisk_tab">
+                            <div class="row">
+                              <!-- left column -->
+                              <div class="col-md-12">
+                                <!-- general form elements -->
+                                <div class="card card-primary" >
+                                 
+                                  <!-- /.card-header -->
+                                  <!-- form start -->
+                                  <form role="form" action="" method="POST">
+                                    <div class="card-body">
+                                      <div class="row">
+                                        
+                                        <div class="col-md-3">
+                                          <div class="form-group">
+                                             <label>Select Month</label>
+                                             <select name="monthrisk" id="monthrisk" class="form-control">
+                                               <option value="">--Select Month--</option>
+                                               <option value="1">January</option>
+                                               <option value="2">February</option>
+                                               <option value="3">March</option>
+                                               <option value="4">April</option>
+                                               <option value="5">May</option>
+                                               <option value="6">June</option>
+                                               <option value="7">July</option>
+                                               <option value="8">August</option>
+                                               <option value="9">September</option>
+                                               <option value="10">October</option>
+                                               <option value="11">November</option>
+                                               <option value="12">December</option>
+                                              
+                                             </select>
+                                           </div>
+                                         </div>
+                                         <div class="col-md-3">
+                                           <div class="form-group">
+                                             <label>Select Year</label>
+                                             <select name="yearrisk" id="yearrisk" class="form-control">
+                                               <option value="">--Select Year--</option>
+                                               <option value="2020">2020</option>
+                                               <option value="2019">2019</option>
+                                               <option value="2018">2018</option>
+                                              
+                                             </select>
+                                           </div>
+                                         </div>
+                                         <div class="col-md-3">
+                                           <div class="form-group">
+                                             <label>Risk</label>
+                                             <select name="condrisk" id="condrisk" class="form-control">
+                                               <option value="">--Select--</option>
+                                               <option value="High">High</option>
+                                               <option value="Medium">Medium</option>
+                                               <option value="Low">Low</option>
+                                             </select>
+                                           </div>
+                                         </div>
+                                        
+                                        <div class="col-md-3">
+                                          <div class="form-group">
+                                            <label>&nbsp;</label><br>
+                                            <div id="loader" style="display: none;"></div>
+                                            <button type="button"  id="btn_search1" onclick="conditionsandrisk_data()" class="btn btn-success"><i class="fas fa-search"></i> Search</button>
+                                          </div>
+                                          </div>
+                                      </div>
+                                      
+                                      
+                                    </div>
+                                    <!-- /.card-body -->
+                    
+                                    
+                                  </form>
+                                </div>
+                                <!-- /.card -->
+                              </div>
+                            </div>
+                            <br>
                             <div class="col-12 table-responsive">
+                              
+
                               <table id="dt_recent_conditionsandrisk" class="table table-bordered table-striped" style="width: 100%;">
                                 <thead>
                                 <tr>
@@ -364,6 +445,83 @@
 
                           <!--Start : Costand Utilization-->
                           <div class="tab-pane fade" id="costandutilization" role="tabpanel" aria-labelledby="costandutilization_tab">
+                            <div class="row">
+                              <!-- left column -->
+                              <div class="col-md-12">
+                                <!-- general form elements -->
+                                <div class="card card-primary" >
+                                 
+                                  <!-- /.card-header -->
+                                  <!-- form start -->
+                                  <form role="form" action="" method="POST">
+                                    <div class="card-body">
+                                      <div class="row">
+                                        
+                                        <div class="col-md-3">
+                                          <div class="form-group">
+                                             <label>Select Month</label>
+                                             <select name="monthcost" id="monthcost" class="form-control">
+                                               <option value="">--Select Month--</option>
+                                               <option value="1">January</option>
+                                               <option value="2">February</option>
+                                               <option value="3">March</option>
+                                               <option value="4">April</option>
+                                               <option value="5">May</option>
+                                               <option value="6">June</option>
+                                               <option value="7">July</option>
+                                               <option value="8">August</option>
+                                               <option value="9">September</option>
+                                               <option value="10">October</option>
+                                               <option value="11">November</option>
+                                               <option value="12">December</option>
+                                              
+                                             </select>
+                                           </div>
+                                         </div>
+                                         <div class="col-md-3">
+                                           <div class="form-group">
+                                             <label>Select Year</label>
+                                             <select name="yearcost" id="yearcost" class="form-control">
+                                               <option value="">--Select Year--</option>
+                                               <option value="2020">2020</option>
+                                               <option value="2019">2019</option>
+                                               <option value="2018">2018</option>
+                                              
+                                             </select>
+                                           </div>
+                                         </div>
+                                         <div class="col-md-3">
+                                           <div class="form-group">
+                                             <label>Risk</label>
+                                             <select name="riskcost" id="riskcost" class="form-control">
+                                               <option value="">--Select--</option>
+                                               <option value="High">High</option>
+                                               <option value="Medium">Medium</option>
+                                               <option value="Low">Low</option>
+                                             </select>
+                                           </div>
+                                         </div>
+                                        
+                                        <div class="col-md-3">
+                                          <div class="form-group">
+                                            <label>&nbsp;</label><br>
+                                            <div id="loader" style="display: none;"></div>
+                                            <button type="button"  id="btn_search1" onclick="costandutilization_data()" class="btn btn-success"><i class="fas fa-search"></i> Search</button>
+                                          </div>
+                                          </div>
+                                      </div>
+                                      
+                                      
+                                    </div>
+                                    <!-- /.card-body -->
+                    
+                                    
+                                  </form>
+                                </div>
+                                <!-- /.card -->
+                              </div>
+                            </div>
+                            <br>
                             <div class="col-12 table-responsive">
                               <table id="dt_recent_costandutilization" class="table table-bordered table-striped" style="width: 100%;">
                                 <thead>
@@ -401,6 +559,83 @@
 
                            <!--Start : BCBSRI Program-->
                           <div class="tab-pane fade" id="bcbsriprogram" role="tabpanel" aria-labelledby="bcbsriprogram_tab">
+                            <div class="row">
+                              <!-- left column -->
+                              <div class="col-md-12">
+                                <!-- general form elements -->
+                                <div class="card card-primary" >
+                                 
+                                  <!-- /.card-header -->
+                                  <!-- form start -->
+                                  <form role="form" action="" method="POST">
+                                    <div class="card-body">
+                                      <div class="row">
+                                        
+                                        <div class="col-md-3">
+                                          <div class="form-group">
+                                             <label>Select Month</label>
+                                             <select name="monthbcbsri" id="monthbcbsri" class="form-control">
+                                               <option value="">--Select Month--</option>
+                                               <option value="1">January</option>
+                                               <option value="2">February</option>
+                                               <option value="3">March</option>
+                                               <option value="4">April</option>
+                                               <option value="5">May</option>
+                                               <option value="6">June</option>
+                                               <option value="7">July</option>
+                                               <option value="8">August</option>
+                                               <option value="9">September</option>
+                                               <option value="10">October</option>
+                                               <option value="11">November</option>
+                                               <option value="12">December</option>
+                                              
+                                             </select>
+                                           </div>
+                                         </div>
+                                         <div class="col-md-3">
+                                           <div class="form-group">
+                                             <label>Select Year</label>
+                                             <select name="yearbcbsri" id="yearbcbsri" class="form-control">
+                                               <option value="">--Select Year--</option>
+                                               <option value="2020">2020</option>
+                                               <option value="2019">2019</option>
+                                               <option value="2018">2018</option>
+                                              
+                                             </select>
+                                           </div>
+                                         </div>
+                                         <div class="col-md-3">
+                                           <div class="form-group">
+                                             <label>Risk</label>
+                                             <select name="riskbcbsri" id="riskbcbsri" class="form-control">
+                                               <option value="">--Select--</option>
+                                               <option value="High">High</option>
+                                               <option value="Medium">Medium</option>
+                                               <option value="Low">Low</option>
+                                             </select>
+                                           </div>
+                                         </div>
+                                        
+                                        <div class="col-md-3">
+                                          <div class="form-group">
+                                            <label>&nbsp;</label><br>
+                                            <div id="loader" style="display: none;"></div>
+                                            <button type="button"  id="btn_search1" onclick="bcbsriprogram_data()" class="btn btn-success"><i class="fas fa-search"></i> Search</button>
+                                          </div>
+                                          </div>
+                                      </div>
+                                      
+                                      
+                                    </div>
+                                    <!-- /.card-body -->
+                    
+                                    
+                                  </form>
+                                </div>
+                                <!-- /.card -->
+                              </div>
+                            </div>
+                            <br>
                             <div class="col-12 table-responsive">
                              
                               <table id="dt_recent_bcbsriprogram" class="table table-bordered table-striped" style="width: 100%;">
@@ -435,6 +670,85 @@
                           
                           <!-- Start : Patient Panel All Data -->
                           <div class="tab-pane fade" id="patientpanelalldata" role="tabpanel" aria-labelledby="patientpanelalldata_tab">
+                            <div class="row">
+                              <!-- left column -->
+                              <div class="col-md-12">
+                                <!-- general form elements -->
+                                <div class="card card-primary" >
+                                 
+                                  <!-- /.card-header -->
+                                  <!-- form start -->
+                                  <form role="form" action="" method="POST">
+                                    <div class="card-body">
+                                      <div class="row">
+                                        
+                                        <div class="col-md-3">
+                                          <div class="form-group">
+                                             <label>Select Month</label>
+                                             <select name="monthpatient" id="monthpatient" class="form-control">
+                                               <option value="">--Select Month--</option>
+                                               <option value="1">January</option>
+                                               <option value="2">February</option>
+                                               <option value="3">March</option>
+                                               <option value="4">April</option>
+                                               <option value="5">May</option>
+                                               <option value="6">June</option>
+                                               <option value="7">July</option>
+                                               <option value="8">August</option>
+                                               <option value="9">September</option>
+                                               <option value="10">October</option>
+                                               <option value="11">November</option>
+                                               <option value="12">December</option>
+                                              
+                                             </select>
+                                           </div>
+                                         </div>
+                                         <div class="col-md-3">
+                                           <div class="form-group">
+                                             <label>Select Year</label>
+                                             <select name="yearpatient" id="yearpatient" class="form-control">
+                                               <option value="">--Select Year--</option>
+                                               <option value="2020">2020</option>
+                                               <option value="2019">2019</option>
+                                               <option value="2018">2018</option>
+                                              
+                                             </select>
+                                           </div>
+                                         </div>
+                                         <div class="col-md-3">
+                                           <div class="form-group">
+                                             <label>Risk</label>
+                                             <select name="riskpatient" id="riskpatient" class="form-control">
+                                               <option value="">--Select--</option>
+                                               <option value="High">High</option>
+                                               <option value="Medium">Medium</option>
+                                               <option value="Low">Low</option>
+                                             </select>
+                                           </div>
+                                         </div>
+                                        
+                                        <div class="col-md-3">
+                                          <div class="form-group">
+                                            <label>&nbsp;</label><br>
+                                            <div id="loader" style="display: none;"></div>
+                                            <button type="button"  id="btn_search1" onclick="patient_all_data()" class="btn btn-success"><i class="fas fa-search"></i> Search</button>
+                                          </div>
+                                          </div>
+                                      </div>
+                                      
+                                      
+                                    </div>
+                                    <!-- /.card-body -->
+                    
+                                    
+                                  </form>
+                                </div>
+                                <!-- /.card -->
+                              </div>
+                            </div>
+                            <br>
+
+                            
                             <div class="col-12 table-responsive">
                               <table id="dt_recent_patientpanelalldata" class="table table-bordered table-striped" style="width: 100%;">
                                 <thead>
@@ -514,6 +828,83 @@
 
                           <!-- Start : Return Reporting Data -->
                           <div class="tab-pane fade" id="returnreportingdata" role="tabpanel" aria-labelledby="reportingdata_tab">
+                            <div class="row">
+                              <!-- left column -->
+                              <div class="col-md-12">
+                                <!-- general form elements -->
+                                <div class="card card-primary" >
+                                 
+                                  <!-- /.card-header -->
+                                  <!-- form start -->
+                                  <form role="form" action="" method="POST">
+                                    <div class="card-body">
+                                      <div class="row">
+                                        
+                                        <div class="col-md-3">
+                                          <div class="form-group">
+                                             <label>Select Month</label>
+                                             <select name="monthreturn" id="monthreturn" class="form-control">
+                                               <option value="">--Select Month--</option>
+                                               <option value="1">January</option>
+                                               <option value="2">February</option>
+                                               <option value="3">March</option>
+                                               <option value="4">April</option>
+                                               <option value="5">May</option>
+                                               <option value="6">June</option>
+                                               <option value="7">July</option>
+                                               <option value="8">August</option>
+                                               <option value="9">September</option>
+                                               <option value="10">October</option>
+                                               <option value="11">November</option>
+                                               <option value="12">December</option>
+                                              
+                                             </select>
+                                           </div>
+                                         </div>
+                                         <div class="col-md-3">
+                                           <div class="form-group">
+                                             <label>Select Year</label>
+                                             <select name="yearreturn" id="yearreturn" class="form-control">
+                                               <option value="">--Select Year--</option>
+                                               <option value="2020">2020</option>
+                                               <option value="2019">2019</option>
+                                               <option value="2018">2018</option>
+                                              
+                                             </select>
+                                           </div>
+                                         </div>
+                                         <div class="col-md-3">
+                                           <div class="form-group">
+                                             <label>Risk</label>
+                                             <select name="riskreturn" id="riskreturn" class="form-control">
+                                               <option value="">--Select--</option>
+                                               <option value="High">High</option>
+                                               <option value="Medium">Medium</option>
+                                               <option value="Low">Low</option>
+                                             </select>
+                                           </div>
+                                         </div>
+                                        
+                                        <div class="col-md-3">
+                                          <div class="form-group">
+                                            <label>&nbsp;</label><br>
+                                            <div id="loader" style="display: none;"></div>
+                                            <button type="button"  id="btn_search1" onclick="returnreporting_data()" class="btn btn-success"><i class="fas fa-search"></i> Search</button>
+                                          </div>
+                                          </div>
+                                      </div>
+                                      
+                                      
+                                    </div>
+                                    <!-- /.card-body -->
+                    
+                                    
+                                  </form>
+                                </div>
+                                <!-- /.card -->
+                              </div>
+                            </div>
+                            <br>
                             <div class="col-12 table-responsive">
                               <table id="dt_recent_return_report" class="table table-bordered table-striped">
                                 <thead>
@@ -759,31 +1150,13 @@ $('.datepicker').datepicker({
       
       function searchdata()
       {
-        setTimeout(function() {
         demographics_data();
-
-        setTimeout(function() {
-          conditionsandrisk_data();
-          setTimeout(function() {
+        conditionsandrisk_data();
         costandutilization_data();
-        setTimeout(function() {
         bcbsriprogram_data();
-        setTimeout(function() {
         patient_all_data();
-        setTimeout(function() {
         returnreporting_data();
-      },1000);
-      },1000);
-      },1000);
-      },1000);
-        },1000);
-
-        },1000);
-        
-        
-       
-       
-        
+ 
       }
 </script>
 </body>
