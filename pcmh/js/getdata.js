@@ -160,9 +160,9 @@
   var usertype=sessionStorage.getItem("usertype");
   var pcmhid=sessionStorage.getItem("pcmhid");
 
-  var month =document.getElementById('month').value;
-      var year =document.getElementById('year').value;
-      var risk =document.getElementById('risk').value;
+  var month =document.getElementById('monthrisk').value;
+      var year =document.getElementById('yearrisk').value;
+      var risk =document.getElementById('condrisk').value;
 
   $.fn.dataTable.ext.errMode = 'throw';
     var conditionsandriskdata ='{"conditionsandriskype":"conditionsandrisk","logged_in_userid":"'+logged_in_userid+'","usertype":"'+usertype+'","pcmhid":"'+pcmhid+'","month":"'+month+'","year":"'+year+'","risk":"'+risk+'"}';
@@ -292,9 +292,9 @@
   var usertype=sessionStorage.getItem("usertype");
   var pcmhid=sessionStorage.getItem("pcmhid");
 
-  var month =document.getElementById('month').value;
-      var year =document.getElementById('year').value;
-      var risk =document.getElementById('risk').value;
+  var month =document.getElementById('monthcost').value;
+      var year =document.getElementById('yearcost').value;
+      var risk =document.getElementById('riskcost').value;
 
   $.fn.dataTable.ext.errMode = 'throw';
   var costandutilizationkdata ='{"costandutilizationtype":"costandutilizationtype","logged_in_userid":"'+logged_in_userid+'","usertype":"'+usertype+'","pcmhid":"'+pcmhid+'","month":"'+month+'","year":"'+year+'","risk":"'+risk+'"}';
@@ -413,9 +413,9 @@
   var usertype=sessionStorage.getItem("usertype");
   var pcmhid=sessionStorage.getItem("pcmhid");
 
-  var month =document.getElementById('month').value;
-      var year =document.getElementById('year').value;
-      var risk =document.getElementById('risk').value;
+  var month =document.getElementById('monthbcbsri').value;
+      var year =document.getElementById('yearbcbsri').value;
+      var risk =document.getElementById('riskbcbsri').value;
 
   $.fn.dataTable.ext.errMode = 'throw';
   var bcbsriprogramdata ='{"bcbsriprogramtype":"bcbsriprogram","logged_in_userid":"'+logged_in_userid+'","usertype":"'+usertype+'","pcmhid":"'+pcmhid+'","month":"'+month+'","year":"'+year+'","risk":"'+risk+'"}';
@@ -533,9 +533,9 @@
   var usertype=sessionStorage.getItem("usertype");
   var pcmhid=sessionStorage.getItem("pcmhid");
 
-  var month =document.getElementById('month').value;
-      var year =document.getElementById('year').value;
-      var risk =document.getElementById('risk').value;
+  var month =document.getElementById('monthpatient').value;
+      var year =document.getElementById('yearpatient').value;
+      var risk =document.getElementById('riskpatient').value;
 
   $.fn.dataTable.ext.errMode = 'throw';
   var patient_alldata ='{"patientalldatatype":"patientalldata","logged_in_userid":"'+logged_in_userid+'","usertype":"'+usertype+'","pcmhid":"'+pcmhid+'","month":"'+month+'","year":"'+year+'","risk":"'+risk+'"}';
@@ -697,9 +697,9 @@
   var usertype=sessionStorage.getItem("usertype");
   var pcmhid=sessionStorage.getItem("pcmhid");
 
-  var month =document.getElementById('month').value;
-      var year =document.getElementById('year').value;
-      var risk =document.getElementById('risk').value;
+  var month =document.getElementById('monthreturn').value;
+      var year =document.getElementById('yearreturn').value;
+      var risk =document.getElementById('riskreturn').value;
 
   $.fn.dataTable.ext.errMode = 'throw';
   var returnreportingdata ='{"returnreportingdatatype":"returnreporting","logged_in_userid":"'+logged_in_userid+'","usertype":"'+usertype+'","pcmhid":"'+pcmhid+'","month":"'+month+'","year":"'+year+'","risk":"'+risk+'"}';
