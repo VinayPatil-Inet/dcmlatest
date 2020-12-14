@@ -352,6 +352,7 @@ $(document).ready(function () {
             dataFilter: function(data){
               console.log("getallusers==== "+data);
               $('#dt_return_report').show();
+              $('#dt_return_report_paginate').show();
                 var json = jQuery.parseJSON( data );
                 json.recordsTotal = json.recordsTotal;
                 json.recordsFiltered = json.recordsFiltered;
@@ -368,6 +369,7 @@ $(document).ready(function () {
                           $('#dt_return_report_processing').hide();
                           $('#dt_return_report').hide();
                           $('#dt_return_report_info').show();
+                          $('#dt_return_report_paginate').hide();
                           
                         document.getElementById('dt_return_report_info').innerHTML="No Data Available"
                      

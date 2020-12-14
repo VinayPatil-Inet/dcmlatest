@@ -409,6 +409,7 @@ function getuserdata(data)
     
 function getResult(user_data)
 {
+  
   $.fn.dataTable.ext.errMode = 'throw';
 
  
@@ -437,7 +438,9 @@ function getResult(user_data)
             dataFilter: function(data){
               console.log("getallusers==== "+data);
                 var json = jQuery.parseJSON( data );
+               
                 $('#dt_getuser').show();
+                $('#dt_getuser_paginate').show();
                 json.recordsTotal = json.recordsTotal;
                 json.recordsFiltered = json.recordsFiltered;
                 json.data = json.data;
@@ -453,6 +456,7 @@ function getResult(user_data)
                           $('#dt_getuser_processing').hide();
                           $('#dt_getuser').hide();
                           $('#dt_getuser_info').show();
+                          $('#dt_getuser_paginate').hide();
                           
                         document.getElementById('dt_getuser_info').innerHTML="No Data Available"
                      

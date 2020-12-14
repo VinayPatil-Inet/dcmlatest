@@ -48,6 +48,7 @@
                     dataFilter: function(data){
                       console.log("demographics_data==== "+data);
                       $('#dt_recent_demographics').show();
+                      $('#dt_recent_demographics_paginate').show();
                       
                         var json = jQuery.parseJSON( data );
                         json.recordsTotal = json.recordsTotal;
@@ -65,6 +66,7 @@
                         $('#dt_recent_demographics_processing').hide();
                         $('#dt_recent_demographics').hide();
                         $('#dt_recent_demographics_info').show();
+                        $('#dt_recent_demographics_paginate').hide();
                        
                         document.getElementById('dt_recent_demographics_info').innerHTML="No Data Available"
                         document.getElementById("loader").style.display = "none";
@@ -186,6 +188,7 @@
                     dataFilter: function(data){
                       console.log("conditionsandrisk_data==== "+data);
                       $('#dt_recent_conditionsandrisk').show();
+                      $('#dt_recent_conditionsandrisk_paginate').show();
                         var json = jQuery.parseJSON( data );
                         json.recordsTotal = json.recordsTotal;
                         json.recordsFiltered = json.recordsFiltered;
@@ -202,6 +205,7 @@
                         $('#dt_recent_conditionsandrisk_processing').hide();
                         $('#dt_recent_conditionsandrisk').hide();
                         $('#dt_recent_conditionsandrisk_info').show();
+                        $('#dt_recent_conditionsandrisk_paginate').hide();
                        
                         document.getElementById('dt_recent_conditionsandrisk_info').innerHTML="No Data Available"
                         document.getElementById("loader").style.display = "none";
@@ -318,6 +322,7 @@
                     dataFilter: function(data){
                       console.log("costandutilization_data==== "+data);
                       $('#dt_recent_costandutilization').show();
+                      $('#dt_recent_costandutilization_paginate').show();
                         var json = jQuery.parseJSON( data );
                         json.recordsTotal = json.recordsTotal;
                         json.recordsFiltered = json.recordsFiltered;
@@ -334,6 +339,7 @@
                         $('#dt_recent_costandutilization_processing').hide();
                         $('#dt_recent_costandutilization').hide();
                         $('#dt_recent_costandutilization_info').show();
+                        $('#dt_recent_costandutilization_paginate').hide();
                        
                         document.getElementById('dt_recent_costandutilization_info').innerHTML="No Data Available"
                         document.getElementById("loader").style.display = "none";
@@ -438,6 +444,7 @@
                     dataFilter: function(data){
                       console.log("bcbsriprogram_data==== "+data);
                       $('#dt_recent_bcbsriprogram').show();
+                      $('#dt_recent_bcbsriprogram_paginate').show();
                         var json = jQuery.parseJSON( data );
                         json.recordsTotal = json.recordsTotal;
                         json.recordsFiltered = json.recordsFiltered;
@@ -455,6 +462,7 @@
 
                         $('#dt_recent_bcbsriprogram').hide();
                         $('#dt_recent_bcbsriprogram_info').show();
+                        $('#dt_recent_bcbsriprogram_paginate').hide();
                        
                         document.getElementById('dt_recent_bcbsriprogram_info').innerHTML="No Data Available"
                         document.getElementById("loader").style.display = "none";
@@ -555,6 +563,7 @@
                        dataFilter: function(data){
                          console.log("patient_all_data==== "+data);
                          $('#dt_recent_patientpanelalldata').show();
+                         $('#dt_recent_patientpanelalldata_paginate').show();
                            var json = jQuery.parseJSON( data );
                            json.recordsTotal = json.recordsTotal;
                            json.recordsFiltered = json.recordsFiltered;
@@ -571,6 +580,7 @@
                            $('#dt_recent_patientpanelalldata_processing').hide();
                            $('#dt_recent_patientpanelalldata').hide();
                            $('#dt_recent_patientpanelalldata_info').show();
+                           $('#dt_recent_patientpanelalldata_paginate').hide();
                           
                            document.getElementById('dt_recent_patientpanelalldata_info').innerHTML="No Data Available"
                            document.getElementById("loader").style.display = "none";
@@ -716,6 +726,7 @@
                     dataFilter: function(data){
                       console.log("returnreporting_data==== "+data);
                       $('#dt_recent_return_report').show();
+                      $('#dt_recent_return_report_paginate').show();
                         var json = jQuery.parseJSON( data );
                         json.recordsTotal = json.recordsTotal;
                         json.recordsFiltered = json.recordsFiltered;
@@ -732,6 +743,7 @@
                         $('#dt_recent_return_report_processing').hide();
                         $('#dt_recent_return_report').hide();
                         $('#dt_recent_return_report_info').show();
+                        $('#dt_recent_return_report_paginate').hide();
                        
                         document.getElementById('dt_recent_return_report_info').innerHTML="No Data Available"
                         document.getElementById("loader").style.display = "none";

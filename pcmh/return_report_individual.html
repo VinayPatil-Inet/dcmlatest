@@ -535,6 +535,7 @@ $(document).ready(function () {
                       dataFilter: function(data){
                         console.log("getallusers==== "+data);
                         $('#dt-recent').show();
+                        $('#dt-recent_paginate').show();
                           var json = jQuery.parseJSON( data );
                           json.recordsTotal = json.recordsTotal;
                           json.recordsFiltered = json.recordsFiltered;
@@ -552,6 +553,7 @@ $(document).ready(function () {
                           $('#dt-recent_processing').hide();
                           $('#dt-recent').hide();
                           $('#dt-recent_info').show();
+                          $('#dt-recent_paginate').hide();
                        
                         document.getElementById('dt-recent_info').innerHTML="No Data Available"
                      
@@ -661,6 +663,7 @@ $(document).ready(function () {
                         console.log("getallusers==== "+data);
                           var json = jQuery.parseJSON( data );
                           $('#dt-inprocess').show();
+                          $('#dt-inprocess_paginate').show();
                           json.recordsTotal = json.recordsTotal;
                           json.recordsFiltered = json.recordsFiltered;
                           json.data = json.data;
@@ -677,6 +680,7 @@ $(document).ready(function () {
                           $('#dt-inprocess_processing').hide();
                           $('#dt-inprocess').hide();
                         $('#dt-inprocess_info').show();
+                        $('#dt-inprocess_paginate').hide();
                        
                         document.getElementById('dt-inprocess_info').innerHTML="No Data Available"
                      
@@ -784,6 +788,7 @@ $(document).ready(function () {
                         console.log("getallusers==== "+data);
                           var json = jQuery.parseJSON( data );
                           $('#dt-complated').show();
+                          $('#dt-complated_paginate').show();
                           json.recordsTotal = json.recordsTotal;
                           json.recordsFiltered = json.recordsFiltered;
                           json.data = json.data;
@@ -800,6 +805,7 @@ $(document).ready(function () {
                           $('#dt-complated_processing').hide();
                           $('#dt-complated').hide();
                           $('#dt-complated_info').show();
+                          $('#dt-complated_paginate').hide();
                        
                         document.getElementById('dt-complated_info').innerHTML="No Data Available"
                          //  json_encode(array('data'=>''));

@@ -49,13 +49,14 @@
                     dataFilter: function(data){
                       console.log("demographicsdata==== "+data);
                       $('#dt_recent_demographics').show();
+                      $('#dt_recent_demographics_paginate').show();
                         var json = jQuery.parseJSON( data );
                         json.recordsTotal = json.recordsTotal;
                         json.recordsFiltered = json.recordsFiltered;
                         json.data = json.data;
             
                         console.log("jsondemographicsdata==== "+JSON.stringify( json ));
-
+                        document.getElementById("loader").style.display = "none";
                         return JSON.stringify( json ); // return JSON string
                     },
                     error: function (xhr, error, code)
@@ -65,9 +66,10 @@
                         $('#dt_recent_demographics_processing').hide();
                         $('#dt_recent_demographics').hide();
                         $('#dt_recent_demographics_info').show();
+                        $('#dt_recent_demographics_paginate').hide();
                        
                         document.getElementById('dt_recent_demographics_info').innerHTML="No Data Available"
-
+                        document.getElementById("loader").style.display = "none";
                        //  json_encode(array('data'=>''));
                       //  var json = jQuery.parseJSON( data );
                       //   json.recordsTotal = 0;
@@ -139,7 +141,7 @@
                       
                       var searchresult = risk+' '+month+' '+year;
                       demographicsTable.search(searchresult).draw();
-                      document.getElementById("loader").style.display = "none";
+                      // document.getElementById("loader").style.display = "none";
                     },1000);  
                   })
                   document.getElementById("loader").style.display = "none";
@@ -187,6 +189,7 @@
                     dataFilter: function(data){
                       console.log("conditionsandriskdata==== "+data);
                       $('#dt_recent_conditionsandrisk').show();
+                      $('#dt_recent_conditionsandrisk_paginate').show();
                         var json = jQuery.parseJSON( data );
                         json.recordsTotal = json.recordsTotal;
                         json.recordsFiltered = json.recordsFiltered;
@@ -204,6 +207,7 @@
                         $('#dt_recent_conditionsandrisk_processing').hide();
                         $('#dt_recent_conditionsandrisk').hide();
                         $('#dt_recent_conditionsandrisk_info').show();
+                        $('#dt_recent_conditionsandrisk_paginate').hide();
                        
                         document.getElementById('dt_recent_conditionsandrisk_info').innerHTML="No Data Available"
                        
@@ -320,6 +324,7 @@
                     dataFilter: function(data){
                       console.log("conditionsandriskdata==== "+data);
                       $('#dt_recent_costandutilization').show();
+                      $('#dt_recent_costandutilization_paginate').show();
                         var json = jQuery.parseJSON( data );
                         json.recordsTotal = json.recordsTotal;
                         json.recordsFiltered = json.recordsFiltered;
@@ -337,6 +342,7 @@
                         $('#dt_recent_costandutilization_processing').hide();
                         $('#dt_recent_costandutilization').hide();
                         $('#dt_recent_costandutilization_info').show();
+                        $('#dt_recent_costandutilization_paginate').hide();
                        
                         document.getElementById('dt_recent_costandutilization_info').innerHTML="No Data Available"
                      
@@ -441,6 +447,7 @@
                     dataFilter: function(data){
                       console.log("conditionsandriskdata==== "+data);
                       $('#dt_recent_bcbsriprogram').show();
+                      $('#dt_recent_bcbsriprogram_paginate').show();
                         var json = jQuery.parseJSON( data );
                         json.recordsTotal = json.recordsTotal;
                         json.recordsFiltered = json.recordsFiltered;
@@ -458,6 +465,7 @@
                         $('#dt_recent_bcbsriprogram_processing').hide();
                         $('#dt_recent_bcbsriprogram').hide();
                         $('#dt_recent_bcbsriprogram_info').show();
+                        $('#dt_recent_bcbsriprogram_paginate').hide();
                        
                         document.getElementById('dt_recent_bcbsriprogram_info').innerHTML="No Data Available"
                      
@@ -562,6 +570,7 @@
                     dataFilter: function(data){
                       console.log("conditionsandriskdata==== "+data);
                       $('#dt_recent_patientpanelalldata').show();
+                      $('#dt_recent_patientpanelalldata_paginate').show();
                         var json = jQuery.parseJSON( data );
                         json.recordsTotal = json.recordsTotal;
                         json.recordsFiltered = json.recordsFiltered;
@@ -579,6 +588,7 @@
                         $('#dt_recent_patientpanelalldata_processing').hide();
                         $('#dt_recent_patientpanelalldata').hide();
                            $('#dt_recent_patientpanelalldata_info').show();
+                           $('#dt_recent_patientpanelalldata_paginate').hide();
                           
                            document.getElementById('dt_recent_patientpanelalldata_info').innerHTML="No Data Available"
                          
@@ -727,6 +737,7 @@
                     dataFilter: function(data){
                       console.log("conditionsandriskdata==== "+data);
                       $('#dt_recent_return_report').show();
+                      $('#dt_recent_return_report_paginate').show();
                         var json = jQuery.parseJSON( data );
                         json.recordsTotal = json.recordsTotal;
                         json.recordsFiltered = json.recordsFiltered;
@@ -745,7 +756,8 @@
                         $('#dt_recent_return_report_processing').hide();
                         $('#dt_recent_return_report').hide();
                         $('#dt_recent_return_report_info').show();
-                       
+                        $('#dt_recent_return_report_paginate').hide();
+                        
                         document.getElementById('dt_recent_return_report_info').innerHTML="No Data Available"
                      
                        //  json_encode(array('data'=>''));

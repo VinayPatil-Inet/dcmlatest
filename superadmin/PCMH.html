@@ -425,6 +425,7 @@ function getResult(pcmdata)
             dataFilter: function(data){
               console.log("getallusers==== "+data);
               $('#dt_getpcmhdata').show();
+              $('#dt_getpcmhdata_paginate').show();
                 var json = jQuery.parseJSON( data );
                 json.recordsTotal = json.recordsTotal;
                 json.recordsFiltered = json.recordsFiltered;
@@ -441,6 +442,7 @@ function getResult(pcmdata)
                           $('#dt_getpcmhdata_processing').hide();
                           $('#dt_getpcmhdata').hide();
                           $('#dt_getpcmhdata_info').show();
+                          $('#dt_getpcmhdata_paginate').hide();
                           
                         document.getElementById('dt_getpcmhdata_info').innerHTML="No Data Available"
                      
