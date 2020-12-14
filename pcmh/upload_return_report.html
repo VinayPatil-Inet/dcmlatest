@@ -424,33 +424,43 @@ $.fn.serializeObject = function()
 
     // upload on file select or drop
     $scope.upload = function (file) {
-        Upload.upload({
-            url: 'https://apimsdcm.azure-api.net/bcbsri/uploadfiletoserver',
-            headers: { 'Content-Type': 'application/json',
-            "x-functions-key": "r+lQxhhDlsEjzLRGYDttArBECmxoI4Chasc4QcbBakuDXFwK9TeLSw==",
-            "Ocp-Apim-Subscription-Key": "7b5df9ff9a28485282adcff8f50ea933",
-            // "subscription-key":"da91fd77-c908-4f23-9469-52acf3239a11"
-            },
-            data: {file: file, 'username': $scope.username}
-        }).then(function (resp) {
-            console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
-            var filename = "filename";
+      selectedFile=file;
+           var filename = "filename";
             var ob  = {};
-            ob[filename] = resp.data;
+            ob[filename] = file.name;
             filename_n = ob;
             var pcmh_id = "pcmh_id";
             var ob2  = {};
-            ob2[pcmh_id] = 2;
+            ob2[pcmh_id] = sessionStorage.getItem("pcmhid");
             res_pcmh_id = ob2;
 
-        }, function (resp) {
-            console.log('Error status: ' + resp.status);
-        }, function (evt) {
-            var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-            selectedFile=evt.config.data.file;
+        // Upload.upload({
+        //     url: 'https://apimsdcm.azure-api.net/bcbsri/uploadfiletoserver',
+        //     headers: { 'Content-Type': 'application/json',
+        //     "x-functions-key": "r+lQxhhDlsEjzLRGYDttArBECmxoI4Chasc4QcbBakuDXFwK9TeLSw==",
+        //     "Ocp-Apim-Subscription-Key": "7b5df9ff9a28485282adcff8f50ea933",
+        //     // "subscription-key":"da91fd77-c908-4f23-9469-52acf3239a11"
+        //     },
+        //     data: {file: file, 'username': $scope.username}
+        // }).then(function (resp) {
+        //     console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
+        //     var filename = "filename";
+        //     var ob  = {};
+        //     ob[filename] = resp.data;
+        //     filename_n = ob;
+        //     var pcmh_id = "pcmh_id";
+        //     var ob2  = {};
+        //     ob2[pcmh_id] = 2;
+        //     res_pcmh_id = ob2;
+
+        // }, function (resp) {
+        //     console.log('Error status: ' + resp.status);
+        // }, function (evt) {
+        //     var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+        //     selectedFile=evt.config.data.file;
             
-            console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
-        });
+        //     console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
+        // });
     };
 
 
