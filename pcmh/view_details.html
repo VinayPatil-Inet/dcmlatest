@@ -1,23 +1,4 @@
-<!DOCTYPE html>
-<html ng-app="update_report">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Care Management</title>
-  <!-- Tell the browser to be responsive to screen width -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="../plugins/datepicker/datepicker3.css">
-  <link rel="stylesheet" href="../plugins/datatables-bs4/css/dataTables.bootstrap4.css">
-  <link rel="stylesheet" href="../dist/css/admin_lte.css">
-  <!-- Google Font: Source Sans Pro -->
-  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-  <style>
+<style>
     .main-sidebar{
       background-color: #048db7 !important;
     }
@@ -33,125 +14,9 @@
         color: red;
       }
   </style>
-  <script src="../dist/js/angular.min.js"></script>
-</head>
-<body class="hold-transition sidebar-mini">
-<div class="wrapper">
-  <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-    <!-- Left navbar links -->
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
-      </li>
-      
-    </ul>
+  
 
-   
-
-    <!-- Right navbar links -->
-    <div class="navbar-custom-menu ml-auto">
-      
-      <ul class="navbar-nav ml-auto">
-        <li class="dropdown user user-menu" style="top: 5px;">
-                  
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="../dist/img/default.png" class="user-image" alt="User Image">
-                                    
-              <span id="username" class="hidden-xs"></span>
-          </a>
-          <ul class="dropdown-menu" style="width: 200px;">
-            <li class="user-header">
-              <img src="../dist/img/default.png" class="img-circle" alt="User Image">
-              <p id="usertype"></p>
-              <p id="username"></p>
-            </li>
-            <li class="user-footer">
-              <div class="pull-left">
-                
-              </div>
-              <div class="pull-right">
-                <a href="../index.html" class="btn btn-danger btn-flat">Logout</a>
-              </div>
-            </li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-  </nav>
-  <!-- /.navbar -->
-
-  <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <!-- Brand Logo -->
-    <a href="#" class="brand-link">
-      <img src="../dist/img/AdminLTELogo.png"
-           alt="Care Management"
-           class="brand-image img-circle elevation-3"
-           style="opacity: .8">
-      <span class="brand-text font-weight-light">Care Management</span>
-    </a>
-
-    <!-- Sidebar -->
-    <div class="sidebar">
-      <!-- Sidebar user (optional) -->
-      
-
-      <!-- Sidebar Menu -->
-      <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-          <!-- <li class="nav-item has-treeview">
-            <a href="" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Dashboard
-               
-              </p>
-            </a>
-            
-          </li> -->
-          <li class="nav-item">
-            <a href="view.html" class="nav-link "> 
-              <i class="nav-icon fas fa-user-alt"></i>
-              <p>
-                PCMH Reports
-                
-              </p>
-            </a>
-          </li>
-
-          <li class="nav-item">
-            <a href="return_report.html" class="nav-link"> 
-              <i class="nav-icon fas fa-file-alt"></i>
-              <p>
-                Return Report File
-                
-              </p>
-            </a>
-          </li>
-
-          <li class="nav-item">
-            <a href="return_report_individual.html" class="nav-link active"> 
-              <i class="nav-icon fas fa-file-alt"></i>
-              <p>
-                Return Report Individual
-                
-              </p>
-            </a>
-          </li>
-
-          
-        </ul>
-      </nav>
-      <!-- /.sidebar-menu -->
-    </div>
-    <!-- /.sidebar -->
-  </aside>
-
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
+  <div ng-app="update_report">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <div class="container-fluid">
@@ -315,7 +180,7 @@
             <h5>Date updated Successfully.<br>Do you want to Continue..?</h5>
             <br>
             <button type="button" class="btn btn-success" data-dismiss="modal">Yes</button>
-            <a href="return_report_individual"><button type="button" class="btn btn-danger">No</button></a>
+            <button type="button" class="btn btn-danger" onclick="close_modal()">No</button>
           </div>
           <br>
         </div>
@@ -326,104 +191,10 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-  <footer class="main-footer">
-    <div class="float-right d-none d-sm-block">
-      
-    </div>
-    <strong>Copyright &copy; 2020 <a href="#">BCBSRI Delegated Care Management</a>.</strong> All rights
-    reserved.
-  </footer>
-
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
-</div>
-<!-- ./wrapper -->
-<style>
-  /* Center the loader */
-  #loader {
-    position: fixed;
-    left: 50%;
-    top: 50%;
-    z-index: 1;
-    width: 150px;
-    height: 150px;
-    margin: -75px 0 0 -75px;
-    border: 16px solid #f3f3f3;
-    border-radius: 50%;
-    border-top: 16px solid blue;
-    border-bottom: 16px solid;
-    border-top: 16px solid #3498db;
-    width: 60px;
-    height: 60px;
-    -webkit-animation: spin 2s linear infinite;
-    animation: spin 2s linear infinite;
-    
-  }
-  
-  @-webkit-keyframes spin {
-    0% { -webkit-transform: rotate(0deg); }
-    100% { -webkit-transform: rotate(360deg); }
-  }
-  
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
-  
-  /* Add animation to "page content" */
-  .animate-bottom {
-    position: relative;
-    -webkit-animation-name: animatebottom;
-    -webkit-animation-duration: 1s;
-    animation-name: animatebottom;
-    animation-duration: 1s
-  }
-  
-  @-webkit-keyframes animatebottom {
-    from { bottom:-100px; opacity:0 } 
-    to { bottom:0px; opacity:1 }
-  }
-  
-  @keyframes animatebottom { 
-    from{ bottom:-100px; opacity:0 } 
-    to{ bottom:0; opacity:1 }
-  }
-  
-  #myDiv {
-    display: none;
-    text-align: center;
-  }
-  </style>
-<!-- jQuery -->
-<script src="../plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- bs-custom-file-input -->
-<script src="../plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
-<!-- AdminLTE App -->
-<script src="../dist/js/adminlte.min.js"></script>
-
-<script src="../plugins/datatables/jquery.dataTables.js"></script>
-<script src="../plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
-
-
-<script src="../dist/js/pcmh.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="../dist/js/demo.js"></script>
-<script src="../plugins/datepicker/bootstrap-datepicker.js"></script>
-<!-- End: Script to conver excel data to json-->
-<link rel="stylesheet" href="../plugins/toastr/toastr.min.css">
-<script src="../plugins/toastr/toastr.min.js"></script>
-<script src="../dist/js/aes.js"></script>
+  <script type="text/javascript" src="../dist/js/angular.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function () {
-  bsCustomFileInput.init();
-  $("#example1").DataTable();
-  $("#example2").DataTable();
-  $("#example3").DataTable();
+
   var usertype=sessionStorage.getItem("usertype");
   var username=sessionStorage.getItem("username");
 
@@ -464,203 +235,26 @@ $('.datepicker').datepicker({
     
   
   //End : Generate Json
+
+ 
+    
+
+   
+
 </script>
 
 
 <script>
+
    var app = angular.module('update_report', []);
   
 app.controller('return_report', ['$scope', function($scope) {
 
 
-  $scope.submitForm = function () {
-    document.getElementById("loader").style.display = "block";
-       var result = JSON.stringify($('form').serializeObject());
-      //  $('#result').text(JSON.stringify($('form').serializeObject()));
-       var json1 = $('form').serializeObject();
-
-            var bcbsriidkey = "bcbsriid";
-            var ob  = {};
-            ob[bcbsriidkey] = resbcbsriid;
-
-            bcbsriidval = ob;
-
-            var useridkey = "userid";
-            var ob2  = {};
-            ob2[useridkey] = sessionStorage.getItem("userid");
-            
-            userid = ob2;
-
-            var jsonData = JSON.stringify($.extend({}, json1,bcbsriidval,userid));
-             console.log("jsonData===== "+jsonData)
-
-        fetch("https://apimsdcm.azure-api.net/PCMH/update_returnreport_dates", {
-        method: 'post',
-       // mode: 'no-cors', // no-cors, *cors, same-origin
-
-          headers: { 'Content-Type': 'application/json',
-            "x-functions-key": "R8W3hwyA4rGnD2tqy1tJaF3VmlybLdrqMxyX0qcFAS4PS6bO79weNA==",
-            "Ocp-Apim-Subscription-Key": "0ac8f354200c4ddb89bb6dcb7528cfea",
-            // "subscription-key":"da91fd77-c908-4f23-9469-52acf3239a11"
-            },
-        body: jsonData
-         }).then((response) => {
-
-     
-      // updatedata(jsonData);
-
-                if (response.ok) {
-                  return response
-                } else {
-                  throw `Looks like something went wrong. Status: ${response.status}`;
-                }
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log("data:" + JSON.stringify(data)+"")
-               
-                var jsondata=data.Outreach_Attempted_Date;
-                console.log("Outreach_Attempted_Date:" + jsondata);
-                if(data.Discharged_from_CM_Date!='')
-                {
-                  console.log("Call function updatecurrentstatus:" + jsondata);
-                  $scope.updatecurrentstatus(2);
-                }
-                else
-                {
-                  $scope.updatecurrentstatus(1);
-                }
-                // pcmdata = "["+JSON.stringify(data)+"]";
-                // getResult(pcmdata);
-               
-               
-            })
-            .catch(error => {
-                console.log(error);
-                document.getElementById("loader").style.display = "none";
-                toastr.error('Something went wrong, Please try again!.');
-            })   
-
-
-       $scope.view_details = {};
-       $scope.resulted_returnreport;
-      //  $scope.view_details.$setPristine();
-      //  return false;
-   };
-
-   $scope.updatecurrentstatus=function(statuscode)
-   {
-     
-      console.log("updatecurrentstatus"+statuscode);
-        var data='{"bcbsriid":'+resbcbsriid+',"statuscode":'+statuscode+'}';
-      //alert("pcmhid "+pcmhid+" bcbsriid "+bcbsriid);
-      
-
-      fetch("https://apimsdcm.azure-api.net/PCMH/updatecurrentstatus", {
-            method: 'post',
-          // mode: 'no-cors', // no-cors, *cors, same-origin
-
-          headers: { 'Content-Type': 'application/json',
-                "x-functions-key": "r+lQxhhDlsEjzLRGYDttArBECmxoI4Chasc4QcbBakuDXFwK9TeLSw==",
-                "Ocp-Apim-Subscription-Key": "7b5df9ff9a28485282adcff8f50ea933",
-                // "subscription-key":"da91fd77-c908-4f23-9469-52acf3239a11"
-                },
-            body: data
-        }).then((response) => {
-
-                        if (response.ok) {
-                        return response
-                    } else {
-                        throw `update Looks like something went wrong. Status: ${response}`;
-                    }
-                })
-                .then(response => response.text())
-                .then(data => {
-                    console.log("data: [" + JSON.stringify(data)+"]")
-                    $scope.resulted_returnreport=data;
-                    // console.log("data===="+ $scope.resulted_returnreport.Mbr_First_Name);
-                    
-
-                    var databcbsriid='{"bcbsriid":'+resbcbsriid+'}';
-
-                    fetch("https://apimsdcm.azure-api.net/PCMH/get_returnreport_individual", {
-                            method: 'post',
-                          // mode: 'no-cors', // no-cors, *cors, same-origin
-
-                          headers: { 'Content-Type': 'application/json',
-                                "x-functions-key": "r+lQxhhDlsEjzLRGYDttArBECmxoI4Chasc4QcbBakuDXFwK9TeLSw==",
-                                "Ocp-Apim-Subscription-Key": "7b5df9ff9a28485282adcff8f50ea933",
-                                // "subscription-key":"da91fd77-c908-4f23-9469-52acf3239a11"
-                                },
-                            body: databcbsriid
-                        }).then((response) => {
-
-                                        if (response.ok) {
-                                        return response
-                                    } else {
-                                        throw `update Looks like something went wrong. Status: ${response}`;
-                                    }
-                                })
-                                .then(response => response.json())
-                                .then(data => {
-                                    console.log("data: [" + JSON.stringify(data)+"]")
-                                    $scope.resulted_returnreport=data;
-                                   
-                                   $scope.updatedate= $scope.formatDate(data.Outreach_Attempted_Date);
-                                              
-                                    console.log("Outreach_Attempted_Date date===="+ $scope.updatedate);
-
-                                    document.getElementById('bcbsriid').value = data.BCBSRI_ID;
-                                    document.getElementById('dob').value = data.Mbr_DOB;
-                                    document.getElementById('riskcat').value = data.BCBSRI_Risk_Categorization;
-                                    document.getElementById('guaranteembr').value = data.Perf_Guarantee_Mbr;
-                                    document.getElementById('practicesite').value = data.Practice_Site;
-                                    document.getElementById('practiceid').value = data.Practice_Identified_Indicator;
-
-                                    document.getElementById('outreach_attempted_date').value =$scope.formatDate(data.Outreach_Attempted_Date);
-                                    document.getElementById('enrolled_status_date').value = $scope.formatDate(data.Enrolled_Status_Date);
-                                    document.getElementById('bh_screening_phq2_phq9_completed_date').value = $scope.formatDate(data.BH_Screening_PHQ2_PHQ9_Completed_Date);
-                                    document.getElementById('care_plan_established_date').value = $scope.formatDate(data.Care_Plan_Established_Date);
-                                    document.getElementById('discharged_from_cm_date').value = $scope.formatDate(data.Discharged_from_CM_Date);
-                                    
-                                  
-                                    document.getElementById("loader").style.display = "none";
-                                    // document.getElementById("loader").style.display = "none";
-                                     toastr.success('Date updated Successfully!.');  
-                                     $('#modal-default').modal('show');
-                                  })
-                                  .catch(error => {
-                                    console.log(error);
-                                    document.getElementById("loader").style.display = "none";
-                                    toastr.error('Something went wrong, Please try again!.');
-                                })  
-                  
-                  })
-                  .catch(error => {
-                    console.log(error);
-                    document.getElementById("loader").style.display = "none";
-                    toastr.error('Something went wrong, Please try again!.');
-                })  
-      
-
-   }
-
-    $scope.formatDate=function(date) {
-     var d = new Date(date),
-         month = '' + (d.getMonth() + 1),
-         day = '' + d.getDate(),
-         year = d.getFullYear();
-
-     if (month.length < 2) month = '0' + month;
-     if (day.length < 2) day = '0' + day;
-
-     return [year, month, day].join('-');
- }
-   //Start : Get PCMH ID from URL
-      const queryString = window.location.search;
-      const urlParams = new URLSearchParams(queryString);
-      const resbcbsriid = urlParams.get('bcbsriid')
-      // var decrypted = CryptoJS.AES.decrypt(bcbsriid, "getreturnreport");
+ //Start : Get PCMH ID from URL
+ const resbcbsriid = sessionStorage.getItem("view_bcbsriid");
+   
+     // var decrypted = CryptoJS.AES.decrypt(bcbsriid, "getreturnreport");
       // const resbcbsriid = decrypted.toString(CryptoJS.enc.Utf8);
 
     //End : Get PCMH ID from URL
@@ -669,7 +263,7 @@ app.controller('return_report', ['$scope', function($scope) {
 
     var data='{"bcbsriid":'+resbcbsriid+'}';
    //alert("pcmhid "+pcmhid+" bcbsriid "+bcbsriid);
-   setTimeout(function() {
+   
     // alert("resbcbsriid "+resbcbsriid+" bcbsriid "+bcbsriid);
     document.getElementById("loader").style.display = "block";
   fetch("https://apimsdcm.azure-api.net/PCMH/get_returnreport_individual", {
@@ -724,7 +318,193 @@ app.controller('return_report', ['$scope', function($scope) {
              })  
     //End : Get PCMH Data by using PCMHID
 
-   },1000);
+  $scope.submitForm = function () {
+    document.getElementById("loader").style.display = "block";
+       var result = JSON.stringify($('form').serializeObject());
+      //  $('#result').text(JSON.stringify($('form').serializeObject()));
+       var json1 = $('form').serializeObject();
+
+            var bcbsriidkey = "bcbsriid";
+            var ob  = {};
+            ob[bcbsriidkey] = resbcbsriid;
+
+            bcbsriidval = ob;
+
+            var useridkey = "userid";
+            var ob2  = {};
+            ob2[useridkey] = sessionStorage.getItem("userid");
+            
+            userid = ob2;
+
+            var jsonData = JSON.stringify($.extend({}, json1,bcbsriidval,userid));
+             console.log("jsonData===== "+jsonData)
+
+        fetch("https://apimsdcm.azure-api.net/PCMH/update_returnreport_dates", {
+        method: 'post',
+       // mode: 'no-cors', // no-cors, *cors, same-origin
+
+          headers: { 'Content-Type': 'application/json',
+            "x-functions-key": "R8W3hwyA4rGnD2tqy1tJaF3VmlybLdrqMxyX0qcFAS4PS6bO79weNA==",
+            "Ocp-Apim-Subscription-Key": "0ac8f354200c4ddb89bb6dcb7528cfea",
+            // "subscription-key":"da91fd77-c908-4f23-9469-52acf3239a11"
+            },
+        body: jsonData
+         }).then((response) => {
+
+     
+      // updatedata(jsonData);
+
+                if (response.ok) {
+                  return response
+                } else {
+                  throw `Looks like something went wrong. Status: ${response.status}`;
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log("data:" + JSON.stringify(data)+"")
+               
+                var jsondata=data.Outreach_Attempted_Date;
+                console.log("Outreach_Attempted_Date:" + jsondata);
+                if(data.Discharged_from_CM_Date!='')
+                {
+                  console.log("Call function updatecurrentstatus:" + jsondata);
+                 // $scope.updatecurrentstatus(2,);
+                  updatecurrentstatus(2,resbcbsriid);
+                }
+                else
+                {
+                 
+                 // $scope.updatecurrentstatus(1);
+                  updatecurrentstatus(1,resbcbsriid);
+                }
+                // pcmdata = "["+JSON.stringify(data)+"]";
+                // getResult(pcmdata);
+               
+               
+            })
+            .catch(error => {
+                console.log(error);
+                document.getElementById("loader").style.display = "none";
+                toastr.error('Something went wrong, Please try again 111!.');
+            })   
+
+
+       $scope.view_details = {};
+       $scope.resulted_returnreport;
+      //  $scope.view_details.$setPristine();
+      //  return false;
+   };
+
+   $scope.updatecurrentstatus=function(statuscode)
+   {
+     alert(resbcbsriid)
+      console.log("updatecurrentstatus = "+statuscode);
+        var data='{"bcbsriid":'+resbcbsriid+',"statuscode":'+statuscode+'}';
+      //alert("pcmhid "+pcmhid+" bcbsriid "+bcbsriid);
+      
+    
+      fetch("https://apimsdcm.azure-api.net/PCMH/updatecurrentstatus", {
+            //method: 'post',
+          // mode: 'no-cors', // no-cors, *cors, same-origin
+
+          headers: { 'Content-Type': 'application/json',
+                "x-functions-key": "r+lQxhhDlsEjzLRGYDttArBECmxoI4Chasc4QcbBakuDXFwK9TeLSw==",
+                "Ocp-Apim-Subscription-Key": "7b5df9ff9a28485282adcff8f50ea933",
+                // "subscription-key":"da91fd77-c908-4f23-9469-52acf3239a11"
+                },
+            body: data
+        }).then((response) => {
+
+                        if (response.ok) {
+                        return response
+                    } else {
+                        throw `update Looks like something went wrong. Status: ${response}`;
+                    }
+                })
+                .then(response => response.text())
+                .then(data => {
+                    console.log("data: [" + JSON.stringify(data)+"]")
+                    $scope.resulted_returnreport=data;
+                    // console.log("data===="+ $scope.resulted_returnreport.Mbr_First_Name);
+                    
+
+                    var databcbsriid='{"bcbsriid":'+resbcbsriid+'}';
+console.log("databcbsriid = = "+databcbsriid);
+                    fetch("https://apimsdcm.azure-api.net/PCMH/get_returnreport_individual", {
+                            method: 'post',
+                          // mode: 'no-cors', // no-cors, *cors, same-origin
+
+                          headers: { 'Content-Type': 'application/json',
+                                "x-functions-key": "r+lQxhhDlsEjzLRGYDttArBECmxoI4Chasc4QcbBakuDXFwK9TeLSw==",
+                                "Ocp-Apim-Subscription-Key": "7b5df9ff9a28485282adcff8f50ea933",
+                                // "subscription-key":"da91fd77-c908-4f23-9469-52acf3239a11"
+                                },
+                            body: databcbsriid
+                        }).then((response) => {
+
+                                        if (response.ok) {
+                                        return response
+                                    } else {
+                                        throw `update Looks like something went wrong. Status: ${response}`;
+                                    }
+                                })
+                                .then(response => response.json())
+                                .then(data => {
+                                    console.log("data: [" + JSON.stringify(data)+"]")
+                                    $scope.resulted_returnreport=data;
+                                   alert(4444);
+                                   $scope.updatedate= $scope.formatDate(data.Outreach_Attempted_Date);
+                                              
+                                    console.log("Outreach_Attempted_Date date===="+ $scope.updatedate);
+
+                                    document.getElementById('bcbsriid').value = data.BCBSRI_ID;
+                                    document.getElementById('dob').value = data.Mbr_DOB;
+                                    document.getElementById('riskcat').value = data.BCBSRI_Risk_Categorization;
+                                    document.getElementById('guaranteembr').value = data.Perf_Guarantee_Mbr;
+                                    document.getElementById('practicesite').value = data.Practice_Site;
+                                    document.getElementById('practiceid').value = data.Practice_Identified_Indicator;
+
+                                    document.getElementById('outreach_attempted_date').value =$scope.formatDate(data.Outreach_Attempted_Date);
+                                    document.getElementById('enrolled_status_date').value = $scope.formatDate(data.Enrolled_Status_Date);
+                                    document.getElementById('bh_screening_phq2_phq9_completed_date').value = $scope.formatDate(data.BH_Screening_PHQ2_PHQ9_Completed_Date);
+                                    document.getElementById('care_plan_established_date').value = $scope.formatDate(data.Care_Plan_Established_Date);
+                                    document.getElementById('discharged_from_cm_date').value = $scope.formatDate(data.Discharged_from_CM_Date);
+                                    
+                                  
+                                    document.getElementById("loader").style.display = "none";
+                                    // document.getElementById("loader").style.display = "none";
+                                     toastr.success('Date updated Successfully!.');  
+                                     $('#modal-default').modal('show');
+                                  })
+                                  .catch(error => {
+                                    console.log(error);
+                                    document.getElementById("loader").style.display = "none";
+                                    toastr.error('Something went wrong, Please try again 222!.');
+                                })  
+                  
+                  })
+                  .catch(error => {
+                    console.log(error);
+                    document.getElementById("loader").style.display = "none";
+                    toastr.error('Something went wrong, Please try again 333!.');
+                })  
+      
+
+   }
+
+    $scope.formatDate=function(date) {
+     var d = new Date(date),
+         month = '' + (d.getMonth() + 1),
+         day = '' + d.getDate(),
+         year = d.getFullYear();
+
+     if (month.length < 2) month = '0' + month;
+     if (day.length < 2) day = '0' + day;
+
+     return [year, month, day].join('-');
+ }
+  
 
     $scope.resetForm = function() {
       $scope.view_details = {};
@@ -733,6 +513,109 @@ app.controller('return_report', ['$scope', function($scope) {
    
 
   }]);
+
+  function updatecurrentstatus(statuscode,resbcbsriid)
+  {
+    var data='{"bcbsriid":'+resbcbsriid+',"statuscode":'+statuscode+'}';
+    fetch("https://apimsdcm.azure-api.net/PCMH/updatecurrentstatus", {
+            method: 'post',
+          // mode: 'no-cors', // no-cors, *cors, same-origin
+
+          headers: { 'Content-Type': 'application/json',
+                "x-functions-key": "r+lQxhhDlsEjzLRGYDttArBECmxoI4Chasc4QcbBakuDXFwK9TeLSw==",
+                "Ocp-Apim-Subscription-Key": "7b5df9ff9a28485282adcff8f50ea933",
+                // "subscription-key":"da91fd77-c908-4f23-9469-52acf3239a11"
+                },
+            body: data
+        }).then((response) => {
+
+                        if (response.ok) {
+                        return response
+                    } else {
+                        throw `update Looks like something went wrong. Status: ${response}`;
+                    }
+                }).then(response => response.text())
+                .then(data => {
+                    console.log("data: [" + JSON.stringify(data)+"]")
+                    var resulted_returnreport=data;
+                    // console.log("data===="+ $scope.resulted_returnreport.Mbr_First_Name);
+                    
+
+                    var databcbsriid='{"bcbsriid":'+resbcbsriid+'}';
+
+                    fetch("https://apimsdcm.azure-api.net/PCMH/get_returnreport_individual", {
+                            method: 'post',
+                          // mode: 'no-cors', // no-cors, *cors, same-origin
+
+                          headers: { 'Content-Type': 'application/json',
+                                "x-functions-key": "r+lQxhhDlsEjzLRGYDttArBECmxoI4Chasc4QcbBakuDXFwK9TeLSw==",
+                                "Ocp-Apim-Subscription-Key": "7b5df9ff9a28485282adcff8f50ea933",
+                                // "subscription-key":"da91fd77-c908-4f23-9469-52acf3239a11"
+                                },
+                            body: databcbsriid
+                        }).then((response) => {
+
+                                        if (response.ok) {
+                                        return response
+                                    } else {
+                                        throw `update Looks like something went wrong. Status: ${response}`;
+                                    }
+                                })
+                                .then(response => response.json())
+                                .then(data => {
+                                    console.log("data: [" + JSON.stringify(data)+"]")
+                                    var resulted_returnreport=data;
+                                   
+                                  var updatedate= formatDate(data.Outreach_Attempted_Date);
+                                              
+                                    console.log("Outreach_Attempted_Date date===="+ updatedate);
+
+                                    document.getElementById('bcbsriid').value = data.BCBSRI_ID;
+                                    document.getElementById('dob').value = data.Mbr_DOB;
+                                    document.getElementById('riskcat').value = data.BCBSRI_Risk_Categorization;
+                                    document.getElementById('guaranteembr').value = data.Perf_Guarantee_Mbr;
+                                    document.getElementById('practicesite').value = data.Practice_Site;
+                                    document.getElementById('practiceid').value = data.Practice_Identified_Indicator;
+
+                                    document.getElementById('outreach_attempted_date').value =formatDate(data.Outreach_Attempted_Date);
+                                    document.getElementById('enrolled_status_date').value = formatDate(data.Enrolled_Status_Date);
+                                    document.getElementById('bh_screening_phq2_phq9_completed_date').value =formatDate(data.BH_Screening_PHQ2_PHQ9_Completed_Date);
+                                    document.getElementById('care_plan_established_date').value = formatDate(data.Care_Plan_Established_Date);
+                                    document.getElementById('discharged_from_cm_date').value = formatDate(data.Discharged_from_CM_Date);
+                                    
+                                  
+                                    document.getElementById("loader").style.display = "none";
+                                    // document.getElementById("loader").style.display = "none";
+                                     toastr.success('Date updated Successfully!.');  
+                                     $('#modal-default').modal('show');
+                                  })
+                                  .catch(error => {
+                                    console.log(error);
+                                    document.getElementById("loader").style.display = "none";
+                                    toastr.error('Something went wrong, Please try again!.');
+                                })  
+                  
+                  })
+  }
+
+  function formatDate(date) {
+     var d = new Date(date),
+         month = '' + (d.getMonth() + 1),
+         day = '' + d.getDate(),
+         year = d.getFullYear();
+
+     if (month.length < 2) month = '0' + month;
+     if (day.length < 2) day = '0' + day;
+
+     return [year, month, day].join('-');
+ }
+
+ function close_modal()
+  {
+  
+    $("#modal-default").modal("hide");
+    setTimeout(function() {
+       load_return_report_individual_page();
+      },1000);
+  }
 </script>
-</body>
-</html>

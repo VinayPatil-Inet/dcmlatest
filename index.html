@@ -144,7 +144,7 @@
 </html>
 
 <script>
- 
+ sessionStorage.clear();
  var app = angular.module('validateuser', []);
 
  app.controller('validuserController', function($scope,$window) {
@@ -201,20 +201,20 @@
                   {
                     // $("#login").attr('action', 'superadmin/PCMH.html')
                     
-                    window.location.replace("superadmin/PCMH");
+                    window.location.replace("superadmin");
                    
                   
                   }
                   if(data.usertype=="Admin")
                   {
                     // $("#login").attr('action', 'bcbsri/dashboard.html');
-                    window.location.replace("bcbsri/dashboard");
+                    window.location.replace("bcbsri");
                   
                   }
                   if(data.usertype=="PCMH")
                   {
                     // $("#login").attr('action', 'pcmh/view.html');
-                    window.location.replace("pcmh/view");
+                    window.location.replace("pcmh");
                   
                   }
                                
